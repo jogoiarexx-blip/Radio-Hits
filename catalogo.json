@@ -223,6 +223,56 @@
       "year": 2003
     },
     {
+      "id": "malhacao-internacional-2003-03-foo-fighters-times-like-these",
+      "title": "Times Like These",
+      "artist": "Foo Fighters",
+      "genre": "Malhação Internacional 2003",
+      "duration": 227.788,
+      "src": "./musicas/malhacao-internacional-2003/03-foo-fighters-times-like-these.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2003
+    },
+    {
+      "id": "malhacao-internacional-2003-04-eve-feat-drag-on-got-what-you-need",
+      "title": "Got What You Need",
+      "artist": "Eve feat. Drag-On",
+      "genre": "Malhação Internacional 2003",
+      "duration": 228.728,
+      "src": "./musicas/malhacao-internacional-2003/04-eve-feat-drag-on-got-what-you-need.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2003
+    },
+    {
+      "id": "malhacao-internacional-2003-05-nelly-feat-kelly-rowland-dilemma",
+      "title": "Dilemma",
+      "artist": "Nelly feat. Kelly Rowland",
+      "genre": "Malhação Internacional 2003",
+      "duration": 285.597,
+      "src": "./musicas/malhacao-internacional-2003/05-nelly-feat-kelly-rowland-dilemma.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2003
+    },
+    {
+      "id": "malhacao-internacional-2003-06-ja-rule-feat-ashanti-mesmerize",
+      "title": "Mesmerize",
+      "artist": "Ja Rule feat. Ashanti",
+      "genre": "Malhação Internacional 2003",
+      "duration": 277.734,
+      "src": "./musicas/malhacao-internacional-2003/06-ja-rule-feat-ashanti-mesmerize.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2003
+    },
+    {
+      "id": "malhacao-internacional-2003-07-beyonce-feat-jay-z-crazy-in-love",
+      "title": "Crazy in Love",
+      "artist": "Beyoncé feat. Jay-Z",
+      "genre": "Malhação Internacional 2003",
+      "duration": 244.872,
+      "src": "./musicas/malhacao-internacional-2003/07-beyonce-feat-jay-z-crazy-in-love.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2003
+    },
+    {
       "id": "malhacao-internacional-2003-08-t-a-t-u-all-the-things-she-said",
       "title": "All the Things She Said",
       "artist": "t.A.T.u.",
@@ -336,6 +386,11 @@
     "as-melhores-80-e-90-tina-turner-we-don-t-need-another-hero-thunderdome-music-video-new",
     "malhacao-internacional-2003-01-s-m-s-feat-rehb-just-a-bit-of-chaos",
     "malhacao-internacional-2003-02-avril-lavigne-sk8er-boi",
+    "malhacao-internacional-2003-03-foo-fighters-times-like-these",
+    "malhacao-internacional-2003-04-eve-feat-drag-on-got-what-you-need",
+    "malhacao-internacional-2003-05-nelly-feat-kelly-rowland-dilemma",
+    "malhacao-internacional-2003-06-ja-rule-feat-ashanti-mesmerize",
+    "malhacao-internacional-2003-07-beyonce-feat-jay-z-crazy-in-love",
     "malhacao-internacional-2003-08-t-a-t-u-all-the-things-she-said",
     "malhacao-internacional-2003-09-chevelle-send-the-pain-below",
     "malhacao-internacional-2003-10-damian-marley-and-you-be-loved-and-be-loved",
