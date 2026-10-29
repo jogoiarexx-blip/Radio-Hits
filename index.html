@@ -7,9 +7,10 @@
   <meta name="description" content="Radio Hits — rádio sincronizada e músicas sob demanda em um só lugar.">
   <meta property="og:title" content="Radio Hits — sua música, seu ritmo">
   <meta property="og:description" content="Rádio e biblioteca de músicas num mesmo player.">
+  <meta name="theme-color" content="#0b0e13">
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/style.css?v=assets-2">
   <title>Radio Hits — sua música, seu ritmo</title>
 </head>
 <body>
@@ -39,7 +40,7 @@
 
   <div class="app-shell">
     <aside class="sidebar" id="sidebar" aria-label="Navegação principal">
-      <a class="brand" href="#radio" aria-label="Radio Hits, início"><span class="brand-mark"><span></span><span></span><span></span><span></span></span><span>RADIO HITS<span class="brand-dot">.</span></span></a>
+      <a class="brand" href="#radio" aria-label="Radio Hits, início"><img class="brand-mark-image" src="./assets/branding/radio-hits-mark.svg" width="37" height="37" alt=""><span>RADIO HITS<span class="brand-dot">.</span></span></a>
       <div class="side-label">MENU</div>
       <nav class="side-nav" id="nav-primary">
         <button class="nav-link is-active" data-view="radio"><svg class="icon"><use href="#i-radio"/></svg><span>Rádio</span><span class="nav-indicator"></span></button>
@@ -57,7 +58,7 @@
       <header class="topbar">
         <div class="topbar-heading"><span class="eyebrow">SEU ESPAÇO MUSICAL</span><span class="topbar-date" id="today-label"></span></div>
         <label class="search-box"><svg class="icon"><use href="#i-search"/></svg><input id="search" type="search" placeholder="Busque músicas, artistas..." autocomplete="off" aria-label="Buscar músicas e artistas"><kbd>/</kbd></label>
-        <button class="top-avatar" id="about-button" aria-label="Sobre o projeto">P<span class="online-indicator"></span></button>
+        <button class="top-avatar" id="about-button" aria-label="Sobre o projeto">R<span class="online-indicator"></span></button>
       </header>
 
       <div class="view" id="view-radio">
@@ -73,6 +74,15 @@
 
       <div class="view is-hidden" id="view-explorar">
         <div class="page-intro"><span class="eyebrow">ESCOLHA O QUE TOCAR</span><h1>Descubra seu próximo som<span class="accent-period">.</span></h1><p>Sem algoritmos escondidos. Você no controle de cada faixa.</p></div>
+        <section class="genre-showcase" aria-label="Explore por estilo musical">
+ <div class="section-title row-between"><div><span class="eyebrow">SUAS ESTAÇÕES</span><h2>Escolha a sua vibe</h2></div><span class="small-note">Biblioteca por categoria</span></div>
+ <div class="genre-showcase-grid">
+ <button class="genre-feature" type="button" data-action="genre" data-genre="Anos 80 e 90" aria-label="Explorar Anos 80 e 90"><img loading="lazy" src="./assets/capas/genero-80-90.svg" alt=""><span class="genre-feature-label">CLÁSSICOS</span></button>
+<button class="genre-feature" type="button" data-action="genre" data-genre="Rock" aria-label="Explorar Rock"><img loading="lazy" src="./assets/capas/genero-rock.svg" alt=""><span class="genre-feature-label">GUITARRAS</span></button>
+<button class="genre-feature" type="button" data-action="genre" data-genre="Hip Hop" aria-label="Explorar Hip Hop"><img loading="lazy" src="./assets/capas/genero-hiphop.svg" alt=""><span class="genre-feature-label">BATIDAS</span></button>
+<button class="genre-feature" type="button" data-action="genre" data-genre="Malhação Internacional 2003" aria-label="Explorar Malhação Internacional 2003"><img loading="lazy" src="./assets/capas/genero-malhacao.svg" alt=""><span class="genre-feature-label">TRILHA 2003</span></button>
+ </div>
+</section>
         <section class="discover-section"><div class="section-title row-between"><div><span class="eyebrow">SUA SELEÇÃO</span><h2>Em destaque</h2></div><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><span class="small-note" id="explore-track-count"></span><button class="outline-button" type="button" id="refresh-library" aria-label="Atualizar catálogo de músicas">Atualizar músicas</button></div></div><div id="discover-grid" class="album-grid"></div></section>
         <section class="tracks-section"><div class="section-title row-between"><div><span class="eyebrow">CATÁLOGO COMPLETO</span><h2>Todas as faixas</h2></div><div class="chips" id="genre-filters"></div></div><div class="table-header"><span>FAIXA</span><span>GÊNERO</span><svg class="icon"><use href="#i-clock"/></svg><span></span></div><div id="all-tracks" class="track-list"></div></section>
         <section class="tracks-section" id="offline-library"><div class="section-title row-between"><div><span class="eyebrow">NO SEU DISPOSITIVO</span><h2>Minhas músicas offline</h2></div><span class="small-note" id="offline-count">Carregando downloads...</span></div><div class="track-list" id="offline-tracks"></div><p class="fine-print">O arquivo fica neste aparelho e não é baixado automaticamente. Download disponível apenas para faixas com autorização de armazenamento e distribuição.</p></section>

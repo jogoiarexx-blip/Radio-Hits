@@ -94,6 +94,16 @@ def main():
         artist = str(meta.get('artist') or tag_value(tags, 'artist') or fallback_artist or 'Artista independente').strip()
         genre = str(meta.get('genre') or (path.relative_to(MUSIC).parts[0] if len(path.relative_to(MUSIC).parts)>1 else 'Outros')).strip()
         cover=str(meta.get('cover') or './assets/capas/padrao.svg')
+        # Capas temáticas originais para faixas comerciais sem capa licenciada.
+        # Preserva capas específicas das faixas independentes e não altera radioOrder.
+        genre_art={
+            'Anos 80 e 90':'./assets/capas/genero-80-90.svg',
+            'Rock':'./assets/capas/genero-rock.svg',
+            'Hip Hop':'./assets/capas/genero-hiphop.svg',
+            'Malhação Internacional 2003':'./assets/capas/genero-malhacao.svg',
+        }
+        if cover == './assets/capas/padrao.svg':
+            cover=genre_art.get(genre,'./assets/capas/genero-radio-hits.svg')
         # Keep paths relative to GitHub Pages subdirectory; quote every component.
         from urllib.parse import quote
         source='./musicas/'+ '/'.join(quote(part) for part in path.relative_to(MUSIC).parts)
