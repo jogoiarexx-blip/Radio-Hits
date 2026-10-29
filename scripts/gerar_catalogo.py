@@ -68,8 +68,9 @@ def main():
     metadata=json.loads(META.read_text(encoding='utf-8')) if META.exists() else {}
     if not isinstance(metadata,dict): raise ValueError('musicas/metadados.json precisa ser um objeto JSON')
     files=[p for p in MUSIC.rglob('*') if p.is_file() and p.suffix.lower() in EXTENSIONS]
-    files.sort(key=lambda p:(0 if p.relative_to(MUSIC).as_posix() in metadata else 1,
-        list(metadata.keys()).index(p.relative_to(MUSIC).as_posix()) if p.relative_to(MUSIC).as_posix() in metadata else p.relative_to(MUSIC).as_posix().lower()))
+    positions={path:i for i,path in enumerate(metadata)}
+    files.sort(key=lambda p:(0,positions[p.relative_to(MUSIC).as_posix()]) if p.relative_to(MUSIC).as_posix() in positions
+               else (1,p.relative_to(MUSIC).as_posix().lower()))
     tracks=[]
     ids=set()
     for path in files:

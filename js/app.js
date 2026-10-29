@@ -99,6 +99,12 @@
     return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
   function icon(name, cls='icon') { return `<svg class="${cls}" aria-hidden="true"><use href="#i-${name}"/></svg>`; }
+  function libraryDuration(seconds) {
+    const whole = Math.max(0, Math.round(Number(seconds) || 0));
+    const hours = Math.floor(whole / 3600), minutes = Math.floor((whole % 3600) / 60);
+    const secs = whole % 60;
+    return hours ? `${hours}h ${String(minutes).padStart(2, '0')}min` : minutes ? `${minutes}min ${String(secs).padStart(2, '0')}s` : `${secs}s`;
+  }
   function timeFmt(sec) {
     if (!Number.isFinite(Number(sec))) return '0:00';
     sec = Math.max(0, Math.floor(Number(sec)));
@@ -169,11 +175,13 @@
     const tracks = visibleTracks();
     $('discover-grid').innerHTML = tracks.slice(0, 4).map(card).join('') || empty('Nenhuma faixa encontrada', 'Experimente outra busca.');
     $('all-tracks').innerHTML = tracks.map(songRow).join('') || empty('Sem resultados', 'Experimente outro gênero ou termo.');
-    $('explore-track-count').textContent = `${tracks.length} ${tracks.length === 1 ? 'faixa' : 'faixas'}`;
+    $('explore-track-count').textContent = `${tracks.length} ${tracks.length === 1 ? 'faixa' : 'faixas'} · ${libraryDuration(tracks.reduce((n,t)=>n+Number(t.duration),0))}`;
     $('preview-grid').innerHTML = state.tracks.slice(0, 4).map(card).join('') || empty('Biblioteca vazia','Adicione MP3 na pasta músicas.');
     const genres = ['Todos', ...new Set(state.tracks.map(t => t.genre).filter(Boolean))];
     $('genre-filters').innerHTML = genres.map(g => `<button data-action="genre" data-genre="${escapeHtml(g)}" class="${state.genre === g ? 'is-active' : ''}">${escapeHtml(g)}</button>`).join('');
     $('sidebar-track-count').textContent = `${state.tracks.length} ${state.tracks.length === 1 ? 'faixa' : 'faixas'}`;
+    const clock = $('sidebar-library-runtime');
+    if (clock) clock.textContent = libraryDuration(state.tracks.reduce((n,t)=>n+Number(t.duration),0)) + ' de música';
     renderOffline();
   }
   function renderOffline() {
@@ -382,7 +390,8 @@
     if (state.mode === 'radio') { playRadio(); return; }
     const t = trackById(state.currentId) || state.tracks[0];
     if (!t) return toast('Adicione músicas para começar.');
-    if (!audio.src || audio.src !== new URL(t.src, document.baseURI).href) loadTrack(t, 0);
+    // Não reinicie arquivos locais blob: quando o usuário só quer retomar a faixa.
+    if (!audio.src || (audio.src !== new URL(t.src, document.baseURI).href && activeOfflineId !== t.id)) loadTrack(t, 0);
     requestPlay();
   }
   function nextTrack(manual=false) {
@@ -591,7 +600,7 @@
           cover:t.cover||'./assets/capas/padrao.svg',duration:Number(t.duration)}));
       const oldIds = new Set(state.tracks.map(t => t.id));
       const additions = updated.filter(t => !oldIds.has(t.id)).length;
-      const signature = tracks => JSON.stringify(tracks.map(t => [t.id,t.title,t.artist,t.src,t.duration,t.genre]));
+      const signature = tracks => JSON.stringify(tracks.map(t => [t.id,t.title,t.artist,t.src,t.duration,t.genre,t.cover,t.year,t.downloadAllowed]));
       const orderChanged = JSON.stringify(state.radioOrder) !== JSON.stringify(data.radioOrder || []);
       if (signature(updated) !== signature(state.tracks) || orderChanged) {
         state.tracks = updated;

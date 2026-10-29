@@ -25,8 +25,11 @@ jobs:
           python-version: '3.12'
       - name: Instalar leitor de audio
         run: python -m pip install --disable-pip-version-check mutagen==1.47.0
-      - name: Verificar JavaScript do player
-        run: node --check js/app.js
+      - name: Verificar JavaScript do player e offline
+        run: |
+          node --check js/app.js
+          node --check js/offline.js
+          node tests/auditoria-radio.js
       - name: Gerar catalogo e site
         run: python scripts/preparar_site.py
       - name: Conferir todas as musicas adicionadas

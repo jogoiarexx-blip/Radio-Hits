@@ -223,6 +223,21 @@ public final class MainActivity extends Activity {
             MediaItem now = controller.getCurrentMediaItem();
             boolean same = now != null && now.mediaId.equals(items.get(index).mediaId)
                 && controller.getMediaItemCount() == items.size();
+            // Uma playlist diferente pode ter a mesma quantidade de faixas.
+            // Compare o conteúdo inteiro, inclusive URLs locais/online.
+            if (same) {
+                for (int i = 0; i < items.size(); i++) {
+                    MediaItem previous = controller.getMediaItemAt(i);
+                    MediaItem upcoming = items.get(i);
+                    if (!previous.mediaId.equals(upcoming.mediaId)
+                        || previous.localConfiguration == null
+                        || upcoming.localConfiguration == null
+                        || !previous.localConfiguration.uri.equals(upcoming.localConfiguration.uri)) {
+                        same = false;
+                        break;
+                    }
+                }
+            }
             // No rádio, re-sincroniza o início ao relógio mesmo após pausa.
             if (!same || "radio".equals(mode)) {
                 controller.setMediaItems(items, index, pos);
