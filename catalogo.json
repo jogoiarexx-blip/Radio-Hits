@@ -471,6 +471,56 @@
       "src": "./musicas/rock/Toto%20-%20Hold%20The%20Line%20%28Official%20Video%29.mp3",
       "cover": "./assets/capas/padrao.svg",
       "year": 2026
+    },
+    {
+      "id": "hip-hop-akon-smack-that-feat-eminem",
+      "title": "Akon - Smack That (feat. Eminem)",
+      "artist": "Akon",
+      "genre": "Hip Hop",
+      "duration": 212.428,
+      "src": "./musicas/Hip%20Hop/Akon%20-%20Smack%20That%20%28feat.%20Eminem%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-nelly-dilemma-feat-kelly-rowland",
+      "title": "Nelly - Dilemma (feat. Kelly Rowland)",
+      "artist": "Nelly",
+      "genre": "Hip Hop",
+      "duration": 289.202,
+      "src": "./musicas/Hip%20Hop/Nelly%20-%20Dilemma%20%28feat.%20Kelly%20Rowland%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-ridin-f-tusbuxgme",
+      "title": "Ridin'",
+      "artist": "Chamillionaire - Topic",
+      "genre": "Hip Hop",
+      "duration": 303.099,
+      "src": "./musicas/Hip%20Hop/Ridin%27%20%5BF_TuSBUXgmE%5D.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-say-goodbye-txfbe1qx924",
+      "title": "Say Goodbye",
+      "artist": "Chris Brown - Topic",
+      "genre": "Hip Hop",
+      "duration": 289.802,
+      "src": "./musicas/Hip%20Hop/Say%20Goodbye%20%5BTxfBE1qX924%5D.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-usher-love-in-this-club-feat-young-jeezy",
+      "title": "Usher - Love in This Club (feat. Young Jeezy)",
+      "artist": "Usher",
+      "genre": "Hip Hop",
+      "duration": 259.762,
+      "src": "./musicas/Hip%20Hop/Usher%20-%20Love%20in%20This%20Club%20%28feat.%20Young%20Jeezy%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
     }
   ],
   "radioOrder": [
@@ -520,6 +570,11 @@
     "rock-the-outfield-your-love-official-hd-video",
     "rock-the-police-every-breath-you-take-official-music-video",
     "rock-toto-africa-official-hd-video",
-    "rock-toto-hold-the-line-official-video"
+    "rock-toto-hold-the-line-official-video",
+    "hip-hop-akon-smack-that-feat-eminem",
+    "hip-hop-nelly-dilemma-feat-kelly-rowland",
+    "hip-hop-ridin-f-tusbuxgme",
+    "hip-hop-say-goodbye-txfbe1qx924",
+    "hip-hop-usher-love-in-this-club-feat-young-jeezy"
   ]
 }
