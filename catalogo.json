@@ -483,12 +483,52 @@
       "year": 2026
     },
     {
+      "id": "hip-hop-i-wanna-love-you",
+      "title": "I Wanna Love You",
+      "artist": "Yogo",
+      "genre": "Hip Hop",
+      "duration": 247.07,
+      "src": "./musicas/Hip%20Hop/I%20Wanna%20Love%20You.m4a",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
       "id": "hip-hop-in-da-club-dtriwq8j9jw",
       "title": "In Da Club",
       "artist": "50 Cent - Topic",
       "genre": "Hip Hop",
       "duration": 193.515,
       "src": "./musicas/Hip%20Hop/In%20Da%20Club%20%5BDtrIWQ8J9jw%5D.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-just-a-lil-bit",
+      "title": "Just A Lil Bit",
+      "artist": "Lil B",
+      "genre": "Hip Hop",
+      "duration": 237.713,
+      "src": "./musicas/Hip%20Hop/Just%20A%20Lil%20Bit.m4a",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-many-men-wish-death",
+      "title": "Many Men (Wish Death)",
+      "artist": "Artista independente",
+      "genre": "Hip Hop",
+      "duration": 256.242,
+      "src": "./musicas/Hip%20Hop/Many%20Men%20%28Wish%20Death%29.m4a",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-miss-independent",
+      "title": "Miss Independent",
+      "artist": "[no artist]",
+      "genre": "Hip Hop",
+      "duration": 232.001,
+      "src": "./musicas/Hip%20Hop/Miss%20Independent.m4a",
       "cover": "./assets/capas/padrao.svg",
       "year": 2026
     },
@@ -523,6 +563,16 @@
       "year": 2026
     },
     {
+      "id": "hip-hop-the-real-slim-shady",
+      "title": "The Real Slim Shady",
+      "artist": "[unknown]",
+      "genre": "Hip Hop",
+      "duration": 284.222,
+      "src": "./musicas/Hip%20Hop/The%20Real%20Slim%20Shady.m4a",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
       "id": "hip-hop-usher-love-in-this-club-feat-young-jeezy",
       "title": "Usher - Love in This Club (feat. Young Jeezy)",
       "artist": "Usher",
@@ -539,6 +589,16 @@
       "genre": "Hip Hop",
       "duration": 448.575,
       "src": "./musicas/Hip%20Hop/What%20Goes%20Around..._...Comes%20Around%20%28Interlude%29%20%5BbxBiTm7vtCs%5D.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-what-s-luv-feat-ashanti",
+      "title": "What's Luv? (feat. Ashanti)",
+      "artist": "Artista independente",
+      "genre": "Hip Hop",
+      "duration": 231.281,
+      "src": "./musicas/Hip%20Hop/What%27s%20Luv%20%28feat.%20Ashanti%29.m4a",
       "cover": "./assets/capas/padrao.svg",
       "year": 2026
     }
@@ -592,11 +652,17 @@
     "rock-toto-africa-official-hd-video",
     "rock-toto-hold-the-line-official-video",
     "hip-hop-akon-smack-that-feat-eminem",
+    "hip-hop-i-wanna-love-you",
     "hip-hop-in-da-club-dtriwq8j9jw",
+    "hip-hop-just-a-lil-bit",
+    "hip-hop-many-men-wish-death",
+    "hip-hop-miss-independent",
     "hip-hop-nelly-dilemma-feat-kelly-rowland",
     "hip-hop-ridin-f-tusbuxgme",
     "hip-hop-say-goodbye-txfbe1qx924",
+    "hip-hop-the-real-slim-shady",
     "hip-hop-usher-love-in-this-club-feat-young-jeezy",
-    "hip-hop-what-goes-around-comes-around-interlude-bxbitm7vtcs"
+    "hip-hop-what-goes-around-comes-around-interlude-bxbitm7vtcs",
+    "hip-hop-what-s-luv-feat-ashanti"
   ]
 }
