@@ -483,6 +483,46 @@
       "year": 2026
     },
     {
+      "id": "hip-hop-alicia-keys-no-one-official-music-video",
+      "title": "Alicia Keys - No One (Official Music Video)",
+      "artist": "LUCKI",
+      "genre": "Hip Hop",
+      "duration": 248.069,
+      "src": "./musicas/Hip%20Hop/Alicia%20Keys%20-%20No%20One%20%28Official%20Music%20Video%29.m4a",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-cry-me-a-river",
+      "title": "Cry Me a River",
+      "artist": "Artista independente",
+      "genre": "Hip Hop",
+      "duration": 288.356,
+      "src": "./musicas/Hip%20Hop/Cry%20Me%20a%20River.m4a",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-don-t-matter",
+      "title": "Don't Matter",
+      "artist": "CVX",
+      "genre": "Hip Hop",
+      "duration": 293.069,
+      "src": "./musicas/Hip%20Hop/Don%27t%20Matter.m4a",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-flo-rida-low-feat-t-pain-official-video",
+      "title": "Flo Rida - Low (feat. T-Pain) [Official Video]",
+      "artist": "Hawkman",
+      "genre": "Hip Hop",
+      "duration": 230.876,
+      "src": "./musicas/Hip%20Hop/Flo%20Rida%20-%20Low%20%28feat.%20T-Pain%29%20%5BOfficial%20Video%5D.m4a",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
       "id": "hip-hop-i-wanna-love-you",
       "title": "I Wanna Love You",
       "artist": "Yogo",
@@ -652,6 +692,10 @@
     "rock-toto-africa-official-hd-video",
     "rock-toto-hold-the-line-official-video",
     "hip-hop-akon-smack-that-feat-eminem",
+    "hip-hop-alicia-keys-no-one-official-music-video",
+    "hip-hop-cry-me-a-river",
+    "hip-hop-don-t-matter",
+    "hip-hop-flo-rida-low-feat-t-pain-official-video",
     "hip-hop-i-wanna-love-you",
     "hip-hop-in-da-club-dtriwq8j9jw",
     "hip-hop-just-a-lil-bit",
