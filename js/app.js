@@ -1,7 +1,76 @@
 'use strict';
 (() => {
   const $ = (id) => document.getElementById(id);
-  const audio = $('audio');
+  const nativeBridge = typeof window.RadioHitsAndroid !== 'undefined' && !!window.RadioHitsAndroid.playQueue;
+  function createNativeAudio() {
+    const events = new EventTarget();
+    let source='', position=0, duration=0, ready=0, paused=true, ended=false, volume=.75, error=null;
+    let nativeId='', nativeMode='';
+    function emit(type) { events.dispatchEvent(new Event(type)); }
+    window.RadioHitsAndroidState = function(info) {
+      if (!info || typeof info !== 'object') return;
+      const wasPaused = paused;
+      const oldId = nativeId;
+      nativeId = info.id || '';
+      nativeMode = info.mode || '';
+      paused = !!info.paused;
+      ended = !!info.ended;
+      error = info.error ? {code:2} : null;
+      if (info.src && (source === '' || (info.id && oldId !== info.id))) source = info.src;
+      if (Number.isFinite(Number(info.position))) position = Math.max(0,Number(info.position));
+      if (Number(info.duration) > 0) duration = Number(info.duration);
+      if (Number(info.readyState) > 0) ready = Number(info.readyState);
+      if (wasPaused !== paused) emit(paused?'pause':'play');
+      emit('timeupdate');
+      if (error) emit('error');
+      if (typeof state !== 'undefined' && state.loaded && nativeId && trackById(nativeId)) {
+        const changed = state.currentId !== nativeId;
+        if (changed) {
+          state.currentId = nativeId;
+          if (nativeMode === 'radio' || nativeMode === 'ondemand') state.mode = nativeMode;
+          if (state.mode === 'ondemand') state.queueIndex = Math.max(0,state.queue.indexOf(nativeId));
+          renderPlayer(); renderRadio(); renderExplore(); renderQueue(); 
+        }
+      }
+    };
+    return {
+      get src() { return source; }, set src(value) { source=String(value);position=0;duration=0;ready=1;paused=true; },
+      get currentTime() { return position; },
+      set currentTime(value) { position=Math.max(0,Number(value)||0); try {window.RadioHitsAndroid.seek(position);} catch (_){} emit('timeupdate'); },
+      get duration() { return duration; },
+      get readyState() { return ready; },
+      get paused() { return paused; },
+      get ended() { return ended; },
+      get error() { return error; },
+      get playbackRate() { return 1; },
+      get volume() { return volume; },
+      set volume(v) { volume=Math.max(0,Math.min(1,Number(v)||0)); try {window.RadioHitsAndroid.volume(volume);} catch(_){} },
+      addEventListener(type,callback) { events.addEventListener(type,callback); },
+      load() {ready=1;queueMicrotask(()=>emit('loadedmetadata')); },
+      pause() { paused=true;window.RadioHitsAndroid.pause();emit('pause'); },
+      play() {
+        const tracks = state.mode === 'radio'
+            ? radioTracks()
+            : state.queue.map(id=>trackById(id)).filter(Boolean);
+        const selected = state.currentId;
+        if (!tracks.length) return Promise.reject(new Error('Biblioteca vazia'));
+        const index = Math.max(0,tracks.findIndex(t=>t.id===selected));
+        const request={
+          mode:state.mode,id:selected,index,positionMs:Math.round(position*1000),
+          volume:state.volume,shuffle:state.shuffle && state.mode !== 'radio',
+          repeat:state.repeat==='all',
+          tracks:tracks.map(t=>({
+            id:t.id,title:t.title,artist:t.artist,
+            src:new URL(t.src,document.baseURI).href
+          }))
+        };
+        window.RadioHitsAndroid.playQueue(JSON.stringify(request));
+        paused=false;ended=false;emit('play');
+        return Promise.resolve();
+      }
+    };
+  }
+  const audio = nativeBridge ? createNativeAudio() : $('audio');
   const STORAGE = 'pulso-radio-v1';
   const EPOCH = Date.UTC(2026, 0, 1, 0, 0, 0);
   let saved = {};
@@ -186,12 +255,12 @@
     $('total').textContent = timeFmt(duration);
     $('seek').value = duration > 0 ? Math.max(0, Math.min(1000, Math.round(progress / duration * 1000))) : 0;
     setRangeFill($('seek'));
-    if ('mediaSession' in navigator && cur) {
+    if (!nativeBridge && 'mediaSession' in navigator && cur) {
       try { navigator.mediaSession.setPositionState({duration: Math.max(.01,duration), playbackRate: audio.playbackRate, position: Math.min(Math.max(0, progress), Math.max(.01, duration))}); } catch (_) { /* unsupported */ }
     }
   }
   function updateMediaSession(t) {
-    if (!('mediaSession' in navigator) || !t) return;
+    if (nativeBridge || !('mediaSession' in navigator) || !t) return;
     try {
       navigator.mediaSession.metadata = new MediaMetadata({ title:t.title, artist:t.artist, album:state.mode==='radio'?'Radio Hits':'Biblioteca Radio Hits', artwork:[{src:new URL(t.cover, document.baseURI).href,sizes:'512x512',type:'image/svg+xml'}] });
       navigator.mediaSession.setActionHandler('play', () => togglePlayback());
@@ -207,6 +276,7 @@
       state.pendingSeek = Number(seekTo) || 0;
       audio.src = target;
       audio.load();
+      if (nativeBridge) { audio.currentTime = Number(seekTo) || 0; state.pendingSeek = null; }
     } else if (Number.isFinite(Number(seekTo))) {
       if (audio.readyState >= 1) { try { audio.currentTime = Number(seekTo); } catch (_) { state.pendingSeek = Number(seekTo); } }
       else state.pendingSeek = Number(seekTo);
