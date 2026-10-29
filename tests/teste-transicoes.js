@@ -23,7 +23,7 @@ const state={
 const context={
   state,audio:active,standby,primedTrackId:null,preloadGeneration:0,
   lastPreloadAttempt:0,offline:{playableSource:t=>Promise.resolve(t.src)},
-  nativeBridge:false,navigator:{connection:{saveData:false}},
+  nativeBridge:false,gainFactor:()=>1,navigator:{connection:{saveData:false}},
   getRadioInfo:()=>null,trackById:id=>cat.tracks.find(t=>t.id===id),
   console,Date
 };
