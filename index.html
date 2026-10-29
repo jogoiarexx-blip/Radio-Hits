@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#0b0e13">
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="stylesheet" href="./css/style.css?v=volume-1">
+  <link rel="stylesheet" href="./css/style.css?v=downloads-2">
   <title>Radio Hits — sua música, seu ritmo</title>
 </head>
 <body>
@@ -51,7 +51,7 @@
       <div class="side-label side-label-library">BIBLIOTECA</div>
       <div class="library-mini"><div class="library-icon"><svg class="icon"><use href="#i-grid"/></svg></div><div><strong id="sidebar-track-count">0 faixas</strong><small id="sidebar-library-runtime">Na sua coleção</small></div></div>
       <button class="side-add" id="open-add-guide"><svg class="icon"><use href="#i-plus"/></svg> Como adicionar músicas</button>
-      <div class="sidebar-footer"><span class="version-dot"></span><span>GitHub Pages edition</span><small>v1.0</small></div>
+      <div class="sidebar-footer"><span class="version-dot"></span><span>GitHub Pages edition</span><small>v1.5</small></div>
     </aside>
 
     <main class="main-content" id="main-content">
@@ -61,19 +61,36 @@
         <button class="top-avatar" id="about-button" aria-label="Sobre o projeto">R<span class="online-indicator"></span></button>
       </header>
 
+      <div id="offline-network-notice" class="offline-network-notice" role="status" hidden></div>
       <div class="view" id="view-radio">
         <section class="hero">
-          <div class="hero-copy"><div class="hero-kicker"><span class="live-pulse"></span> SUA FREQUÊNCIA, SEU MUNDO</div><h1>A trilha sonora<br>do seu <em>momento.</em></h1><p>Entre na rádio ou escolha a próxima música. Tudo em um só lugar, do seu jeito.</p><div class="hero-actions"><button class="primary-action" id="hero-radio-play"><svg class="icon icon-filled"><use href="#i-play"/></svg><span>Ouvir rádio</span></button><button class="ghost-action" data-action="switch-explore">Explorar músicas <svg class="icon"><use href="#i-arrow"/></svg></button></div></div>
+          <div class="hero-copy"><div class="hero-kicker"><span class="live-pulse"></span> SUA FREQUÊNCIA, SEU MUNDO</div><h1>A trilha sonora<br>do seu <em>momento.</em></h1><p>Entre na rádio ou escolha a próxima música. Tudo em um só lugar, do seu jeito.</p><div class="hero-actions"><button class="primary-action" id="hero-radio-play"><svg class="icon icon-filled"><use href="#i-play"/></svg><span>Ouvir rádio</span></button><button class="ghost-action" data-action="switch-explore">Explorar músicas <svg class="icon"><use href="#i-arrow"/></svg></button><button class="ghost-action hero-download-link" data-action="open-downloads"><svg class="icon"><use href="#i-download"/></svg> Downloads</button></div></div>
           <div class="hero-art" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div><div class="hero-disc"><span class="disc-ring"></span><span class="disc-center"></span></div><div class="hero-art-label">ON YOUR<br>FREQUENCY <span>001 — RADIO</span></div></div>
         </section>
         <div class="section-title row-between"><div><span class="eyebrow">SINTONIZE AGORA</span><h2>Rádio Radio Hits</h2></div><span class="status-label"><span class="status-dot"></span> PROGRAMAÇÃO AUTOMÁTICA</span></div>
         <section class="station-card"><div class="station-art"><img id="station-cover" src="./assets/capas/horizonte-azul.svg" alt="Capa da música atual" loading="eager"></div><div class="station-content"><div class="station-top"><span class="station-badge">RADIO HITS <span>01</span></span><span class="station-clock" id="station-clock">--:--</span></div><span class="station-small-label">TOCANDO NA PROGRAMAÇÃO</span><h3 id="station-title">Carregando...</h3><p id="station-artist">Seleção Radio Hits</p><div class="station-bottom"><button class="station-play" id="station-play"><svg class="icon icon-filled"><use href="#i-play"/></svg><span>Escutar agora</span></button><span>Todos na mesma faixa*</span></div></div><div class="station-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></section>
-        <section class="programa-section"><div class="section-title row-between"><div><span class="eyebrow">PRÓXIMOS SONS</span><h2>Na sequência</h2></div><span class="small-note">Horário estimado</span></div><div id="radio-up-next" class="radio-up-next"></div><p class="fine-print">*Rádio simulada: a playlist acompanha o relógio, mas não é uma transmissão ao vivo com servidor. Pequenas diferenças de sincronismo podem ocorrer.</p></section>
+        <section class="programa-section"><div class="section-title row-between"><div><span class="eyebrow">PRÓXIMOS SONS</span><h2>Na sequência</h2></div><span class="small-note" id="preload-status">Pré-carga nos últimos 25 s</span></div><div id="radio-up-next" class="radio-up-next"></div><p class="fine-print">*Rádio simulada: a playlist acompanha o relógio, mas não é uma transmissão ao vivo com servidor. Pequenas diferenças de sincronismo podem ocorrer.</p></section>
         <section class="discover-preview"><div class="section-title row-between"><div><span class="eyebrow">FEITO PARA DESCOBRIR</span><h2>Explore no seu ritmo</h2></div><button class="section-link" data-action="switch-explore">Ver biblioteca <svg class="icon"><use href="#i-arrow"/></svg></button></div><div id="preview-grid" class="album-grid"></div></section>
       </div>
 
       <div class="view is-hidden" id="view-explorar">
         <div class="page-intro"><span class="eyebrow">ESCOLHA O QUE TOCAR</span><h1>Descubra seu próximo som<span class="accent-period">.</span></h1><p>Sem algoritmos escondidos. Você no controle de cada faixa.</p></div>
+        <section class="offline-dashboard" id="downloads-dashboard" aria-labelledby="offline-dashboard-title">
+          <div class="offline-dashboard-head">
+            <div><span class="eyebrow">OUÇA SEM INTERNET</span><h2 id="offline-dashboard-title">Downloads</h2><p id="offline-dashboard-summary">Verificando faixas disponíveis...</p></div>
+            <svg class="icon offline-dashboard-icon" aria-hidden="true"><use href="#i-download"/></svg>
+          </div>
+          <p>O pré-carregamento da rádio não salva músicas. Para ouvir sem internet, baixe uma faixa autorizada. As demais continuam disponíveis somente online.</p>
+          <div class="offline-dashboard-actions">
+            <button type="button" class="primary-action" data-action="open-offline-available">Ver músicas para baixar</button>
+            <button type="button" class="outline-button" data-action="open-offline-saved">Minhas músicas salvas</button>
+          </div>
+        </section>
+        <section class="tracks-section" id="offline-available">
+          <div class="section-title row-between"><div><span class="eyebrow">DOWNLOAD PERMITIDO</span><h2>Disponíveis para baixar</h2></div><span class="small-note" id="offline-available-count"></span></div>
+          <div class="track-list" id="offline-available-tracks"></div>
+          <p class="fine-print">Estas faixas estão marcadas como autorizadas para download. Outros áudios comerciais não têm permissão de download registrada no projeto.</p>
+        </section>
         <section class="genre-showcase" aria-label="Explore por estilo musical">
  <div class="section-title row-between"><div><span class="eyebrow">SUAS ESTAÇÕES</span><h2>Escolha a sua vibe</h2></div><span class="small-note">Biblioteca por categoria</span></div>
  <div class="genre-showcase-grid">
@@ -105,6 +122,6 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <audio id="audio" preload="metadata"></audio>
   <script src="./js/offline.js?v=offline-1" defer></script>
-  <script src="./js/app.js?v=volume-1" defer></script>
+  <script src="./js/app.js?v=downloads-2" defer></script>
 </body>
 </html>

@@ -183,8 +183,8 @@
     const liked = state.favorites.has(t.id), active = state.currentId === t.id && state.mode === 'ondemand';
     const stored = offlineSources.has(offline.absolute(t.src));
     const saveButton = t.downloadAllowed === true
-      ? `<button class="icon-button ${stored?'is-liked':''}" data-action="offline-toggle" data-id="${escapeHtml(t.id)}" title="${stored?'Excluir cópia offline':'Baixar para ouvir offline'}" aria-label="${stored?'Excluir download de':'Baixar'} ${escapeHtml(t.title)}">${icon(stored?'trash':'download')}</button>`
-      : '';
+      ? `<button class="download-track-button ${stored?'is-downloaded':''}" data-action="offline-toggle" data-id="${escapeHtml(t.id)}" title="${stored?'Excluir cópia offline':'Baixar para ouvir offline'}" aria-label="${stored?'Excluir download de':'Baixar'} ${escapeHtml(t.title)}">${icon(stored?'trash':'download')}<span>${stored?'Salva':'Baixar'}</span></button>`
+      : '<span class="stream-only-badge" title="Esta música está disponível no streaming, mas não tem autorização de download registrada.">Só online</span>';
     return `<div class="track-row ${active ? 'is-active':''}"><button class="track-main track-main-play" data-action="play-track" data-id="${escapeHtml(t.id)}" aria-label="Tocar ${escapeHtml(t.title)}"><img src="${art(t)}" alt="" loading="lazy"><span class="track-text"><strong>${escapeHtml(t.title)}</strong><small>${escapeHtml(t.artist)}</small></span></button><span class="track-genre">${escapeHtml(t.genre)}</span><span class="track-duration">${timeFmt(t.duration)}</span><div class="track-actions"><button class="icon-button ${liked?'is-liked':''}" data-action="like-track" data-id="${escapeHtml(t.id)}" title="${liked?'Remover dos favoritos':'Favoritar'}" aria-label="${liked?'Desfavoritar':'Favoritar'} ${escapeHtml(t.title)}">${icon('heart')}</button><button class="icon-button" data-action="add-playlist" data-id="${escapeHtml(t.id)}" title="Adicionar à playlist" aria-label="Adicionar ${escapeHtml(t.title)} a uma playlist">${icon('plus')}</button>${saveButton}</div></div>`;
   }
   function visibleTracks() {
@@ -209,11 +209,35 @@
     renderOffline();
   }
   function renderOffline() {
-    const saved = state.tracks.filter(t=>offlineSources.has(offline.absolute(t.src)));
+    const authorized = state.tracks.filter(t => t.downloadAllowed === true);
+    const saved = state.tracks.filter(t => offlineSources.has(offline.absolute(t.src)));
+    const onlineOnly = state.tracks.length - authorized.length;
     const count = $('offline-count'), area = $('offline-tracks');
-    if (count) count.textContent = saved.length + ' salva(s) · ' + state.tracks.filter(t=>t.downloadAllowed===true).length + ' disponíveis';
+    const availableCount = $('offline-available-count');
+    const availableArea = $('offline-available-tracks');
+    const summary = $('offline-dashboard-summary');
+    if (summary) summary.textContent = `${authorized.length} disponíveis para baixar · ${saved.length} salvas · ${onlineOnly} somente online`;
+    if (availableCount) availableCount.textContent = `${authorized.length} faixas autorizadas`;
+    if (availableArea) availableArea.innerHTML = authorized.length ? authorized.map(songRow).join('') :
+      empty('Nenhum download disponível','As faixas precisam ter permissão de distribuição para oferecer download.');
+    if (count) count.textContent = `${saved.length} salva(s) neste dispositivo`;
     if (area) area.innerHTML = saved.length ? saved.map(songRow).join('') :
-      empty('Nenhuma música salva offline','Baixe uma faixa autorizada pelo ícone de download.');
+      empty('Nenhuma música salva offline','Em Disponíveis para baixar, use o botão Baixar.');
+  }
+  function jumpToDownloads(targetId='offline-available') {
+    navigate('explorar');
+    const target = $(targetId);
+    if (target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function updateConnectionNotice() {
+    const notice = $('offline-network-notice');
+    if (!notice) return;
+    const disconnected = navigator.onLine === false;
+    notice.hidden = !disconnected;
+    if (disconnected) notice.textContent = 'Sem conexão. A rádio online pode parar quando o áudio carregado acabar. Para ouvir sem internet, escolha uma música já baixada em Explorar → Minhas músicas offline.';
+    if (disconnected) setPreloadStatus('Sem internet · apenas áudio já carregado');
+    else if (nativeBridge) setPreloadStatus('Android: fila gerenciada pelo player nativo');
+    else if (!standby) setPreloadStatus('Pré-carga não disponível neste navegador');
   }
   async function syncOffline() {
     try { offlineSources=await offline.list(); renderExplore();renderFavorites();renderPlaylists(); }
@@ -373,8 +397,13 @@
   }
   // Executado próximo ao fim da faixa. Não faz pré-download de toda a biblioteca.
   // Em conexões com economia de dados, mantém o carregamento tradicional.
+  function setPreloadStatus(message) {
+    const el=$('preload-status');
+    if(el && el.textContent!==message) el.textContent=message;
+  }
   function clearStandby() {
     if (!standby) return;
+    setPreloadStatus('Pré-carga nos últimos 25 s');
     ++preloadGeneration;
     primedTrackId = null;
     standby.pause();
@@ -398,15 +427,24 @@
   }
   function prepareNextAudio() {
     if (!standby || audio.paused || audio.ended || !state.loaded) return;
-    if (navigator.connection?.saveData) return;
+    if (navigator.connection?.saveData) {
+      setPreloadStatus('Economia de dados: sem pré-carga');
+      return;
+    }
     if (Date.now() - lastPreloadAttempt < 2000) return;
     lastPreloadAttempt = Date.now();
     const next = nextToPrepare();
     if (!next || next.id === primedTrackId) return;
     const generation = ++preloadGeneration;
     primedTrackId = next.id;
+    setPreloadStatus('Preparando próxima faixa...');
     offline.playableSource(next).then(src => {
       if (generation !== preloadGeneration || !standby || primedTrackId !== next.id) return;
+      const pending = standby;
+      pending.addEventListener('canplay', () => {
+        if (generation === preloadGeneration && pending === standby && primedTrackId === next.id)
+          setPreloadStatus('Próxima pronta para iniciar · não salva offline');
+      },{once:true});
       standby.src = src;
       standby.volume = Math.min(1,state.volume*gainFactor(next));
       standby.preload = 'auto';
@@ -414,6 +452,7 @@
     }).catch(error => {
       if (generation === preloadGeneration) {
         primedTrackId = null;
+        setPreloadStatus('Pré-carga indisponível · usando streaming');
         console.warn('Pré-carregamento indisponível:', error);
       }
     });
@@ -596,6 +635,9 @@
       case 'play-queued': { const i = Number(el.dataset.index); if (Number.isInteger(i) && state.queue[i]) { state.queueIndex=i; const t=trackById(state.queue[i]); loadTrack(t,0);requestPlay();renderQueue();renderExplore(); } break; }
       case 'like-track': toggleLike(id); break;
       case 'offline-toggle': toggleOffline(id,el); break;
+      case 'open-downloads': jumpToDownloads(); break;
+      case 'open-offline-available': jumpToDownloads('offline-available'); break;
+      case 'open-offline-saved': jumpToDownloads('offline-library'); break;
       case 'add-playlist': showPlaylistChooser(id); break;
       case 'switch-explore': navigate('explorar'); break;
       case 'genre': state.genre = el.dataset.genre; renderExplore(); break;
@@ -790,6 +832,9 @@
     }
   }
   $('refresh-library').addEventListener('click', () => refreshCatalog(true));
+  window.addEventListener('online', updateConnectionNotice);
+  window.addEventListener('offline', updateConnectionNotice);
+  updateConnectionNotice();
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) refreshCatalog(false);
   });

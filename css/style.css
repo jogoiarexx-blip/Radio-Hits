@@ -31,3 +31,39 @@
 .leveling-button{flex:none;height:29px;min-width:37px;padding:0 7px;border:1px solid #4b5a68;border-radius:7px;background:#19212b;color:#9eafbd;font-size:10px;font-weight:800;letter-spacing:.06em;cursor:pointer}
 .leveling-button.is-active{color:#b8f458;border-color:#6b9744;background:#1e3020}
 .leveling-button:focus-visible{outline:2px solid #b8f458;outline-offset:2px}
+
+/* Downloads legíveis em desktop e celular */
+.offline-dashboard{margin:20px 0 24px;padding:22px;border:1px solid #395142;border-radius:16px;background:linear-gradient(120deg,#172821,#121b23 66%,#172032)}
+.offline-dashboard-head{display:flex;justify-content:space-between;gap:16px;align-items:center}
+.offline-dashboard-head h2{font-size:23px;letter-spacing:-.03em;margin:6px 0 7px}
+.offline-dashboard p{font-size:12px;line-height:1.65;color:#aab9b5;margin:12px 0}
+.offline-dashboard #offline-dashboard-summary{color:#b8f458;font-weight:650}
+.offline-dashboard-icon{width:44px;height:44px;color:#b8f458;opacity:.85}
+.offline-dashboard-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.offline-dashboard-actions button{height:37px;padding:0 15px;border-radius:8px;font-size:12px}
+.offline-network-notice{margin:12px 0 0;padding:11px 15px;border:1px solid #a78547;background:#30291c;color:#f1d59b;border-radius:9px;font-size:12px;line-height:1.5}
+.offline-network-notice[hidden]{display:none}
+#offline-available,#offline-library{scroll-margin-top:22px}
+.download-track-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid #568148;border-radius:7px;background:#273a29;color:#c9f89b;font-size:11px;font-weight:750;padding:7px 10px;min-width:78px;cursor:pointer}
+.download-track-button:hover{background:#38563b}
+.download-track-button.is-downloaded{color:#b9dfeb;border-color:#416e8f;background:#1b3244}
+.download-track-button svg{height:15px;width:15px}
+.download-track-button:disabled{opacity:.6;cursor:wait}
+.stream-only-badge{display:inline-block;color:#798691;font-size:10px;line-height:1.3;white-space:nowrap;text-align:center;min-width:78px}
+.track-row:has(.download-track-button){grid-template-columns:minmax(170px,1fr) 100px 46px 170px}
+.track-row:has(.stream-only-badge){grid-template-columns:minmax(170px,1fr) 100px 46px 170px}
+.track-actions{align-items:center}
+.hero-download-link svg{width:14px;height:14px}
+#preload-status{max-width:250px;text-align:right}
+@media(max-width:740px){
+  .offline-dashboard{padding:17px;margin:18px 0 24px}
+  .offline-dashboard-head h2{font-size:21px}
+  .offline-dashboard-icon{width:36px;height:36px}
+  .offline-dashboard-actions{flex-direction:column}
+  .offline-dashboard-actions button{width:100%}
+  .track-row:has(.download-track-button),.track-row:has(.stream-only-badge){grid-template-columns:minmax(0,1fr) auto;gap:5px}
+  .track-actions{gap:3px}
+  .download-track-button{min-width:68px;padding:6px 7px;font-size:10px}
+  .stream-only-badge{min-width:63px;font-size:9px}
+  #preload-status{max-width:155px;font-size:9px}
+}

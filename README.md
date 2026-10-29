@@ -73,6 +73,15 @@ Para gerar a mesma pasta usada no deploy: `python3 scripts/preparar_site.py`.
 
 Para um DJ ao vivo real, servidor de streaming e backend seriam necessários, não são oferecidos pelo GitHub Pages.
 
+## Como funciona o pré-carregamento e os downloads
+
+- **Site (navegador):** começa a preparar a faixa seguinte nos últimos 25 segundos da atual, quando a conexão permite. Essa faixa pode estar só parcialmente armazenada no buffer; **não** é um download para usar offline.
+- **APK Android:** o player nativo Media3 administra seu próprio buffer da fila. O limite de 25 segundos refere-se ao player web, não ao Media3.
+- **Internet caiu:** o áudio continua apenas enquanto houver dados suficientes no buffer; pode parar no meio da faixa ou na próxima transição. A rádio não baixa automaticamente as 64 músicas.
+- **Downloads autorizados:** na página **Explorar → Downloads → Disponíveis para baixar**. As 6 faixas originais estão marcadas para download; as demais aparecem com a indicação **Só online**, porque a autorização de distribuição offline não está registrada.
+- **Sem internet:** abra **Explorar → Minhas músicas offline** e escolha um arquivo salvo. A rádio sincronizada não substitui faixas indisponíveis nem garante continuidade offline; o modo individual é a alternativa.
+- O armazenamento web pode ser apagado pelo navegador/sistema. No APK, músicas baixadas ficam no armazenamento privado do aplicativo e são perdidas se os dados forem apagados ou o aplicativo for desinstalado.
+
 ## Limitações do GitHub Pages
 
 - Site publicado: máximo de **1 GB**; fonte do repositório com limite recomendado de 1 GB.
