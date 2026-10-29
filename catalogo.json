@@ -361,6 +361,56 @@
       "src": "./musicas/malhacao-internacional-2003/16-arena-brothers-sisters.mp3",
       "cover": "./assets/capas/padrao.svg",
       "year": 2003
+    },
+    {
+      "id": "rock-aerosmith-i-don-t-want-to-miss-a-thing-official-hd-video",
+      "title": "Aerosmith - I Don't Want to Miss a Thing (Official HD Video)",
+      "artist": "AerosmithVEVO",
+      "genre": "rock",
+      "duration": 292.833,
+      "src": "./musicas/rock/Aerosmith%20-%20I%20Don%20t%20Want%20to%20Miss%20a%20Thing%20%28Official%20HD%20Video%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "rock-avril-lavigne-complicated-official-video",
+      "title": "Avril Lavigne - Complicated (Official Video)",
+      "artist": "AvrilLavigneVEVO",
+      "genre": "rock",
+      "duration": 253.44,
+      "src": "./musicas/rock/Avril%20Lavigne%20-%20Complicated%20%28Official%20Video%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "rock-bon-jovi-it-s-my-life-official-music-video",
+      "title": "Bon Jovi - It's My Life (Official Music Video)",
+      "artist": "BonJoviVEVO",
+      "genre": "rock",
+      "duration": 267.024,
+      "src": "./musicas/rock/Bon%20Jovi%20-%20It%20s%20My%20Life%20%28Official%20Music%20Video%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "rock-evanescence-my-immortal-official-hd-music-video",
+      "title": "Evanescence - My Immortal (Official HD Music Video)",
+      "artist": "EvanescenceVEVO",
+      "genre": "rock",
+      "duration": 270.524,
+      "src": "./musicas/rock/Evanescence%20-%20My%20Immortal%20%28Official%20HD%20Music%20Video%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "rock-faint-official-music-video-4k-upgrade-linkin-park",
+      "title": "Faint 4K UPGRADE – Linkin Park",
+      "artist": "Artista independente",
+      "genre": "rock",
+      "duration": 168.229,
+      "src": "./musicas/rock/Faint%20%28Official%20Music%20Video%29%204K%20UPGRADE%20%E2%80%93%20Linkin%20Park.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
     }
   ],
   "radioOrder": [
@@ -399,6 +449,11 @@
     "malhacao-internacional-2003-13-stacie-orrico-i-promise-i-will",
     "malhacao-internacional-2003-14-vanessa-carlton-pretty-baby",
     "malhacao-internacional-2003-15-paul-j-falling",
-    "malhacao-internacional-2003-16-arena-brothers-sisters"
+    "malhacao-internacional-2003-16-arena-brothers-sisters",
+    "rock-aerosmith-i-don-t-want-to-miss-a-thing-official-hd-video",
+    "rock-avril-lavigne-complicated-official-video",
+    "rock-bon-jovi-it-s-my-life-official-music-video",
+    "rock-evanescence-my-immortal-official-hd-music-video",
+    "rock-faint-official-music-video-4k-upgrade-linkin-park"
   ]
 }
