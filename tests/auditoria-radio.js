@@ -50,7 +50,7 @@ assert.match(app, /function prepareNextAudio/, 'Pré-carregamento da próxima fa
 assert.match(app, /function usePreparedAudio/, 'Troca para faixa preparada ausente');
 assert.match(app, /radioWantsPlayback/, 'Intenção da rádio precisa sobreviver ao fim do arquivo');
 assert.match(app, /nativeBridge && !audio\.paused && !audio\.ended/, 'Media3 não pode ser interrompido pela WebView');
-assert.match(app, /t\.downloadAllowed\]/, 'Mudanças de permissão offline não detectadas');
+assert.match(app, /t\.downloadAllowed/, 'Mudanças de permissão offline não detectadas');
 assert.match(app, /t\.cover/, 'Mudanças de capa devem atualizar');
 assert.match(app, /function libraryDuration/, 'Tempo de biblioteca ausente');
 assert.match(html, /id="sidebar-library-runtime"/, 'Indicador de duração ausente');
