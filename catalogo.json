@@ -11,7 +11,9 @@
       "src": "./musicas/horizonte-azul.mp3",
       "cover": "./assets/capas/horizonte-azul.svg",
       "year": 2026,
-      "downloadAllowed": true
+      "downloadAllowed": true,
+      "gainDb": 0.0,
+      "loudnessLufs": -19.5
     },
     {
       "id": "cidade-neon",
@@ -22,7 +24,9 @@
       "src": "./musicas/cidade-neon.mp3",
       "cover": "./assets/capas/cidade-neon.svg",
       "year": 2026,
-      "downloadAllowed": true
+      "downloadAllowed": true,
+      "gainDb": 0.0,
+      "loudnessLufs": -18.2
     },
     {
       "id": "calma-de-outubro",
@@ -33,7 +37,9 @@
       "src": "./musicas/calma-de-outubro.mp3",
       "cover": "./assets/capas/calma-de-outubro.svg",
       "year": 2026,
-      "downloadAllowed": true
+      "downloadAllowed": true,
+      "gainDb": 0.0,
+      "loudnessLufs": -19.9
     },
     {
       "id": "entre-ondas",
@@ -44,7 +50,9 @@
       "src": "./musicas/entre-ondas.mp3",
       "cover": "./assets/capas/entre-ondas.svg",
       "year": 2026,
-      "downloadAllowed": true
+      "downloadAllowed": true,
+      "gainDb": 0.0,
+      "loudnessLufs": -17.9
     },
     {
       "id": "rota-noturna",
@@ -55,7 +63,9 @@
       "src": "./musicas/rota-noturna.mp3",
       "cover": "./assets/capas/rota-noturna.svg",
       "year": 2026,
-      "downloadAllowed": true
+      "downloadAllowed": true,
+      "gainDb": 0.0,
+      "loudnessLufs": -17.9
     },
     {
       "id": "sol-de-vidro",
@@ -66,7 +76,9 @@
       "src": "./musicas/sol-de-vidro.mp3",
       "cover": "./assets/capas/sol-de-vidro.svg",
       "year": 2026,
-      "downloadAllowed": true
+      "downloadAllowed": true,
+      "gainDb": 0.0,
+      "loudnessLufs": -18.7
     },
     {
       "id": "as-melhores-80-e-90-everything-i-do-i-do-it-for-you-official-music-video-new",
@@ -77,7 +89,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/%28Everything%20I%20Do%29%20I%20Do%20It%20For%20You%20%28Official%20Music%20Video%29-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.1,
+      "loudnessLufs": -9.6
     },
     {
       "id": "as-melhores-80-e-90-10-000-maniacs-because-the-night-official-music-video-new",
@@ -88,7 +102,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/10.000%20MANIACS%20-%20BECAUSE%20THE%20NIGHT%20%28OFFICIAL%20MUSIC%20VIDEO%29-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -19.1
     },
     {
       "id": "as-melhores-80-e-90-alphaville-big-in-japan-official-music-video-new",
@@ -99,7 +115,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/Alphaville%20-%20Big%20In%20Japan%20%28Official%20Music%20Video%29-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -20.3
     },
     {
       "id": "as-melhores-80-e-90-baltimora-tarzan-boy-new",
@@ -110,7 +128,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/Baltimora%20-%20Tarzan%20Boy-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -1.7,
+      "loudnessLufs": -12.0
     },
     {
       "id": "as-melhores-80-e-90-celine-dion-because-you-loved-me-new",
@@ -121,7 +141,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/Celine%20Dion%20Because%20You%20Loved%20Me-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -16.9
     },
     {
       "id": "as-melhores-80-e-90-daryl-hall-john-oates-out-of-touch-official-hd-video-new",
@@ -132,7 +154,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/Daryl%20Hall%20%26%20John%20Oates%20-%20Out%20Of%20Touch%20%28Official%20HD%20Video%29-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -0.3,
+      "loudnessLufs": -13.4
     },
     {
       "id": "as-melhores-80-e-90-desireless-voyage-voyage-official-hd-video-new",
@@ -143,7 +167,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/Desireless%20-%20Voyage%20Voyage%20%28Official%20HD%20Video%29-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.9,
+      "loudnessLufs": -8.8
     },
     {
       "id": "as-melhores-80-e-90-f-r-david-words-don-t-come-easy-high-quality-official-music-video-new",
@@ -154,7 +180,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/F.R.%20David%20-%20Words%20don%27t%20come%20easy%20-%20High%20Quality%20Official%20Music%20Video-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.0,
+      "loudnessLufs": -9.7
     },
     {
       "id": "as-melhores-80-e-90-gonna-make-you-sweat-everybody-dance-now-official-hd-video-new",
@@ -165,7 +193,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/Gonna%20Make%20You%20Sweat%20%28Everybody%20Dance%20Now%29%20%28Official%20HD%20Video%29-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -15.8
     },
     {
       "id": "as-melhores-80-e-90-journey-don-t-stop-believin-from-live-in-houston-1981-the-escape-tour-new",
@@ -176,7 +206,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/Journey%20-%20Don%27t%20Stop%20Believin%27%20%28from%20Live%20in%20Houston%201981_%20The%20Escape%20Tour%29-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.4,
+      "loudnessLufs": -9.3
     },
     {
       "id": "as-melhores-80-e-90-la-bouche-sweet-dreams-official-video-vod-new",
@@ -187,7 +219,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/La%20Bouche%20-%20Sweet%20dreams%20%28Official%20Video%29%20%28VOD%29-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -14.4
     },
     {
       "id": "as-melhores-80-e-90-roxette-it-must-have-been-love-official-music-video-new",
@@ -198,7 +232,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/Roxette%20-%20It%20Must%20Have%20Been%20Love%20%28Official%20Music%20Video%29-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -24.8
     },
     {
       "id": "as-melhores-80-e-90-scorpions-wind-of-change-official-music-video-new",
@@ -209,7 +245,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/Scorpions%20-%20Wind%20Of%20Change%20%28Official%20Music%20Video%29-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -2.9,
+      "loudnessLufs": -10.8
     },
     {
       "id": "as-melhores-80-e-90-tina-turner-we-don-t-need-another-hero-thunderdome-music-video-new",
@@ -220,7 +258,9 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/TINA%20TURNER%20%E2%98%85%20We%20Don%27t%20Need%20Another%20Hero%20%28Thunderdome%29%E3%80%90music%20video%E3%80%91-new.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -14.4
     },
     {
       "id": "malhacao-internacional-2003-01-s-m-s-feat-rehb-just-a-bit-of-chaos",
@@ -231,7 +271,9 @@
       "src": "./musicas/malhacao-internacional-2003/01-s-m-s-feat-rehb-just-a-bit-of-chaos.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -2.2,
+      "loudnessLufs": -11.5
     },
     {
       "id": "malhacao-internacional-2003-02-avril-lavigne-sk8er-boi",
@@ -242,7 +284,9 @@
       "src": "./musicas/malhacao-internacional-2003/02-avril-lavigne-sk8er-boi.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.7,
+      "loudnessLufs": -9.0
     },
     {
       "id": "malhacao-internacional-2003-03-foo-fighters-times-like-these",
@@ -253,7 +297,9 @@
       "src": "./musicas/malhacao-internacional-2003/03-foo-fighters-times-like-these.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.8,
+      "loudnessLufs": -8.9
     },
     {
       "id": "malhacao-internacional-2003-04-eve-feat-drag-on-got-what-you-need",
@@ -264,7 +310,9 @@
       "src": "./musicas/malhacao-internacional-2003/04-eve-feat-drag-on-got-what-you-need.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -2.1,
+      "loudnessLufs": -11.6
     },
     {
       "id": "malhacao-internacional-2003-05-nelly-feat-kelly-rowland-dilemma",
@@ -275,7 +323,9 @@
       "src": "./musicas/malhacao-internacional-2003/05-nelly-feat-kelly-rowland-dilemma.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -1.5,
+      "loudnessLufs": -12.2
     },
     {
       "id": "malhacao-internacional-2003-06-ja-rule-feat-ashanti-mesmerize",
@@ -286,7 +336,9 @@
       "src": "./musicas/malhacao-internacional-2003/06-ja-rule-feat-ashanti-mesmerize.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -0.6,
+      "loudnessLufs": -13.1
     },
     {
       "id": "malhacao-internacional-2003-07-beyonce-feat-jay-z-crazy-in-love",
@@ -297,7 +349,9 @@
       "src": "./musicas/malhacao-internacional-2003/07-beyonce-feat-jay-z-crazy-in-love.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -1.3,
+      "loudnessLufs": -12.4
     },
     {
       "id": "malhacao-internacional-2003-08-t-a-t-u-all-the-things-she-said",
@@ -308,7 +362,9 @@
       "src": "./musicas/malhacao-internacional-2003/08-t-a-t-u-all-the-things-she-said.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -3.0,
+      "loudnessLufs": -10.7
     },
     {
       "id": "malhacao-internacional-2003-09-chevelle-send-the-pain-below",
@@ -319,7 +375,9 @@
       "src": "./musicas/malhacao-internacional-2003/09-chevelle-send-the-pain-below.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -1.7,
+      "loudnessLufs": -12.0
     },
     {
       "id": "malhacao-internacional-2003-10-damian-marley-and-you-be-loved-and-be-loved",
@@ -330,7 +388,9 @@
       "src": "./musicas/malhacao-internacional-2003/10-damian-marley-and-you-be-loved-and-be-loved.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -2.0,
+      "loudnessLufs": -11.7
     },
     {
       "id": "malhacao-internacional-2003-11-jennifer-lopez-i-m-glad",
@@ -341,7 +401,9 @@
       "src": "./musicas/malhacao-internacional-2003/11-jennifer-lopez-i-m-glad.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -0.4,
+      "loudnessLufs": -13.3
     },
     {
       "id": "malhacao-internacional-2003-12-thalia-feat-fat-joe-i-want-you",
@@ -352,7 +414,9 @@
       "src": "./musicas/malhacao-internacional-2003/12-thalia-feat-fat-joe-i-want-you.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -1.6,
+      "loudnessLufs": -12.1
     },
     {
       "id": "malhacao-internacional-2003-13-stacie-orrico-i-promise-i-will",
@@ -363,7 +427,9 @@
       "src": "./musicas/malhacao-internacional-2003/13-stacie-orrico-i-promise-i-will.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -2.9,
+      "loudnessLufs": -10.8
     },
     {
       "id": "malhacao-internacional-2003-14-vanessa-carlton-pretty-baby",
@@ -374,7 +440,9 @@
       "src": "./musicas/malhacao-internacional-2003/14-vanessa-carlton-pretty-baby.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -2.9,
+      "loudnessLufs": -10.8
     },
     {
       "id": "malhacao-internacional-2003-15-paul-j-falling",
@@ -385,7 +453,9 @@
       "src": "./musicas/malhacao-internacional-2003/15-paul-j-falling.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -2.9,
+      "loudnessLufs": -10.8
     },
     {
       "id": "malhacao-internacional-2003-16-arena-brothers-sisters",
@@ -396,7 +466,9 @@
       "src": "./musicas/malhacao-internacional-2003/16-arena-brothers-sisters.mp3",
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -3.0,
+      "loudnessLufs": -10.7
     },
     {
       "id": "rock-ac-dc-thunderstruck-official-video",
@@ -407,7 +479,9 @@
       "src": "./musicas/rock/AC%20DC%20-%20Thunderstruck%20%28Official%20Video%29.mp3",
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -5.3,
+      "loudnessLufs": -8.4
     },
     {
       "id": "rock-aerosmith-i-don-t-want-to-miss-a-thing-official-hd-video",
@@ -418,7 +492,9 @@
       "src": "./musicas/rock/Aerosmith%20-%20I%20Don%20t%20Want%20to%20Miss%20a%20Thing%20%28Official%20HD%20Video%29.mp3",
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.3,
+      "loudnessLufs": -9.4
     },
     {
       "id": "rock-avril-lavigne-complicated-official-video",
@@ -429,7 +505,9 @@
       "src": "./musicas/rock/Avril%20Lavigne%20-%20Complicated%20%28Official%20Video%29.mp3",
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.1,
+      "loudnessLufs": -9.6
     },
     {
       "id": "rock-bon-jovi-it-s-my-life-official-music-video",
@@ -440,7 +518,9 @@
       "src": "./musicas/rock/Bon%20Jovi%20-%20It%20s%20My%20Life%20%28Official%20Music%20Video%29.mp3",
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -6.7,
+      "loudnessLufs": -7.0
     },
     {
       "id": "rock-evanescence-my-immortal-official-hd-music-video",
@@ -451,7 +531,9 @@
       "src": "./musicas/rock/Evanescence%20-%20My%20Immortal%20%28Official%20HD%20Music%20Video%29.mp3",
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -14.4
     },
     {
       "id": "rock-faint-official-music-video-4k-upgrade-linkin-park",
@@ -462,7 +544,9 @@
       "src": "./musicas/rock/Faint%20%28Official%20Music%20Video%29%204K%20UPGRADE%20%E2%80%93%20Linkin%20Park.mp3",
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -5.5,
+      "loudnessLufs": -8.2
     },
     {
       "id": "rock-red-hot-chili-peppers-californication-official-music-video-hd-upgrade",
@@ -473,7 +557,9 @@
       "src": "./musicas/rock/Red%20Hot%20Chili%20Peppers%20-%20Californication%20%28Official%20Music%20Video%29%20HD%20UPGRADE.mp3",
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -6.6,
+      "loudnessLufs": -7.1
     },
     {
       "id": "rock-the-outfield-your-love-official-hd-video",
@@ -484,7 +570,9 @@
       "src": "./musicas/rock/The%20Outfield%20-%20Your%20Love%20%28Official%20HD%20Video%29.mp3",
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -14.4
     },
     {
       "id": "rock-the-police-every-breath-you-take-official-music-video",
@@ -495,7 +583,9 @@
       "src": "./musicas/rock/The%20Police%20-%20Every%20Breath%20You%20Take%20%28Official%20Music%20Video%29.mp3",
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -1.6,
+      "loudnessLufs": -12.1
     },
     {
       "id": "rock-toto-africa-official-hd-video",
@@ -506,7 +596,9 @@
       "src": "./musicas/rock/Toto%20-%20Africa%20%28Official%20HD%20Video%29.mp3",
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -3.1,
+      "loudnessLufs": -10.6
     },
     {
       "id": "rock-toto-hold-the-line-official-video",
@@ -517,7 +609,9 @@
       "src": "./musicas/rock/Toto%20-%20Hold%20The%20Line%20%28Official%20Video%29.mp3",
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -15.7
     },
     {
       "id": "hip-hop-akon-smack-that-feat-eminem",
@@ -528,7 +622,9 @@
       "src": "./musicas/Hip%20Hop/Akon%20-%20Smack%20That%20%28feat.%20Eminem%29.mp3",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.3,
+      "loudnessLufs": -9.4
     },
     {
       "id": "hip-hop-alicia-keys-no-one-official-music-video",
@@ -539,7 +635,9 @@
       "src": "./musicas/Hip%20Hop/Alicia%20Keys%20-%20No%20One%20%28Official%20Music%20Video%29.m4a",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -2.4,
+      "loudnessLufs": -11.3
     },
     {
       "id": "hip-hop-cry-me-a-river",
@@ -550,7 +648,9 @@
       "src": "./musicas/Hip%20Hop/Cry%20Me%20a%20River.m4a",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -5.6,
+      "loudnessLufs": -8.1
     },
     {
       "id": "hip-hop-don-t-matter",
@@ -561,7 +661,9 @@
       "src": "./musicas/Hip%20Hop/Don%27t%20Matter.m4a",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -3.4,
+      "loudnessLufs": -10.3
     },
     {
       "id": "hip-hop-flo-rida-low-feat-t-pain-official-video",
@@ -572,7 +674,9 @@
       "src": "./musicas/Hip%20Hop/Flo%20Rida%20-%20Low%20%28feat.%20T-Pain%29%20%5BOfficial%20Video%5D.m4a",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -13.7
     },
     {
       "id": "hip-hop-i-wanna-love-you",
@@ -583,7 +687,9 @@
       "src": "./musicas/Hip%20Hop/I%20Wanna%20Love%20You.m4a",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -3.7,
+      "loudnessLufs": -10.0
     },
     {
       "id": "hip-hop-in-da-club-dtriwq8j9jw",
@@ -594,7 +700,9 @@
       "src": "./musicas/Hip%20Hop/In%20Da%20Club%20%5BDtrIWQ8J9jw%5D.mp3",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -5.4,
+      "loudnessLufs": -8.3
     },
     {
       "id": "hip-hop-just-a-lil-bit",
@@ -605,7 +713,9 @@
       "src": "./musicas/Hip%20Hop/Just%20A%20Lil%20Bit.m4a",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.6,
+      "loudnessLufs": -9.1
     },
     {
       "id": "hip-hop-many-men-wish-death",
@@ -616,7 +726,9 @@
       "src": "./musicas/Hip%20Hop/Many%20Men%20%28Wish%20Death%29.m4a",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -6.4,
+      "loudnessLufs": -7.3
     },
     {
       "id": "hip-hop-miss-independent",
@@ -627,7 +739,9 @@
       "src": "./musicas/Hip%20Hop/Miss%20Independent.m4a",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -5.7,
+      "loudnessLufs": -8.0
     },
     {
       "id": "hip-hop-nelly-dilemma-feat-kelly-rowland",
@@ -638,7 +752,9 @@
       "src": "./musicas/Hip%20Hop/Nelly%20-%20Dilemma%20%28feat.%20Kelly%20Rowland%29.mp3",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -3.5,
+      "loudnessLufs": -10.2
     },
     {
       "id": "hip-hop-ridin-f-tusbuxgme",
@@ -649,7 +765,9 @@
       "src": "./musicas/Hip%20Hop/Ridin%27%20%5BF_TuSBUXgmE%5D.mp3",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.1,
+      "loudnessLufs": -9.6
     },
     {
       "id": "hip-hop-say-goodbye-txfbe1qx924",
@@ -660,7 +778,9 @@
       "src": "./musicas/Hip%20Hop/Say%20Goodbye%20%5BTxfBE1qX924%5D.mp3",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.0,
+      "loudnessLufs": -9.7
     },
     {
       "id": "hip-hop-the-real-slim-shady",
@@ -671,7 +791,9 @@
       "src": "./musicas/Hip%20Hop/The%20Real%20Slim%20Shady.m4a",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.6,
+      "loudnessLufs": -9.1
     },
     {
       "id": "hip-hop-usher-love-in-this-club-feat-young-jeezy",
@@ -682,7 +804,9 @@
       "src": "./musicas/Hip%20Hop/Usher%20-%20Love%20in%20This%20Club%20%28feat.%20Young%20Jeezy%29.mp3",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -6.4,
+      "loudnessLufs": -7.3
     },
     {
       "id": "hip-hop-what-goes-around-comes-around-interlude-bxbitm7vtcs",
@@ -693,7 +817,9 @@
       "src": "./musicas/Hip%20Hop/What%20Goes%20Around..._...Comes%20Around%20%28Interlude%29%20%5BbxBiTm7vtCs%5D.mp3",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.8,
+      "loudnessLufs": -8.9
     },
     {
       "id": "hip-hop-what-s-luv-feat-ashanti",
@@ -704,7 +830,9 @@
       "src": "./musicas/Hip%20Hop/What%27s%20Luv%20%28feat.%20Ashanti%29.m4a",
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
-      "downloadAllowed": false
+      "downloadAllowed": false,
+      "gainDb": -4.1,
+      "loudnessLufs": -9.6
     }
   ],
   "radioOrder": [

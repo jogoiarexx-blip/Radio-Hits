@@ -1,0 +1,455 @@
+{
+  "version": 1,
+  "method": "EBU R128 35s central; apenas atenuação",
+  "targetLufs": -13.7,
+  "tracks": {
+    "Hip Hop/Akon - Smack That (feat. Eminem).mp3": {
+      "sha256": "dd66c9854f6a6dbe8e3aa18d3958b6752249dd98fa5f787030cebeccfc958f33",
+      "lufs": -9.4,
+      "truePeakDbfs": 1.9,
+      "sampleSeconds": 35,
+      "gainDb": -4.3
+    },
+    "Hip Hop/Alicia Keys - No One (Official Music Video).m4a": {
+      "sha256": "94cca13b70be6b3b601ffe999c44649767effa0a7d5ff26c8c396db5733efbd3",
+      "lufs": -11.3,
+      "truePeakDbfs": -0.5,
+      "sampleSeconds": 35,
+      "gainDb": -2.4
+    },
+    "Hip Hop/Cry Me a River.m4a": {
+      "sha256": "5c7ead9e3ad44132184365aa0f5a4bee59677b0c7f66a0d47cc5abc0fba985bc",
+      "lufs": -8.1,
+      "truePeakDbfs": 3.2,
+      "sampleSeconds": 35,
+      "gainDb": -5.6
+    },
+    "Hip Hop/Don't Matter.m4a": {
+      "sha256": "032cbbb12df5ebfeaf8ebc962fa758251185e807e6d956e1c255b6151d0b27f2",
+      "lufs": -10.3,
+      "truePeakDbfs": 1.5,
+      "sampleSeconds": 35,
+      "gainDb": -3.4
+    },
+    "Hip Hop/Flo Rida - Low (feat. T-Pain) [Official Video].m4a": {
+      "sha256": "113571ec2e0eb87db9afd6a1f1f9a4dd3a18dcf35c0d51f68cd6851125eaf6b9",
+      "lufs": -13.7,
+      "truePeakDbfs": -1.5,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "Hip Hop/I Wanna Love You.m4a": {
+      "sha256": "5c73578d292cd835ea2a9ce2a035fa8c22416e18c69e1bd95547ee75d809fb75",
+      "lufs": -10.0,
+      "truePeakDbfs": 1.5,
+      "sampleSeconds": 35,
+      "gainDb": -3.7
+    },
+    "Hip Hop/In Da Club [DtrIWQ8J9jw].mp3": {
+      "sha256": "0398dd3cd21458dbfb37a7a79af3415029cbfb6c52feb627284f7e64165a606f",
+      "lufs": -8.3,
+      "truePeakDbfs": 2.8,
+      "sampleSeconds": 35,
+      "gainDb": -5.4
+    },
+    "Hip Hop/Just A Lil Bit.m4a": {
+      "sha256": "5565fa70bf768d9c6c158c15bb86cbbacb99d75f5ecfc10ea5879f93f20bf294",
+      "lufs": -9.1,
+      "truePeakDbfs": 1.6,
+      "sampleSeconds": 35,
+      "gainDb": -4.6
+    },
+    "Hip Hop/Many Men (Wish Death).m4a": {
+      "sha256": "29126fdc1b6c91cc177c823d434a1c337d8178c037aa7580a3ebb592f8971733",
+      "lufs": -7.3,
+      "truePeakDbfs": 1.1,
+      "sampleSeconds": 35,
+      "gainDb": -6.4
+    },
+    "Hip Hop/Miss Independent.m4a": {
+      "sha256": "e139670680baa8c5a563c3bd5366888f0590b2771289e96c761d950ca52108fa",
+      "lufs": -8.0,
+      "truePeakDbfs": 1.4,
+      "sampleSeconds": 35,
+      "gainDb": -5.7
+    },
+    "Hip Hop/Nelly - Dilemma (feat. Kelly Rowland).mp3": {
+      "sha256": "18968b7ff2c41c44bf925eee632d72a233eccf3cafc338270cb5eed7b5866eee",
+      "lufs": -10.2,
+      "truePeakDbfs": 1.8,
+      "sampleSeconds": 35,
+      "gainDb": -3.5
+    },
+    "Hip Hop/Ridin' [F_TuSBUXgmE].mp3": {
+      "sha256": "47fbf8fd38a8c065bbaec80e3612afe870aa12d0e704ac5f6082bb2b99cf1c12",
+      "lufs": -9.6,
+      "truePeakDbfs": 3.0,
+      "sampleSeconds": 35,
+      "gainDb": -4.1
+    },
+    "Hip Hop/Say Goodbye [TxfBE1qX924].mp3": {
+      "sha256": "623f24073850b394395d862e31e01f80ac09a3ff572f792d078da984197b1e50",
+      "lufs": -9.7,
+      "truePeakDbfs": 2.4,
+      "sampleSeconds": 35,
+      "gainDb": -4.0
+    },
+    "Hip Hop/The Real Slim Shady.m4a": {
+      "sha256": "63e32d99ca2d8470e3f4425f845c33e286a009fa6ee55e279a2a42223ee96381",
+      "lufs": -9.1,
+      "truePeakDbfs": 1.5,
+      "sampleSeconds": 35,
+      "gainDb": -4.6
+    },
+    "Hip Hop/Usher - Love in This Club (feat. Young Jeezy).mp3": {
+      "sha256": "a9a92cb0ebc124c9f7078df5f38f0028716b13144d886ad0342d19114d742aad",
+      "lufs": -7.3,
+      "truePeakDbfs": 1.4,
+      "sampleSeconds": 35,
+      "gainDb": -6.4
+    },
+    "Hip Hop/What Goes Around..._...Comes Around (Interlude) [bxBiTm7vtCs].mp3": {
+      "sha256": "e68a74bde7043a1d612850f1ac9a5416552a1b320ce26e5e14db57d13939b9fe",
+      "lufs": -8.9,
+      "truePeakDbfs": 2.9,
+      "sampleSeconds": 35,
+      "gainDb": -4.8
+    },
+    "Hip Hop/What's Luv (feat. Ashanti).m4a": {
+      "sha256": "d5acc753d2405f086d228cefc1acf5e6b659542838106c7d986cbde9d5c3f374",
+      "lufs": -9.6,
+      "truePeakDbfs": 1.7,
+      "sampleSeconds": 35,
+      "gainDb": -4.1
+    },
+    "as melhores 80 e 90/(Everything I Do) I Do It For You (Official Music Video)-new.mp3": {
+      "sha256": "dcdf358a45a212d34b80c1a567ef80ae76b0ca511dfba63f889be72502c3eb9c",
+      "lufs": -9.6,
+      "truePeakDbfs": 0.7,
+      "sampleSeconds": 35,
+      "gainDb": -4.1
+    },
+    "as melhores 80 e 90/10.000 MANIACS - BECAUSE THE NIGHT (OFFICIAL MUSIC VIDEO)-new.mp3": {
+      "sha256": "54374906bb9497bade618282f88b03233fd1683e65b28d11a1ac99688da3578f",
+      "lufs": -19.1,
+      "truePeakDbfs": -7.8,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "as melhores 80 e 90/Alphaville - Big In Japan (Official Music Video)-new.mp3": {
+      "sha256": "a3cda0e301744da78d503743e5ae34db9d3a8da9ce6a8edf30a6ee9461a81b25",
+      "lufs": -20.3,
+      "truePeakDbfs": -3.1,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "as melhores 80 e 90/Baltimora - Tarzan Boy-new.mp3": {
+      "sha256": "68ca80435c6fa9b5cac6515bfc54fbb7851d46513b69d34426be8080bffaf66a",
+      "lufs": -12.0,
+      "truePeakDbfs": 0.5,
+      "sampleSeconds": 35,
+      "gainDb": -1.7
+    },
+    "as melhores 80 e 90/Celine Dion Because You Loved Me-new.mp3": {
+      "sha256": "3a88d389165c9b04698cd39ec29cdb3b979f1f6715860d93859f2dc7d73db3b4",
+      "lufs": -16.9,
+      "truePeakDbfs": -1.0,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "as melhores 80 e 90/Daryl Hall & John Oates - Out Of Touch (Official HD Video)-new.mp3": {
+      "sha256": "1954585d6a8c59f164386416def323c20b2ee8f1cd0963097df5f13cf2f6d946",
+      "lufs": -13.4,
+      "truePeakDbfs": 0.6,
+      "sampleSeconds": 35,
+      "gainDb": -0.3
+    },
+    "as melhores 80 e 90/Desireless - Voyage Voyage (Official HD Video)-new.mp3": {
+      "sha256": "2eb1cc6baa0a85cb2bafd78b366ac8bab18ef96bc3fd18c817d9c4dbb2c1d572",
+      "lufs": -8.8,
+      "truePeakDbfs": 1.9,
+      "sampleSeconds": 35,
+      "gainDb": -4.9
+    },
+    "as melhores 80 e 90/F.R. David - Words don't come easy - High Quality Official Music Video-new.mp3": {
+      "sha256": "d21e0aa7c49087d34247da3bfb2f518912b6bb708ebbf7c4533fa803fc6a767f",
+      "lufs": -9.7,
+      "truePeakDbfs": 0.3,
+      "sampleSeconds": 35,
+      "gainDb": -4.0
+    },
+    "as melhores 80 e 90/Gonna Make You Sweat (Everybody Dance Now) (Official HD Video)-new.mp3": {
+      "sha256": "205d7123191afdc9070e467ae0eaaf897fa61d0fbb1cfb46b671340a11d2d417",
+      "lufs": -15.8,
+      "truePeakDbfs": -1.3,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "as melhores 80 e 90/Journey - Don't Stop Believin' (from Live in Houston 1981_ The Escape Tour)-new.mp3": {
+      "sha256": "c1179e1ccaf191d9cec082178cef5295d8a525f66c9a709b3ec4c6094186f9bd",
+      "lufs": -9.3,
+      "truePeakDbfs": 0.5,
+      "sampleSeconds": 35,
+      "gainDb": -4.4
+    },
+    "as melhores 80 e 90/La Bouche - Sweet dreams (Official Video) (VOD)-new.mp3": {
+      "sha256": "8e780139c986fb2cce36b4b47e85e78364687e75d48734481ba60cf6d432af2c",
+      "lufs": -14.4,
+      "truePeakDbfs": -1.9,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "as melhores 80 e 90/Roxette - It Must Have Been Love (Official Music Video)-new.mp3": {
+      "sha256": "18ff0897c68c4af8ce50f048c01be8896d9727a902e8725fec55e855e2aeafe5",
+      "lufs": -24.8,
+      "truePeakDbfs": -12.9,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "as melhores 80 e 90/Scorpions - Wind Of Change (Official Music Video)-new.mp3": {
+      "sha256": "c5ad52f139e9beba5304593fd31e2dd1963e89316f2c28d00d781e125e675350",
+      "lufs": -10.8,
+      "truePeakDbfs": 0.9,
+      "sampleSeconds": 35,
+      "gainDb": -2.9
+    },
+    "as melhores 80 e 90/TINA TURNER ★ We Don't Need Another Hero (Thunderdome)【music video】-new.mp3": {
+      "sha256": "b9550c87cfa8d805273427d55efb59fd95ac274740937ebf940ccbecbddd4ab7",
+      "lufs": -14.4,
+      "truePeakDbfs": -0.2,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "calma-de-outubro.mp3": {
+      "sha256": "a230f51ae816b7602bbe5262bfc30b9d8613c40c6e98aca67eb9dd48e87d0f54",
+      "lufs": -19.9,
+      "truePeakDbfs": -4.7,
+      "sampleSeconds": 28.06,
+      "gainDb": 0.0
+    },
+    "cidade-neon.mp3": {
+      "sha256": "69d3a951e84cfb8794c4fb6a851ac7aa3834fa80e206aac7f4ff7da195b93b54",
+      "lufs": -18.2,
+      "truePeakDbfs": -4.8,
+      "sampleSeconds": 28.06,
+      "gainDb": 0.0
+    },
+    "entre-ondas.mp3": {
+      "sha256": "7848a3b94413d5a5ecb3842d335de35ddb8047474e9099f659e3b9b92dfab2c7",
+      "lufs": -17.9,
+      "truePeakDbfs": -4.6,
+      "sampleSeconds": 28.06,
+      "gainDb": 0.0
+    },
+    "horizonte-azul.mp3": {
+      "sha256": "ace89ac4166cdf5926567d4a89527350dc77e6cf71316eed44d525a7b218d411",
+      "lufs": -19.5,
+      "truePeakDbfs": -4.5,
+      "sampleSeconds": 28.06,
+      "gainDb": 0.0
+    },
+    "malhacao-internacional-2003/01-s-m-s-feat-rehb-just-a-bit-of-chaos.mp3": {
+      "sha256": "6cb33753fb1812351fc698a209cb8977689ce4905cdcafe4de0cfe7766da39a7",
+      "lufs": -11.5,
+      "truePeakDbfs": 0.1,
+      "sampleSeconds": 35,
+      "gainDb": -2.2
+    },
+    "malhacao-internacional-2003/02-avril-lavigne-sk8er-boi.mp3": {
+      "sha256": "f3e68cc15e9e5fd35d170aa8b5808918e2ed7599c4a86f5e8fd8de417b268092",
+      "lufs": -9.0,
+      "truePeakDbfs": 0.4,
+      "sampleSeconds": 35,
+      "gainDb": -4.7
+    },
+    "malhacao-internacional-2003/03-foo-fighters-times-like-these.mp3": {
+      "sha256": "fd0effdd524d481b3e78c65d4ec07a8dc35ea320caa84ade524c4c4a5159adb4",
+      "lufs": -8.9,
+      "truePeakDbfs": -0.6,
+      "sampleSeconds": 35,
+      "gainDb": -4.8
+    },
+    "malhacao-internacional-2003/04-eve-feat-drag-on-got-what-you-need.mp3": {
+      "sha256": "6a1003c44c376cf5f1bef94d461544c7e0ca070caf21185f09b448f91efdd6f5",
+      "lufs": -11.6,
+      "truePeakDbfs": 0.4,
+      "sampleSeconds": 35,
+      "gainDb": -2.1
+    },
+    "malhacao-internacional-2003/05-nelly-feat-kelly-rowland-dilemma.mp3": {
+      "sha256": "50c6fd9b6770536c9193cfb1d87e7df0b9db288bbed86d35c9d1a4b2adf806c9",
+      "lufs": -12.2,
+      "truePeakDbfs": 0.4,
+      "sampleSeconds": 35,
+      "gainDb": -1.5
+    },
+    "malhacao-internacional-2003/06-ja-rule-feat-ashanti-mesmerize.mp3": {
+      "sha256": "c0008fef3a75c396690a476b38dd784dcb852a83ca00b60971a9d281ae9d828e",
+      "lufs": -13.1,
+      "truePeakDbfs": 0.3,
+      "sampleSeconds": 35,
+      "gainDb": -0.6
+    },
+    "malhacao-internacional-2003/07-beyonce-feat-jay-z-crazy-in-love.mp3": {
+      "sha256": "b6bb783251be4be618f4f475d04ca08594bf4c0f7621ff0597334f9fab3c1bf4",
+      "lufs": -12.4,
+      "truePeakDbfs": -0.3,
+      "sampleSeconds": 35,
+      "gainDb": -1.3
+    },
+    "malhacao-internacional-2003/08-t-a-t-u-all-the-things-she-said.mp3": {
+      "sha256": "e37a079be30045b2c659d79759d98fff5dea07eb97d5587c0661a72e5d3ee67b",
+      "lufs": -10.7,
+      "truePeakDbfs": 0.5,
+      "sampleSeconds": 35,
+      "gainDb": -3.0
+    },
+    "malhacao-internacional-2003/09-chevelle-send-the-pain-below.mp3": {
+      "sha256": "210bfa62b976ef3571e352f72f92920864bf42321d160193cd94a6f8393d68a8",
+      "lufs": -12.0,
+      "truePeakDbfs": -0.8,
+      "sampleSeconds": 35,
+      "gainDb": -1.7
+    },
+    "malhacao-internacional-2003/10-damian-marley-and-you-be-loved-and-be-loved.mp3": {
+      "sha256": "e81ebd97f50febe8f200ea2a625a072e8f22cc70d7f840233f826a10654f2ee5",
+      "lufs": -11.7,
+      "truePeakDbfs": -0.9,
+      "sampleSeconds": 35,
+      "gainDb": -2.0
+    },
+    "malhacao-internacional-2003/11-jennifer-lopez-i-m-glad.mp3": {
+      "sha256": "b227e156c7b91547a340ecdfe5e699bd461b291d3502705598bff698688fc934",
+      "lufs": -13.3,
+      "truePeakDbfs": 0.1,
+      "sampleSeconds": 35,
+      "gainDb": -0.4
+    },
+    "malhacao-internacional-2003/12-thalia-feat-fat-joe-i-want-you.mp3": {
+      "sha256": "346046b6052331e522c5529df627fdc8bdd74843483c9c30f4cb8dd084112d88",
+      "lufs": -12.1,
+      "truePeakDbfs": -0.5,
+      "sampleSeconds": 35,
+      "gainDb": -1.6
+    },
+    "malhacao-internacional-2003/13-stacie-orrico-i-promise-i-will.mp3": {
+      "sha256": "609f1ba821c3cdbe827c9a13f4b394b5b0aa8a46d6577e1ede3caaad54d9f45e",
+      "lufs": -10.8,
+      "truePeakDbfs": -1.4,
+      "sampleSeconds": 35,
+      "gainDb": -2.9
+    },
+    "malhacao-internacional-2003/14-vanessa-carlton-pretty-baby.mp3": {
+      "sha256": "db7f05be00602f4c2644765399dc4bb925f127437515e577fe7861b467dbe2e7",
+      "lufs": -10.8,
+      "truePeakDbfs": -0.6,
+      "sampleSeconds": 35,
+      "gainDb": -2.9
+    },
+    "malhacao-internacional-2003/15-paul-j-falling.mp3": {
+      "sha256": "5c82a2e269681639d97d31841e62dee2c9eb4b50278c963ef3f0fae84319b746",
+      "lufs": -10.8,
+      "truePeakDbfs": -0.3,
+      "sampleSeconds": 35,
+      "gainDb": -2.9
+    },
+    "malhacao-internacional-2003/16-arena-brothers-sisters.mp3": {
+      "sha256": "b49f9d8dcd8ff1b32d55e48a879c6e334a07e9bee27dfe0584ef7da598f7c271",
+      "lufs": -10.7,
+      "truePeakDbfs": -0.2,
+      "sampleSeconds": 35,
+      "gainDb": -3.0
+    },
+    "rock/AC DC - Thunderstruck (Official Video).mp3": {
+      "sha256": "b695e5e6e33721d97b8ea4e4611e761d30edd19d9c8a9d740e682bc7644c4de4",
+      "lufs": -8.4,
+      "truePeakDbfs": 1.2,
+      "sampleSeconds": 35,
+      "gainDb": -5.3
+    },
+    "rock/Aerosmith - I Don t Want to Miss a Thing (Official HD Video).mp3": {
+      "sha256": "3bb20dc7c8996a6cb78a5cc8d9cdd115668417aec58c9bad96a99d8df8281da4",
+      "lufs": -9.4,
+      "truePeakDbfs": -0.8,
+      "sampleSeconds": 35,
+      "gainDb": -4.3
+    },
+    "rock/Avril Lavigne - Complicated (Official Video).mp3": {
+      "sha256": "4e1977d435b776fbd6e0992a63104b88d9946a5648cab463610ad24a6488b803",
+      "lufs": -9.6,
+      "truePeakDbfs": 0.0,
+      "sampleSeconds": 35,
+      "gainDb": -4.1
+    },
+    "rock/Bon Jovi - It s My Life (Official Music Video).mp3": {
+      "sha256": "e65990dec37babf59a481e8ac61ab114fe9ea4b3b5868ba9ece173093ece5382",
+      "lufs": -7.0,
+      "truePeakDbfs": 1.3,
+      "sampleSeconds": 35,
+      "gainDb": -6.7
+    },
+    "rock/Evanescence - My Immortal (Official HD Music Video).mp3": {
+      "sha256": "e29cfc5c065db883f0785e72af22bfb6b344440ba8fe1712d516c1882a1dd0dd",
+      "lufs": -14.4,
+      "truePeakDbfs": -3.6,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "rock/Faint (Official Music Video) 4K UPGRADE – Linkin Park.mp3": {
+      "sha256": "f9d8ad99a2c0f4c4edcf1f7452de2ef809713031528013d25ac530525af40c96",
+      "lufs": -8.2,
+      "truePeakDbfs": 0.5,
+      "sampleSeconds": 35,
+      "gainDb": -5.5
+    },
+    "rock/Red Hot Chili Peppers - Californication (Official Music Video) HD UPGRADE.mp3": {
+      "sha256": "c5f4c4d5cd00c92d1a733ab43774f9c65fe461b716a4883c73b17165ae2dc9c5",
+      "lufs": -7.1,
+      "truePeakDbfs": 0.3,
+      "sampleSeconds": 35,
+      "gainDb": -6.6
+    },
+    "rock/The Outfield - Your Love (Official HD Video).mp3": {
+      "sha256": "e9a13803a857ca23004fe97f8510ab564d841a97ab7325dcf150305fcb2a8626",
+      "lufs": -14.4,
+      "truePeakDbfs": -1.1,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "rock/The Police - Every Breath You Take (Official Music Video).mp3": {
+      "sha256": "a4d4a576695e800bebaeac0ce4bdd49a52ae3180e233cd139e161ace6389f936",
+      "lufs": -12.1,
+      "truePeakDbfs": 0.3,
+      "sampleSeconds": 35,
+      "gainDb": -1.6
+    },
+    "rock/Toto - Africa (Official HD Video).mp3": {
+      "sha256": "bd3656b3d9de29896cc688a49d1be27f6ac2b350425a40bcbac33ab44583a731",
+      "lufs": -10.6,
+      "truePeakDbfs": 0.4,
+      "sampleSeconds": 35,
+      "gainDb": -3.1
+    },
+    "rock/Toto - Hold The Line (Official Video).mp3": {
+      "sha256": "fbee33da5826bade5a85a96019a419f3af88f8b098c6246d6ce49b60c0b57264",
+      "lufs": -15.7,
+      "truePeakDbfs": -1.3,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "rota-noturna.mp3": {
+      "sha256": "62e51fdd40abfb5e0ba6881cf21d03432cb56dd318c48250338246a5ecf4f68f",
+      "lufs": -17.9,
+      "truePeakDbfs": -4.7,
+      "sampleSeconds": 28.06,
+      "gainDb": 0.0
+    },
+    "sol-de-vidro.mp3": {
+      "sha256": "7b863fa18ec4432f568555890c7e79aa73da46396f4e41ad6659883c9965134a",
+      "lufs": -18.7,
+      "truePeakDbfs": -4.6,
+      "sampleSeconds": 28.06,
+      "gainDb": 0.0
+    }
+  }
+}
