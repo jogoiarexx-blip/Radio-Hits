@@ -193,7 +193,7 @@
   function updateMediaSession(t) {
     if (!('mediaSession' in navigator) || !t) return;
     try {
-      navigator.mediaSession.metadata = new MediaMetadata({ title:t.title, artist:t.artist, album:state.mode==='radio'?'Pulso Rádio':'Biblioteca Pulso', artwork:[{src:new URL(t.cover, document.baseURI).href,sizes:'512x512',type:'image/svg+xml'}] });
+      navigator.mediaSession.metadata = new MediaMetadata({ title:t.title, artist:t.artist, album:state.mode==='radio'?'Radio Hits':'Biblioteca Radio Hits', artwork:[{src:new URL(t.cover, document.baseURI).href,sizes:'512x512',type:'image/svg+xml'}] });
       navigator.mediaSession.setActionHandler('play', () => togglePlayback());
       navigator.mediaSession.setActionHandler('pause', () => togglePlayback());
       navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
@@ -318,7 +318,7 @@
     openModal('Adicionar suas músicas', `<p>Este site funciona sem servidor. Os arquivos MP3 ficam dentro do seu repositório GitHub.</p><ol><li>Envie os arquivos <code>.mp3</code>, <code>.ogg</code> ou <code>.m4a</code> para a pasta <code>musicas/</code>.</li><li>Opcional: ajuste títulos, artistas e capas em <code>musicas/metadados.json</code>.</li><li>Ao publicar, o GitHub Actions gera automaticamente o catálogo e atualiza a biblioteca e a rádio.</li></ol><p>Limite importante: o GitHub Pages publica até 1 GB por site. Use apenas músicas próprias ou autorizadas.</p><button class="primary-action" data-action="close-modal">Entendi</button>`);
   }
   function about() {
-    openModal('Sobre a Pulso', `<p><strong>Pulso v1.0</strong> reúne rádio sincronizada por horário e biblioteca sob demanda. Feito com HTML, CSS e JavaScript, sem serviços de terceiros.</p><p>É uma demonstração: não há DJ ao vivo, contas ou sincronização de playlists entre dispositivos. Favoritos e playlists ficam no navegador.</p><p>As faixas de exemplo são composições instrumentais originais feitas exclusivamente para testar o projeto.</p>`);
+    openModal('Sobre a Radio Hits', `<p><strong>Radio Hits v1.1</strong> reúne rádio sincronizada por horário e biblioteca sob demanda. Feito com HTML, CSS e JavaScript, sem serviços de terceiros.</p><p>É uma demonstração: não há DJ ao vivo, contas ou sincronização de playlists entre dispositivos. Favoritos e playlists ficam no navegador.</p><p>As faixas de exemplo são composições instrumentais originais feitas exclusivamente para testar o projeto.</p>`);
   }
   function handleAction(el) {
     const id = el.dataset.id;
@@ -426,7 +426,7 @@
       if (state.currentId) state.queue=state.tracks.map(t=>t.id);
       renderRadio(info);renderExplore();renderFavorites();renderPlaylists();renderQueue(info);renderPlayer();
     } catch (err) {
-      console.error('Pulso: falha no catálogo',err);
+      console.error('Radio Hits: falha no catálogo',err);
       $('station-title').textContent='Não foi possível carregar o catálogo';
       $('station-artist').textContent='Abra com servidor HTTP, não usando file://';
       $('radio-up-next').innerHTML=empty('Catálogo indisponível','Verifique catalogo.json e a publicação do site.');

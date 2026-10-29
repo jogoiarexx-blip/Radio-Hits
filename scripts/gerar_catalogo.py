@@ -64,7 +64,7 @@ def main():
         from urllib.parse import quote
         source='./musicas/'+ '/'.join(quote(part) for part in path.relative_to(MUSIC).parts)
         tracks.append({'id':ident,'title':title,'artist':artist,'genre':genre,'duration':seconds,'src':source,'cover':cover,'year':meta.get('year',2026)})
-    result={'name':'Pulso Rádio','version':1,'tracks':tracks,'radioOrder':[t['id'] for t in tracks]}
+    result={'name':'Radio Hits','version':1,'tracks':tracks,'radioOrder':[t['id'] for t in tracks]}
     target=ROOT/'catalogo.json'
     target.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(f'Catálogo gerado: {len(tracks)} faixas / {sum(t["duration"] for t in tracks):.1f}s no total. -> {target}')

@@ -1,6 +1,6 @@
 {
-  "name": "Pulso — Rádio e Música",
-  "short_name": "Pulso",
+  "name": "Radio Hits — Rádio e Música",
+  "short_name": "Radio Hits",
   "description": "Rádio sincronizada e músicas sob demanda.",
   "start_url": "./",
   "scope": "./",

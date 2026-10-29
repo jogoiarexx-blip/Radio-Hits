@@ -1,4 +1,4 @@
-# PULSO — Rádio sincronizada + biblioteca musical
+# RADIO HITS — Rádio sincronizada + biblioteca musical
 
 Site musical estático criado para **GitHub Pages**, com dois modos: "Rádio" (todos na mesma faixa por horário) e "Explorar" (faixas sob demanda).
 
@@ -15,11 +15,11 @@ Site musical estático criado para **GitHub Pages**, com dois modos: "Rádio" (t
 
 ## Publicar no GitHub (primeira vez)
 
-1. Crie um **repositório público vazio**, por exemplo `Pulso-Radio`, na sua conta GitHub.
+1. Crie um **repositório público vazio**, por exemplo `Radio-Hits`, na sua conta GitHub.
 2. Envie **todo o conteúdo desta pasta** para a raiz do repositório, incluindo a pasta oculta `.github/workflows`.
 3. No repositório: **Settings → Pages → Build and deployment → Source → GitHub Actions**.
-4. Acesse a aba **Actions** e verifique o fluxo `Publicar Pulso no GitHub Pages`. Se necessário, clique `Run workflow`.
-5. Seu endereço será similar a `https://SEU-USUARIO.github.io/Pulso-Radio/`.
+4. Acesse a aba **Actions** e verifique o fluxo `Publicar Radio Hits no GitHub Pages`. Se necessário, clique `Run workflow`.
+5. Seu endereço será similar a `https://SEU-USUARIO.github.io/Radio-Hits/`.
 
 **Não use `Deploy from a branch`** com esta versão se quiser que o catálogo seja atualizado automaticamente no Pages. A opção `GitHub Actions` é a indicada.
 
@@ -85,7 +85,7 @@ Documentação oficial: https://docs.github.com/en/pages/getting-started-with-gi
 ## Estrutura
 
 ```text
-Pulso-Radio/
+Radio-Hits/
 ├── index.html                # Interface
 ├── catalogo.json             # Catálogo local de demonstração, regenerado no deploy
 ├── css/style.css             # Tema responsivo
