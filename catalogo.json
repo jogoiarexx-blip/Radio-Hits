@@ -61,6 +61,146 @@
       "src": "./musicas/sol-de-vidro.mp3",
       "cover": "./assets/capas/sol-de-vidro.svg",
       "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-everything-i-do-i-do-it-for-you-official-music-video-new",
+      "title": "(Everything I Do) I Do It for You",
+      "artist": "Bryan Adams",
+      "genre": "Anos 80 e 90",
+      "duration": 392.829,
+      "src": "./musicas/as%20melhores%2080%20e%2090/%28Everything%20I%20Do%29%20I%20Do%20It%20For%20You%20%28Official%20Music%20Video%29-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-10-000-maniacs-because-the-night-official-music-video-new",
+      "title": "Because the Night",
+      "artist": "10,000 Maniacs",
+      "genre": "Anos 80 e 90",
+      "duration": 220.918,
+      "src": "./musicas/as%20melhores%2080%20e%2090/10.000%20MANIACS%20-%20BECAUSE%20THE%20NIGHT%20%28OFFICIAL%20MUSIC%20VIDEO%29-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-alphaville-big-in-japan-official-music-video-new",
+      "title": "Big in Japan",
+      "artist": "Alphaville",
+      "genre": "Anos 80 e 90",
+      "duration": 238.106,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Alphaville%20-%20Big%20In%20Japan%20%28Official%20Music%20Video%29-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-baltimora-tarzan-boy-new",
+      "title": "Tarzan Boy",
+      "artist": "Baltimora",
+      "genre": "Anos 80 e 90",
+      "duration": 219.951,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Baltimora%20-%20Tarzan%20Boy-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-celine-dion-because-you-loved-me-new",
+      "title": "Because You Loved Me",
+      "artist": "Céline Dion",
+      "genre": "Anos 80 e 90",
+      "duration": 271.282,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Celine%20Dion%20Because%20You%20Loved%20Me-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-daryl-hall-john-oates-out-of-touch-official-hd-video-new",
+      "title": "Out of Touch",
+      "artist": "Daryl Hall & John Oates",
+      "genre": "Anos 80 e 90",
+      "duration": 273.816,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Daryl%20Hall%20%26%20John%20Oates%20-%20Out%20Of%20Touch%20%28Official%20HD%20Video%29-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-desireless-voyage-voyage-official-hd-video-new",
+      "title": "Voyage, voyage",
+      "artist": "Desireless",
+      "genre": "Anos 80 e 90",
+      "duration": 251.011,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Desireless%20-%20Voyage%20Voyage%20%28Official%20HD%20Video%29-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-f-r-david-words-don-t-come-easy-high-quality-official-music-video-new",
+      "title": "Words",
+      "artist": "F. R. David",
+      "genre": "Anos 80 e 90",
+      "duration": 203.703,
+      "src": "./musicas/as%20melhores%2080%20e%2090/F.R.%20David%20-%20Words%20don%27t%20come%20easy%20-%20High%20Quality%20Official%20Music%20Video-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-gonna-make-you-sweat-everybody-dance-now-official-hd-video-new",
+      "title": "Gonna Make You Sweat (Everybody Dance Now)",
+      "artist": "C+C Music Factory",
+      "genre": "Anos 80 e 90",
+      "duration": 246.936,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Gonna%20Make%20You%20Sweat%20%28Everybody%20Dance%20Now%29%20%28Official%20HD%20Video%29-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-journey-don-t-stop-believin-from-live-in-houston-1981-the-escape-tour-new",
+      "title": "Don't Stop Believin'",
+      "artist": "Journey",
+      "genre": "Anos 80 e 90",
+      "duration": 251.664,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Journey%20-%20Don%27t%20Stop%20Believin%27%20%28from%20Live%20in%20Houston%201981_%20The%20Escape%20Tour%29-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-la-bouche-sweet-dreams-official-video-vod-new",
+      "title": "Sweet Dreams",
+      "artist": "La Bouche",
+      "genre": "Anos 80 e 90",
+      "duration": 223.007,
+      "src": "./musicas/as%20melhores%2080%20e%2090/La%20Bouche%20-%20Sweet%20dreams%20%28Official%20Video%29%20%28VOD%29-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-roxette-it-must-have-been-love-official-music-video-new",
+      "title": "It Must Have Been Love",
+      "artist": "Roxette",
+      "genre": "Anos 80 e 90",
+      "duration": 255.817,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Roxette%20-%20It%20Must%20Have%20Been%20Love%20%28Official%20Music%20Video%29-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-scorpions-wind-of-change-official-music-video-new",
+      "title": "Wind of Change",
+      "artist": "Scorpions",
+      "genre": "Anos 80 e 90",
+      "duration": 282.828,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Scorpions%20-%20Wind%20Of%20Change%20%28Official%20Music%20Video%29-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "as-melhores-80-e-90-tina-turner-we-don-t-need-another-hero-thunderdome-music-video-new",
+      "title": "We Don't Need Another Hero (Thunderdome)",
+      "artist": "Tina Turner",
+      "genre": "Anos 80 e 90",
+      "duration": 264.02,
+      "src": "./musicas/as%20melhores%2080%20e%2090/TINA%20TURNER%20%E2%98%85%20We%20Don%27t%20Need%20Another%20Hero%20%28Thunderdome%29%E3%80%90music%20video%E3%80%91-new.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
     }
   ],
   "radioOrder": [
@@ -69,6 +209,20 @@
     "calma-de-outubro",
     "entre-ondas",
     "rota-noturna",
-    "sol-de-vidro"
+    "sol-de-vidro",
+    "as-melhores-80-e-90-everything-i-do-i-do-it-for-you-official-music-video-new",
+    "as-melhores-80-e-90-10-000-maniacs-because-the-night-official-music-video-new",
+    "as-melhores-80-e-90-alphaville-big-in-japan-official-music-video-new",
+    "as-melhores-80-e-90-baltimora-tarzan-boy-new",
+    "as-melhores-80-e-90-celine-dion-because-you-loved-me-new",
+    "as-melhores-80-e-90-daryl-hall-john-oates-out-of-touch-official-hd-video-new",
+    "as-melhores-80-e-90-desireless-voyage-voyage-official-hd-video-new",
+    "as-melhores-80-e-90-f-r-david-words-don-t-come-easy-high-quality-official-music-video-new",
+    "as-melhores-80-e-90-gonna-make-you-sweat-everybody-dance-now-official-hd-video-new",
+    "as-melhores-80-e-90-journey-don-t-stop-believin-from-live-in-houston-1981-the-escape-tour-new",
+    "as-melhores-80-e-90-la-bouche-sweet-dreams-official-video-vod-new",
+    "as-melhores-80-e-90-roxette-it-must-have-been-love-official-music-video-new",
+    "as-melhores-80-e-90-scorpions-wind-of-change-official-music-video-new",
+    "as-melhores-80-e-90-tina-turner-we-don-t-need-another-hero-thunderdome-music-video-new"
   ]
 }
