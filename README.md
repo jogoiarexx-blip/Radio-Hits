@@ -27,7 +27,8 @@ Site musical estático criado para **GitHub Pages**, com dois modos: "Rádio" (t
 
 1. Envie seus arquivos `.mp3`, `.ogg`, `.m4a`, `.wav` para `musicas/` (subpastas também são suportadas).
 2. Edite opcionalmente `musicas/metadados.json` para cadastrar título, artista, gênero e capa (o caminho da capa começa com `./assets/capas/`).
-3. Faça o commit. O GitHub Actions lê os novos arquivos e gera `catalogo.json` para o site publicado. Não é necessário rodar `criar_demos.py`.
+3. Faça o commit. O GitHub Actions lê MP3 e subpastas recursivamente, identifica duração e tags ID3, publica os áudios e **atualiza `catalogo.json` também na branch `main`**.
+4. Use a página **Explorar** para encontrar as músicas. Se a página estiver em cache, atualize com Ctrl+F5. Não é necessário rodar `criar_demos.py`.
 
 Exemplo de entrada em `musicas/metadados.json`:
 
