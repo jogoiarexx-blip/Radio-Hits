@@ -19,6 +19,7 @@ public final class PlaybackService extends MediaSessionService {
                 .setUsage(C.USAGE_MEDIA)
                 .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC).build(), true)
             .setHandleAudioBecomingNoisy(true)
+            .setWakeMode(C.WAKE_MODE_LOCAL)
             .build();
         session = new MediaSession.Builder(this, player).build();
     }
