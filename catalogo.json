@@ -483,6 +483,16 @@
       "year": 2026
     },
     {
+      "id": "hip-hop-in-da-club-dtriwq8j9jw",
+      "title": "In Da Club",
+      "artist": "50 Cent - Topic",
+      "genre": "Hip Hop",
+      "duration": 193.515,
+      "src": "./musicas/Hip%20Hop/In%20Da%20Club%20%5BDtrIWQ8J9jw%5D.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
       "id": "hip-hop-nelly-dilemma-feat-kelly-rowland",
       "title": "Nelly - Dilemma (feat. Kelly Rowland)",
       "artist": "Nelly",
@@ -519,6 +529,16 @@
       "genre": "Hip Hop",
       "duration": 259.762,
       "src": "./musicas/Hip%20Hop/Usher%20-%20Love%20in%20This%20Club%20%28feat.%20Young%20Jeezy%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "hip-hop-what-goes-around-comes-around-interlude-bxbitm7vtcs",
+      "title": "What Goes Around... /... Comes Around (Interlude)",
+      "artist": "Justin Timberlake - Topic",
+      "genre": "Hip Hop",
+      "duration": 448.575,
+      "src": "./musicas/Hip%20Hop/What%20Goes%20Around..._...Comes%20Around%20%28Interlude%29%20%5BbxBiTm7vtCs%5D.mp3",
       "cover": "./assets/capas/padrao.svg",
       "year": 2026
     }
@@ -572,9 +592,11 @@
     "rock-toto-africa-official-hd-video",
     "rock-toto-hold-the-line-official-video",
     "hip-hop-akon-smack-that-feat-eminem",
+    "hip-hop-in-da-club-dtriwq8j9jw",
     "hip-hop-nelly-dilemma-feat-kelly-rowland",
     "hip-hop-ridin-f-tusbuxgme",
     "hip-hop-say-goodbye-txfbe1qx924",
-    "hip-hop-usher-love-in-this-club-feat-young-jeezy"
+    "hip-hop-usher-love-in-this-club-feat-young-jeezy",
+    "hip-hop-what-goes-around-comes-around-interlude-bxbitm7vtcs"
   ]
 }
