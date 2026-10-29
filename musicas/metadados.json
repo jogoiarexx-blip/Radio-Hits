@@ -4,303 +4,469 @@
     "artist": "Pulso Originals",
     "genre": "Chill",
     "cover": "./assets/capas/horizonte-azul.svg",
-    "year": 2026
+    "year": 2026,
+    "downloadAllowed": true
   },
   "cidade-neon.mp3": {
     "title": "Cidade Néon",
     "artist": "Pulso Originals",
     "genre": "Eletrônica",
     "cover": "./assets/capas/cidade-neon.svg",
-    "year": 2026
+    "year": 2026,
+    "downloadAllowed": true
   },
   "calma-de-outubro.mp3": {
     "title": "Calma de Outubro",
     "artist": "Pulso Originals",
     "genre": "Lo-fi",
     "cover": "./assets/capas/calma-de-outubro.svg",
-    "year": 2026
+    "year": 2026,
+    "downloadAllowed": true
   },
   "entre-ondas.mp3": {
     "title": "Entre Ondas",
     "artist": "Pulso Originals",
     "genre": "Ambient",
     "cover": "./assets/capas/entre-ondas.svg",
-    "year": 2026
+    "year": 2026,
+    "downloadAllowed": true
   },
   "rota-noturna.mp3": {
     "title": "Rota Noturna",
     "artist": "Pulso Originals",
     "genre": "Synthwave",
     "cover": "./assets/capas/rota-noturna.svg",
-    "year": 2026
+    "year": 2026,
+    "downloadAllowed": true
   },
   "sol-de-vidro.mp3": {
     "title": "Sol de Vidro",
     "artist": "Pulso Originals",
     "genre": "Indie",
     "cover": "./assets/capas/sol-de-vidro.svg",
-    "year": 2026
+    "year": 2026,
+    "downloadAllowed": true
   },
   "as melhores 80 e 90/(Everything I Do) I Do It For You (Official Music Video)-new.mp3": {
     "title": "(Everything I Do) I Do It for You",
     "artist": "Bryan Adams",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/10.000 MANIACS - BECAUSE THE NIGHT (OFFICIAL MUSIC VIDEO)-new.mp3": {
     "title": "Because the Night",
     "artist": "10,000 Maniacs",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/Alphaville - Big In Japan (Official Music Video)-new.mp3": {
     "title": "Big in Japan",
     "artist": "Alphaville",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/Baltimora - Tarzan Boy-new.mp3": {
     "title": "Tarzan Boy",
     "artist": "Baltimora",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/Celine Dion Because You Loved Me-new.mp3": {
     "title": "Because You Loved Me",
     "artist": "Céline Dion",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/Daryl Hall & John Oates - Out Of Touch (Official HD Video)-new.mp3": {
     "title": "Out of Touch",
     "artist": "Daryl Hall & John Oates",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/Desireless - Voyage Voyage (Official HD Video)-new.mp3": {
     "title": "Voyage, voyage",
     "artist": "Desireless",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/F.R. David - Words don't come easy - High Quality Official Music Video-new.mp3": {
     "title": "Words",
     "artist": "F. R. David",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/Gonna Make You Sweat (Everybody Dance Now) (Official HD Video)-new.mp3": {
     "title": "Gonna Make You Sweat (Everybody Dance Now)",
     "artist": "C+C Music Factory",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/Journey - Don't Stop Believin' (from Live in Houston 1981_ The Escape Tour)-new.mp3": {
     "title": "Don't Stop Believin'",
     "artist": "Journey",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/La Bouche - Sweet dreams (Official Video) (VOD)-new.mp3": {
     "title": "Sweet Dreams",
     "artist": "La Bouche",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/Roxette - It Must Have Been Love (Official Music Video)-new.mp3": {
     "title": "It Must Have Been Love",
     "artist": "Roxette",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/Scorpions - Wind Of Change (Official Music Video)-new.mp3": {
     "title": "Wind of Change",
     "artist": "Scorpions",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "as melhores 80 e 90/TINA TURNER ★ We Don't Need Another Hero (Thunderdome)【music video】-new.mp3": {
     "title": "We Don't Need Another Hero (Thunderdome)",
     "artist": "Tina Turner",
     "genre": "Anos 80 e 90",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/01-s-m-s-feat-rehb-just-a-bit-of-chaos.mp3": {
     "title": "Just a Bit of Chaos",
     "artist": "S.M.S. feat. REHB",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/02-avril-lavigne-sk8er-boi.mp3": {
     "title": "Sk8er Boi",
     "artist": "Avril Lavigne",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/03-foo-fighters-times-like-these.mp3": {
     "title": "Times Like These",
     "artist": "Foo Fighters",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/04-eve-feat-drag-on-got-what-you-need.mp3": {
     "title": "Got What You Need",
     "artist": "Eve feat. Drag-On",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/05-nelly-feat-kelly-rowland-dilemma.mp3": {
     "title": "Dilemma",
     "artist": "Nelly feat. Kelly Rowland",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/06-ja-rule-feat-ashanti-mesmerize.mp3": {
     "title": "Mesmerize",
     "artist": "Ja Rule feat. Ashanti",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/07-beyonce-feat-jay-z-crazy-in-love.mp3": {
     "title": "Crazy in Love",
     "artist": "Beyoncé feat. Jay-Z",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/08-t-a-t-u-all-the-things-she-said.mp3": {
     "title": "All the Things She Said",
     "artist": "t.A.T.u.",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/09-chevelle-send-the-pain-below.mp3": {
     "title": "Send the Pain Below",
     "artist": "Chevelle",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/10-damian-marley-and-you-be-loved-and-be-loved.mp3": {
     "title": "And You Be Loved (And Be Loved)",
     "artist": "Damian Marley",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/11-jennifer-lopez-i-m-glad.mp3": {
     "title": "I'm Glad",
     "artist": "Jennifer Lopez",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/12-thalia-feat-fat-joe-i-want-you.mp3": {
     "title": "I Want You",
     "artist": "Thalía feat. Fat Joe",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/13-stacie-orrico-i-promise-i-will.mp3": {
     "title": "I Promise I Will",
     "artist": "Stacie Orrico",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/14-vanessa-carlton-pretty-baby.mp3": {
     "title": "Pretty Baby",
     "artist": "Vanessa Carlton",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/15-paul-j-falling.mp3": {
     "title": "Falling",
     "artist": "Paul J.",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "malhacao-internacional-2003/16-arena-brothers-sisters.mp3": {
     "title": "Brothers + Sisters",
     "artist": "Arena",
     "genre": "Malhação Internacional 2003",
     "year": 2003,
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "rock/AC DC - Thunderstruck (Official Video).mp3": {
     "title": "Thunderstruck",
     "artist": "AC/DC",
     "genre": "Rock",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "rock/Aerosmith - I Don t Want to Miss a Thing (Official HD Video).mp3": {
     "title": "I Don't Want to Miss a Thing",
     "artist": "Aerosmith",
     "genre": "Rock",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "rock/Avril Lavigne - Complicated (Official Video).mp3": {
     "title": "Complicated",
     "artist": "Avril Lavigne",
     "genre": "Rock",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "rock/Bon Jovi - It s My Life (Official Music Video).mp3": {
     "title": "It's My Life",
     "artist": "Bon Jovi",
     "genre": "Rock",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "rock/Evanescence - My Immortal (Official HD Music Video).mp3": {
     "title": "My Immortal",
     "artist": "Evanescence",
     "genre": "Rock",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "rock/Faint (Official Music Video) 4K UPGRADE – Linkin Park.mp3": {
     "title": "Faint",
     "artist": "Linkin Park",
     "genre": "Rock",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "rock/Red Hot Chili Peppers - Californication (Official Music Video) HD UPGRADE.mp3": {
     "title": "Californication",
     "artist": "Red Hot Chili Peppers",
     "genre": "Rock",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "rock/The Outfield - Your Love (Official HD Video).mp3": {
     "title": "Your Love",
     "artist": "The Outfield",
     "genre": "Rock",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "rock/The Police - Every Breath You Take (Official Music Video).mp3": {
     "title": "Every Breath You Take",
     "artist": "The Police",
     "genre": "Rock",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "rock/Toto - Africa (Official HD Video).mp3": {
     "title": "Africa",
     "artist": "Toto",
     "genre": "Rock",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   },
   "rock/Toto - Hold The Line (Official Video).mp3": {
     "title": "Hold the Line",
     "artist": "Toto",
     "genre": "Rock",
-    "cover": "./assets/capas/padrao.svg"
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Akon - Smack That (feat. Eminem).mp3": {
+    "title": "Smack That",
+    "artist": "Akon feat. Eminem",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Alicia Keys - No One (Official Music Video).m4a": {
+    "title": "No One",
+    "artist": "Alicia Keys",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Cry Me a River.m4a": {
+    "title": "Cry Me a River",
+    "artist": "Justin Timberlake",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Don't Matter.m4a": {
+    "title": "Don't Matter",
+    "artist": "Akon",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Flo Rida - Low (feat. T-Pain) [Official Video].m4a": {
+    "title": "Low",
+    "artist": "Flo Rida feat. T-Pain",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/I Wanna Love You.m4a": {
+    "title": "I Wanna Love You",
+    "artist": "Akon feat. Snoop Dogg",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/In Da Club [DtrIWQ8J9jw].mp3": {
+    "title": "In Da Club",
+    "artist": "50 Cent",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Just A Lil Bit.m4a": {
+    "title": "Just a Lil Bit",
+    "artist": "50 Cent",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Many Men (Wish Death).m4a": {
+    "title": "Many Men (Wish Death)",
+    "artist": "50 Cent",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Miss Independent.m4a": {
+    "title": "Miss Independent",
+    "artist": "Ne-Yo",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Nelly - Dilemma (feat. Kelly Rowland).mp3": {
+    "title": "Dilemma",
+    "artist": "Nelly feat. Kelly Rowland",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Ridin' [F_TuSBUXgmE].mp3": {
+    "title": "Ridin'",
+    "artist": "Chamillionaire feat. Krayzie Bone",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Say Goodbye [TxfBE1qX924].mp3": {
+    "title": "Say Goodbye",
+    "artist": "Chris Brown",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/The Real Slim Shady.m4a": {
+    "title": "The Real Slim Shady",
+    "artist": "Eminem",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/Usher - Love in This Club (feat. Young Jeezy).mp3": {
+    "title": "Love in This Club",
+    "artist": "Usher feat. Young Jeezy",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/What Goes Around..._...Comes Around (Interlude) [bxBiTm7vtCs].mp3": {
+    "title": "What Goes Around.../...Comes Around",
+    "artist": "Justin Timberlake",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "Hip Hop/What's Luv (feat. Ashanti).m4a": {
+    "title": "What's Luv?",
+    "artist": "Fat Joe feat. Ashanti",
+    "genre": "Hip Hop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   }
 }
