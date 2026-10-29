@@ -363,6 +363,16 @@
       "year": 2003
     },
     {
+      "id": "rock-ac-dc-thunderstruck-official-video",
+      "title": "Thunderstruck",
+      "artist": "AC DC",
+      "genre": "rock",
+      "duration": 292.989,
+      "src": "./musicas/rock/AC%20DC%20-%20Thunderstruck%20%28Official%20Video%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
       "id": "rock-aerosmith-i-don-t-want-to-miss-a-thing-official-hd-video",
       "title": "Aerosmith - I Don't Want to Miss a Thing (Official HD Video)",
       "artist": "AerosmithVEVO",
@@ -411,6 +421,46 @@
       "src": "./musicas/rock/Faint%20%28Official%20Music%20Video%29%204K%20UPGRADE%20%E2%80%93%20Linkin%20Park.mp3",
       "cover": "./assets/capas/padrao.svg",
       "year": 2026
+    },
+    {
+      "id": "rock-red-hot-chili-peppers-californication-official-music-video-hd-upgrade",
+      "title": "Red Hot Chili Peppers - Californication (Official Music Video) [HD UPGRADE]",
+      "artist": "Red Hot Chili Peppers",
+      "genre": "rock",
+      "duration": 321.149,
+      "src": "./musicas/rock/Red%20Hot%20Chili%20Peppers%20-%20Californication%20%28Official%20Music%20Video%29%20HD%20UPGRADE.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "rock-the-outfield-your-love-official-hd-video",
+      "title": "The Outfield - Your Love (Official HD Video)",
+      "artist": "TheOutfieldVEVO",
+      "genre": "rock",
+      "duration": 252.552,
+      "src": "./musicas/rock/The%20Outfield%20-%20Your%20Love%20%28Official%20HD%20Video%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "rock-the-police-every-breath-you-take-official-music-video",
+      "title": "Every Breath You Take",
+      "artist": "The Police",
+      "genre": "rock",
+      "duration": 228.949,
+      "src": "./musicas/rock/The%20Police%20-%20Every%20Breath%20You%20Take%20%28Official%20Music%20Video%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
+      "id": "rock-toto-hold-the-line-official-video",
+      "title": "Toto - Hold The Line (Official Video)",
+      "artist": "TotoVEVO",
+      "genre": "rock",
+      "duration": 238.576,
+      "src": "./musicas/rock/Toto%20-%20Hold%20The%20Line%20%28Official%20Video%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
     }
   ],
   "radioOrder": [
@@ -450,10 +500,15 @@
     "malhacao-internacional-2003-14-vanessa-carlton-pretty-baby",
     "malhacao-internacional-2003-15-paul-j-falling",
     "malhacao-internacional-2003-16-arena-brothers-sisters",
+    "rock-ac-dc-thunderstruck-official-video",
     "rock-aerosmith-i-don-t-want-to-miss-a-thing-official-hd-video",
     "rock-avril-lavigne-complicated-official-video",
     "rock-bon-jovi-it-s-my-life-official-music-video",
     "rock-evanescence-my-immortal-official-hd-music-video",
-    "rock-faint-official-music-video-4k-upgrade-linkin-park"
+    "rock-faint-official-music-video-4k-upgrade-linkin-park",
+    "rock-red-hot-chili-peppers-californication-official-music-video-hd-upgrade",
+    "rock-the-outfield-your-love-official-hd-video",
+    "rock-the-police-every-breath-you-take-official-music-video",
+    "rock-toto-hold-the-line-official-video"
   ]
 }
