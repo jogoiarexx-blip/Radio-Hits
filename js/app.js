@@ -66,11 +66,11 @@
         }
         const request={
           mode:state.mode,id:selected,index,positionMs:Math.round(position*1000),
-          volume:state.volume,shuffle:state.shuffle && state.mode !== 'radio',
+          volume:state.volume,leveling:state.leveling,shuffle:state.shuffle && state.mode !== 'radio',
           repeat:state.repeat==='all',
           tracks:tracks.map(t=>({
             id:t.id,title:t.title,artist:t.artist,
-            src:new URL(t.src,document.baseURI).href
+            src:new URL(t.src,document.baseURI).href,gainDb:Number(t.gainDb)||0
           }))
         };
         window.RadioHitsAndroid.playQueue(JSON.stringify(request));
@@ -109,14 +109,15 @@
     selectedPlaylist: null, pendingAddId: null,
     queue: [], queueIndex: 0, shuffle: false, repeat: 'off',
     volume: Number.isFinite(Number(saved.volume)) ? Math.min(1, Math.max(0, Number(saved.volume))) : .75,
+    leveling: saved.leveling !== false,
     previousVolume: .75, pendingSeek: null, playRequested: false, toastTimer: null, loaded: false,
   };
-  audio.volume = state.volume;
+  applyVolumeForTrack();
   $('volume').value = Math.round(state.volume * 100);
   setRangeFill($('volume'));
 
   function persist() {
-    try { localStorage.setItem(STORAGE, JSON.stringify({ favorites: [...state.favorites], playlists: state.playlists, volume: state.volume })); } catch (_) { /* Storage may be unavailable. */ }
+    try { localStorage.setItem(STORAGE, JSON.stringify({ favorites: [...state.favorites], playlists: state.playlists, volume: state.volume, leveling: state.leveling })); } catch (_) { /* Storage may be unavailable. */ }
   }
   function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -289,6 +290,25 @@
       }).join('') : empty('Fila vazia', 'Escolha uma música para começar.');
     }
   }
+  // Compensação conservadora EBU R128: atenuação por faixa, sem ganho positivo.
+  function gainFactor(track) {
+    if (!state.leveling || !track) return 1;
+    const db = Number(track.gainDb);
+    return Number.isFinite(db) ? Math.pow(10,Math.max(-10,Math.min(0,db))/20) : 1;
+  }
+  function applyVolumeForTrack(track=trackById(state.currentId)) {
+    if (nativeBridge) {
+      // O Media3 aplica o ganho de cada faixa, inclusive ao mudar de música
+      // com a tela bloqueada. O controle aqui é apenas o volume mestre.
+      audio.volume=state.volume;
+      if (window.RadioHitsAndroid.setLeveling)
+        window.RadioHitsAndroid.setLeveling(state.leveling);
+    } else {
+      audio.volume=Math.min(1,Math.max(0,state.volume*gainFactor(track)));
+      if (standby) standby.volume=Math.min(1,Math.max(0,
+        state.volume*gainFactor(trackById(primedTrackId))));
+    }
+  }
   function setPlayVisuals() {
     const playing = !audio.paused && !audio.ended;
     const playIcon = playing ? 'pause' : 'play';
@@ -320,6 +340,12 @@
     $('repeat').classList.toggle('is-active', state.repeat!=='off' && state.mode==='ondemand');
     $('repeat-one').classList.toggle('is-visible', state.repeat==='one' && state.mode==='ondemand');
     $('volume-button').innerHTML = icon(state.volume === 0 ? 'muted' : 'volume');
+    const levelingButton=$('leveling-toggle');
+    if (levelingButton) {
+      levelingButton.setAttribute('aria-pressed',String(state.leveling));
+      levelingButton.classList.toggle('is-active',state.leveling);
+      levelingButton.title=state.leveling?'Desativar volume equilibrado':'Ativar volume equilibrado';
+    }
     setPlayVisuals(); updateProgress();
   }
   function updateProgress() {
@@ -382,7 +408,7 @@
     offline.playableSource(next).then(src => {
       if (generation !== preloadGeneration || !standby || primedTrackId !== next.id) return;
       standby.src = src;
-      standby.volume = audio.volume;
+      standby.volume = Math.min(1,state.volume*gainFactor(next));
       standby.preload = 'auto';
       standby.load();
     }).catch(error => {
@@ -399,7 +425,7 @@
     standby = old;
     primedTrackId = null;
     ++preloadGeneration;
-    audio.volume = state.volume;
+    audio.volume = Math.min(1,state.volume*gainFactor(track));
     old.pause();
     old.removeAttribute('src');
     old.load();
@@ -445,6 +471,7 @@
       }
     }
     state.currentId=t.id;
+    applyVolumeForTrack(t);
     updateMediaSession(t);
     renderPlayer();
     return true;
@@ -601,10 +628,16 @@
     if (state.mode==='radio'||!Number.isFinite(audio.duration)||!audio.duration) return;
     audio.currentTime=Number(e.target.value)/1000*audio.duration;updateProgress();
   });
-  $('volume').addEventListener('input', e => {state.volume=Number(e.target.value)/100;audio.volume=state.volume;setRangeFill(e.target);renderPlayer();persist();});
+  $('volume').addEventListener('input', e => {state.volume=Number(e.target.value)/100;applyVolumeForTrack();setRangeFill(e.target);renderPlayer();persist();});
+  $('leveling-toggle').addEventListener('click', () => {
+    state.leveling=!state.leveling;
+    applyVolumeForTrack();
+    persist(); renderPlayer();
+    toast(state.leveling?'Volume equilibrado ativado':'Volume equilibrado desativado');
+  });
   $('volume-button').addEventListener('click', () => {
     if (state.volume > 0) {state.previousVolume=state.volume;state.volume=0;} else state.volume=state.previousVolume||.75;
-    audio.volume=state.volume;$('volume').value=Math.round(state.volume*100);setRangeFill($('volume'));renderPlayer();persist();
+    applyVolumeForTrack();$('volume').value=Math.round(state.volume*100);setRangeFill($('volume'));renderPlayer();persist();
   });
   $('queue-open').addEventListener('click', () => $('queue-panel').classList.toggle('is-open'));
   $('queue-close').addEventListener('click', () => $('queue-panel').classList.remove('is-open'));
@@ -732,7 +765,7 @@
           cover:t.cover||'./assets/capas/padrao.svg',duration:Number(t.duration)}));
       const oldIds = new Set(state.tracks.map(t => t.id));
       const additions = updated.filter(t => !oldIds.has(t.id)).length;
-      const signature = tracks => JSON.stringify(tracks.map(t => [t.id,t.title,t.artist,t.src,t.duration,t.genre,t.cover,t.year,t.downloadAllowed]));
+      const signature = tracks => JSON.stringify(tracks.map(t => [t.id,t.title,t.artist,t.src,t.duration,t.genre,t.cover,t.year,t.downloadAllowed,t.gainDb,t.loudnessLufs]));
       const orderChanged = JSON.stringify(state.radioOrder) !== JSON.stringify(data.radioOrder || []);
       if (signature(updated) !== signature(state.tracks) || orderChanged) {
         state.tracks = updated;
@@ -742,6 +775,7 @@
         if (!state.queue.length) { state.queue = updated.map(t=>t.id); state.queueIndex = 0; }
         else state.queueIndex = Math.max(0, state.queue.indexOf(state.currentId));
         const info = getRadioInfo();
+        applyVolumeForTrack();
         renderRadio(info); renderExplore(); renderFavorites(); renderPlaylists(); renderQueue(info); renderPlayer();
         toast(additions ? additions + ' nova(s) música(s) encontrada(s)!' : 'Biblioteca atualizada.');
       } else if (manual) {

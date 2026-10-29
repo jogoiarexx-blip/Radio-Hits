@@ -12,7 +12,7 @@ DIST.mkdir()
 for item in ['index.html','catalogo.json','sw.js','manifest.webmanifest','.nojekyll']:
     shutil.copy2(ROOT/item,DIST/item)
 for folder in ['css','js','assets','musicas']:
-    shutil.copytree(ROOT/folder,DIST/folder,ignore=shutil.ignore_patterns('metadados.json','*.md','*.py','__pycache__'))
+    shutil.copytree(ROOT/folder,DIST/folder,ignore=shutil.ignore_patterns('metadados.json','volume-perfis.json','*.md','*.py','__pycache__'))
 size=sum(p.stat().st_size for p in DIST.rglob('*') if p.is_file())
 print(f'Site gerado com {size/1024/1024:.2f} MiB: {DIST}')
 if size > 950*1024*1024:

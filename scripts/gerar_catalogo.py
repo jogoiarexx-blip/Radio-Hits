@@ -67,6 +67,8 @@ def filename_info(stem):
 def main():
     metadata=json.loads(META.read_text(encoding='utf-8')) if META.exists() else {}
     if not isinstance(metadata,dict): raise ValueError('musicas/metadados.json precisa ser um objeto JSON')
+    profile_file=MUSIC / 'volume-perfis.json'
+    volume_profiles=json.loads(profile_file.read_text(encoding='utf-8')).get('tracks',{}) if profile_file.exists() else {}
     files=[p for p in MUSIC.rglob('*') if p.is_file() and p.suffix.lower() in EXTENSIONS]
     positions={path:i for i,path in enumerate(metadata)}
     files.sort(key=lambda p:(0,positions[p.relative_to(MUSIC).as_posix()]) if p.relative_to(MUSIC).as_posix() in positions
@@ -108,7 +110,10 @@ def main():
         # Keep paths relative to GitHub Pages subdirectory; quote every component.
         from urllib.parse import quote
         source='./musicas/'+ '/'.join(quote(part) for part in path.relative_to(MUSIC).parts)
-        tracks.append({'id':ident,'title':title,'artist':artist,'genre':genre,'duration':seconds,'src':source,'cover':cover,'year':meta.get('year',2026),'downloadAllowed':meta.get('downloadAllowed') is True})
+        loudness=volume_profiles.get(rel,{})
+        gain=max(-10.0,min(0.0,float(loudness.get('gainDb') or 0.0)))
+        tracks.append({'id':ident,'title':title,'artist':artist,'genre':genre,'duration':seconds,'src':source,'cover':cover,'year':meta.get('year',2026),'downloadAllowed':meta.get('downloadAllowed') is True,
+                       'gainDb':gain,'loudnessLufs':loudness.get('lufs')})
     result={'name':'Radio Hits','version':1,'tracks':tracks,'radioOrder':[t['id'] for t in tracks]}
     target=ROOT/'catalogo.json'
     target.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

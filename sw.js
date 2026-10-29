@@ -1,6 +1,6 @@
 /* Cache só da interface. Música NÃO é baixada nem pré-armazenada no cache offline. */
-const CACHE = 'radio-hits-shell-v8';
-const CORE = ['./assets/branding/radio-hits-mark.svg','./assets/branding/hero-radio-hits.svg','./assets/capas/genero-80-90.svg','./assets/capas/genero-rock.svg','./assets/capas/genero-hiphop.svg','./assets/capas/genero-malhacao.svg','./assets/capas/genero-radio-hits.svg','./', './index.html','./css/style.css?v=assets-2','./js/offline.js?v=offline-1','./js/app.js?v=transicoes-1','./catalogo.json','./assets/favicon.svg','./assets/capas/padrao.svg'];
+const CACHE = 'radio-hits-shell-v9';
+const CORE = ['./assets/branding/radio-hits-mark.svg','./assets/branding/hero-radio-hits.svg','./assets/capas/genero-80-90.svg','./assets/capas/genero-rock.svg','./assets/capas/genero-hiphop.svg','./assets/capas/genero-malhacao.svg','./assets/capas/genero-radio-hits.svg','./', './index.html','./css/style.css?v=volume-1','./js/offline.js?v=offline-1','./js/app.js?v=volume-1','./catalogo.json','./assets/favicon.svg','./assets/capas/padrao.svg'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
 });

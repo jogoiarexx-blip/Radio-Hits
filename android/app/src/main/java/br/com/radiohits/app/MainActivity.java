@@ -48,6 +48,21 @@ public final class MainActivity extends Activity {
     private MediaController controller;
     private String waitingPlay = null;
     private String latestState = "{}";
+    private double masterVolume = 0.75;
+    private boolean levelingEnabled = true;
+
+    private void applyNativeVolume() {
+        if (controller == null) return;
+        MediaItem item = controller.getCurrentMediaItem();
+        Bundle extras = item == null ? null : item.mediaMetadata.extras;
+        double gainDb = levelingEnabled && extras != null ?
+            extras.getDouble("radiohits_gain_db", 0.0) : 0.0;
+        if (!Double.isFinite(gainDb)) gainDb = 0.0;
+        gainDb = Math.max(-10.0, Math.min(0.0, gainDb));
+        // Volume do ExoPlayer varia de 0 a 1. Não amplificamos faixas baixas.
+        controller.setVolume((float)Math.max(0.0,Math.min(1.0,
+            masterVolume * Math.pow(10.0,gainDb/20.0))));
+    }
     private boolean pageReady = false;
     private int lastSongIndex = -1;
     private boolean lastPlaying = false;
@@ -104,6 +119,7 @@ public final class MainActivity extends Activity {
                 controller = future.get();
                 controller.addListener(new Player.Listener() {
                     @Override public void onMediaItemTransition(MediaItem item, int reason) {
+                        applyNativeVolume();
                         updateState();
                     }
                     @Override public void onIsPlayingChanged(boolean isPlaying) {
@@ -207,6 +223,9 @@ public final class MainActivity extends Activity {
                 Bundle extra = new Bundle();
                 extra.putString("radiohits_mode", mode);
                 extra.putString("radiohits_url",url);
+                double gainDb = track.optDouble("gainDb",0);
+                if (!Double.isFinite(gainDb)) gainDb = 0.0;
+                extra.putDouble("radiohits_gain_db",Math.max(-10,Math.min(0,gainDb)));
                 MediaMetadata metadata = new MediaMetadata.Builder()
                     .setTitle(track.optString("title", "Música"))
                     .setArtist(track.optString("artist", "Radio Hits"))
@@ -247,7 +266,9 @@ public final class MainActivity extends Activity {
                 ? Player.REPEAT_MODE_ALL : Player.REPEAT_MODE_OFF);
             controller.setShuffleModeEnabled(req.optBoolean("shuffle", false) &&
                 !"radio".equals(mode));
-            controller.setVolume((float)Math.max(0.0, Math.min(1.0, req.optDouble("volume", 0.75))));
+            masterVolume=Math.max(0.0,Math.min(1.0,req.optDouble("volume",0.75)));
+            levelingEnabled=req.optBoolean("leveling",true);
+            applyNativeVolume();
             controller.play();
             updateState();
         } catch (Exception ignored) { }
@@ -331,8 +352,14 @@ public final class MainActivity extends Activity {
         }
         @JavascriptInterface public void volume(double volume) {
             handler.post(() -> {
-                if (controller != null) controller.setVolume(
-                    (float)Math.max(0, Math.min(1, volume)));
+                masterVolume=Math.max(0,Math.min(1,volume));
+                applyNativeVolume();
+            });
+        }
+        @JavascriptInterface public void setLeveling(boolean enabled) {
+            handler.post(() -> {
+                levelingEnabled=enabled;
+                applyNativeVolume();
             });
         }
         @JavascriptInterface public String state() { return latestState; }

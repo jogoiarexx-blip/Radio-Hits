@@ -26,3 +26,8 @@
 @media(max-width:1050px){.genre-showcase-grid{gap:9px}}
 @media(max-width:690px){.hero{background-image:linear-gradient(90deg,rgba(7,15,27,.98),rgba(8,15,27,.77)),url('../assets/branding/hero-radio-hits.svg')}.genre-showcase-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.genre-feature-label{font-size:8px;right:8px;top:8px}.brand-mark-image{width:34px;height:34px}}
 @media(prefers-reduced-motion:reduce){.genre-feature,.genre-feature img{transition:none}}
+
+/* Normalização de volume sem reprocessar a mídia */
+.leveling-button{flex:none;height:29px;min-width:37px;padding:0 7px;border:1px solid #4b5a68;border-radius:7px;background:#19212b;color:#9eafbd;font-size:10px;font-weight:800;letter-spacing:.06em;cursor:pointer}
+.leveling-button.is-active{color:#b8f458;border-color:#6b9744;background:#1e3020}
+.leveling-button:focus-visible{outline:2px solid #b8f458;outline-offset:2px}

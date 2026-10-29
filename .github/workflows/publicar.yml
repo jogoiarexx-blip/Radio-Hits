@@ -25,14 +25,18 @@ jobs:
           python-version: '3.12'
       - name: Instalar leitor de audio
         run: python -m pip install --disable-pip-version-check mutagen==1.47.0
-      - name: Verificar JavaScript do player e offline
+      - name: Medir volume das faixas (reutiliza análises anteriores)
+        run: python scripts/analisar_volume.py
+      - name: Gerar catalogo e site
+        run: python scripts/preparar_site.py
+      - name: Verificar JavaScript, rádio e normalização
         run: |
           node --check js/app.js
           node --check js/offline.js
           node tests/auditoria-radio.js
           node tests/teste-transicoes.js
-      - name: Gerar catalogo e site
-        run: python scripts/preparar_site.py
+          node tests/teste-volume.js
+          python tests/test_volume.py
       - name: Conferir todas as musicas adicionadas
         run: python scripts/verificar_catalogo.py
       - name: Validar SVGs e capas
@@ -42,7 +46,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add catalogo.json
+          git add catalogo.json musicas/volume-perfis.json
           if git diff --cached --quiet; then
             echo "Catalogo ja atualizado no repositorio."
           else
