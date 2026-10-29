@@ -310,6 +310,14 @@ public final class MainActivity extends Activity {
         @JavascriptInterface public void playQueue(String json) {
             handler.post(() -> startQueue(json));
         }
+        @JavascriptInterface public void resume() {
+            handler.post(() -> {
+                if (controller != null && controller.getMediaItemCount() > 0) {
+                    controller.play();
+                    updateState();
+                }
+            });
+        }
         @JavascriptInterface public void pause() {
             handler.post(() -> { if (controller != null) { controller.pause(); updateState(); } });
         }

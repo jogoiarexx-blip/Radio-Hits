@@ -30,6 +30,7 @@ jobs:
           node --check js/app.js
           node --check js/offline.js
           node tests/auditoria-radio.js
+          node tests/teste-transicoes.js
       - name: Gerar catalogo e site
         run: python scripts/preparar_site.py
       - name: Conferir todas as musicas adicionadas

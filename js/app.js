@@ -14,6 +14,7 @@
       nativeId = info.id || '';
       nativeMode = info.mode || '';
       paused = !!info.paused;
+      if (nativeMode === 'radio') radioWantsPlayback = !paused;
       ended = !!info.ended;
       error = info.error ? {code:2} : null;
       if (info.src && (source === '' || (info.id && oldId !== info.id))) source = info.src;
@@ -55,6 +56,14 @@
         const selected = state.currentId;
         if (!tracks.length) return Promise.reject(new Error('Biblioteca vazia'));
         const index = Math.max(0,tracks.findIndex(t=>t.id===selected));
+        // Retomar a mesma faixa não precisa destruir a fila nem o buffer nativo.
+        const resumeTarget = new URL(tracks[index].src, document.baseURI).href;
+        if (nativeId === selected && nativeMode === state.mode && source === resumeTarget
+            && !ended && typeof window.RadioHitsAndroid.resume === 'function') {
+          window.RadioHitsAndroid.resume();
+          paused=false; emit('play');
+          return Promise.resolve();
+        }
         const request={
           mode:state.mode,id:selected,index,positionMs:Math.round(position*1000),
           volume:state.volume,shuffle:state.shuffle && state.mode !== 'radio',
@@ -70,7 +79,21 @@
       }
     };
   }
-  const audio = nativeBridge ? createNativeAudio() : $('audio');
+  let audio = nativeBridge ? createNativeAudio() : $('audio');
+  // O navegador prepara uma segunda saída para trocar de faixa sem reiniciar
+  // o download no instante da transição. No APK, o Media3 já prepara a fila.
+  let standby = null;
+  let primedTrackId = null;
+  let preloadGeneration = 0;
+  let lastPreloadAttempt = 0;
+  let radioWantsPlayback = false;
+  if (!nativeBridge && !/iP(?:hone|ad|od)/.test(navigator.userAgent || '')) {
+    standby = document.createElement('audio');
+    standby.preload = 'auto';
+    standby.style.display = 'none';
+    standby.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(standby);
+  }
   const offline = window.RadioHitsOffline;
   let offlineSources = new Set(), offlineLoading = Promise.resolve(), offlineLoadVersion = 0, activeOfflineId = null;
   const STORAGE = 'pulso-radio-v1';
@@ -322,11 +345,83 @@
       navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
     } catch (_) { /* unsupported browser */ }
   }
+  // Executado próximo ao fim da faixa. Não faz pré-download de toda a biblioteca.
+  // Em conexões com economia de dados, mantém o carregamento tradicional.
+  function clearStandby() {
+    if (!standby) return;
+    ++preloadGeneration;
+    primedTrackId = null;
+    standby.pause();
+    standby.removeAttribute('src');
+    standby.load();
+  }
+  function nextToPrepare() {
+    if (!state.loaded || (state.shuffle && state.mode !== 'radio')
+        || (state.repeat === 'one' && state.mode !== 'radio')) return null;
+    if (state.mode === 'radio') {
+      const info = getRadioInfo();
+      if (!info || info.remaining > 25 || info.remaining < 0) return null;
+      return info.tracks[(info.index + 1) % info.tracks.length] || null;
+    }
+    if (!Number.isFinite(audio.duration) || !Number.isFinite(audio.currentTime)
+        || audio.duration - audio.currentTime > 25) return null;
+    const nextIndex = state.queueIndex + 1;
+    const id = nextIndex < state.queue.length ? state.queue[nextIndex]
+      : state.repeat === 'all' ? state.queue[0] : null;
+    return id && id !== state.currentId ? trackById(id) : null;
+  }
+  function prepareNextAudio() {
+    if (!standby || audio.paused || audio.ended || !state.loaded) return;
+    if (navigator.connection?.saveData) return;
+    if (Date.now() - lastPreloadAttempt < 2000) return;
+    lastPreloadAttempt = Date.now();
+    const next = nextToPrepare();
+    if (!next || next.id === primedTrackId) return;
+    const generation = ++preloadGeneration;
+    primedTrackId = next.id;
+    offline.playableSource(next).then(src => {
+      if (generation !== preloadGeneration || !standby || primedTrackId !== next.id) return;
+      standby.src = src;
+      standby.volume = audio.volume;
+      standby.preload = 'auto';
+      standby.load();
+    }).catch(error => {
+      if (generation === preloadGeneration) {
+        primedTrackId = null;
+        console.warn('Pré-carregamento indisponível:', error);
+      }
+    });
+  }
+  function usePreparedAudio(track, seekTo) {
+    if (!standby || primedTrackId !== track.id || standby.readyState < 1) return false;
+    const old = audio;
+    audio = standby;
+    standby = old;
+    primedTrackId = null;
+    ++preloadGeneration;
+    audio.volume = state.volume;
+    old.pause();
+    old.removeAttribute('src');
+    old.load();
+    state.pendingSeek = Number(seekTo) || 0;
+    if (audio.readyState >= 1) {
+      try {
+        audio.currentTime = Math.max(0,Math.min(state.pendingSeek,
+          Number.isFinite(audio.duration) ? Math.max(0,audio.duration-.03) : state.pendingSeek));
+        state.pendingSeek = null;
+      } catch (_) { /* metadados ainda não disponíveis */ }
+    }
+    return true;
+  }
   function loadTrack(t, seekTo=0) {
     if (!t) return false;
     const target=new URL(t.src,document.baseURI).href;
     const serial=++offlineLoadVersion;
-    if (!nativeBridge && offlineSources.has(target)) {
+    if (!nativeBridge && usePreparedAudio(t, seekTo)) {
+      offlineLoading = Promise.resolve();
+      activeOfflineId = offlineSources.has(target) ? t.id : null;
+    } else if (!nativeBridge && offlineSources.has(target)) {
+      clearStandby();
       state.pendingSeek=Number(seekTo)||0;
       offlineLoading=offline.playableSource(t).then(localURL=>{
         if(serial!==offlineLoadVersion)return;
@@ -337,6 +432,7 @@
         }
       });
     } else {
+      if (!nativeBridge) clearStandby();
       offlineLoading=Promise.resolve();
       activeOfflineId=null;
       if(audio.src!==target){
@@ -367,17 +463,21 @@
     const info = getRadioInfo();
     if (!info) { toast('Ainda não há músicas na rádio.'); return; }
     state.mode = 'radio';
+    radioWantsPlayback = true;
     loadTrack(info.track, info.offset);
     requestPlay();
     renderRadio(info); renderQueue(info); renderExplore(); renderPlayer();
   }
   function toggleRadio() {
-    if (state.mode === 'radio' && !audio.paused) audio.pause();
-    else playRadio();
+    if (state.mode === 'radio' && !audio.paused) {
+      radioWantsPlayback = false;
+      audio.pause();
+    } else playRadio();
   }
   function selectSong(id, queueIds) {
     const t = trackById(id); if (!t) return;
     state.mode = 'ondemand';
+    radioWantsPlayback = false;
     const ids = [...new Set((queueIds || visibleTracks().map(t=>t.id)).filter(id => Boolean(trackById(id))))];
     state.queue = ids.includes(id) ? ids : [id, ...ids];
     state.queueIndex = state.queue.indexOf(id);
@@ -386,7 +486,10 @@
   }
   function togglePlayback() {
     if (!state.loaded) return;
-    if (!audio.paused) { audio.pause(); return; }
+    if (!audio.paused) {
+      if (state.mode === 'radio') radioWantsPlayback = false;
+      audio.pause(); return;
+    }
     if (state.mode === 'radio') { playRadio(); return; }
     const t = trackById(state.currentId) || state.tracks[0];
     if (!t) return toast('Adicione músicas para começar.');
@@ -515,19 +618,42 @@
     if (e.key==='/' && !['INPUT','TEXTAREA'].includes(document.activeElement?.tagName) && !$('modal').open) {e.preventDefault();$('search').focus();}
     if (e.code==='Space' && !['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement?.tagName) && !$('modal').open) {e.preventDefault();togglePlayback();}
   });
-  audio.addEventListener('loadedmetadata', () => {
-    if (state.pendingSeek !== null) {
-      const duration = Number.isFinite(audio.duration) ? audio.duration : Number.MAX_SAFE_INTEGER;
-      try { audio.currentTime = Math.max(0,Math.min(state.pendingSeek,Math.max(0,duration-.03))); } catch (_) { /* metadata race */ }
-      state.pendingSeek=null;
-    }
-    updateProgress();
-  });
-  audio.addEventListener('timeupdate', updateProgress);
-  audio.addEventListener('play', setPlayVisuals);
-  audio.addEventListener('pause', setPlayVisuals);
-  audio.addEventListener('ended', () => {if(state.mode==='radio')playRadio(); else nextTrack(false);});
-  audio.addEventListener('error', () => {if (audio.error && state.playRequested) toast('Falha ao carregar o áudio. Confira o arquivo no GitHub.');});
+  function bindAudioEvents(element) {
+    element.addEventListener('loadedmetadata', () => {
+      if (element !== audio) return;
+      if (state.pendingSeek !== null) {
+        const duration = Number.isFinite(audio.duration) ? audio.duration : Number.MAX_SAFE_INTEGER;
+        try {
+          audio.currentTime = Math.max(0,Math.min(state.pendingSeek,Math.max(0,duration-.03)));
+          state.pendingSeek = null;
+        } catch (_) { /* tentar no próximo evento */ }
+      }
+      updateProgress();
+    });
+    element.addEventListener('timeupdate', () => {
+      if (element !== audio) return;
+      updateProgress();
+      prepareNextAudio();
+    });
+    element.addEventListener('play', () => {
+      if (element === audio) { setPlayVisuals(); prepareNextAudio(); }
+    });
+    element.addEventListener('pause', () => { if (element === audio) setPlayVisuals(); });
+    element.addEventListener('ended', () => {
+      if (element !== audio) return;
+      if (state.mode === 'radio') {
+        // Não reinicie a mesma música quando o áudio terminar alguns
+        // milissegundos antes do relógio da programação mudar.
+        tick();
+      } else nextTrack(false);
+    });
+    element.addEventListener('error', () => {
+      if (element === audio && audio.error && state.playRequested)
+        toast('Falha ao carregar o áudio. Confira o arquivo no GitHub.');
+    });
+  }
+  bindAudioEvents(audio);
+  if (standby) bindAudioEvents(standby);
   $('today-label').textContent = new Intl.DateTimeFormat('pt-BR', {day:'2-digit', month:'long', year:'numeric'}).format(new Date());
 
   function tick() {
@@ -536,13 +662,19 @@
       const info = getRadioInfo();
       if (info) {
         if (info.track.id !== state.currentId) {
-          const shouldResume = !audio.paused;
-          state.currentId=info.track.id;
-          if (shouldResume) {loadTrack(info.track, info.offset);requestPlay();}
-          renderPlayer();renderRadio(info);renderQueue(info);
-        } else if (!audio.paused && audio.readyState>=2 && Math.abs(audio.currentTime-info.offset) > 4) {
+          if (nativeBridge && !audio.paused && !audio.ended) {
+            // Media3 já faz a transição na fila; a WebView não deve recarregá-la.
+            renderRadio(info);
+          } else {
+            state.currentId = info.track.id;
+            if (radioWantsPlayback) { loadTrack(info.track, info.offset); requestPlay(); }
+            renderPlayer(); renderRadio(info); renderQueue(info);
+          }
+        } else if (!nativeBridge && !audio.paused && !audio.ended && audio.readyState>=2
+          && Math.abs(audio.currentTime-info.offset) > 4) {
           try { audio.currentTime=info.offset; } catch (_) { /* ignore */ }
         }
+        prepareNextAudio();
         $('station-clock').textContent=clockFmt(new Date());
         updateProgress();
       }
