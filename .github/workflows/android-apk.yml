@@ -24,10 +24,11 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.13'
-      - name: SDK Android
-        uses: android-actions/setup-android@v3
-      - name: Instalar API 36
-        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+      - name: Instalar API 36 com SDK preinstalado
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "platforms;android-36" "build-tools;36.0.0"
       - name: Compilar aplicativo
         working-directory: android
         run: gradle --no-daemon :app:assembleDebug
