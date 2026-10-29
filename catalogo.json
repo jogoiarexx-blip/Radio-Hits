@@ -201,6 +201,46 @@
       "src": "./musicas/as%20melhores%2080%20e%2090/TINA%20TURNER%20%E2%98%85%20We%20Don%27t%20Need%20Another%20Hero%20%28Thunderdome%29%E3%80%90music%20video%E3%80%91-new.mp3",
       "cover": "./assets/capas/padrao.svg",
       "year": 2026
+    },
+    {
+      "id": "malhacao-internacional-2003-08-t-a-t-u-all-the-things-she-said",
+      "title": "All the Things She Said",
+      "artist": "t.A.T.u.",
+      "genre": "Malhação Internacional 2003",
+      "duration": 211.174,
+      "src": "./musicas/malhacao-internacional-2003/08-t-a-t-u-all-the-things-she-said.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2003
+    },
+    {
+      "id": "malhacao-internacional-2003-09-chevelle-send-the-pain-below",
+      "title": "Send the Pain Below",
+      "artist": "Chevelle",
+      "genre": "Malhação Internacional 2003",
+      "duration": 248.32,
+      "src": "./musicas/malhacao-internacional-2003/09-chevelle-send-the-pain-below.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2003
+    },
+    {
+      "id": "malhacao-internacional-2003-10-damian-marley-and-you-be-loved-and-be-loved",
+      "title": "And You Be Loved (And Be Loved)",
+      "artist": "Damian Marley",
+      "genre": "Malhação Internacional 2003",
+      "duration": 174.184,
+      "src": "./musicas/malhacao-internacional-2003/10-damian-marley-and-you-be-loved-and-be-loved.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2003
+    },
+    {
+      "id": "malhacao-internacional-2003-11-jennifer-lopez-i-m-glad",
+      "title": "I'm Glad",
+      "artist": "Jennifer Lopez",
+      "genre": "Malhação Internacional 2003",
+      "duration": 216.999,
+      "src": "./musicas/malhacao-internacional-2003/11-jennifer-lopez-i-m-glad.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2003
     }
   ],
   "radioOrder": [
@@ -223,6 +263,10 @@
     "as-melhores-80-e-90-la-bouche-sweet-dreams-official-video-vod-new",
     "as-melhores-80-e-90-roxette-it-must-have-been-love-official-music-video-new",
     "as-melhores-80-e-90-scorpions-wind-of-change-official-music-video-new",
-    "as-melhores-80-e-90-tina-turner-we-don-t-need-another-hero-thunderdome-music-video-new"
+    "as-melhores-80-e-90-tina-turner-we-don-t-need-another-hero-thunderdome-music-video-new",
+    "malhacao-internacional-2003-08-t-a-t-u-all-the-things-she-said",
+    "malhacao-internacional-2003-09-chevelle-send-the-pain-below",
+    "malhacao-internacional-2003-10-damian-marley-and-you-be-loved-and-be-loved",
+    "malhacao-internacional-2003-11-jennifer-lopez-i-m-glad"
   ]
 }
