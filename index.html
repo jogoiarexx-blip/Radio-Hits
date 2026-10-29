@@ -71,7 +71,7 @@
 
       <div class="view is-hidden" id="view-explorar">
         <div class="page-intro"><span class="eyebrow">ESCOLHA O QUE TOCAR</span><h1>Descubra seu próximo som<span class="accent-period">.</span></h1><p>Sem algoritmos escondidos. Você no controle de cada faixa.</p></div>
-        <section class="discover-section"><div class="section-title row-between"><div><span class="eyebrow">SUA SELEÇÃO</span><h2>Em destaque</h2></div><span class="small-note" id="explore-track-count"></span></div><div id="discover-grid" class="album-grid"></div></section>
+        <section class="discover-section"><div class="section-title row-between"><div><span class="eyebrow">SUA SELEÇÃO</span><h2>Em destaque</h2></div><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><span class="small-note" id="explore-track-count"></span><button class="outline-button" type="button" id="refresh-library" aria-label="Atualizar catálogo de músicas">Atualizar músicas</button></div></div><div id="discover-grid" class="album-grid"></div></section>
         <section class="tracks-section"><div class="section-title row-between"><div><span class="eyebrow">CATÁLOGO COMPLETO</span><h2>Todas as faixas</h2></div><div class="chips" id="genre-filters"></div></div><div class="table-header"><span>FAIXA</span><span>GÊNERO</span><svg class="icon"><use href="#i-clock"/></svg><span></span></div><div id="all-tracks" class="track-list"></div></section>
       </div>
 
@@ -91,6 +91,6 @@
   <dialog id="modal" class="modal"><div class="modal-header"><h2 id="modal-heading">Nova playlist</h2><button class="icon-button" id="modal-close" aria-label="Fechar"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="modal-body"></div></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <audio id="audio" preload="metadata"></audio>
-  <script src="./js/app.js?v=android-1" defer></script>
+  <script src="./js/app.js?v=20261029-novas" defer></script>
 </body>
 </html>

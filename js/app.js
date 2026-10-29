@@ -483,7 +483,7 @@
 
   async function init() {
     try {
-      const response = await fetch('./catalogo.json', {cache:'no-cache'});
+      const response = await fetch('./catalogo.json?atualizado=' + Date.now(), {cache:'no-store'});
       if (!response.ok) throw new Error('HTTP '+response.status);
       const data=await response.json();
       if (!Array.isArray(data.tracks)) throw new Error('Catálogo inválido');
@@ -503,6 +503,55 @@
       toast('Não foi possível abrir catalogo.json');
     }
   }
+  // Atualiza a biblioteca sem descarregar as músicas e sem reiniciar a reprodução.
+  let checkingCatalog = false;
+  let lastCatalogCheck = 0;
+  async function refreshCatalog(manual = false) {
+    if (!state.loaded || checkingCatalog) return;
+    if (!manual && Date.now() - lastCatalogCheck < 90000) return;
+    checkingCatalog = true;
+    lastCatalogCheck = Date.now();
+    const button = $('refresh-library');
+    if (button) { button.disabled = true; button.textContent = 'Verificando...'; }
+    try {
+      const response = await fetch('./catalogo.json?atualizado=' + Date.now(), {cache:'no-store'});
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const data = await response.json();
+      if (!Array.isArray(data.tracks)) throw new Error('Catálogo inválido');
+      const updated = data.tracks.filter(t => t && t.id && t.title && t.src && Number(t.duration) > 0)
+        .map(t => ({...t,artist:t.artist||'Artista independente',genre:t.genre||'Outros',
+          cover:t.cover||'./assets/capas/padrao.svg',duration:Number(t.duration)}));
+      const oldIds = new Set(state.tracks.map(t => t.id));
+      const additions = updated.filter(t => !oldIds.has(t.id)).length;
+      const signature = tracks => JSON.stringify(tracks.map(t => [t.id,t.title,t.artist,t.src,t.duration,t.genre]));
+      const orderChanged = JSON.stringify(state.radioOrder) !== JSON.stringify(data.radioOrder || []);
+      if (signature(updated) !== signature(state.tracks) || orderChanged) {
+        state.tracks = updated;
+        state.radioOrder = Array.isArray(data.radioOrder) ? data.radioOrder : [];
+        if (!trackById(state.currentId)) state.currentId = getRadioInfo()?.track?.id || updated[0]?.id || null;
+        state.queue = state.queue.filter(id => trackById(id));
+        if (!state.queue.length) { state.queue = updated.map(t=>t.id); state.queueIndex = 0; }
+        else state.queueIndex = Math.max(0, state.queue.indexOf(state.currentId));
+        const info = getRadioInfo();
+        renderRadio(info); renderExplore(); renderFavorites(); renderPlaylists(); renderQueue(info); renderPlayer();
+        toast(additions ? additions + ' nova(s) música(s) encontrada(s)!' : 'Biblioteca atualizada.');
+      } else if (manual) {
+        toast('Sua biblioteca já está atualizada: ' + updated.length + ' músicas.');
+      }
+    } catch (error) {
+      console.error('Radio Hits: falha ao atualizar músicas', error);
+      if (manual) toast('Não foi possível atualizar as músicas. Verifique sua conexão.');
+    } finally {
+      checkingCatalog = false;
+      if (button) { button.disabled = false; button.textContent = 'Atualizar músicas'; }
+    }
+  }
+  $('refresh-library').addEventListener('click', () => refreshCatalog(true));
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) refreshCatalog(false);
+  });
+  window.addEventListener('focus', () => refreshCatalog(false));
+  setInterval(() => { if (!document.hidden) refreshCatalog(false); }, 300000);
   init();
   // PWA: caches only the app shell, never predownloads the music library.
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {

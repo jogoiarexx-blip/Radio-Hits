@@ -1,6 +1,6 @@
 /* Cache só da interface. Música NÃO é baixada nem pré-armazenada no cache offline. */
-const CACHE = 'radio-hits-shell-v3';
-const CORE = ['./', './index.html','./css/style.css','./js/app.js','./assets/favicon.svg','./assets/capas/padrao.svg'];
+const CACHE = 'radio-hits-shell-v4';
+const CORE = ['./', './index.html','./css/style.css','./js/app.js?v=20261029-novas','./assets/favicon.svg','./assets/capas/padrao.svg'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
 });
