@@ -236,5 +236,71 @@
     "genre": "Malhação Internacional 2003",
     "year": 2003,
     "cover": "./assets/capas/padrao.svg"
+  },
+  "rock/AC DC - Thunderstruck (Official Video).mp3": {
+    "title": "Thunderstruck",
+    "artist": "AC/DC",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg"
+  },
+  "rock/Aerosmith - I Don t Want to Miss a Thing (Official HD Video).mp3": {
+    "title": "I Don't Want to Miss a Thing",
+    "artist": "Aerosmith",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg"
+  },
+  "rock/Avril Lavigne - Complicated (Official Video).mp3": {
+    "title": "Complicated",
+    "artist": "Avril Lavigne",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg"
+  },
+  "rock/Bon Jovi - It s My Life (Official Music Video).mp3": {
+    "title": "It's My Life",
+    "artist": "Bon Jovi",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg"
+  },
+  "rock/Evanescence - My Immortal (Official HD Music Video).mp3": {
+    "title": "My Immortal",
+    "artist": "Evanescence",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg"
+  },
+  "rock/Faint (Official Music Video) 4K UPGRADE – Linkin Park.mp3": {
+    "title": "Faint",
+    "artist": "Linkin Park",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg"
+  },
+  "rock/Red Hot Chili Peppers - Californication (Official Music Video) HD UPGRADE.mp3": {
+    "title": "Californication",
+    "artist": "Red Hot Chili Peppers",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg"
+  },
+  "rock/The Outfield - Your Love (Official HD Video).mp3": {
+    "title": "Your Love",
+    "artist": "The Outfield",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg"
+  },
+  "rock/The Police - Every Breath You Take (Official Music Video).mp3": {
+    "title": "Every Breath You Take",
+    "artist": "The Police",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg"
+  },
+  "rock/Toto - Africa (Official HD Video).mp3": {
+    "title": "Africa",
+    "artist": "Toto",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg"
+  },
+  "rock/Toto - Hold The Line (Official Video).mp3": {
+    "title": "Hold the Line",
+    "artist": "Toto",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg"
   }
 }
