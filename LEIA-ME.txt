@@ -1,0 +1,14 @@
+RADIO HITS — MALHAÇÃO INTERNACIONAL 2003
+
+16 faixas extraídas do arquivo enviado. Separação pelos intervalos de silêncio,
+sem recodificar o áudio original. Inclui tags de título, artista e álbum.
+
+PARA IMPORTAR NO SITE (somente se possuir licença para disponibilizar publicamente):
+1. No repositório Radio-Hits, envie a pasta 'malhacao-internacional-2003' para 'musicas/'.
+2. Mescle 'metadados-para-mesclar.json' ao objeto existente em 'musicas/metadados.json'.
+3. O GitHub Actions pode gerar 'catalogo.json' automaticamente.
+
+Atenção: o arquivo é uma coletânea de músicas comerciais. A separação para uso
+privado não concede autorização para publicar ou transmitir os fonogramas.
+As posições de corte foram calculadas por pausas; escute as transições antes
+de qualquer uso profissional.
