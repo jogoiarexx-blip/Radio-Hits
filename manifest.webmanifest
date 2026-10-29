@@ -1,0 +1,11 @@
+{
+  "name": "Pulso — Rádio e Música",
+  "short_name": "Pulso",
+  "description": "Rádio sincronizada e músicas sob demanda.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0e13",
+  "theme_color": "#0b0e13",
+  "icons": [{"src":"./assets/favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]
+}

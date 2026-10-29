@@ -1,0 +1,74 @@
+{
+  "name": "Pulso Rádio",
+  "version": 1,
+  "tracks": [
+    {
+      "id": "horizonte-azul",
+      "title": "Horizonte Azul",
+      "artist": "Pulso Originals",
+      "genre": "Chill",
+      "duration": 28.056,
+      "src": "./musicas/horizonte-azul.mp3",
+      "cover": "./assets/capas/horizonte-azul.svg",
+      "year": 2026
+    },
+    {
+      "id": "cidade-neon",
+      "title": "Cidade Néon",
+      "artist": "Pulso Originals",
+      "genre": "Eletrônica",
+      "duration": 28.056,
+      "src": "./musicas/cidade-neon.mp3",
+      "cover": "./assets/capas/cidade-neon.svg",
+      "year": 2026
+    },
+    {
+      "id": "calma-de-outubro",
+      "title": "Calma de Outubro",
+      "artist": "Pulso Originals",
+      "genre": "Lo-fi",
+      "duration": 28.056,
+      "src": "./musicas/calma-de-outubro.mp3",
+      "cover": "./assets/capas/calma-de-outubro.svg",
+      "year": 2026
+    },
+    {
+      "id": "entre-ondas",
+      "title": "Entre Ondas",
+      "artist": "Pulso Originals",
+      "genre": "Ambient",
+      "duration": 28.056,
+      "src": "./musicas/entre-ondas.mp3",
+      "cover": "./assets/capas/entre-ondas.svg",
+      "year": 2026
+    },
+    {
+      "id": "rota-noturna",
+      "title": "Rota Noturna",
+      "artist": "Pulso Originals",
+      "genre": "Synthwave",
+      "duration": 28.056,
+      "src": "./musicas/rota-noturna.mp3",
+      "cover": "./assets/capas/rota-noturna.svg",
+      "year": 2026
+    },
+    {
+      "id": "sol-de-vidro",
+      "title": "Sol de Vidro",
+      "artist": "Pulso Originals",
+      "genre": "Indie",
+      "duration": 28.056,
+      "src": "./musicas/sol-de-vidro.mp3",
+      "cover": "./assets/capas/sol-de-vidro.svg",
+      "year": 2026
+    }
+  ],
+  "radioOrder": [
+    "horizonte-azul",
+    "cidade-neon",
+    "calma-de-outubro",
+    "entre-ondas",
+    "rota-noturna",
+    "sol-de-vidro"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "horizonte-azul.mp3": {
+    "title": "Horizonte Azul",
+    "artist": "Pulso Originals",
+    "genre": "Chill",
+    "cover": "./assets/capas/horizonte-azul.svg",
+    "year": 2026
+  },
+  "cidade-neon.mp3": {
+    "title": "Cidade Néon",
+    "artist": "Pulso Originals",
+    "genre": "Eletrônica",
+    "cover": "./assets/capas/cidade-neon.svg",
+    "year": 2026
+  },
+  "calma-de-outubro.mp3": {
+    "title": "Calma de Outubro",
+    "artist": "Pulso Originals",
+    "genre": "Lo-fi",
+    "cover": "./assets/capas/calma-de-outubro.svg",
+    "year": 2026
+  },
+  "entre-ondas.mp3": {
+    "title": "Entre Ondas",
+    "artist": "Pulso Originals",
+    "genre": "Ambient",
+    "cover": "./assets/capas/entre-ondas.svg",
+    "year": 2026
+  },
+  "rota-noturna.mp3": {
+    "title": "Rota Noturna",
+    "artist": "Pulso Originals",
+    "genre": "Synthwave",
+    "cover": "./assets/capas/rota-noturna.svg",
+    "year": 2026
+  },
+  "sol-de-vidro.mp3": {
+    "title": "Sol de Vidro",
+    "artist": "Pulso Originals",
+    "genre": "Indie",
+    "cover": "./assets/capas/sol-de-vidro.svg",
+    "year": 2026
+  }
+}
