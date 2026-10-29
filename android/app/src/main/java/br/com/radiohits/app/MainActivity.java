@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +14,7 @@ import android.os.Looper;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -27,6 +30,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /** Abre o Radio Hits e entrega toda a reprodução a uma sessão Media3 nativa. */
 public final class MainActivity extends Activity {
@@ -34,6 +43,7 @@ public final class MainActivity extends Activity {
     private static final String MUSIC = SITE + "musicas/";
     private final Handler handler = new Handler(Looper.getMainLooper());
     private WebView web;
+    private final ExecutorService downloader=Executors.newSingleThreadExecutor();
     private ListenableFuture<MediaController> future;
     private MediaController controller;
     private String waitingPlay = null;
@@ -77,6 +87,9 @@ public final class MainActivity extends Activity {
                 }
                 return true;
             }
+            @Override public WebResourceResponse shouldInterceptRequest(WebView v, WebResourceRequest request) {
+                return offlineAsset(request.getUrl());
+            }
             @Override public void onPageFinished(WebView v, String url) {
                 pageReady = url.startsWith(SITE);
                 updateState();
@@ -117,6 +130,58 @@ public final class MainActivity extends Activity {
         handler.post(statusTick);
     }
 
+    private boolean hasInternet() {
+        try {
+            ConnectivityManager cm=(ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
+            if(cm==null || cm.getActiveNetwork()==null) return false;
+            NetworkCapabilities caps=cm.getNetworkCapabilities(cm.getActiveNetwork());
+            return caps!=null && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+        } catch(Exception error) { return false; }
+    }
+
+    private WebResourceResponse offlineAsset(Uri uri) {
+        if(hasInternet()) return null;
+        String path=uri.getPath();
+        if(!"https".equals(uri.getScheme()) ||
+           !"jogoiarexx-blip.github.io".equalsIgnoreCase(uri.getHost()) ||
+           path==null || !path.startsWith("/Radio-Hits/")) return null;
+        String relative=path.substring("/Radio-Hits/".length());
+        if(relative.isEmpty()) relative="index.html";
+        if(relative.contains("..") || relative.contains("\\") || relative.startsWith("/")) return null;
+        if(relative.startsWith("musicas/")) return null;
+        String mime=relative.endsWith(".js")?"application/javascript":
+            relative.endsWith(".css")?"text/css":
+            relative.endsWith(".json")||relative.endsWith(".webmanifest")?"application/json":
+            relative.endsWith(".svg")?"image/svg+xml":
+            relative.endsWith(".png")?"image/png":
+            relative.endsWith(".webp")?"image/webp":
+            relative.endsWith(".html")?"text/html":"application/octet-stream";
+        try {
+            InputStream data;
+            File cached = new File(getFilesDir(),"catalogo-offline.json");
+            if(relative.equals("catalogo.json") && cached.isFile()) {
+                data=new java.io.FileInputStream(cached);
+            } else {
+                data=getAssets().open("offline-site/"+relative);
+            }
+            return new WebResourceResponse(mime,"UTF-8",data);
+        } catch(Exception ignored) { return null; }
+    }
+
+    private void sendOfflineEvent(String type,String url,int percent,String message) {
+        JSONObject event=new JSONObject();
+        try {
+            event.put("type",type);
+            event.put("url",url);
+            event.put("percent",percent);
+            event.put("message",message);
+            handler.post(()->{
+                if(web!=null && pageReady)
+                    web.evaluateJavascript("window.RadioHitsOfflineEvent && window.RadioHitsOfflineEvent("+event.toString()+")",null);
+            });
+        } catch(Exception ignored) { }
+    }
+
     private boolean approvedMusic(String url) {
         try {
             Uri uri = Uri.parse(url);
@@ -141,14 +206,16 @@ public final class MainActivity extends Activity {
                 if (!approvedMusic(url)) return;
                 Bundle extra = new Bundle();
                 extra.putString("radiohits_mode", mode);
+                extra.putString("radiohits_url",url);
                 MediaMetadata metadata = new MediaMetadata.Builder()
                     .setTitle(track.optString("title", "Música"))
                     .setArtist(track.optString("artist", "Radio Hits"))
                     .setAlbumTitle("radio".equals(mode) ? "Radio Hits — Rádio" : "Radio Hits")
                     .setExtras(extra).build();
+                File local=OfflineStore.saved(this,url);
                 items.add(new MediaItem.Builder()
                     .setMediaId(track.optString("id"))
-                    .setUri(url)
+                    .setUri(local!=null?Uri.fromFile(local):Uri.parse(url))
                     .setMediaMetadata(metadata).build());
             }
             int index = Math.max(0, Math.min(items.size()-1, req.optInt("index", 0)));
@@ -184,6 +251,8 @@ public final class MainActivity extends Activity {
                 ? "" : item.localConfiguration.uri.toString());
             Bundle extras = item == null ? null : item.mediaMetadata.extras;
             status.put("mode", extras == null ? "" : extras.getString("radiohits_mode", ""));
+            if(extras!=null && extras.getString("radiohits_url")!=null)
+                status.put("src",extras.getString("radiohits_url"));
             status.put("position", controller.getCurrentPosition()/1000.0);
             status.put("duration", controller.getDuration() < 0 ? 0 : controller.getDuration()/1000.0);
             status.put("readyState", controller.getPlaybackState() == Player.STATE_READY ? 4 : 1);
@@ -202,6 +271,27 @@ public final class MainActivity extends Activity {
     }
 
     private final class WebBridge {
+        @JavascriptInterface public String listDownloads() {
+            return OfflineStore.list(getApplicationContext());
+        }
+        @JavascriptInterface public void saveOffline(String json) {
+            downloader.submit(()->OfflineStore.download(getApplicationContext(),json,
+                (type,url,percent,message)->sendOfflineEvent(type,url,percent,message)));
+        }
+        @JavascriptInterface public void deleteOffline(String url) {
+            OfflineStore.delete(getApplicationContext(),url);
+        }
+        @JavascriptInterface public void saveCatalog(String json) {
+            if(json==null || json.length()>2_000_000) return;
+            try {
+                JSONObject catalog=new JSONObject(json);
+                if(catalog.optJSONArray("tracks")==null) return;
+                File file=new File(getFilesDir(),"catalogo-offline.json");
+                try(FileOutputStream out=new FileOutputStream(file)) {
+                    out.write(json.getBytes(StandardCharsets.UTF_8));
+                }
+            } catch(Exception ignored) { }
+        }
         @JavascriptInterface public void playQueue(String json) {
             handler.post(() -> startQueue(json));
         }
@@ -233,6 +323,7 @@ public final class MainActivity extends Activity {
         handler.removeCallbacks(statusTick);
         if (web != null) { web.destroy(); web = null; }
         if (future != null) MediaController.releaseFuture(future);
+        downloader.shutdown();
         super.onDestroy();
     }
 }

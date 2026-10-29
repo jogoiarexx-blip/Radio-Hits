@@ -547,6 +547,9 @@
       const response = await fetch('./catalogo.json?atualizado=' + Date.now(), {cache:'no-store'});
       if (!response.ok) throw new Error('HTTP '+response.status);
       const data=await response.json();
+      if (nativeBridge && window.RadioHitsAndroid.saveCatalog) {
+        try { window.RadioHitsAndroid.saveCatalog(JSON.stringify(data)); } catch (_) {}
+      }
       if (!Array.isArray(data.tracks)) throw new Error('Catálogo inválido');
       state.tracks=data.tracks.filter(t => t && t.id && t.title && t.src && Number(t.duration)>0)
         .map(t=>({...t,artist:t.artist||'Artista independente',genre:t.genre||'Outros',cover:t.cover||'./assets/capas/padrao.svg',duration:Number(t.duration)}));
@@ -579,6 +582,9 @@
       const response = await fetch('./catalogo.json?atualizado=' + Date.now(), {cache:'no-store'});
       if (!response.ok) throw new Error('HTTP ' + response.status);
       const data = await response.json();
+      if (nativeBridge && window.RadioHitsAndroid.saveCatalog) {
+        try {window.RadioHitsAndroid.saveCatalog(JSON.stringify(data));} catch (_) {}
+      }
       if (!Array.isArray(data.tracks)) throw new Error('Catálogo inválido');
       const updated = data.tracks.filter(t => t && t.id && t.title && t.src && Number(t.duration) > 0)
         .map(t => ({...t,artist:t.artist||'Artista independente',genre:t.genre||'Outros',

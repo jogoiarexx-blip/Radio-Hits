@@ -32,6 +32,11 @@ jobs:
           if [ ! -x "$SDKMANAGER" ]; then SDKMANAGER="$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager"; fi
           yes | "$SDKMANAGER" --licenses > /dev/null || true
           "$SDKMANAGER" "platforms;android-36" "build-tools;36.0.0"
+      - name: Embutir interface e catalogo offline
+        run: |
+          mkdir -p android/app/src/main/assets/offline-site
+          cp index.html catalogo.json manifest.webmanifest sw.js android/app/src/main/assets/offline-site/
+          cp -R css js assets android/app/src/main/assets/offline-site/
       - name: Compilar aplicativo
         working-directory: android
         run: gradle --no-daemon :app:assembleDebug
