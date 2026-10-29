@@ -97,7 +97,7 @@ def main():
         # Keep paths relative to GitHub Pages subdirectory; quote every component.
         from urllib.parse import quote
         source='./musicas/'+ '/'.join(quote(part) for part in path.relative_to(MUSIC).parts)
-        tracks.append({'id':ident,'title':title,'artist':artist,'genre':genre,'duration':seconds,'src':source,'cover':cover,'year':meta.get('year',2026)})
+        tracks.append({'id':ident,'title':title,'artist':artist,'genre':genre,'duration':seconds,'src':source,'cover':cover,'year':meta.get('year',2026),'downloadAllowed':meta.get('downloadAllowed') is True})
     result={'name':'Radio Hits','version':1,'tracks':tracks,'radioOrder':[t['id'] for t in tracks]}
     target=ROOT/'catalogo.json'
     target.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
