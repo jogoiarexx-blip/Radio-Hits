@@ -71,6 +71,8 @@
     };
   }
   const audio = nativeBridge ? createNativeAudio() : $('audio');
+  const offline = window.RadioHitsOffline;
+  let offlineSources = new Set(), offlineLoading = Promise.resolve(), offlineLoadVersion = 0, activeOfflineId = null;
   const STORAGE = 'pulso-radio-v1';
   const EPOCH = Date.UTC(2026, 0, 1, 0, 0, 0);
   let saved = {};
@@ -149,7 +151,11 @@
   }
   function songRow(t) {
     const liked = state.favorites.has(t.id), active = state.currentId === t.id && state.mode === 'ondemand';
-    return `<div class="track-row ${active ? 'is-active':''}"><button class="track-main track-main-play" data-action="play-track" data-id="${escapeHtml(t.id)}" aria-label="Tocar ${escapeHtml(t.title)}"><img src="${art(t)}" alt="" loading="lazy"><span class="track-text"><strong>${escapeHtml(t.title)}</strong><small>${escapeHtml(t.artist)}</small></span></button><span class="track-genre">${escapeHtml(t.genre)}</span><span class="track-duration">${timeFmt(t.duration)}</span><div class="track-actions"><button class="icon-button ${liked?'is-liked':''}" data-action="like-track" data-id="${escapeHtml(t.id)}" title="${liked?'Remover dos favoritos':'Favoritar'}" aria-label="${liked?'Desfavoritar':'Favoritar'} ${escapeHtml(t.title)}">${icon('heart')}</button><button class="icon-button" data-action="add-playlist" data-id="${escapeHtml(t.id)}" title="Adicionar à playlist" aria-label="Adicionar ${escapeHtml(t.title)} a uma playlist">${icon('plus')}</button></div></div>`;
+    const stored = offlineSources.has(offline.absolute(t.src));
+    const saveButton = t.downloadAllowed === true
+      ? `<button class="icon-button ${stored?'is-liked':''}" data-action="offline-toggle" data-id="${escapeHtml(t.id)}" title="${stored?'Excluir cópia offline':'Baixar para ouvir offline'}" aria-label="${stored?'Excluir download de':'Baixar'} ${escapeHtml(t.title)}">${icon(stored?'trash':'download')}</button>`
+      : '';
+    return `<div class="track-row ${active ? 'is-active':''}"><button class="track-main track-main-play" data-action="play-track" data-id="${escapeHtml(t.id)}" aria-label="Tocar ${escapeHtml(t.title)}"><img src="${art(t)}" alt="" loading="lazy"><span class="track-text"><strong>${escapeHtml(t.title)}</strong><small>${escapeHtml(t.artist)}</small></span></button><span class="track-genre">${escapeHtml(t.genre)}</span><span class="track-duration">${timeFmt(t.duration)}</span><div class="track-actions"><button class="icon-button ${liked?'is-liked':''}" data-action="like-track" data-id="${escapeHtml(t.id)}" title="${liked?'Remover dos favoritos':'Favoritar'}" aria-label="${liked?'Desfavoritar':'Favoritar'} ${escapeHtml(t.title)}">${icon('heart')}</button><button class="icon-button" data-action="add-playlist" data-id="${escapeHtml(t.id)}" title="Adicionar à playlist" aria-label="Adicionar ${escapeHtml(t.title)} a uma playlist">${icon('plus')}</button>${saveButton}</div></div>`;
   }
   function visibleTracks() {
     const query = state.query.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -168,7 +174,46 @@
     const genres = ['Todos', ...new Set(state.tracks.map(t => t.genre).filter(Boolean))];
     $('genre-filters').innerHTML = genres.map(g => `<button data-action="genre" data-genre="${escapeHtml(g)}" class="${state.genre === g ? 'is-active' : ''}">${escapeHtml(g)}</button>`).join('');
     $('sidebar-track-count').textContent = `${state.tracks.length} ${state.tracks.length === 1 ? 'faixa' : 'faixas'}`;
+    renderOffline();
   }
+  function renderOffline() {
+    const saved = state.tracks.filter(t=>offlineSources.has(offline.absolute(t.src)));
+    const count = $('offline-count'), area = $('offline-tracks');
+    if (count) count.textContent = saved.length + ' salva(s) · ' + state.tracks.filter(t=>t.downloadAllowed===true).length + ' disponíveis';
+    if (area) area.innerHTML = saved.length ? saved.map(songRow).join('') :
+      empty('Nenhuma música salva offline','Baixe uma faixa autorizada pelo ícone de download.');
+  }
+  async function syncOffline() {
+    try { offlineSources=await offline.list(); renderExplore();renderFavorites();renderPlaylists(); }
+    catch(e){console.warn('Offline:',e);}
+  }
+  async function toggleOffline(id,button) {
+    const t=trackById(id);
+    if (!t || t.downloadAllowed!==true) return toast('Download não autorizado para esta faixa.');
+    const url=offline.absolute(t.src);
+    button.disabled=true;
+    try {
+      if (offlineSources.has(url)) {
+        await offline.remove(t); offlineSources.delete(url);
+        toast('Download removido.');
+      } else {
+        toast('Baixando ' + t.title + '...');
+        await offline.download(t, (percent)=>{
+          button.title=percent===null?'Baixando...':'Baixando: '+percent+'%';
+        });
+        if (!offline.isNative) { offlineSources.add(url);toast('Música salva offline.'); }
+        else toast('Download iniciado.');
+      }
+    } catch(e){toast(e.message||'Falha ao baixar.');}
+    finally {button.disabled=false;renderExplore();renderFavorites();renderPlaylists();}
+  }
+  offline.onChange(async e=>{
+    if(['done','deleted','error'].includes(e.type)){
+      await syncOffline();
+      if(e.type==='done')toast('Download concluído.');
+      if(e.type==='error')toast('Falha: '+(e.message||'verifique a internet.'));
+    }
+  });
   function renderFavorites() {
     const tracks = state.tracks.filter(t => state.favorites.has(t.id));
     $('favorite-tracks').innerHTML = tracks.length ? tracks.map(songRow).join('') : empty('Seus favoritos aparecerão aqui', 'Toque no coração de qualquer faixa para guardar.', 'Explorar faixas');
@@ -271,22 +316,37 @@
   }
   function loadTrack(t, seekTo=0) {
     if (!t) return false;
-    const target = new URL(t.src, document.baseURI).href;
-    if (audio.src !== target) {
-      state.pendingSeek = Number(seekTo) || 0;
-      audio.src = target;
-      audio.load();
-      if (nativeBridge) { audio.currentTime = Number(seekTo) || 0; state.pendingSeek = null; }
-    } else if (Number.isFinite(Number(seekTo))) {
-      if (audio.readyState >= 1) { try { audio.currentTime = Number(seekTo); } catch (_) { state.pendingSeek = Number(seekTo); } }
-      else state.pendingSeek = Number(seekTo);
+    const target=new URL(t.src,document.baseURI).href;
+    const serial=++offlineLoadVersion;
+    if (!nativeBridge && offlineSources.has(target)) {
+      state.pendingSeek=Number(seekTo)||0;
+      offlineLoading=offline.playableSource(t).then(localURL=>{
+        if(serial!==offlineLoadVersion)return;
+        if(audio.src!==localURL||activeOfflineId!==t.id){
+          audio.src=localURL;audio.load();activeOfflineId=t.id;
+        } else if(audio.readyState>=1) {
+          audio.currentTime=Number(seekTo)||0;state.pendingSeek=null;
+        }
+      });
+    } else {
+      offlineLoading=Promise.resolve();
+      activeOfflineId=null;
+      if(audio.src!==target){
+        state.pendingSeek=Number(seekTo)||0;
+        audio.src=target;audio.load();
+        if(nativeBridge){audio.currentTime=Number(seekTo)||0;state.pendingSeek=null;}
+      } else if(Number.isFinite(Number(seekTo))){
+        if(audio.readyState>=1){try{audio.currentTime=Number(seekTo);}catch(_){state.pendingSeek=Number(seekTo);}}
+        else state.pendingSeek=Number(seekTo);
+      }
     }
-    state.currentId = t.id;
+    state.currentId=t.id;
     updateMediaSession(t);
     renderPlayer();
     return true;
   }
   async function requestPlay() {
+    try {await offlineLoading;} catch(e){console.warn('Falha no offline',e);}
     if (!audio.src) return;
     state.playRequested = true;
     try { await audio.play(); } catch (err) {
@@ -396,6 +456,7 @@
       case 'play-track': selectSong(id); break;
       case 'play-queued': { const i = Number(el.dataset.index); if (Number.isInteger(i) && state.queue[i]) { state.queueIndex=i; const t=trackById(state.queue[i]); loadTrack(t,0);requestPlay();renderQueue();renderExplore(); } break; }
       case 'like-track': toggleLike(id); break;
+      case 'offline-toggle': toggleOffline(id,el); break;
       case 'add-playlist': showPlaylistChooser(id); break;
       case 'switch-explore': navigate('explorar'); break;
       case 'genre': state.genre = el.dataset.genre; renderExplore(); break;
@@ -495,6 +556,7 @@
       state.currentId=info?.track?.id||state.tracks[0]?.id||null;
       if (state.currentId) state.queue=state.tracks.map(t=>t.id);
       renderRadio(info);renderExplore();renderFavorites();renderPlaylists();renderQueue(info);renderPlayer();
+      syncOffline();
     } catch (err) {
       console.error('Radio Hits: falha no catálogo',err);
       $('station-title').textContent='Não foi possível carregar o catálogo';

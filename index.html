@@ -28,6 +28,8 @@
     <symbol id="i-repeat" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4M3 11V8a2 2 0 0 1 2-2h16M7 22l-4-4 4-4m14-1v3a2 2 0 0 1-2 2H3"/></symbol>
     <symbol id="i-volume" viewBox="0 0 24 24"><path d="m4 9 4 0 5-4v14l-5-4H4V9Zm13-1a6 6 0 0 1 0 8m2-11a10 10 0 0 1 0 14"/></symbol>
     <symbol id="i-muted" viewBox="0 0 24 24"><path d="m4 9 4 0 5-4v14l-5-4H4V9Zm13 1 5 5m0-5-5 5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 17v4h14v-4"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m-9 0 1 14h10l1-14M10 11v7m4-7v7"/></symbol>
     <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
@@ -73,6 +75,7 @@
         <div class="page-intro"><span class="eyebrow">ESCOLHA O QUE TOCAR</span><h1>Descubra seu próximo som<span class="accent-period">.</span></h1><p>Sem algoritmos escondidos. Você no controle de cada faixa.</p></div>
         <section class="discover-section"><div class="section-title row-between"><div><span class="eyebrow">SUA SELEÇÃO</span><h2>Em destaque</h2></div><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><span class="small-note" id="explore-track-count"></span><button class="outline-button" type="button" id="refresh-library" aria-label="Atualizar catálogo de músicas">Atualizar músicas</button></div></div><div id="discover-grid" class="album-grid"></div></section>
         <section class="tracks-section"><div class="section-title row-between"><div><span class="eyebrow">CATÁLOGO COMPLETO</span><h2>Todas as faixas</h2></div><div class="chips" id="genre-filters"></div></div><div class="table-header"><span>FAIXA</span><span>GÊNERO</span><svg class="icon"><use href="#i-clock"/></svg><span></span></div><div id="all-tracks" class="track-list"></div></section>
+        <section class="tracks-section" id="offline-library"><div class="section-title row-between"><div><span class="eyebrow">NO SEU DISPOSITIVO</span><h2>Minhas músicas offline</h2></div><span class="small-note" id="offline-count">Carregando downloads...</span></div><div class="track-list" id="offline-tracks"></div><p class="fine-print">O arquivo fica neste aparelho e não é baixado automaticamente. Download disponível apenas para faixas com autorização de armazenamento e distribuição.</p></section>
       </div>
 
       <div class="view is-hidden" id="view-favoritos"><div class="page-intro"><span class="eyebrow">O QUE VOCÊ AMA</span><h1>Seus favoritos<span class="accent-period">.</span></h1><p>Suas faixas preferidas ficam salvas neste navegador.</p></div><div id="favorite-tracks" class="track-list page-track-list"></div></div>
@@ -91,6 +94,7 @@
   <dialog id="modal" class="modal"><div class="modal-header"><h2 id="modal-heading">Nova playlist</h2><button class="icon-button" id="modal-close" aria-label="Fechar"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="modal-body"></div></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <audio id="audio" preload="metadata"></audio>
-  <script src="./js/app.js?v=20261029-novas" defer></script>
+  <script src="./js/offline.js?v=offline-1" defer></script>
+  <script src="./js/app.js?v=offline-1" defer></script>
 </body>
 </html>
