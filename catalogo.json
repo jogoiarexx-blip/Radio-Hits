@@ -453,6 +453,16 @@
       "year": 2026
     },
     {
+      "id": "rock-toto-africa-official-hd-video",
+      "title": "Africa",
+      "artist": "Toto",
+      "genre": "rock",
+      "duration": 271.418,
+      "src": "./musicas/rock/Toto%20-%20Africa%20%28Official%20HD%20Video%29.mp3",
+      "cover": "./assets/capas/padrao.svg",
+      "year": 2026
+    },
+    {
       "id": "rock-toto-hold-the-line-official-video",
       "title": "Toto - Hold The Line (Official Video)",
       "artist": "TotoVEVO",
@@ -509,6 +519,7 @@
     "rock-red-hot-chili-peppers-californication-official-music-video-hd-upgrade",
     "rock-the-outfield-your-love-official-hd-video",
     "rock-the-police-every-breath-you-take-official-music-video",
+    "rock-toto-africa-official-hd-video",
     "rock-toto-hold-the-line-official-video"
   ]
 }
