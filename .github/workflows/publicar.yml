@@ -42,6 +42,7 @@ jobs:
           node tests/teste-transicoes.js
           node tests/teste-volume.js
           node tests/teste-download-ui.js
+          node tests/teste-download-real.js
           python tests/test_volume.py
       - name: Conferir todas as musicas adicionadas
         run: python scripts/verificar_catalogo.py

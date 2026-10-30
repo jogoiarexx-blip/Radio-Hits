@@ -80,16 +80,16 @@
             <div><span class="eyebrow">OUÇA SEM INTERNET</span><h2 id="offline-dashboard-title">Downloads</h2><p id="offline-dashboard-summary">Verificando faixas disponíveis...</p></div>
             <svg class="icon offline-dashboard-icon" aria-hidden="true"><use href="#i-download"/></svg>
           </div>
-          <p>O pré-carregamento da rádio não salva músicas. Para ouvir sem internet, baixe uma faixa autorizada. As demais continuam disponíveis somente online.</p>
+          <p>O pré-carregamento da rádio não salva músicas. Você pode baixar qualquer faixa da sua biblioteca para ouvir offline neste aparelho. Os arquivos usam espaço do dispositivo; use apenas músicas que você tem autorização para armazenar e distribuir.</p>
           <div class="offline-dashboard-actions">
             <button type="button" class="primary-action" data-action="open-offline-available">Ver músicas para baixar</button>
             <button type="button" class="outline-button" data-action="open-offline-saved">Minhas músicas salvas</button>
           </div>
         </section>
         <section class="tracks-section" id="offline-available">
-          <div class="section-title row-between"><div><span class="eyebrow">DOWNLOAD PERMITIDO</span><h2>Disponíveis para baixar</h2></div><span class="small-note" id="offline-available-count"></span></div>
+          <div class="section-title row-between"><div><span class="eyebrow">SUA BIBLIOTECA PARA OUVIR OFFLINE</span><h2>Disponíveis para baixar</h2></div><span class="small-note" id="offline-available-count"></span></div>
           <div class="track-list" id="offline-available-tracks"></div>
-          <p class="fine-print">Estas faixas estão marcadas como autorizadas para download. Outros áudios comerciais não têm permissão de download registrada no projeto.</p>
+          <p class="fine-print">Toque em Baixar ao lado de qualquer música para salvá-la neste dispositivo. Os downloads não são enviados automaticamente para outro celular.</p>
         </section>
         <section class="genre-showcase" aria-label="Explore por estilo musical">
  <div class="section-title row-between"><div><span class="eyebrow">SUAS ESTAÇÕES</span><h2>Escolha a sua vibe</h2></div><span class="small-note">Biblioteca por categoria</span></div>
@@ -102,7 +102,7 @@
 </section>
         <section class="discover-section"><div class="section-title row-between"><div><span class="eyebrow">SUA SELEÇÃO</span><h2>Em destaque</h2></div><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><span class="small-note" id="explore-track-count"></span><button class="outline-button" type="button" id="refresh-library" aria-label="Atualizar catálogo de músicas">Atualizar músicas</button></div></div><div id="discover-grid" class="album-grid"></div></section>
         <section class="tracks-section"><div class="section-title row-between"><div><span class="eyebrow">CATÁLOGO COMPLETO</span><h2>Todas as faixas</h2></div><div class="chips" id="genre-filters"></div></div><div class="table-header"><span>FAIXA</span><span>GÊNERO</span><svg class="icon"><use href="#i-clock"/></svg><span></span></div><div id="all-tracks" class="track-list"></div></section>
-        <section class="tracks-section" id="offline-library"><div class="section-title row-between"><div><span class="eyebrow">NO SEU DISPOSITIVO</span><h2>Minhas músicas offline</h2></div><span class="small-note" id="offline-count">Carregando downloads...</span></div><div class="track-list" id="offline-tracks"></div><p class="fine-print">O arquivo fica neste aparelho e não é baixado automaticamente. Download disponível apenas para faixas com autorização de armazenamento e distribuição.</p></section>
+        <section class="tracks-section" id="offline-library"><div class="section-title row-between"><div><span class="eyebrow">NO SEU DISPOSITIVO</span><h2>Minhas músicas offline</h2></div><span class="small-note" id="offline-count">Carregando downloads...</span></div><div class="track-list" id="offline-tracks"></div><p class="fine-print">Os áudios são salvos apenas quando você toca em Baixar. Use a lista acima para adicionar mais músicas e esta seção para ouvir ou excluir os arquivos baixados.</p></section>
       </div>
 
       <div class="view is-hidden" id="view-favoritos"><div class="page-intro"><span class="eyebrow">O QUE VOCÊ AMA</span><h1>Seus favoritos<span class="accent-period">.</span></h1><p>Suas faixas preferidas ficam salvas neste navegador.</p></div><div id="favorite-tracks" class="track-list page-track-list"></div></div>
@@ -121,7 +121,7 @@
   <dialog id="modal" class="modal"><div class="modal-header"><h2 id="modal-heading">Nova playlist</h2><button class="icon-button" id="modal-close" aria-label="Fechar"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="modal-body"></div></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <audio id="audio" preload="metadata"></audio>
-  <script src="./js/offline.js?v=offline-1" defer></script>
-  <script src="./js/app.js?v=downloads-2" defer></script>
+  <script src="./js/offline.js?v=offline-todas-1" defer></script>
+  <script src="./js/app.js?v=downloads-todas-1" defer></script>
 </body>
 </html>

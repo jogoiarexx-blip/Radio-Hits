@@ -5,7 +5,7 @@
   function createNativeAudio() {
     const events = new EventTarget();
     let source='', position=0, duration=0, ready=0, paused=true, ended=false, volume=.75, error=null;
-    let nativeId='', nativeMode='';
+    let nativeId='', nativeMode='', nativeIsLocal=false;
     function emit(type) { events.dispatchEvent(new Event(type)); }
     window.RadioHitsAndroidState = function(info) {
       if (!info || typeof info !== 'object') return;
@@ -13,6 +13,7 @@
       const oldId = nativeId;
       nativeId = info.id || '';
       nativeMode = info.mode || '';
+      nativeIsLocal = info.isLocal === true;
       paused = !!info.paused;
       if (nativeMode === 'radio') radioWantsPlayback = !paused;
       ended = !!info.ended;
@@ -59,6 +60,7 @@
         // Retomar a mesma faixa não precisa destruir a fila nem o buffer nativo.
         const resumeTarget = new URL(tracks[index].src, document.baseURI).href;
         if (nativeId === selected && nativeMode === state.mode && source === resumeTarget
+            && (!offlineSources.has(resumeTarget) || nativeIsLocal)
             && !ended && typeof window.RadioHitsAndroid.resume === 'function') {
           window.RadioHitsAndroid.resume();
           paused=false; emit('play');
@@ -96,6 +98,17 @@
   }
   const offline = window.RadioHitsOffline;
   let offlineSources = new Set(), offlineLoading = Promise.resolve(), offlineLoadVersion = 0, activeOfflineId = null;
+  const activeDownloads = new Map();
+  function showDownloadProgress(url, percent) {
+    activeDownloads.set(url, percent);
+    document.querySelectorAll('[data-action="offline-toggle"]').forEach(btn => {
+      const track = trackById(btn.dataset.id);
+      if (!track || offline.absolute(track.src) !== url) return;
+      btn.disabled = true;
+      const span = btn.querySelector('span');
+      if (span) span.textContent = percent === null ? 'Baixando...' : 'Baixando ' + percent + '%';
+    });
+  }
   const STORAGE = 'pulso-radio-v1';
   const EPOCH = Date.UTC(2026, 0, 1, 0, 0, 0);
   let saved = {};
@@ -182,9 +195,10 @@
   function songRow(t) {
     const liked = state.favorites.has(t.id), active = state.currentId === t.id && state.mode === 'ondemand';
     const stored = offlineSources.has(offline.absolute(t.src));
-    const saveButton = t.downloadAllowed === true
-      ? `<button class="download-track-button ${stored?'is-downloaded':''}" data-action="offline-toggle" data-id="${escapeHtml(t.id)}" title="${stored?'Excluir cópia offline':'Baixar para ouvir offline'}" aria-label="${stored?'Excluir download de':'Baixar'} ${escapeHtml(t.title)}">${icon(stored?'trash':'download')}<span>${stored?'Salva':'Baixar'}</span></button>`
-      : '<span class="stream-only-badge" title="Esta música está disponível no streaming, mas não tem autorização de download registrada.">Só online</span>';
+    const downloading = activeDownloads.has(offline.absolute(t.src));
+    const percentage = activeDownloads.get(offline.absolute(t.src));
+    const label = stored ? 'Salva' : downloading ? percentage === null ? 'Baixando...' : 'Baixando ' + percentage + '%' : 'Baixar';
+    const saveButton = `<button class="download-track-button ${stored?'is-downloaded':''}" data-action="offline-toggle" data-id="${escapeHtml(t.id)}" title="${stored?'Excluir cópia offline':'Baixar para ouvir offline'}" aria-label="${stored?'Excluir download de':'Baixar'} ${escapeHtml(t.title)}" ${downloading?'disabled':''}>${icon(stored?'trash':'download')}<span>${label}</span></button>`;
     return `<div class="track-row ${active ? 'is-active':''}"><button class="track-main track-main-play" data-action="play-track" data-id="${escapeHtml(t.id)}" aria-label="Tocar ${escapeHtml(t.title)}"><img src="${art(t)}" alt="" loading="lazy"><span class="track-text"><strong>${escapeHtml(t.title)}</strong><small>${escapeHtml(t.artist)}</small></span></button><span class="track-genre">${escapeHtml(t.genre)}</span><span class="track-duration">${timeFmt(t.duration)}</span><div class="track-actions"><button class="icon-button ${liked?'is-liked':''}" data-action="like-track" data-id="${escapeHtml(t.id)}" title="${liked?'Remover dos favoritos':'Favoritar'}" aria-label="${liked?'Desfavoritar':'Favoritar'} ${escapeHtml(t.title)}">${icon('heart')}</button><button class="icon-button" data-action="add-playlist" data-id="${escapeHtml(t.id)}" title="Adicionar à playlist" aria-label="Adicionar ${escapeHtml(t.title)} a uma playlist">${icon('plus')}</button>${saveButton}</div></div>`;
   }
   function visibleTracks() {
@@ -209,17 +223,16 @@
     renderOffline();
   }
   function renderOffline() {
-    const authorized = state.tracks.filter(t => t.downloadAllowed === true);
+    const available = state.tracks.filter(t => t.src && Number(t.duration) > 0);
     const saved = state.tracks.filter(t => offlineSources.has(offline.absolute(t.src)));
-    const onlineOnly = state.tracks.length - authorized.length;
     const count = $('offline-count'), area = $('offline-tracks');
     const availableCount = $('offline-available-count');
     const availableArea = $('offline-available-tracks');
     const summary = $('offline-dashboard-summary');
-    if (summary) summary.textContent = `${authorized.length} disponíveis para baixar · ${saved.length} salvas · ${onlineOnly} somente online`;
-    if (availableCount) availableCount.textContent = `${authorized.length} faixas autorizadas`;
-    if (availableArea) availableArea.innerHTML = authorized.length ? authorized.map(songRow).join('') :
-      empty('Nenhum download disponível','As faixas precisam ter permissão de distribuição para oferecer download.');
+    if (summary) summary.textContent = `${available.length} músicas disponíveis para baixar · ${saved.length} salvas no dispositivo`;
+    if (availableCount) availableCount.textContent = `${available.length} faixas`;
+    if (availableArea) availableArea.innerHTML = available.length ? available.map(songRow).join('') :
+      empty('Nenhum áudio disponível','Atualize o catálogo e verifique a conexão.');
     if (count) count.textContent = `${saved.length} salva(s) neste dispositivo`;
     if (area) area.innerHTML = saved.length ? saved.map(songRow).join('') :
       empty('Nenhuma música salva offline','Em Disponíveis para baixar, use o botão Baixar.');
@@ -245,28 +258,41 @@
   }
   async function toggleOffline(id,button) {
     const t=trackById(id);
-    if (!t || t.downloadAllowed!==true) return toast('Download não autorizado para esta faixa.');
+    if (!t || !t.src) return toast('Música não encontrada no catálogo.');
     const url=offline.absolute(t.src);
+    if (activeDownloads.has(url)) return;
     button.disabled=true;
     try {
       if (offlineSources.has(url)) {
         await offline.remove(t); offlineSources.delete(url);
         toast('Download removido.');
       } else {
+        showDownloadProgress(url,null);
         toast('Baixando ' + t.title + '...');
         await offline.download(t, (percent)=>{
-          button.title=percent===null?'Baixando...':'Baixando: '+percent+'%';
+          showDownloadProgress(url,percent);
         });
         if (!offline.isNative) { offlineSources.add(url);toast('Música salva offline.'); }
         else toast('Download iniciado.');
       }
-    } catch(e){toast(e.message||'Falha ao baixar.');}
-    finally {button.disabled=false;renderExplore();renderFavorites();renderPlaylists();}
+    } catch(e){
+      activeDownloads.delete(url);
+      toast(e.message||'Falha ao baixar.');
+    }
+    finally {
+      if (!offline.isNative) activeDownloads.delete(url);
+      button.disabled=false;renderExplore();renderFavorites();renderPlaylists();
+    }
   }
   offline.onChange(async e=>{
+    if (e.type === 'started' || e.type === 'progress') {
+      if(e.url) showDownloadProgress(e.url,Number.isFinite(Number(e.percent)) ? Number(e.percent) : null);
+      return;
+    }
     if(['done','deleted','error'].includes(e.type)){
+      if(e.url) activeDownloads.delete(e.url);
       await syncOffline();
-      if(e.type==='done')toast('Download concluído.');
+      if(e.type==='done')toast('Download concluído e disponível offline.');
       if(e.type==='error')toast('Falha: '+(e.message||'verifique a internet.'));
     }
   });

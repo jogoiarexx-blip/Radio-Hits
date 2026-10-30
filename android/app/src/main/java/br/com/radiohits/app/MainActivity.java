@@ -283,8 +283,9 @@ public final class MainActivity extends Activity {
             status.put("playing", playing);
             status.put("paused", !controller.getPlayWhenReady());
             status.put("id", item == null ? "" : item.mediaId);
-            status.put("src", item == null || item.localConfiguration == null
-                ? "" : item.localConfiguration.uri.toString());
+            Uri mediaUri=item==null || item.localConfiguration==null ? null : item.localConfiguration.uri;
+            status.put("isLocal",mediaUri!=null && "file".equalsIgnoreCase(mediaUri.getScheme()));
+            status.put("src",mediaUri==null ? "" : mediaUri.toString());
             Bundle extras = item == null ? null : item.mediaMetadata.extras;
             status.put("mode", extras == null ? "" : extras.getString("radiohits_mode", ""));
             if(extras!=null && extras.getString("radiohits_url")!=null)

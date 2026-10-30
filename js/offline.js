@@ -19,9 +19,17 @@
     const store = await cacheOpen();
     return new Set((await store.keys()).map(request => request.url));
   }
+  const isCatalogAudio = (source) => {
+    try {
+      const url = new URL(source, document.baseURI);
+      const root = new URL('./musicas/',document.baseURI);
+      return url.origin === root.origin && url.pathname.startsWith(root.pathname)
+        && /\.(mp3|m4a|ogg|opus|wav|flac|aac)$/i.test(url.pathname);
+    } catch (_) { return false; }
+  };
   async function download(track, progress=()=>{}) {
-    if (!track || track.downloadAllowed !== true) {
-      throw Error('Esta faixa não está autorizada para download offline.');
+    if (!track || !track.src || !isCatalogAudio(track.src)) {
+      throw Error('Arquivo de música inválido ou fora do catálogo Radio Hits.');
     }
     const url = absolute(track.src);
     if (isNative) {
@@ -100,5 +108,5 @@
   window.RadioHitsOfflineEvent = function(event) {
     if (event && typeof event==='object') notify(event);
   };
-  window.RadioHitsOffline = {isNative,list,download,remove,playableSource,usage,onChange(callback){listener=callback;},absolute};
+  window.RadioHitsOffline = {isNative,list,download,remove,playableSource,usage,isCatalogAudio,onChange(callback){listener=callback;},absolute};
 })();

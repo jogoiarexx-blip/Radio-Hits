@@ -75,12 +75,13 @@ Para um DJ ao vivo real, servidor de streaming e backend seriam necessários, n�
 
 ## Como funciona o pré-carregamento e os downloads
 
-- **Site (navegador):** começa a preparar a faixa seguinte nos últimos 25 segundos da atual, quando a conexão permite. Essa faixa pode estar só parcialmente armazenada no buffer; **não** é um download para usar offline.
-- **APK Android:** o player nativo Media3 administra seu próprio buffer da fila. O limite de 25 segundos refere-se ao player web, não ao Media3.
-- **Internet caiu:** o áudio continua apenas enquanto houver dados suficientes no buffer; pode parar no meio da faixa ou na próxima transição. A rádio não baixa automaticamente as 64 músicas.
-- **Downloads autorizados:** na página **Explorar → Downloads → Disponíveis para baixar**. As 6 faixas originais estão marcadas para download; as demais aparecem com a indicação **Só online**, porque a autorização de distribuição offline não está registrada.
-- **Sem internet:** abra **Explorar → Minhas músicas offline** e escolha um arquivo salvo. A rádio sincronizada não substitui faixas indisponíveis nem garante continuidade offline; o modo individual é a alternativa.
-- O armazenamento web pode ser apagado pelo navegador/sistema. No APK, músicas baixadas ficam no armazenamento privado do aplicativo e são perdidas se os dados forem apagados ou o aplicativo for desinstalado.
+- **Site:** inicia o pré-carregamento da faixa seguinte nos últimos 25 segundos da atual. Esse buffer não equivale a um arquivo offline.
+- **Android:** o player Media3 administra seu próprio buffer; a faixa seguinte pode ser preparada pelo próprio player.
+- **Internet caiu:** a rádio online pode continuar até o buffer esgotar e depois interromper. A continuidade de várias horas só é garantida com todos os arquivos necessários salvos no aparelho.
+- **Downloads individuais:** toda faixa do catálogo da pasta `musicas/` apresenta o botão **Baixar** em Explorar, independentemente de gênero. A opção pode ser usada no site e no APK.
+- **Ouvir offline:** selecione **Explorar → Minhas músicas offline** para tocar faixas já salvas. No APK, as cópias ficam no armazenamento privado do aplicativo. No navegador, ficam no armazenamento do site, sujeito às regras de limpeza do navegador.
+- **Armazenamento:** nenhum arquivo é baixado sem pedido. Cada música tem botão **Baixar**, e depois **Salva** para excluí-la.
+- **Direitos:** adicionar arquivos ao catálogo e disponibilizar download pela internet não concede licença sobre gravações comerciais. Você deve ter as permissões necessárias para armazenar e redistribuir o áudio.
 
 ## Limitações do GitHub Pages
 
