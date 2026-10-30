@@ -55,7 +55,7 @@ assert.match(app, /t\.cover/, 'Mudanças de capa devem atualizar');
 assert.match(app, /function libraryDuration/, 'Tempo de biblioteca ausente');
 assert.match(html, /id="sidebar-library-runtime"/, 'Indicador de duração ausente');
 assert.match(sw, /style\.css\?v=/, 'CSS versionado não está no cache offline');
-assert.match(offline, /downloadAllowed !== true/, 'Validação de download ausente');
+assert.match(offline, /isCatalogAudio\(track.src\)/, 'Download deve ser limitado aos arquivos do próprio catálogo');
 
 console.log('AUDITORIA OK: ' + tracks.length + ' músicas, ' + total.toFixed(3) + ' s, 0 IDs repetidos.');
 console.log('Ordem sincronizada, volta ao início, offline, capas e cache: verificações aprovadas.');
