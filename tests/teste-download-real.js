@@ -14,7 +14,7 @@ const fakeCache={
   keys:async()=>Array.from(cacheMap.keys(),url=>new Request(url))
 };
 const web={
-  window:{},
+  window:{caches:{}},
   document:{baseURI:'https://jogoiarexx-blip.github.io/Radio-Hits/'},
   caches:{open:async()=>fakeCache},
   navigator:{storage:{estimate:async()=>({quota:1e9,usage:0})}},
