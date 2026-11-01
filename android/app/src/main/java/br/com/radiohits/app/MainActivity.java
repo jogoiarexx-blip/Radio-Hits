@@ -11,7 +11,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.webkit.JavascriptInterface;
+import android.webkit.WebResourceError;
+import android.webkit.WebSettings;
+import androidx.webkit.JavaScriptReplyProxy;
+import androidx.webkit.WebViewCompat;
+import androidx.webkit.WebViewFeature;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -64,6 +68,7 @@ public final class MainActivity extends Activity {
             masterVolume * Math.pow(10.0,gainDb/20.0))));
     }
     private boolean pageReady = false;
+    private boolean forceOfflineShell = false;
     private int lastSongIndex = -1;
     private boolean lastPlaying = false;
     private String lastSongId = "";
@@ -90,13 +95,27 @@ public final class MainActivity extends Activity {
         web.getSettings().setMediaPlaybackRequiresUserGesture(false);
         web.getSettings().setAllowFileAccess(false);
         web.getSettings().setAllowContentAccess(false);
-        web.addJavascriptInterface(new WebBridge(), "RadioHitsAndroid");
+        web.getSettings().setAllowFileAccessFromFileURLs(false);
+        web.getSettings().setAllowUniversalAccessFromFileURLs(false);
+        web.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+        web.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
+        // Bridge restrita à origem legítima e ao frame principal. Sem fallback
+        // para addJavascriptInterface: este expõe métodos a iframes externos.
+        if (WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) {
+            WebViewCompat.addWebMessageListener(web, "RadioHitsNative",
+                java.util.Collections.singleton("https://jogoiarexx-blip.github.io"),
+                (view, message, sourceOrigin, isMainFrame, replyProxy) ->
+                    onNativeMessage(message.getData(), sourceOrigin, isMainFrame, replyProxy));
+        }
         web.setWebChromeClient(new WebChromeClient());
         web.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView v, WebResourceRequest request) {
                 Uri uri = request.getUrl();
                 String url = uri.toString();
-                if (url.startsWith(SITE)) return false;
+                if ("https".equals(uri.getScheme()) &&
+                    "jogoiarexx-blip.github.io".equalsIgnoreCase(uri.getHost()) &&
+                    uri.getPath() != null && uri.getPath().startsWith("/Radio-Hits/"))
+                    return false;
                 if (url.startsWith("https://")) {
                     startActivity(new Intent(Intent.ACTION_VIEW, uri));
                 }
@@ -104,6 +123,13 @@ public final class MainActivity extends Activity {
             }
             @Override public WebResourceResponse shouldInterceptRequest(WebView v, WebResourceRequest request) {
                 return offlineAsset(request.getUrl());
+            }
+            @Override public void onReceivedError(WebView v, WebResourceRequest request,
+                WebResourceError error) {
+                if (request.isForMainFrame() && !forceOfflineShell) {
+                    forceOfflineShell = true;
+                    v.loadUrl(SITE + "index.html?native-offline=1");
+                }
             }
             @Override public void onPageFinished(WebView v, String url) {
                 pageReady = url.startsWith(SITE);
@@ -151,12 +177,13 @@ public final class MainActivity extends Activity {
             ConnectivityManager cm=(ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
             if(cm==null || cm.getActiveNetwork()==null) return false;
             NetworkCapabilities caps=cm.getNetworkCapabilities(cm.getActiveNetwork());
-            return caps!=null && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+            return caps!=null && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED);
         } catch(Exception error) { return false; }
     }
 
     private WebResourceResponse offlineAsset(Uri uri) {
-        if(hasInternet()) return null;
+        if(!forceOfflineShell && hasInternet()) return null;
         String path=uri.getPath();
         if(!"https".equals(uri.getScheme()) ||
            !"jogoiarexx-blip.github.io".equalsIgnoreCase(uri.getHost()) ||
@@ -307,63 +334,104 @@ public final class MainActivity extends Activity {
         } catch (Exception ignored) { }
     }
 
-    private final class WebBridge {
-        @JavascriptInterface public String listDownloads() {
-            return OfflineStore.list(getApplicationContext());
-        }
-        @JavascriptInterface public void saveOffline(String json) {
-            downloader.submit(()->OfflineStore.download(getApplicationContext(),json,
-                (type,url,percent,message)->sendOfflineEvent(type,url,percent,message)));
-        }
-        @JavascriptInterface public void deleteOffline(String url) {
-            OfflineStore.delete(getApplicationContext(),url);
-        }
-        @JavascriptInterface public void saveCatalog(String json) {
-            if(json==null || json.length()>2_000_000) return;
-            try {
-                JSONObject catalog=new JSONObject(json);
-                if(catalog.optJSONArray("tracks")==null) return;
-                File file=new File(getFilesDir(),"catalogo-offline.json");
-                try(FileOutputStream out=new FileOutputStream(file)) {
-                    out.write(json.getBytes(StandardCharsets.UTF_8));
+    /** Recebe somente mensagens do frame principal da origem Radio Hits. */
+    private void onNativeMessage(String raw, Uri origin, boolean mainFrame,
+        JavaScriptReplyProxy reply) {
+        if (!mainFrame || origin == null ||
+            !"https".equalsIgnoreCase(origin.getScheme()) ||
+            !"jogoiarexx-blip.github.io".equalsIgnoreCase(origin.getHost()) ||
+            (origin.getPort() != -1 && origin.getPort() != 443) ||
+            raw == null || raw.length() > 2_000_100) return;
+        try {
+            JSONObject req = new JSONObject(raw);
+            String method = req.optString("method", "");
+            int id = req.optInt("id", -1);
+            String value = req.optString("value", "");
+            switch (method) {
+                case "listDownloads":
+                    respond(reply, id, OfflineStore.list(getApplicationContext()));
+                    break;
+                case "state":
+                    respond(reply, id, latestState);
+                    break;
+                case "saveOffline":
+                    if (value.length() > 8_192) return;
+                    downloader.submit(() -> OfflineStore.download(getApplicationContext(),
+                        value, (type,url,percent,message) ->
+                            sendOfflineEvent(type,url,percent,message)));
+                    break;
+                case "deleteOffline":
+                    if (value.length() > 2048) return;
+                    downloader.submit(() -> OfflineStore.delete(getApplicationContext(),value));
+                    break;
+                case "saveCatalog":
+                    if (value.length() > 2_000_000) return;
+                    JSONObject catalog = new JSONObject(value);
+                    if (catalog.optJSONArray("tracks") == null) return;
+                    File file = new File(getFilesDir(),"catalogo-offline.json");
+                    try (FileOutputStream out = new FileOutputStream(file)) {
+                        out.write(value.getBytes(StandardCharsets.UTF_8));
+                    }
+                    break;
+                case "playQueue":
+                    if (value.length() > 1_000_000) return;
+                    handler.post(() -> startQueue(value));
+                    break;
+                case "resume":
+                    handler.post(() -> {
+                        if (controller != null && controller.getMediaItemCount() > 0) {
+                            controller.play();
+                            updateState();
+                        }
+                    });
+                    break;
+                case "pause":
+                    handler.post(() -> {
+                        if (controller != null) { controller.pause(); updateState(); }
+                    });
+                    break;
+                case "seek": {
+                    double seconds = req.optDouble("value", 0);
+                    if (!Double.isFinite(seconds) || seconds < 0) return;
+                    handler.post(() -> {
+                        if (controller != null && controller.getMediaItemCount() > 0) {
+                            controller.seekTo(Math.min((long)(seconds * 1000), 86_400_000L));
+                            updateState();
+                        }
+                    });
+                    break;
                 }
-            } catch(Exception ignored) { }
-        }
-        @JavascriptInterface public void playQueue(String json) {
-            handler.post(() -> startQueue(json));
-        }
-        @JavascriptInterface public void resume() {
-            handler.post(() -> {
-                if (controller != null && controller.getMediaItemCount() > 0) {
-                    controller.play();
-                    updateState();
+                case "volume": {
+                    double volume = req.optDouble("value", 0.75);
+                    if (!Double.isFinite(volume)) return;
+                    handler.post(() -> {
+                        masterVolume = Math.max(0,Math.min(1,volume));
+                        applyNativeVolume();
+                    });
+                    break;
                 }
-            });
-        }
-        @JavascriptInterface public void pause() {
-            handler.post(() -> { if (controller != null) { controller.pause(); updateState(); } });
-        }
-        @JavascriptInterface public void seek(double seconds) {
-            handler.post(() -> {
-                if (controller != null && controller.getMediaItemCount() > 0) {
-                    controller.seekTo(Math.max(0, (long)(seconds * 1000)));
-                    updateState();
+                case "setLeveling": {
+                    boolean enabled = req.optBoolean("value", true);
+                    handler.post(() -> {
+                        levelingEnabled = enabled;
+                        applyNativeVolume();
+                    });
+                    break;
                 }
-            });
+                default:
+                    // O método desconhecido não recebe permissões.
+            }
+        } catch (Exception ignored) {
+            // Mensagens malformadas não chegam à camada privilegiada.
         }
-        @JavascriptInterface public void volume(double volume) {
-            handler.post(() -> {
-                masterVolume=Math.max(0,Math.min(1,volume));
-                applyNativeVolume();
-            });
-        }
-        @JavascriptInterface public void setLeveling(boolean enabled) {
-            handler.post(() -> {
-                levelingEnabled=enabled;
-                applyNativeVolume();
-            });
-        }
-        @JavascriptInterface public String state() { return latestState; }
+    }
+
+    private void respond(JavaScriptReplyProxy reply, int id, String value) {
+        if (id < 0 || id > 100_000_000) return;
+        try {
+            reply.postMessage(new JSONObject().put("id", id)
+                .put("value", value).toString());
+        } catch (Exception ignored) { }
     }
 
     @Override public void onBackPressed() {
