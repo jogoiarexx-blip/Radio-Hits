@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities;
 import android.net.Network;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.media3.common.AudioAttributes;
 import androidx.media3.common.C;
@@ -30,23 +31,43 @@ public final class PlaybackService extends MediaSessionService {
     private boolean retryScheduled=false;
     private int attempts=0;
     private long playbackStableSince=0;
-    private int radioSyncTicks=0;
-    private final Runnable periodicSave=new Runnable() {
+    // Nenhum polling do serviço em repouso; progresso salvo a cada 15 segundos
+    // apenas quando o Media3 está realmente reproduzindo.
+    private static final long ACTIVE_INTERVAL_MS=15000L;
+    private int activePulseCount=0;
+    private boolean activePulseScheduled=false;
+    private long currentTrackTransitions=0;
+    private long radioClockCorrections=0;
+    private long retryTotal=0;
+    private final Runnable activePulse=new Runnable() {
         @Override public void run() {
-            if(player!=null && !restoring) {
-                PlaybackSnapshot.save(PlaybackService.this,player,false);
-                if(++radioSyncTicks >= 3) {
-                    radioSyncTicks=0;
-                    synchronizeRadioClock();
-                }
-                if(player.isPlaying()) {
-                    if(playbackStableSince==0) playbackStableSince=System.currentTimeMillis();
-                    if(System.currentTimeMillis()-playbackStableSince>30_000L) attempts=0;
-                }
+            activePulseScheduled=false;
+            if(player==null || !player.isPlaying()) return;
+            synchronizeRadioClock();
+            saveSnapshot(false);
+            if(playbackStableSince==0) playbackStableSince=System.currentTimeMillis();
+            if(System.currentTimeMillis()-playbackStableSince>30000L) attempts=0;
+            // Logging diagnóstico a cada minuto; não mantém buffer permanente
+            // nem registra URLs ou identificação pessoal.
+            if(++activePulseCount%4==0) {
+                long javaHeap=(Runtime.getRuntime().totalMemory()
+                    -Runtime.getRuntime().freeMemory())/(1024L*1024L);
+                Log.i("RadioHitsQA","playing=1 transitions="+currentTrackTransitions
+                    +" radioCorrections="+radioClockCorrections
+                    +" retries="+retryTotal+" javaHeapMiB="+javaHeap);
             }
-            handler.postDelayed(this,5000L);
+            scheduleActivePulse();
         }
     };
+    private void scheduleActivePulse() {
+        if(activePulseScheduled || player==null || !player.isPlaying()) return;
+        activePulseScheduled=true;
+        handler.postDelayed(activePulse,ACTIVE_INTERVAL_MS);
+    }
+    private void stopActivePulse() {
+        handler.removeCallbacks(activePulse);
+        activePulseScheduled=false;
+    }
     private final Runnable retryPlayback=() -> {
         retryScheduled=false;
         if(player==null || !player.getPlayWhenReady()) return;
@@ -69,13 +90,19 @@ public final class PlaybackService extends MediaSessionService {
             .setWakeMode(C.WAKE_MODE_LOCAL).build();
         player.addListener(new Player.Listener() {
             @Override public void onMediaItemTransition(MediaItem item,int reason) {
+                currentTrackTransitions++;
                 resetRecovery();
                 PlaybackPreferences.apply(PlaybackService.this,player);
                 saveSnapshot(false);
             }
             @Override public void onIsPlayingChanged(boolean playing) {
-                if(playing && playbackStableSince==0) playbackStableSince=System.currentTimeMillis();
-                if(!playing) playbackStableSince=0;
+                if(playing) {
+                    if(playbackStableSince==0) playbackStableSince=System.currentTimeMillis();
+                    scheduleActivePulse();
+                } else {
+                    stopActivePulse();
+                    playbackStableSince=0;
+                }
                 saveSnapshot(false);
             }
             @Override public void onPlayerError(PlaybackException error) {
@@ -83,8 +110,14 @@ public final class PlaybackService extends MediaSessionService {
                 recoverIfTransient(error);
             }
             @Override public void onEvents(Player player,Player.Events events) {
-                // Inclui seek, shuffle, repeat, pause e trocas por headset.
-                saveSnapshot(false);
+                // Evita gravar SharedPreferences em eventos sem mudança de
+                // posição/fila/controles. O progresso é salvo pelo activePulse.
+                if(events.contains(Player.EVENT_POSITION_DISCONTINUITY)
+                    || events.contains(Player.EVENT_REPEAT_MODE_CHANGED)
+                    || events.contains(Player.EVENT_SHUFFLE_MODE_ENABLED_CHANGED)
+                    || events.contains(Player.EVENT_PLAY_WHEN_READY_CHANGED)
+                    || events.contains(Player.EVENT_TIMELINE_CHANGED))
+                    saveSnapshot(false);
                 if (!player.getPlayWhenReady()) {
                     waitingForNetwork=false;
                     handler.removeCallbacks(retryPlayback);
@@ -98,7 +131,8 @@ public final class PlaybackService extends MediaSessionService {
         PlaybackPreferences.apply(this,player);
         session = new MediaSession.Builder(this,player).build();
         monitorNetwork();
-        handler.postDelayed(periodicSave,5000L);
+        // Nenhum loop de cinco segundos enquanto está pausado.
+        // O listener scheduleActivePulse() cuida do áudio em andamento.
     }
 
     /**
@@ -124,6 +158,7 @@ public final class PlaybackService extends MediaSessionService {
         if(clock==null) return;
         long drift=Math.abs(player.getCurrentPosition()-clock.offsetMs);
         if(player.getCurrentMediaItemIndex()!=clock.index || drift>4000L) {
+            radioClockCorrections++;
             player.seekTo(clock.index,clock.offsetMs);
         }
     }
@@ -173,6 +208,7 @@ public final class PlaybackService extends MediaSessionService {
         }
         if(retryScheduled) return;
         long delay=PlaybackRetryPolicy.delayMs(attempts++);
+        retryTotal++;
         retryScheduled=true;
         handler.postDelayed(retryPlayback,delay);
     }
@@ -216,7 +252,7 @@ public final class PlaybackService extends MediaSessionService {
     }
 
     @Override public void onDestroy() {
-        handler.removeCallbacks(periodicSave);
+        stopActivePulse();
         handler.removeCallbacks(retryPlayback);
         if(connectivity!=null && networkCallback!=null) {
             try { connectivity.unregisterNetworkCallback(networkCallback); }
