@@ -107,7 +107,10 @@
   let preloadGeneration = 0;
   let lastPreloadAttempt = 0;
   let radioWantsPlayback = false;
-  if (!nativeBridge && !/iP(?:hone|ad|od)/.test(navigator.userAgent || '')) {
+  // Em aparelhos com pouca RAM, evite manter um segundo decodificador.
+  const lowMemoryDevice = Number(navigator.deviceMemory || 4) <= 2;
+  if (!nativeBridge && !lowMemoryDevice
+      && !/iP(?:hone|ad|od)/.test(navigator.userAgent || '')) {
     standby = document.createElement('audio');
     standby.preload = 'auto';
     standby.style.display = 'none';
@@ -518,6 +521,7 @@
     standby.pause();
     standby.removeAttribute('src');
     standby.load();
+    offline.releaseUnused?.([audio.src]);
   }
   function nextToPrepare() {
     if (!state.loaded || (state.shuffle && state.mode !== 'radio')
@@ -535,7 +539,7 @@
     return id && id !== state.currentId ? trackById(id) : null;
   }
   function prepareNextAudio() {
-    if (!standby || audio.paused || audio.ended || !state.loaded) return;
+    if (!standby || audio.paused || audio.ended || !state.loaded || document.hidden) return;
     if (navigator.connection?.saveData) {
       setPreloadStatus('Economia de dados: sem pré-carga');
       return;
@@ -552,12 +556,13 @@
       const pending = standby;
       pending.addEventListener('canplay', () => {
         if (generation === preloadGeneration && pending === standby && primedTrackId === next.id)
-          setPreloadStatus('Próxima pronta para iniciar · não salva offline');
+          setPreloadStatus('Próxima pronta para iniciar');
       },{once:true});
       standby.src = src;
       standby.volume = Math.min(1,state.volume*gainFactor(next));
       standby.preload = 'auto';
       standby.load();
+      offline.releaseUnused?.([audio.src,standby.src]);
     }).catch(error => {
       if (generation === preloadGeneration) {
         primedTrackId = null;
@@ -567,7 +572,7 @@
     });
   }
   function usePreparedAudio(track, seekTo) {
-    if (!standby || primedTrackId !== track.id || standby.readyState < 1) return false;
+    if (!standby || primedTrackId !== track.id || standby.readyState < 2) return false;
     const old = audio;
     audio = standby;
     standby = old;
@@ -577,6 +582,7 @@
     old.pause();
     old.removeAttribute('src');
     old.load();
+    offline.releaseUnused?.([audio.src]);
     state.pendingSeek = Number(seekTo) || 0;
     if (audio.readyState >= 1) {
       try {
@@ -601,8 +607,10 @@
         if(serial!==offlineLoadVersion)return;
         if(audio.src!==localURL||activeOfflineId!==t.id){
           audio.src=localURL;audio.load();activeOfflineId=t.id;
+          offline.releaseUnused?.([audio.src,standby?.src]);
         } else if(audio.readyState>=1) {
           audio.currentTime=Number(seekTo)||0;state.pendingSeek=null;
+          offline.releaseUnused?.([audio.src,standby?.src]);
         }
       });
     } else {
@@ -612,10 +620,12 @@
       if(audio.src!==target){
         state.pendingSeek=Number(seekTo)||0;
         audio.src=target;audio.load();
+        offline.releaseUnused?.([audio.src,standby?.src]);
         if(nativeBridge){audio.currentTime=Number(seekTo)||0;state.pendingSeek=null;}
       } else if(Number.isFinite(Number(seekTo))){
         if(audio.readyState>=1){try{audio.currentTime=Number(seekTo);}catch(_){state.pendingSeek=Number(seekTo);}}
         else state.pendingSeek=Number(seekTo);
+        offline.releaseUnused?.([audio.src,standby?.src]);
       }
     }
     state.currentId=t.id;
@@ -955,6 +965,7 @@
   window.addEventListener('offline', updateConnectionNotice);
   updateConnectionNotice();
   document.addEventListener('visibilitychange', () => {
+    if (document.hidden && standby) clearStandby();
     if (!document.hidden) refreshCatalog(false);
   });
   window.addEventListener('focus', () => refreshCatalog(false));
