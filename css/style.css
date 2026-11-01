@@ -78,3 +78,19 @@
   .download-cancel-button{font-size:9px;padding:4px 5px;min-height:32px}
   .track-actions .download-track-button{min-width:65px}
 }
+
+/* REV 2.0: alvos de toque e layout de downloads em telas pequenas. */
+@media(max-width:740px){
+  .download-track-button,.download-cancel-button{min-height:40px;touch-action:manipulation}
+  .download-track-button:focus-visible,.download-cancel-button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .track-row:has(.download-cancel-button){grid-template-columns:minmax(0,1fr) auto;column-gap:6px}
+  .track-row:has(.download-cancel-button) .track-actions{flex-wrap:wrap;justify-content:flex-end;max-width:160px}
+  .track-row .track-text{min-width:0}
+  .offline-dashboard-actions button{min-height:44px}
+}
+@media(max-width:380px){
+  .track-row:has(.download-cancel-button) .track-actions{max-width:128px}
+  .track-row:has(.download-cancel-button) .icon-button{width:24px}
+  .download-track-button{font-size:10px;min-width:65px}
+  .download-cancel-button{font-size:10px}
+}
