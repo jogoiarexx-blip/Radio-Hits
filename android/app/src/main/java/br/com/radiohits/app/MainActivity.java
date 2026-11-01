@@ -356,13 +356,30 @@ public final class MainActivity extends Activity {
                     break;
                 case "saveOffline":
                     if (value.length() > 8_192) return;
-                    downloader.submit(() -> OfflineStore.download(getApplicationContext(),
-                        value, (type,url,percent,message) ->
-                            sendOfflineEvent(type,url,percent,message)));
+                    downloader.submit(() -> {
+                        try {
+                            DownloadWorker.enqueue(getApplicationContext(),value);
+                        } catch (Exception ignored) { }
+                    });
+                    break;
+                case "pauseOffline":
+                    if (value.length() > 2048) return;
+                    downloader.submit(() -> DownloadWorker.pause(getApplicationContext(),value));
                     break;
                 case "deleteOffline":
+                case "cancelOffline":
                     if (value.length() > 2048) return;
-                    downloader.submit(() -> OfflineStore.delete(getApplicationContext(),value));
+                    downloader.submit(() -> DownloadWorker.cancelAndDelete(getApplicationContext(),value));
+                    break;
+                case "listDownloadJobs":
+                    downloader.submit(() -> {
+                        try {
+                            String jobs=DownloadWorker.jobs(getApplicationContext());
+                            handler.post(() -> respond(reply,id,jobs));
+                        } catch (Exception ignored) {
+                            handler.post(() -> respond(reply,id,"[]"));
+                        }
+                    });
                     break;
                 case "saveCatalog":
                     if (value.length() > 2_000_000) return;

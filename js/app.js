@@ -99,14 +99,16 @@
   const offline = window.RadioHitsOffline;
   let offlineSources = new Set(), offlineLoading = Promise.resolve(), offlineLoadVersion = 0, activeOfflineId = null;
   const activeDownloads = new Map();
+  const pausedDownloads = new Set();
   function showDownloadProgress(url, percent) {
     activeDownloads.set(url, percent);
     document.querySelectorAll('[data-action="offline-toggle"]').forEach(btn => {
       const track = trackById(btn.dataset.id);
       if (!track || offline.absolute(track.src) !== url) return;
-      btn.disabled = true;
+      btn.disabled = !offline.supportsJobs;
       const span = btn.querySelector('span');
-      if (span) span.textContent = percent === null ? 'Baixando...' : 'Baixando ' + percent + '%';
+      if (span) span.textContent = offline.supportsJobs ? 'Pausar' :
+        percent === null ? 'Baixando...' : 'Baixando ' + percent + '%';
     });
   }
   const STORAGE = 'pulso-radio-v1';
@@ -197,9 +199,15 @@
     const stored = offlineSources.has(offline.absolute(t.src));
     const downloading = activeDownloads.has(offline.absolute(t.src));
     const percentage = activeDownloads.get(offline.absolute(t.src));
-    const label = stored ? 'Salva' : downloading ? percentage === null ? 'Baixando...' : 'Baixando ' + percentage + '%' : 'Baixar';
-    const saveButton = `<button class="download-track-button ${stored?'is-downloaded':''}" data-action="offline-toggle" data-id="${escapeHtml(t.id)}" title="${stored?'Excluir cópia offline':'Baixar para ouvir offline'}" aria-label="${stored?'Excluir download de':'Baixar'} ${escapeHtml(t.title)}" ${downloading?'disabled':''}>${icon(stored?'trash':'download')}<span>${label}</span></button>`;
-    return `<div class="track-row ${active ? 'is-active':''}"><button class="track-main track-main-play" data-action="play-track" data-id="${escapeHtml(t.id)}" aria-label="Tocar ${escapeHtml(t.title)}"><img src="${art(t)}" alt="" loading="lazy"><span class="track-text"><strong>${escapeHtml(t.title)}</strong><small>${escapeHtml(t.artist)}</small></span></button><span class="track-genre">${escapeHtml(t.genre)}</span><span class="track-duration">${timeFmt(t.duration)}</span><div class="track-actions"><button class="icon-button ${liked?'is-liked':''}" data-action="like-track" data-id="${escapeHtml(t.id)}" title="${liked?'Remover dos favoritos':'Favoritar'}" aria-label="${liked?'Desfavoritar':'Favoritar'} ${escapeHtml(t.title)}">${icon('heart')}</button><button class="icon-button" data-action="add-playlist" data-id="${escapeHtml(t.id)}" title="Adicionar à playlist" aria-label="Adicionar ${escapeHtml(t.title)} a uma playlist">${icon('plus')}</button>${saveButton}</div></div>`;
+    const paused = !stored && pausedDownloads.has(offline.absolute(t.src));
+    const label = stored ? 'Salva' :
+      downloading ? offline.supportsJobs ? 'Pausar' :
+        percentage === null ? 'Baixando...' : 'Baixando ' + percentage + '%' :
+      paused ? 'Retomar' : 'Baixar';
+    const saveButton = `<button class="download-track-button ${stored?'is-downloaded':''}" data-action="offline-toggle" data-id="${escapeHtml(t.id)}" title="${stored?'Excluir cópia offline':downloading?'Pausar download':paused?'Retomar download':'Baixar para ouvir offline'}" aria-label="${label} ${escapeHtml(t.title)}" ${downloading&&!offline.supportsJobs?'disabled':''}>${icon(stored?'trash':downloading&&offline.supportsJobs?'pause':'download')}<span>${label}</span></button>`;
+    const cancelButton = offline.supportsJobs && !stored && (downloading || paused)
+      ? `<button class="download-cancel-button" data-action="download-cancel" data-id="${escapeHtml(t.id)}" title="Cancelar e apagar download parcial" aria-label="Cancelar download de ${escapeHtml(t.title)}">Cancelar</button>` : '';
+    return `<div class="track-row ${active ? 'is-active':''}"><button class="track-main track-main-play" data-action="play-track" data-id="${escapeHtml(t.id)}" aria-label="Tocar ${escapeHtml(t.title)}"><img src="${art(t)}" alt="" loading="lazy"><span class="track-text"><strong>${escapeHtml(t.title)}</strong><small>${escapeHtml(t.artist)}</small></span></button><span class="track-genre">${escapeHtml(t.genre)}</span><span class="track-duration">${timeFmt(t.duration)}</span><div class="track-actions"><button class="icon-button ${liked?'is-liked':''}" data-action="like-track" data-id="${escapeHtml(t.id)}" title="${liked?'Remover dos favoritos':'Favoritar'}" aria-label="${liked?'Desfavoritar':'Favoritar'} ${escapeHtml(t.title)}">${icon('heart')}</button><button class="icon-button" data-action="add-playlist" data-id="${escapeHtml(t.id)}" title="Adicionar à playlist" aria-label="Adicionar ${escapeHtml(t.title)} a uma playlist">${icon('plus')}</button>${saveButton}${cancelButton}</div></div>`;
   }
   function visibleTracks() {
     const query = state.query.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -260,7 +268,15 @@
     const t=trackById(id);
     if (!t || !t.src) return toast('Música não encontrada no catálogo.');
     const url=offline.absolute(t.src);
-    if (activeDownloads.has(url)) return;
+    if (activeDownloads.has(url)) {
+      if (!offline.supportsJobs) return;
+      await offline.pause(t);
+      activeDownloads.delete(url);
+      pausedDownloads.add(url);
+      renderExplore(); renderFavorites(); renderPlaylists();
+      return toast('Download pausado. Toque em Retomar para continuar.');
+    }
+    if (pausedDownloads.has(url)) pausedDownloads.delete(url);
     button.disabled=true;
     try {
       if (offlineSources.has(url)) {
@@ -284,13 +300,62 @@
       button.disabled=false;renderExplore();renderFavorites();renderPlaylists();
     }
   }
+  async function cancelDownload(id) {
+    const track=trackById(id);
+    if (!track || !offline.supportsJobs) return;
+    const url=offline.absolute(track.src);
+    await offline.cancel(track);
+    activeDownloads.delete(url);
+    pausedDownloads.delete(url);
+    renderExplore(); renderFavorites(); renderPlaylists();
+    toast('Download cancelado.');
+  }
+  let checkingJobs=false;
+  async function refreshNativeDownloadJobs() {
+    if (!offline.supportsJobs || checkingJobs) return;
+    checkingJobs=true;
+    try {
+      const jobs=await offline.jobs();
+      const active=new Map(), paused=new Set();
+      for (const job of jobs) {
+        if (!job || typeof job.url !== 'string' || !offline.isCatalogAudio(job.url)) continue;
+        if (job.state === 'paused') paused.add(job.url);
+        else if (job.state === 'running' || job.state === 'queued')
+          active.set(job.url, Number.isFinite(job.percent) && job.percent>=0 ? job.percent : null);
+      }
+      const prior=Array.from(activeDownloads.keys()).sort().join('|')+';'+Array.from(pausedDownloads).sort().join('|');
+      const next=Array.from(active.keys()).sort().join('|')+';'+Array.from(paused).sort().join('|');
+      activeDownloads.clear(); pausedDownloads.clear();
+      for (const [url,percent] of active) activeDownloads.set(url,percent);
+      for (const url of paused) pausedDownloads.add(url);
+      if (prior!==next) {
+        await syncOffline();
+        renderExplore();renderFavorites();renderPlaylists();
+      } else if (activeDownloads.size) {
+        for (const [url,percent] of activeDownloads) showDownloadProgress(url,percent);
+      }
+    } catch (error) { console.warn('Fila offline:',error); }
+    finally { checkingJobs=false; }
+  }
+  if (offline.supportsJobs) {
+    setInterval(()=>{ if (!document.hidden) refreshNativeDownloadJobs(); },4000);
+    window.addEventListener('focus',refreshNativeDownloadJobs);
+  }
   offline.onChange(async e=>{
+    if (e.type === 'paused' || e.type === 'canceled') {
+      if (e.url) {
+        activeDownloads.delete(e.url);
+        if (e.type==='paused') pausedDownloads.add(e.url);
+        else pausedDownloads.delete(e.url);
+      }
+      return;
+    }
     if (e.type === 'started' || e.type === 'progress') {
       if(e.url) showDownloadProgress(e.url,Number.isFinite(Number(e.percent)) ? Number(e.percent) : null);
       return;
     }
     if(['done','deleted','error'].includes(e.type)){
-      if(e.url) activeDownloads.delete(e.url);
+      if(e.url) {activeDownloads.delete(e.url); pausedDownloads.delete(e.url);}
       await syncOffline();
       if(e.type==='done')toast('Download concluído e disponível offline.');
       if(e.type==='error')toast('Falha: '+(e.message||'verifique a internet.'));
@@ -661,6 +726,7 @@
       case 'play-queued': { const i = Number(el.dataset.index); if (Number.isInteger(i) && state.queue[i]) { state.queueIndex=i; const t=trackById(state.queue[i]); loadTrack(t,0);requestPlay();renderQueue();renderExplore(); } break; }
       case 'like-track': toggleLike(id); break;
       case 'offline-toggle': toggleOffline(id,el); break;
+      case 'download-cancel': cancelDownload(id); break;
       case 'open-downloads': jumpToDownloads(); break;
       case 'open-offline-available': jumpToDownloads('offline-available'); break;
       case 'open-offline-saved': jumpToDownloads('offline-library'); break;
@@ -802,6 +868,7 @@
       if (state.currentId) state.queue=state.tracks.map(t=>t.id);
       renderRadio(info);renderExplore();renderFavorites();renderPlaylists();renderQueue(info);renderPlayer();
       syncOffline();
+      refreshNativeDownloadJobs();
     } catch (err) {
       console.error('Radio Hits: falha no catálogo',err);
       $('station-title').textContent='Não foi possível carregar o catálogo';

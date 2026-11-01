@@ -67,3 +67,14 @@
   .stream-only-badge{min-width:63px;font-size:9px}
   #preload-status{max-width:155px;font-size:9px}
 }
+
+/* REV 1.8 — controles discretos de pausa/cancelamento nos downloads Android. */
+.track-row:has(.download-cancel-button){grid-template-columns:minmax(170px,1fr) 100px 46px 232px}
+.download-cancel-button{border:1px solid #62524b;color:#dfbaa9;background:#292322;min-height:30px;padding:4px 7px;border-radius:7px;font-weight:700;font-size:10px}
+.download-cancel-button:hover{background:#40302a}
+.download-cancel-button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:740px){
+  .track-row:has(.download-cancel-button){grid-template-columns:minmax(0,1fr) auto}
+  .download-cancel-button{font-size:9px;padding:4px 5px;min-height:32px}
+  .track-actions .download-track-button{min-width:65px}
+}
