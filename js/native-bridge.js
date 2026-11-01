@@ -26,8 +26,11 @@
   });
   window.RadioHitsAndroid = Object.freeze({
     listDownloads() { return request('listDownloads'); },
+    listDownloadJobs() { return request('listDownloadJobs'); },
     state() { return request('state'); },
     saveOffline: value => send('saveOffline', value),
+    pauseOffline: value => send('pauseOffline', value),
+    cancelOffline: value => send('cancelOffline', value),
     deleteOffline: value => send('deleteOffline', value),
     saveCatalog: value => send('saveCatalog', value),
     playQueue: value => send('playQueue', value),
