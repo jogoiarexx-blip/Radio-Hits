@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0b0e13">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="description" content="Radio Hits — rádio sincronizada e músicas sob demanda em um só lugar.">
   <meta property="og:title" content="Radio Hits — sua música, seu ritmo">
   <meta property="og:description" content="Rádio e biblioteca de músicas num mesmo player.">
@@ -121,6 +122,7 @@
   <dialog id="modal" class="modal"><div class="modal-header"><h2 id="modal-heading">Nova playlist</h2><button class="icon-button" id="modal-close" aria-label="Fechar"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="modal-body"></div></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <audio id="audio" preload="metadata"></audio>
+  <script src="./js/native-bridge.js?v=bridge-1" defer></script>
   <script src="./js/offline.js?v=offline-todas-1" defer></script>
   <script src="./js/app.js?v=downloads-todas-1" defer></script>
 </body>
