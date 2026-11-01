@@ -35,4 +35,14 @@ assert.match(service,/synchronizeRadioClock\(\)/);
 assert.match(service,/PlaybackClock\.at\(System\.currentTimeMillis\(\),durations\)/);
 assert.match(service,/drift>4000L/);
 assert.match(service,/player\.seekTo\(clock\.index,clock\.offsetMs\)/);
-console.log('RADIO 64 OK: todas as 64 janelas horarias, limites de faixa e 7 voltas do ciclo.');
+// Percurso acelerado do ciclo completo: nao representa audio decodificado.
+let simulated=0;
+const STEP=15;
+while(simulated < total) {
+  const info=ctx.getRadioInfo(epoch+simulated*1000);
+  assert.ok(info && info.track,'programacao ausente em '+simulated);
+  assert.ok(info.offset >= 0 && info.offset < Number(info.track.duration),
+    'offset fora do intervalo da faixa '+info.track.id);
+  simulated+=STEP;
+}
+console.log('RADIO 64 OK: janelas de 64 faixas, 7 voltas e '+Math.ceil(total/STEP)+' amostras em 15s de um ciclo inteiro.');
