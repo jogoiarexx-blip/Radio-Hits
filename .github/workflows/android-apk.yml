@@ -57,6 +57,9 @@ jobs:
           node --check js/app.js
           node tests/teste-bridge-android.js
           node tests/teste-fila-android.js
+          node tests/teste-recuperacao-android.js
+          javac -d /tmp/radiohits-recovery android/app/src/main/java/br/com/radiohits/app/PlaybackClock.java android/app/src/main/java/br/com/radiohits/app/PlaybackRetryPolicy.java tests/PlaybackRecoveryCheck.java
+          java -cp /tmp/radiohits-recovery br.com.radiohits.app.PlaybackRecoveryCheck
           node tests/auditoria-radio.js
           node tests/teste-volume.js
           node tests/teste-transicoes.js

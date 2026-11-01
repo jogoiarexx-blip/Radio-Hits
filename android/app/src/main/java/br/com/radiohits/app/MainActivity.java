@@ -56,16 +56,9 @@ public final class MainActivity extends Activity {
     private boolean levelingEnabled = true;
 
     private void applyNativeVolume() {
-        if (controller == null) return;
-        MediaItem item = controller.getCurrentMediaItem();
-        Bundle extras = item == null ? null : item.mediaMetadata.extras;
-        double gainDb = levelingEnabled && extras != null ?
-            extras.getDouble("radiohits_gain_db", 0.0) : 0.0;
-        if (!Double.isFinite(gainDb)) gainDb = 0.0;
-        gainDb = Math.max(-10.0, Math.min(0.0, gainDb));
-        // Volume do ExoPlayer varia de 0 a 1. Não amplificamos faixas baixas.
-        controller.setVolume((float)Math.max(0.0,Math.min(1.0,
-            masterVolume * Math.pow(10.0,gainDb/20.0))));
+        if(controller==null) return;
+        PlaybackPreferences.save(this,masterVolume,levelingEnabled);
+        PlaybackPreferences.apply(this,controller);
     }
     private boolean pageReady = false;
     private boolean forceOfflineShell = false;
@@ -81,6 +74,10 @@ public final class MainActivity extends Activity {
 
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
+        android.content.SharedPreferences nativePrefs =
+            getSharedPreferences("radiohits_native_audio_v1", MODE_PRIVATE);
+        masterVolume=nativePrefs.getFloat("masterVolume",0.75f);
+        levelingEnabled=nativePrefs.getBoolean("leveling",true);
         getWindow().setStatusBarColor(0xFF0B0E13);
         getWindow().setNavigationBarColor(0xFF0B0E13);
         if (Build.VERSION.SDK_INT >= 33 &&
@@ -163,6 +160,7 @@ public final class MainActivity extends Activity {
                     waitingPlay = null;
                     startQueue(value);
                 }
+                applyNativeVolume();
                 updateState();
             } catch (Exception e) {
                 Toast.makeText(this, "Falha ao ligar o player Android", Toast.LENGTH_LONG).show();
@@ -226,13 +224,7 @@ public final class MainActivity extends Activity {
     }
 
     private boolean approvedMusic(String url) {
-        try {
-            Uri uri = Uri.parse(url);
-            return "https".equals(uri.getScheme()) &&
-                "jogoiarexx-blip.github.io".equalsIgnoreCase(uri.getHost()) &&
-                uri.getEncodedPath() != null &&
-                uri.getEncodedPath().startsWith("/Radio-Hits/musicas/");
-        } catch (Exception ignored) { return false; }
+        return OfflineStore.validUrl(url);
     }
 
     private void startQueue(String raw) {
@@ -253,6 +245,8 @@ public final class MainActivity extends Activity {
                 double gainDb = track.optDouble("gainDb",0);
                 if (!Double.isFinite(gainDb)) gainDb = 0.0;
                 extra.putDouble("radiohits_gain_db",Math.max(-10,Math.min(0,gainDb)));
+                long durationMs=Math.max(0,Math.min(86_400_000L,track.optLong("durationMs",0)));
+                extra.putLong("radiohits_duration_ms",durationMs);
                 MediaMetadata metadata = new MediaMetadata.Builder()
                     .setTitle(track.optString("title", "Música"))
                     .setArtist(track.optString("artist", "Radio Hits"))
@@ -324,6 +318,15 @@ public final class MainActivity extends Activity {
             status.put("index", controller.getCurrentMediaItemIndex());
             status.put("count", controller.getMediaItemCount());
             status.put("error", controller.getPlayerError() != null);
+            status.put("errorCode",controller.getPlayerError()==null ? 0
+                : controller.getPlayerError().errorCode);
+            status.put("buffering",controller.getPlaybackState()==Player.STATE_BUFFERING);
+            status.put("shuffle",controller.getShuffleModeEnabled());
+            status.put("repeat",controller.getRepeatMode());
+            JSONArray queueIds=new JSONArray();
+            for (int i=0;i<controller.getMediaItemCount() && i<1500;i++)
+                queueIds.put(controller.getMediaItemAt(i).mediaId);
+            status.put("queueIds",queueIds);
             latestState = status.toString();
             if (pageReady && web != null) {
                 web.evaluateJavascript("window.RadioHitsAndroidState && window.RadioHitsAndroidState("+latestState+")", null);
@@ -397,6 +400,7 @@ public final class MainActivity extends Activity {
                 case "resume":
                     handler.post(() -> {
                         if (controller != null && controller.getMediaItemCount() > 0) {
+                            if(controller.getPlayerError()!=null) controller.prepare();
                             controller.play();
                             updateState();
                         }

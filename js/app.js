@@ -6,6 +6,7 @@
     const events = new EventTarget();
     let source='', position=0, duration=0, ready=0, paused=true, ended=false, volume=.75, error=null;
     let nativeId='', nativeMode='', nativeIsLocal=false;
+    let lastErrorCode=0;
     function emit(type) { events.dispatchEvent(new Event(type)); }
     window.RadioHitsAndroidState = function(info) {
       if (!info || typeof info !== 'object') return;
@@ -17,21 +18,37 @@
       paused = !!info.paused;
       if (nativeMode === 'radio') radioWantsPlayback = !paused;
       ended = !!info.ended;
-      error = info.error ? {code:2} : null;
+      const code=info.error ? Number(info.errorCode)||2 : 0;
+      error=code ? {code} : null;
       if (info.src && (source === '' || (info.id && oldId !== info.id))) source = info.src;
       if (Number.isFinite(Number(info.position))) position = Math.max(0,Number(info.position));
       if (Number(info.duration) > 0) duration = Number(info.duration);
       if (Number(info.readyState) > 0) ready = Number(info.readyState);
       if (wasPaused !== paused) emit(paused?'pause':'play');
       emit('timeupdate');
-      if (error) emit('error');
+      if (error && code !== lastErrorCode) emit('error');
+      lastErrorCode=code;
+      if (info.buffering && !paused && !error)
+        setPreloadStatus('Preparando áudio no Android...');
+      else if (error && !paused)
+        setPreloadStatus('Conexão interrompida · tentando recuperar');
       if (typeof state !== 'undefined' && state.loaded && nativeId && trackById(nativeId)) {
-        const changed = state.currentId !== nativeId;
-        if (changed) {
-          state.currentId = nativeId;
-          if (nativeMode === 'radio' || nativeMode === 'ondemand') state.mode = nativeMode;
-          if (state.mode === 'ondemand') state.queueIndex = Math.max(0,state.queue.indexOf(nativeId));
-          renderPlayer(); renderRadio(); renderExplore(); renderQueue(); 
+        const changed = state.currentId !== nativeId || state.mode !== nativeMode;
+        if (nativeMode === 'radio' || nativeMode === 'ondemand') state.mode=nativeMode;
+        if (changed) state.currentId=nativeId;
+        let queueChanged=false;
+        if (nativeMode === 'ondemand' && Array.isArray(info.queueIds) && info.queueIds.length) {
+          const ids=info.queueIds.filter(id=>typeof id==='string' && trackById(id));
+          if (ids.length && JSON.stringify(ids)!==JSON.stringify(state.queue)) {
+            state.queue=ids;
+            queueChanged=true;
+          }
+          state.queueIndex=Math.max(0,Math.min(state.queue.length-1,Number(info.index)||0));
+          state.shuffle=info.shuffle===true;
+          state.repeat=info.repeat===2 ? 'all' : info.repeat===1 ? 'one':'off';
+        }
+        if(changed || queueChanged) {
+          renderPlayer();renderRadio();renderExplore();renderQueue();
         }
       }
     };
@@ -59,7 +76,7 @@
         const index = Math.max(0,tracks.findIndex(t=>t.id===selected));
         // Retomar a mesma faixa não precisa destruir a fila nem o buffer nativo.
         const resumeTarget = new URL(tracks[index].src, document.baseURI).href;
-        if (nativeId === selected && nativeMode === state.mode && source === resumeTarget
+        if (state.mode !== 'radio' && nativeId === selected && nativeMode === state.mode && source === resumeTarget
             && (!offlineSources.has(resumeTarget) || nativeIsLocal)
             && !ended && typeof window.RadioHitsAndroid.resume === 'function') {
           window.RadioHitsAndroid.resume();
@@ -72,7 +89,8 @@
           repeat:state.repeat==='all',
           tracks:tracks.map(t=>({
             id:t.id,title:t.title,artist:t.artist,
-            src:new URL(t.src,document.baseURI).href,gainDb:Number(t.gainDb)||0
+            src:new URL(t.src,document.baseURI).href,gainDb:Number(t.gainDb)||0,
+            durationMs:Math.max(0,Math.round(Number(t.duration)*1000))
           }))
         };
         window.RadioHitsAndroid.playQueue(JSON.stringify(request));
@@ -816,7 +834,9 @@
     });
     element.addEventListener('error', () => {
       if (element === audio && audio.error && state.playRequested)
-        toast('Falha ao carregar o áudio. Confira o arquivo no GitHub.');
+        toast(nativeBridge
+          ? 'Falha no áudio. Se a rede não voltar, toque em reproduzir para tentar novamente.'
+          : 'Falha ao carregar o áudio. Confira o arquivo no GitHub.');
     });
   }
   bindAudioEvents(audio);
@@ -869,6 +889,12 @@
       renderRadio(info);renderExplore();renderFavorites();renderPlaylists();renderQueue(info);renderPlayer();
       syncOffline();
       refreshNativeDownloadJobs();
+      if (nativeBridge && window.RadioHitsAndroid.state) {
+        try {
+          const current=JSON.parse(await window.RadioHitsAndroid.state());
+          if(current && window.RadioHitsAndroidState) window.RadioHitsAndroidState(current);
+        } catch (error) { console.warn('Estado nativo indisponível:',error); }
+      }
     } catch (err) {
       console.error('Radio Hits: falha no catálogo',err);
       $('station-title').textContent='Não foi possível carregar o catálogo';
