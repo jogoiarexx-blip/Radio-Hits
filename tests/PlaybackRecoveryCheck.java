@@ -31,6 +31,9 @@ public final class PlaybackRecoveryCheck {
         check(PlaybackRetryPolicy.retryableHttp(503),"falha de servidor transitória");
         check(!PlaybackRetryPolicy.retryableHttp(401),"sem retry em autenticacao");
         check(PlaybackRetryPolicy.retryableIoCode(2001),"io recuperavel");
+        check(!PlaybackRetryPolicy.retryableIoCode(2004),"HTTP precisa do status real");
+        check(!PlaybackRetryPolicy.retryableIoCode(2005),"arquivo ausente nao recuperavel");
+        check(!PlaybackRetryPolicy.retryableIoCode(2006),"permissao negada nao recuperavel");
         check(!PlaybackRetryPolicy.retryableIoCode(3001),"decoder nao recuperavel");
         System.out.println("RECOVERY JVM OK: relogio radio e backoff finito.");
     }
