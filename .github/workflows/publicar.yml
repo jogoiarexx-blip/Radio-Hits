@@ -41,6 +41,7 @@ jobs:
           node tests/teste-fila-android.js
           node tests/teste-recuperacao-android.js
           node tests/teste-radio-64.js
+          node tests/teste-bateria-background.js
           node tests/teste-memoria-stream.js
           javac -d /tmp/radiohits-recovery android/app/src/main/java/br/com/radiohits/app/PlaybackClock.java android/app/src/main/java/br/com/radiohits/app/PlaybackRetryPolicy.java tests/PlaybackRecoveryCheck.java
           java -cp /tmp/radiohits-recovery br.com.radiohits.app.PlaybackRecoveryCheck
