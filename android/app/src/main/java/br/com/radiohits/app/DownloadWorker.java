@@ -54,6 +54,7 @@ public final class DownloadWorker extends Worker {
         OneTimeWorkRequest task = new OneTimeWorkRequest.Builder(DownloadWorker.class)
             .setInputData(data)
             .addTag(TAG)
+            .addTag("url:" + url)
             .setConstraints(constraints)
             .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 30, TimeUnit.SECONDS)
             .build();
