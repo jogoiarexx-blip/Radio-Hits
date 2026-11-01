@@ -30,10 +30,15 @@ public final class PlaybackService extends MediaSessionService {
     private boolean retryScheduled=false;
     private int attempts=0;
     private long playbackStableSince=0;
+    private int radioSyncTicks=0;
     private final Runnable periodicSave=new Runnable() {
         @Override public void run() {
             if(player!=null && !restoring) {
                 PlaybackSnapshot.save(PlaybackService.this,player,false);
+                if(++radioSyncTicks >= 3) {
+                    radioSyncTicks=0;
+                    synchronizeRadioClock();
+                }
                 if(player.isPlaying()) {
                     if(playbackStableSince==0) playbackStableSince=System.currentTimeMillis();
                     if(System.currentTimeMillis()-playbackStableSince>30_000L) attempts=0;
@@ -94,6 +99,33 @@ public final class PlaybackService extends MediaSessionService {
         session = new MediaSession.Builder(this,player).build();
         monitorNetwork();
         handler.postDelayed(periodicSave,5000L);
+    }
+
+    /**
+     * O player avança pela duracao real dos arquivos, mas a programação
+     * da rádio avança pelo relógio UTC do catálogo. Corrige diferenças
+     * superiores a 4 segundos ou faixa trocada fora de hora.
+     */
+    private void synchronizeRadioClock() {
+        if(player==null || !player.isPlaying()
+            || player.getPlaybackState()!=Player.STATE_READY) return;
+        MediaItem current=player.getCurrentMediaItem();
+        if(current==null || current.mediaMetadata.extras==null
+            || !"radio".equals(current.mediaMetadata.extras.getString("radiohits_mode",""))) return;
+        int count=player.getMediaItemCount();
+        if(count<1 || count>1500) return;
+        long[] durations=new long[count];
+        for(int i=0;i<count;i++) {
+            MediaItem item=player.getMediaItemAt(i);
+            if(item.mediaMetadata.extras==null) return;
+            durations[i]=item.mediaMetadata.extras.getLong("radiohits_duration_ms",0);
+        }
+        PlaybackClock.Position clock=PlaybackClock.at(System.currentTimeMillis(),durations);
+        if(clock==null) return;
+        long drift=Math.abs(player.getCurrentPosition()-clock.offsetMs);
+        if(player.getCurrentMediaItemIndex()!=clock.index || drift>4000L) {
+            player.seekTo(clock.index,clock.offsetMs);
+        }
     }
 
     private void saveSnapshot(boolean sync) {

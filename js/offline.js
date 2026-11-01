@@ -3,6 +3,27 @@
 (() => {
   const CACHE = 'radio-hits-offline-audio-v1';
   const blobURLs = new Map();
+  const pendingSources = new Map();
+  // No máximo os dois players da aplicação (ativo + pré-carga) devem
+  // manter URLs blob. Cache Storage preserva os downloads no disco.
+  let protectedSources = new Set();
+  function releaseUnused(keep=[]) {
+    protectedSources = new Set(keep.filter(src => typeof src === 'string' && src.startsWith('blob:')));
+    for (const [url, src] of blobURLs) {
+      if (!protectedSources.has(src)) {
+        URL.revokeObjectURL(src);
+        blobURLs.delete(url);
+      }
+    }
+  }
+  function limitObjectURLs(newest) {
+    while (blobURLs.size > 2) {
+      const stale = [...blobURLs].find(([url,src]) => url !== newest && !protectedSources.has(src));
+      if (!stale) break; // Preserve o áudio em uso durante a troca.
+      URL.revokeObjectURL(stale[1]);
+      blobURLs.delete(stale[0]);
+    }
+  }
   const isNative = Boolean(window.RadioHitsAndroid && typeof window.RadioHitsAndroid.saveOffline === 'function');
   const supportsJobs = isNative && ['listDownloadJobs','pauseOffline','cancelOffline']
     .every(method => typeof window.RadioHitsAndroid[method] === 'function');
@@ -44,34 +65,57 @@
     const store = await cacheOpen();
     if (await store.match(url)) { notify({type:'done',url}); return; }
     const response = await fetch(url, {cache:'no-store'});
-    if (!response.ok || (response.status !== 200)) throw Error('Falha ao baixar áudio: HTTP ' + response.status);
+    if (!response.ok || response.status !== 200)
+      throw Error('Falha ao baixar áudio: HTTP ' + response.status);
     const expected = Number(response.headers.get('content-length')) || 0;
-    if (expected > 95 * 1024 * 1024) throw Error('Arquivo grande demais para download offline.');
-    const chunks = [];
-    let bytes = 0;
-    if (response.body && response.body.getReader) {
-      const reader = response.body.getReader();
-      for (;;) {
-        const result = await reader.read();
-        if (result.done) break;
-        if (!result.value) continue;
-        bytes += result.value.byteLength;
-        if (bytes > 95 * 1024 * 1024) {
-          reader.cancel();
-          throw Error('O arquivo excede 95 MB.');
-        }
-        chunks.push(result.value);
-        progress(expected > 0 ? Math.min(100,Math.round(bytes/expected*100)) : null,bytes);
-      }
-    } else {
-      const b = await response.blob();
-      bytes = b.size;
-      chunks.push(b);
-    }
-    if (!bytes || (expected && bytes !== expected)) throw Error('Arquivo incompleto. Tente novamente.');
+    const MAX_BYTES = 95 * 1024 * 1024;
+    if (expected > MAX_BYTES) throw Error('Arquivo grande demais para download offline.');
     const mime = response.headers.get('content-type') || 'audio/mpeg';
-    const blob = new Blob(chunks,{type:mime});
-    await store.put(url,new Response(blob,{headers:{'Content-Type':mime,'Content-Length':String(bytes)}}));
+    let bytes = 0;
+    let body;
+    if (typeof ReadableStream === 'function' && response.body?.getReader) {
+      // Cache Storage consome o fluxo gradualmente: não materializamos
+      // faixas de até 95 MB numa lista de chunks em memória JS.
+      const reader = response.body.getReader();
+      body = new ReadableStream({
+        async pull(controller) {
+          try {
+            const part = await reader.read();
+            if (part.done) {
+              if (!bytes || (expected && bytes !== expected))
+                throw Error('Arquivo incompleto. Tente novamente.');
+              controller.close();
+              return;
+            }
+            if (!part.value?.byteLength) return;
+            bytes += part.value.byteLength;
+            if (bytes > MAX_BYTES) throw Error('O arquivo excede 95 MB.');
+            controller.enqueue(part.value);
+            progress(expected ? Math.min(100, Math.floor(bytes / expected * 100)) : null,bytes);
+          } catch (error) {
+            await reader.cancel().catch(()=>{});
+            controller.error(error);
+          }
+        },
+        cancel(reason) { return reader.cancel(reason); }
+      });
+    } else {
+      // Compatibilidade para navegadores sem streaming do Response.
+      const blob = await response.blob();
+      bytes = blob.size;
+      if (!bytes || bytes > MAX_BYTES || (expected && bytes !== expected))
+        throw Error('Arquivo offline inválido ou incompleto.');
+      body = blob;
+      progress(100,bytes);
+    }
+    try {
+      await store.put(url,new Response(body,{headers:{'Content-Type':mime}}));
+      if (!bytes || (expected && bytes !== expected))
+        throw Error('Arquivo incompleto. Tente novamente.');
+    } catch (error) {
+      await store.delete(url).catch(()=>{});
+      throw error;
+    }
     notify({type:'done',url,bytes});
   }
   async function jobs() {
@@ -102,7 +146,9 @@
       const store = await cacheOpen();
       await store.delete(url);
       if (blobURLs.has(url)) {
-        URL.revokeObjectURL(blobURLs.get(url));
+        const objectURL = blobURLs.get(url);
+        URL.revokeObjectURL(objectURL);
+        protectedSources.delete(objectURL);
         blobURLs.delete(url);
       }
     }
@@ -112,14 +158,23 @@
     const url = absolute(track.src);
     if (isNative) return url;
     if (blobURLs.has(url)) return blobURLs.get(url);
-    const store = await cacheOpen();
-    const response = await store.match(url);
-    if (!response) return url;
-    const blob = await response.blob();
-    const objectURL = URL.createObjectURL(blob);
-    blobURLs.set(url,objectURL);
-    return objectURL;
+    if (pendingSources.has(url)) return pendingSources.get(url);
+    const promise = (async () => {
+      const store = await cacheOpen();
+      const response = await store.match(url);
+      if (!response) return url;
+      const blob = await response.blob();
+      if (!blob.size) throw Error('Arquivo offline vazio.');
+      const objectURL = URL.createObjectURL(blob);
+      blobURLs.set(url,objectURL);
+      limitObjectURLs(url);
+      return objectURL;
+    })();
+    pendingSources.set(url,promise);
+    try { return await promise; }
+    finally { pendingSources.delete(url); }
   }
+  function activeObjectURLCount() { return blobURLs.size; }
   async function usage() {
     if (navigator.storage && navigator.storage.estimate) {
       const q=await navigator.storage.estimate();
@@ -130,5 +185,6 @@
   window.RadioHitsOfflineEvent = function(event) {
     if (event && typeof event==='object') notify(event);
   };
-  window.RadioHitsOffline = {isNative,supportsJobs,list,jobs,download,pause,cancel,remove,playableSource,usage,isCatalogAudio,onChange(callback){listener=callback;},absolute};
+  window.RadioHitsOffline = {isNative,supportsJobs,list,jobs,download,pause,cancel,remove,
+    playableSource,releaseUnused,activeObjectURLCount,usage,isCatalogAudio,onChange(callback){listener=callback;},absolute};
 })();
