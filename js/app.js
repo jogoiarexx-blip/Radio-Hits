@@ -105,9 +105,9 @@
     document.querySelectorAll('[data-action="offline-toggle"]').forEach(btn => {
       const track = trackById(btn.dataset.id);
       if (!track || offline.absolute(track.src) !== url) return;
-      btn.disabled = !offline.isNative;
+      btn.disabled = !offline.supportsJobs;
       const span = btn.querySelector('span');
-      if (span) span.textContent = offline.isNative ? 'Pausar' :
+      if (span) span.textContent = offline.supportsJobs ? 'Pausar' :
         percent === null ? 'Baixando...' : 'Baixando ' + percent + '%';
     });
   }
@@ -201,11 +201,11 @@
     const percentage = activeDownloads.get(offline.absolute(t.src));
     const paused = !stored && pausedDownloads.has(offline.absolute(t.src));
     const label = stored ? 'Salva' :
-      downloading ? offline.isNative ? 'Pausar' :
+      downloading ? offline.supportsJobs ? 'Pausar' :
         percentage === null ? 'Baixando...' : 'Baixando ' + percentage + '%' :
       paused ? 'Retomar' : 'Baixar';
-    const saveButton = `<button class="download-track-button ${stored?'is-downloaded':''}" data-action="offline-toggle" data-id="${escapeHtml(t.id)}" title="${stored?'Excluir cópia offline':downloading?'Pausar download':paused?'Retomar download':'Baixar para ouvir offline'}" aria-label="${label} ${escapeHtml(t.title)}" ${downloading&&!offline.isNative?'disabled':''}>${icon(stored?'trash':downloading&&offline.isNative?'pause':'download')}<span>${label}</span></button>`;
-    const cancelButton = offline.isNative && !stored && (downloading || paused)
+    const saveButton = `<button class="download-track-button ${stored?'is-downloaded':''}" data-action="offline-toggle" data-id="${escapeHtml(t.id)}" title="${stored?'Excluir cópia offline':downloading?'Pausar download':paused?'Retomar download':'Baixar para ouvir offline'}" aria-label="${label} ${escapeHtml(t.title)}" ${downloading&&!offline.supportsJobs?'disabled':''}>${icon(stored?'trash':downloading&&offline.supportsJobs?'pause':'download')}<span>${label}</span></button>`;
+    const cancelButton = offline.supportsJobs && !stored && (downloading || paused)
       ? `<button class="download-cancel-button" data-action="download-cancel" data-id="${escapeHtml(t.id)}" title="Cancelar e apagar download parcial" aria-label="Cancelar download de ${escapeHtml(t.title)}">Cancelar</button>` : '';
     return `<div class="track-row ${active ? 'is-active':''}"><button class="track-main track-main-play" data-action="play-track" data-id="${escapeHtml(t.id)}" aria-label="Tocar ${escapeHtml(t.title)}"><img src="${art(t)}" alt="" loading="lazy"><span class="track-text"><strong>${escapeHtml(t.title)}</strong><small>${escapeHtml(t.artist)}</small></span></button><span class="track-genre">${escapeHtml(t.genre)}</span><span class="track-duration">${timeFmt(t.duration)}</span><div class="track-actions"><button class="icon-button ${liked?'is-liked':''}" data-action="like-track" data-id="${escapeHtml(t.id)}" title="${liked?'Remover dos favoritos':'Favoritar'}" aria-label="${liked?'Desfavoritar':'Favoritar'} ${escapeHtml(t.title)}">${icon('heart')}</button><button class="icon-button" data-action="add-playlist" data-id="${escapeHtml(t.id)}" title="Adicionar à playlist" aria-label="Adicionar ${escapeHtml(t.title)} a uma playlist">${icon('plus')}</button>${saveButton}${cancelButton}</div></div>`;
   }
@@ -269,7 +269,7 @@
     if (!t || !t.src) return toast('Música não encontrada no catálogo.');
     const url=offline.absolute(t.src);
     if (activeDownloads.has(url)) {
-      if (!offline.isNative) return;
+      if (!offline.supportsJobs) return;
       await offline.pause(t);
       activeDownloads.delete(url);
       pausedDownloads.add(url);
@@ -302,7 +302,7 @@
   }
   async function cancelDownload(id) {
     const track=trackById(id);
-    if (!track || !offline.isNative) return;
+    if (!track || !offline.supportsJobs) return;
     const url=offline.absolute(track.src);
     await offline.cancel(track);
     activeDownloads.delete(url);
@@ -312,7 +312,7 @@
   }
   let checkingJobs=false;
   async function refreshNativeDownloadJobs() {
-    if (!offline.isNative || checkingJobs) return;
+    if (!offline.supportsJobs || checkingJobs) return;
     checkingJobs=true;
     try {
       const jobs=await offline.jobs();
@@ -337,7 +337,7 @@
     } catch (error) { console.warn('Fila offline:',error); }
     finally { checkingJobs=false; }
   }
-  if (offline.isNative) {
+  if (offline.supportsJobs) {
     setInterval(()=>{ if (!document.hidden) refreshNativeDownloadJobs(); },4000);
     window.addEventListener('focus',refreshNativeDownloadJobs);
   }
