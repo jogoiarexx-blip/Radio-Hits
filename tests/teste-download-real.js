@@ -9,7 +9,11 @@ const cacheMap=new Map();
 const calls=[];
 const fakeCache={
   match:async key=>cacheMap.get(String(key))?.clone()||null,
-  put:async(key,response)=>{cacheMap.set(String(key),response.clone());},
+  put:async(key,response)=>{
+    // Cache.put consome o corpo streaming antes de gravar a entrada.
+    const bytes=await response.arrayBuffer();
+    cacheMap.set(String(key),new Response(bytes,{status:200,headers:response.headers}));
+  },
   delete:async key=>cacheMap.delete(String(key)),
   keys:async()=>Array.from(cacheMap.keys(),url=>new Request(url))
 };
@@ -24,7 +28,7 @@ const web={
       status:200,headers:{'content-length':'6','content-type':'audio/mpeg'}
     });
   },
-  URL,Blob,Response,Request,Error,Set,Map,Number,Math,Promise,console
+  URL,Blob,Response,Request,ReadableStream,Error,Set,Map,Number,Math,Promise,console
 };
 vm.createContext(web);
 vm.runInContext(source,web);
