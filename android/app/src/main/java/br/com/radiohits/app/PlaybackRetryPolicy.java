@@ -11,7 +11,9 @@ final class PlaybackRetryPolicy {
         return status==408 || status==425 || status==429 || status>=500 && status<=599;
     }
     static boolean retryableIoCode(int media3Code) {
-        // Códigos 2000–2999 pertencem à família IO do Media3.
-        return media3Code>=2000 && media3Code<3000;
+        // Só erro IO genérico, conexão falha ou timeout.
+        // Bad HTTP é classificado pelo status real; arquivo ausente, permissão
+        // negada e conteúdo inválido são falhas permanentes.
+        return media3Code==2000 || media3Code==2001 || media3Code==2002;
     }
 }
