@@ -13,7 +13,9 @@ assert.match(app,/leveling:state\.leveling/);
 const java=fs.readFileSync(path.join(root,'android/app/src/main/java/br/com/radiohits/app/MainActivity.java'),'utf8');
 assert.match(java,/radiohits_gain_db/);
 assert.match(java,/onMediaItemTransition[\s\S]*?applyNativeVolume/);
-assert.match(java,/setLeveling\(boolean enabled\)/);
+// A bridge segura da REV 1.7 encaminha métodos por mensagem, não via @JavascriptInterface.
+assert.match(java,/case "setLeveling":/);
+assert.match(java,/levelingEnabled = enabled;/);
 const start=app.indexOf('  function gainFactor('),stop=app.indexOf('  function setPlayVisuals()',start);
 assert.ok(start>0&&stop>start);
 const state={volume:.8,leveling:true,currentId:'foo'};
