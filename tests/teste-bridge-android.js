@@ -1,0 +1,32 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const root = require('node:path').resolve(__dirname, '..');
+const activity = fs.readFileSync(root + '/android/app/src/main/java/br/com/radiohits/app/MainActivity.java','utf8');
+const html = fs.readFileSync(root + '/index.html','utf8');
+const offline = fs.readFileSync(root + '/js/offline.js','utf8');
+assert.doesNotMatch(activity, /web\.addJavascriptInterface\s*\(/);
+assert.match(activity, /WebViewCompat\.addWebMessageListener/);
+assert.match(activity, /!mainFrame/);
+assert.match(activity, /jogoiarexx-blip\.github\.io/);
+assert.match(activity, /NET_CAPABILITY_VALIDATED/);
+assert.match(html, /frame-src 'none'/);
+assert.ok(html.indexOf('js/native-bridge.js') < html.indexOf('js/offline.js'));
+assert.match(offline, /await window\.RadioHitsAndroid\.listDownloads\(\)/);
+
+const sent = [];
+const native = { postMessage: msg => sent.push(JSON.parse(msg)), onmessage: null };
+const ctx = {window: {RadioHitsNative: native}, setTimeout() {}};
+vm.runInNewContext(fs.readFileSync(root + '/js/native-bridge.js','utf8'), ctx);
+assert.equal(typeof ctx.window.RadioHitsAndroid.playQueue, 'function');
+ctx.window.RadioHitsAndroid.playQueue('{"tracks":[]}');
+assert.equal(sent[0].method, 'playQueue');
+assert.equal(sent[0].value, '{"tracks":[]}');
+(async () => {
+  const request = ctx.window.RadioHitsAndroid.listDownloads();
+  assert.equal(sent[1].method, 'listDownloads');
+  native.onmessage({data: JSON.stringify({id:sent[1].id, value:'["x"]'})});
+  assert.equal(await request, '["x"]');
+  console.log('BRIDGE OK: request/response, main frame, CSP e interface compatível.');
+})().catch(e => {console.error(e); process.exitCode=1;});

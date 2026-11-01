@@ -36,6 +36,8 @@ jobs:
         run: python scripts/preparar_site.py
       - name: Verificar JavaScript, rádio e normalização
         run: |
+          node --check js/native-bridge.js
+          node tests/teste-bridge-android.js
           node --check js/app.js
           node --check js/offline.js
           node tests/auditoria-radio.js

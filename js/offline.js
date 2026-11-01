@@ -13,7 +13,7 @@
   }
   async function list() {
     if (isNative) {
-      try { return new Set(JSON.parse(window.RadioHitsAndroid.listDownloads())); }
+      try { return new Set(JSON.parse(await window.RadioHitsAndroid.listDownloads())); }
       catch (_) { return new Set(); }
     }
     const store = await cacheOpen();

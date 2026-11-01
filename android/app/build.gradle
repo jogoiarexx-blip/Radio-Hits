@@ -1,5 +1,11 @@
 plugins { id 'com.android.application' }
 
+def keyFile = System.getenv('RADIOHITS_KEYSTORE_FILE')
+def keyPassword = System.getenv('RADIOHITS_KEYSTORE_PASSWORD')
+def keyAlias = System.getenv('RADIOHITS_KEY_ALIAS')
+def aliasPassword = System.getenv('RADIOHITS_KEY_PASSWORD')
+def releaseReady = keyFile && keyPassword && keyAlias && aliasPassword
+
 android {
   namespace 'br.com.radiohits.app'
   compileSdk 36
@@ -7,17 +13,33 @@ android {
     applicationId 'br.com.radiohits.app'
     minSdk 26
     targetSdk 35
-    versionCode 7
-    versionName '1.6'
+    versionCode 8
+    versionName '1.7'
   }
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_17
     targetCompatibility JavaVersion.VERSION_17
   }
-  buildTypes { release { minifyEnabled false } }
+  signingConfigs {
+    release {
+      if (releaseReady) {
+        storeFile file(keyFile)
+        storePassword keyPassword
+        keyAlias keyAlias
+        keyPassword aliasPassword
+      }
+    }
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      if (releaseReady) signingConfig signingConfigs.release
+    }
+  }
 }
 dependencies {
   def media3 = '1.11.1'
   implementation "androidx.media3:media3-exoplayer:$media3"
   implementation "androidx.media3:media3-session:$media3"
+  implementation 'androidx.webkit:webkit:1.14.0'
 }
