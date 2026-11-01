@@ -72,6 +72,26 @@
     await store.put(url,new Response(blob,{headers:{'Content-Type':mime,'Content-Length':String(bytes)}}));
     notify({type:'done',url,bytes});
   }
+  async function jobs() {
+    if (!isNative) return [];
+    try {
+      const response = await window.RadioHitsAndroid.listDownloadJobs();
+      const data = JSON.parse(response);
+      return Array.isArray(data) ? data : [];
+    } catch (_) { return []; }
+  }
+  async function pause(track) {
+    if (!isNative || !track || !isCatalogAudio(track.src)) return;
+    const url = absolute(track.src);
+    window.RadioHitsAndroid.pauseOffline(url);
+    notify({type:'paused',url});
+  }
+  async function cancel(track) {
+    if (!isNative || !track || !isCatalogAudio(track.src)) return;
+    const url = absolute(track.src);
+    window.RadioHitsAndroid.cancelOffline(url);
+    notify({type:'canceled',url});
+  }
   async function remove(track) {
     const url = absolute(track.src);
     if (isNative) {
@@ -108,5 +128,5 @@
   window.RadioHitsOfflineEvent = function(event) {
     if (event && typeof event==='object') notify(event);
   };
-  window.RadioHitsOffline = {isNative,list,download,remove,playableSource,usage,isCatalogAudio,onChange(callback){listener=callback;},absolute};
+  window.RadioHitsOffline = {isNative,list,jobs,download,pause,cancel,remove,playableSource,usage,isCatalogAudio,onChange(callback){listener=callback;},absolute};
 })();
