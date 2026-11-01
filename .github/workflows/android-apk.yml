@@ -4,6 +4,24 @@ on:
     branches: [main]
     paths:
       - 'android/**'
+      - 'js/**'
+      - 'css/**'
+      - 'assets/**'
+      - 'index.html'
+      - 'catalogo.json'
+      - 'sw.js'
+      - 'manifest.webmanifest'
+      - 'tests/teste-bridge-android.js'
+      - '.github/workflows/android-apk.yml'
+  pull_request:
+    paths:
+      - 'android/**'
+      - 'js/**'
+      - 'css/**'
+      - 'assets/**'
+      - 'index.html'
+      - 'catalogo.json'
+      - 'sw.js'
       - '.github/workflows/android-apk.yml'
   workflow_dispatch:
 permissions:
@@ -11,7 +29,7 @@ permissions:
 jobs:
   apk:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - name: Baixar codigo
         uses: actions/checkout@v4
@@ -32,18 +50,69 @@ jobs:
           if [ ! -x "$SDKMANAGER" ]; then SDKMANAGER="$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager"; fi
           yes | "$SDKMANAGER" --licenses > /dev/null || true
           "$SDKMANAGER" "platforms;android-36" "build-tools;36.0.0"
+      - name: Validar ponte, interface e catalogo
+        run: |
+          node --check js/native-bridge.js
+          node --check js/offline.js
+          node --check js/app.js
+          node tests/teste-bridge-android.js
+          node tests/auditoria-radio.js
       - name: Embutir interface e catalogo offline
         run: |
           mkdir -p android/app/src/main/assets/offline-site
           cp index.html catalogo.json manifest.webmanifest sw.js android/app/src/main/assets/offline-site/
           cp -R css js assets android/app/src/main/assets/offline-site/
-      - name: Compilar aplicativo
+      - name: Compilar APK para teste
         working-directory: android
         run: gradle --no-daemon :app:assembleDebug
-      - name: Disponibilizar APK instalavel
+      - name: Disponibilizar APK de teste (nao atualiza release)
         uses: actions/upload-artifact@v4
         with:
-          name: Radio-Hits-Android-APK
+          name: Radio-Hits-Android-Debug
           path: android/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
           if-no-files-found: error
+      - name: Verificar disponibilidade de assinatura release
+        if: github.event_name != 'pull_request'
+        env:
+          STORE_BASE64: ${{ secrets.RADIOHITS_KEYSTORE_BASE64 }}
+          STORE_PASS: ${{ secrets.RADIOHITS_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.RADIOHITS_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.RADIOHITS_KEY_PASSWORD }}
+        shell: bash
+        run: |
+          if [[ -n "$STORE_BASE64" && -n "$STORE_PASS" && -n "$KEY_ALIAS" && -n "$KEY_PASS" ]]; then
+            printf '%s' "$STORE_BASE64" | base64 --decode > "$RUNNER_TEMP/radiohits-release.jks"
+            echo "HAS_RELEASE_SIGNING=true" >> "$GITHUB_ENV"
+            echo "RADIOHITS_KEYSTORE_FILE=$RUNNER_TEMP/radiohits-release.jks" >> "$GITHUB_ENV"
+          else
+            echo "Assinatura release ausente: APK debug gerado; release NAO sera distribuido." >> "$GITHUB_STEP_SUMMARY"
+            echo "HAS_RELEASE_SIGNING=false" >> "$GITHUB_ENV"
+          fi
+      - name: Compilar APK release assinado
+        if: env.HAS_RELEASE_SIGNING == 'true'
+        working-directory: android
+        env:
+          RADIOHITS_KEYSTORE_PASSWORD: ${{ secrets.RADIOHITS_KEYSTORE_PASSWORD }}
+          RADIOHITS_KEY_ALIAS: ${{ secrets.RADIOHITS_KEY_ALIAS }}
+          RADIOHITS_KEY_PASSWORD: ${{ secrets.RADIOHITS_KEY_PASSWORD }}
+        run: gradle --no-daemon :app:assembleRelease
+      - name: Gerar checksum do APK release
+        if: env.HAS_RELEASE_SIGNING == 'true'
+        run: |
+          cd android/app/build/outputs/apk/release
+          sha256sum app-release.apk > SHA256SUMS.txt
+          cat SHA256SUMS.txt >> "$GITHUB_STEP_SUMMARY"
+      - name: Disponibilizar APK release e checksum
+        if: env.HAS_RELEASE_SIGNING == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Radio-Hits-Android-Release
+          path: |
+            android/app/build/outputs/apk/release/app-release.apk
+            android/app/build/outputs/apk/release/SHA256SUMS.txt
+          retention-days: 30
+          if-no-files-found: error
+      - name: Apagar keystore temporaria
+        if: always()
+        run: rm -f "$RUNNER_TEMP/radiohits-release.jks"
