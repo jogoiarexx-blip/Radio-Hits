@@ -61,14 +61,16 @@ public final class MainActivity extends Activity {
         PlaybackPreferences.apply(this,controller);
     }
     private boolean pageReady = false;
+    private boolean uiForeground = false;
     private boolean forceOfflineShell = false;
     private int lastSongIndex = -1;
     private boolean lastPlaying = false;
     private String lastSongId = "";
     private final Runnable statusTick = new Runnable() {
         @Override public void run() {
+            if(!uiForeground) return;
             updateState();
-            handler.postDelayed(this, 600);
+            handler.postDelayed(this, 1200);
         }
     };
 
@@ -167,7 +169,19 @@ public final class MainActivity extends Activity {
             }
         }, this::runOnUiThread);
         web.loadUrl(SITE);
+    }
+    @Override protected void onResume() {
+        super.onResume();
+        uiForeground=true;
+        if(web!=null) web.onResume();
+        handler.removeCallbacks(statusTick);
         handler.post(statusTick);
+    }
+    @Override protected void onPause() {
+        uiForeground=false;
+        handler.removeCallbacks(statusTick);
+        if(web!=null) web.onPause();
+        super.onPause();
     }
 
     private boolean hasInternet() {
@@ -296,7 +310,7 @@ public final class MainActivity extends Activity {
     }
 
     private void updateState() {
-        if (controller == null) return;
+        if (controller == null || !uiForeground) return;
         JSONObject status = new JSONObject();
         try {
             MediaItem item = controller.getCurrentMediaItem();
@@ -328,7 +342,7 @@ public final class MainActivity extends Activity {
                 queueIds.put(controller.getMediaItemAt(i).mediaId);
             status.put("queueIds",queueIds);
             latestState = status.toString();
-            if (pageReady && web != null) {
+            if (pageReady && web != null && uiForeground) {
                 web.evaluateJavascript("window.RadioHitsAndroidState && window.RadioHitsAndroidState("+latestState+")", null);
             }
             lastSongIndex = controller.getCurrentMediaItemIndex();
