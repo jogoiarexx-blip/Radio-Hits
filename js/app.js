@@ -854,7 +854,7 @@
   $('today-label').textContent = new Intl.DateTimeFormat('pt-BR', {day:'2-digit', month:'long', year:'numeric'}).format(new Date());
 
   function tick() {
-    if (!state.loaded) return;
+    if (!state.loaded || (nativeBridge && document.hidden)) return;
     if (state.mode === 'radio') {
       const info = getRadioInfo();
       if (info) {
@@ -878,7 +878,7 @@
     }
   }
   setInterval(tick, 1000);
-  setInterval(() => {if(state.loaded && state.mode==='radio') {const info=getRadioInfo();renderRadio(info);renderQueue(info);}}, 15000);
+  setInterval(() => {if(state.loaded && state.mode==='radio' && !document.hidden) {const info=getRadioInfo();renderRadio(info);renderQueue(info);}}, 15000);
 
   async function init() {
     try {
@@ -966,7 +966,10 @@
   updateConnectionNotice();
   document.addEventListener('visibilitychange', () => {
     if (document.hidden && standby) clearStandby();
-    if (!document.hidden) refreshCatalog(false);
+    if (!document.hidden) {
+      tick();
+      refreshCatalog(false);
+    }
   });
   window.addEventListener('focus', () => refreshCatalog(false));
   setInterval(() => { if (!document.hidden) refreshCatalog(false); }, 300000);
