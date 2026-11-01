@@ -58,6 +58,10 @@ jobs:
           node tests/teste-bridge-android.js
           node tests/teste-fila-android.js
           node tests/auditoria-radio.js
+          node tests/teste-volume.js
+          node tests/teste-transicoes.js
+          node tests/teste-download-ui.js
+          node tests/teste-download-real.js
       - name: Embutir interface e catalogo offline
         run: |
           mkdir -p android/app/src/main/assets/offline-site
