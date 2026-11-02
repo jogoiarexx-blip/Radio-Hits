@@ -1,0 +1,79 @@
+name: Organizar músicas novas por estilo
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'musicas/novas-do-rar/**'
+      - 'scripts/organizar_novas.py'
+      - 'tests/test_organizar_novas.py'
+      - '.github/workflows/organizar-novas.yml'
+  pull_request:
+    paths:
+      - 'scripts/organizar_novas.py'
+      - 'tests/test_organizar_novas.py'
+      - '.github/workflows/organizar-novas.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: organizar-novas-do-rar
+  cancel-in-progress: false
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar 35 regras e teste de movimentação
+        run: python tests/test_organizar_novas.py
+  organizar:
+    if: github.event_name != 'pull_request'
+    needs: verificar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter main atual
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Transferir músicas e preservar metadados
+        id: move
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            python scripts/organizar_novas.py | tee organizar-resultado.txt
+            git add -A musicas
+            if git diff --cached --quiet; then
+              echo "Nenhum arquivo novo para mover."
+              echo "changed=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            git commit -m "Organizar novas musicas por estilo e atualizar metadados"
+            if git push origin HEAD:main; then
+              echo "changed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "Main recebeu novos uploads; atualizando e tentando novamente ($attempt/5)."
+            sleep 3
+          done
+          echo "Nao foi possivel atualizar main sem conflitos." >&2
+          exit 1
+      - name: Atualizar site e APK com caminhos definitivos
+        if: steps.move.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run publicar.yml --ref main
+          gh workflow run android-apk.yml --ref main
