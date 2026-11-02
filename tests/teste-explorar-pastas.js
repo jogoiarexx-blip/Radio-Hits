@@ -14,6 +14,11 @@ assert.match(html,/id="music-folder-grid"/);
 assert.match(html,/id="explore-selection-title"/);
 assert.match(html,/id="track-catalog-section"/);
 assert.match(html,/<symbol id="i-folder"/);
+assert.match(html,/data-action="play-selection"/);
+assert.match(html,/data-action="back-to-folders"/);
+assert.match(app,/case 'play-selection':/);
+assert.match(app,/selectSong\(tracks\[0\]\.id,tracks\.map\(t=>t\.id\)\)/);
+assert.match(app,/case 'back-to-folders':/);
 assert.ok(html.indexOf('id="music-folders"')<html.indexOf('id="track-catalog-section"'),
   'pastas devem aparecer antes da lista filtrada');
 assert.ok(html.indexOf('id="track-catalog-section"')<html.indexOf('id="offline-available"'),
@@ -60,6 +65,7 @@ assert.ok(rock.length>=15,'Rock não deve desaparecer');
 assert.ok(rock.every(t=>ctx.trackFolder(t)==='rock'));
 ctx.renderExplore();
 assert.equal($('explore-selection-title').textContent,'Rock');
+assert.equal($('play-selection').disabled,false);
 assert.ok($('music-folder-grid').innerHTML.includes('data-folder="rock"'));
 assert.ok($('all-tracks').innerHTML.includes('data-track="'+rock[0].id+'"'));
 const rockCount=$('all-tracks').innerHTML.match(/data-track=/g)?.length||0;
@@ -80,6 +86,7 @@ state.genre='Todos';
 state.folder='pasta que não existe';
 ctx.renderExplore();
 assert.equal(state.folder,'Todas','pasta removida deve voltar a Todas');
+assert.equal($('play-selection').disabled,false);
 assert.equal(ctx.visibleTracks().length,catalog.tracks.length,'Todas mostra o catálogo inteiro');
 const malicious={src:'./musicas/%3Cimg%20onerror%3Dalert(1)%3E/x.mp3',id:'fake',title:'fake',artist:'fake',genre:'Outros',duration:10};
 state.tracks=[...catalog.tracks,malicious];
