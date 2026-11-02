@@ -283,6 +283,13 @@
       "sampleSeconds": 35,
       "gainDb": -3.6
     },
+    "as melhores 80 e 90/Starship - Nothing's Gonna Stop Us Now (Official Music Video) [HD].m4a": {
+      "sha256": "6d20ad4a6060d2586a3af8b30cc649d46f5b9efdf33f4b6c99ac6240fb5bb27c",
+      "lufs": -14.8,
+      "truePeakDbfs": 0.4,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
     "as melhores 80 e 90/TINA TURNER ★ We Don't Need Another Hero (Thunderdome)【music video】-new.mp3": {
       "sha256": "b9550c87cfa8d805273427d55efb59fd95ac274740937ebf940ccbecbddd4ab7",
       "lufs": -14.4,
@@ -577,6 +584,13 @@
       "sampleSeconds": 35,
       "gainDb": -2.8
     },
+    "rock/Europe - The Final Countdown (Official Video).m4a": {
+      "sha256": "20550fb0936a94f845c595670806b6bcd59b8e785df67055bb1c49044d5af447",
+      "lufs": -14.4,
+      "truePeakDbfs": -2.6,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
     "rock/Evanescence - My Immortal (Official HD Music Video).mp3": {
       "sha256": "e29cfc5c065db883f0785e72af22bfb6b344440ba8fe1712d516c1882a1dd0dd",
       "lufs": -14.4,
@@ -590,6 +604,20 @@
       "truePeakDbfs": 0.5,
       "sampleSeconds": 35,
       "gainDb": -6.2
+    },
+    "rock/Foreigner - I Want To Know What Love Is (Official Music Video).m4a": {
+      "sha256": "041a69eaca3e9e409f38fb7107c2b455aa2bab8b90c73d1e6d423dd2b8bd19a1",
+      "lufs": -18.9,
+      "truePeakDbfs": -3.1,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "rock/Goo Goo Dolls – Iris [Official Music Video] [4K Remaster].m4a": {
+      "sha256": "c28478bf50c8b8eb2dd2960772595f8df14b2c36bdda2a0a91ec790e3640d834",
+      "lufs": -11.9,
+      "truePeakDbfs": 0.1,
+      "sampleSeconds": 35,
+      "gainDb": -2.5
     },
     "rock/INXS - By My Side.m4a": {
       "sha256": "446c2d82b7cc616eeefd2ce76d122a1c20be6ad2f013330d60ab12b2c3127597",
@@ -605,6 +633,20 @@
       "sampleSeconds": 35,
       "gainDb": -3.9
     },
+    "rock/Metallica - Nothing Else Matters (Official Music Video).m4a": {
+      "sha256": "f17655cf4560b1020ca850e744b3d2811a41d340526fd9b33f470570fd235bb6",
+      "lufs": -14.7,
+      "truePeakDbfs": -1.7,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "rock/Nirvana - Smells Like Teen Spirit (Official Music Video).m4a": {
+      "sha256": "c12d08883f92550c828f8a6754c446b62edf2587644724c46b271076460975c9",
+      "lufs": -7.6,
+      "truePeakDbfs": 0.5,
+      "sampleSeconds": 35,
+      "gainDb": -6.8
+    },
     "rock/Red Hot Chili Peppers - Californication (Official Music Video) HD UPGRADE.mp3": {
       "sha256": "c5f4c4d5cd00c92d1a733ab43774f9c65fe461b716a4883c73b17165ae2dc9c5",
       "lufs": -7.1,
@@ -619,6 +661,20 @@
       "sampleSeconds": 35,
       "gainDb": 0.0
     },
+    "rock/Skillet - Awake and Alive (Official Audio).m4a": {
+      "sha256": "a843a9e3a7abc202533216156041977685626f15394662d2c26ed9b4b48308b6",
+      "lufs": -8.1,
+      "truePeakDbfs": 0.1,
+      "sampleSeconds": 35,
+      "gainDb": -6.3
+    },
+    "rock/Skillet - Monster (Official Video).m4a": {
+      "sha256": "ae372f50c0a6b55eb4efb16ede264bb1cdc5f53a13072189238e2842cf14a357",
+      "lufs": -8.6,
+      "truePeakDbfs": -1.3,
+      "sampleSeconds": 35,
+      "gainDb": -5.8
+    },
     "rock/Starship - Sara (Official Music Video)-new.mp3": {
       "sha256": "70120fb72f062e8c342010e8ad7bd27405ef2efdcb2211e13598bb743986ccc5",
       "lufs": -13.1,
@@ -632,6 +688,13 @@
       "truePeakDbfs": -6.9,
       "sampleSeconds": 35,
       "gainDb": 0.0
+    },
+    "rock/Survivor - Eye Of The Tiger (Official HD Video).m4a": {
+      "sha256": "53489124bc0897861b611024cd0483851e7d8b1ec181c767817bf11b1da4728b",
+      "lufs": -12.1,
+      "truePeakDbfs": 0.4,
+      "sampleSeconds": 35,
+      "gainDb": -2.3
     },
     "rock/The Outfield - Your Love (Official HD Video).mp3": {
       "sha256": "e9a13803a857ca23004fe97f8510ab564d841a97ab7325dcf150305fcb2a8626",
@@ -668,12 +731,26 @@
       "sampleSeconds": 35,
       "gainDb": 0.0
     },
+    "rock/skillet Hero.m4a": {
+      "sha256": "f50576865cef49619e071fe2dcebe77d42ce7a6a83f608b6c58b8a353ef78f14",
+      "lufs": -5.9,
+      "truePeakDbfs": 1.2,
+      "sampleSeconds": 35,
+      "gainDb": -8.5
+    },
     "romanticas/Glory of Love-new.mp3": {
       "sha256": "dd8a387b90241c98254289e9d4f9f0b72d0eacab45b9340bd4707b6d03e2b5bd",
       "lufs": -10.7,
       "truePeakDbfs": 0.8,
       "sampleSeconds": 35,
       "gainDb": -3.7
+    },
+    "romanticas/Richard Marx - Right Here Waiting (Official Music Video).m4a": {
+      "sha256": "1c650bc70a991584a1fa5ae849e001bfebfcfd5d4e8a64122279468ffbf6cbad",
+      "lufs": -10.8,
+      "truePeakDbfs": 0.3,
+      "sampleSeconds": 35,
+      "gainDb": -3.6
     },
     "romanticas/Run to Me-new.mp3": {
       "sha256": "cc22e6d39b1b42c14e8c0362b2a737ef8d3ea0f94cb720674f2751a0e4ae3a6b",
