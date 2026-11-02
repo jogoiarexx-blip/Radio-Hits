@@ -635,5 +635,40 @@
     "genre": "Rock",
     "cover": "./assets/capas/padrao.svg",
     "downloadAllowed": false
+  },
+  "mpb/ANAVITÓRIA - Trevo (Vevo Presents)-new.mp3": {
+    "title": "Trevo (Tu)",
+    "artist": "ANAVITÓRIA",
+    "genre": "MPB",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Crowded House - Don't Dream It's Over (Official Music Video)-new.mp3": {
+    "title": "Don't Dream It's Over",
+    "artist": "Crowded House",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "as melhores 80 e 90/Laura Branigan - Self Control (Official Music Video)-new.mp3": {
+    "title": "Self Control",
+    "artist": "Laura Branigan",
+    "genre": "Anos 80 e 90",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "country/Luke Combs - Forever After All (Official Video)-new.mp3": {
+    "title": "Forever After All",
+    "artist": "Luke Combs",
+    "genre": "Country",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "as melhores 80 e 90/a-ha - Take On Me (Official Video) [4K]-new.mp3": {
+    "title": "Take On Me",
+    "artist": "a-ha",
+    "genre": "Anos 80 e 90",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   }
 }
