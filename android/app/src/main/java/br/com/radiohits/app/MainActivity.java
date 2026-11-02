@@ -238,7 +238,7 @@ public final class MainActivity extends Activity {
     }
 
     private boolean approvedMusic(String url) {
-        return OfflineStore.validUrl(url);
+        return OfflineStore.validStreamUrl(url);
     }
 
     private void startQueue(String raw) {

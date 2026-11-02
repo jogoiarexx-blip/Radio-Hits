@@ -30,6 +30,20 @@ final class OfflineStore {
     private static final ConcurrentHashMap<String,Object> LOCKS = new ConcurrentHashMap<>();
     static Object downloadLock(String src) { return LOCKS.computeIfAbsent(src,k -> new Object()); }
 
+    // Streaming/retomada pode usar a vinheta, mas o download comum
+    // continua restrito a /musicas/. A URL extra é exata e pública.
+    static boolean validStreamUrl(String src) {
+        if (validUrl(src)) return true;
+        try {
+            Uri uri=Uri.parse(src);
+            return "https".equals(uri.getScheme())
+                && "jogoiarexx-blip.github.io".equalsIgnoreCase(uri.getHost())
+                && (uri.getPort()==-1 || uri.getPort()==443)
+                && uri.getQuery()==null && uri.getFragment()==null
+                && "/Radio-Hits/vinhetas/radio-hits-cada-5.mp3".equals(uri.getEncodedPath());
+        } catch (Exception error) { return false; }
+    }
+
     static boolean validUrl(String src) {
         try {
             Uri uri = Uri.parse(src);

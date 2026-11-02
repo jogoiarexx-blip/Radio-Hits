@@ -32,7 +32,7 @@ final class PlaybackSnapshot {
                 MediaItem item = player.getMediaItemAt(i);
                 Bundle extra = item.mediaMetadata.extras;
                 String url=extra==null?"":extra.getString("radiohits_url","");
-                if (!OfflineStore.validUrl(url)) return false;
+                if (!OfflineStore.validStreamUrl(url)) return false;
                 if (i==0 && extra!=null) mode=extra.getString("radiohits_mode","ondemand");
                 JSONObject t=new JSONObject();
                 t.put("id",item.mediaId);
@@ -77,7 +77,7 @@ final class PlaybackSnapshot {
                 JSONObject t=tracks.getJSONObject(i);
                 String url=t.getString("url");
                 String id=t.getString("id");
-                if(!OfflineStore.validUrl(url) || id.isEmpty() || id.length()>256) return false;
+                if(!OfflineStore.validStreamUrl(url) || id.isEmpty() || id.length()>256) return false;
                 long duration=t.optLong("durationMs",0);
                 if("radio".equals(mode) && (duration<=0 || duration>86_400_000)) return false;
                 durations[i]=duration;

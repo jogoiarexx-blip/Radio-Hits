@@ -15,7 +15,7 @@ const webOffline = get('js/offline.js');
 const app = get('js/app.js');
 
 assert.match(build,/androidx\.work:work-runtime:2\.12\.0/);
-assert.match(build,/versionCode 12/);
+assert.match(build,/versionCode 13/);
 assert.match(worker,/enqueueUniqueWork/,'WorkManager deve persistir por arquivo');
 assert.match(worker,/ExistingWorkPolicy\.REPLACE/,'Reenfileirar substitui a tentativa cancelada');
 assert.match(worker,/NetworkType\.CONNECTED/,'Fila deve aguardar rede');
@@ -38,7 +38,7 @@ assert.match(app,/case 'download-cancel'/);
 assert.match(app,/refreshNativeDownloadJobs/);
 assert.match(html,/native-bridge\.js\?v=bridge-2/);
 assert.match(sw,/native-bridge\.js\?v=bridge-2/);
-assert.match(sw,/radio-hits-shell-v17/);
+assert.match(sw,/radio-hits-shell-v18/);
 assert.ok(html.indexOf('js/native-bridge.js') < html.indexOf('js/offline.js'));
 
 const calls = [];
