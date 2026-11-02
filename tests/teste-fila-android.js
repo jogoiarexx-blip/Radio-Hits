@@ -38,7 +38,7 @@ assert.match(app,/case 'download-cancel'/);
 assert.match(app,/refreshNativeDownloadJobs/);
 assert.match(html,/native-bridge\.js\?v=bridge-2/);
 assert.match(sw,/native-bridge\.js\?v=bridge-2/);
-assert.match(sw,/radio-hits-shell-v16/);
+assert.match(sw,/radio-hits-shell-v17/);
 assert.ok(html.indexOf('js/native-bridge.js') < html.indexOf('js/offline.js'));
 
 const calls = [];
