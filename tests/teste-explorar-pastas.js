@@ -7,7 +7,7 @@ const app=read('js/app.js');
 const html=read('index.html');
 const css=read('css/style.css');
 const catalog=JSON.parse(read('catalogo.json'));
-const start=app.indexOf('  const FOLDER_LABELS = {');
+const start=app.indexOf('  function libraryTracks() {');
 const stop=app.indexOf('  function renderOffline() {',start);
 assert.ok(start>=0 && stop>start,'funções das pastas devem ser carregadas');
 assert.match(html,/id="music-folder-grid"/);
