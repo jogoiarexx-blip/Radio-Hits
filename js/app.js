@@ -185,7 +185,7 @@
   }
   function playableTracks() { return state.tracks.filter(t => t.src && Number(t.duration) > 0); }
   function radioTracks() {
-    const available = libraryTracks().filter(t => t.src && Number(t.duration) > 0);
+    const available = playableTracks();
     return state.radioOrder.length ? state.radioOrder.map(id => available.find(t => t.id === id)).filter(Boolean) : available;
   }
   function getRadioInfo(now = Date.now()) {
@@ -297,7 +297,7 @@
     renderOffline();
   }
   function renderOffline() {
-    const available = state.tracks.filter(t => t.src && Number(t.duration) > 0);
+    const available = libraryTracks().filter(t => t.src && Number(t.duration) > 0);
     const saved = libraryTracks().filter(t => offlineSources.has(offline.absolute(t.src)));
     const count = $('offline-count'), area = $('offline-tracks');
     const availableCount = $('offline-available-count');
