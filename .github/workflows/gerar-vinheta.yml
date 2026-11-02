@@ -1,5 +1,10 @@
 name: Gerar vinheta Radio Hits (voz pt-BR)
 on:
+  pull_request:
+    paths:
+      - 'scripts/gerar_vinheta.py'
+      - 'tests/test_vinheta_audio.py'
+      - '.github/workflows/gerar-vinheta.yml'
   push:
     branches: [main]
     paths:
@@ -19,7 +24,6 @@ jobs:
       - name: Obter codigo
         uses: actions/checkout@v4
         with:
-          ref: main
           persist-credentials: true
       - uses: actions/setup-python@v5
         with:
@@ -36,6 +40,7 @@ jobs:
           python tests/test_vinheta_audio.py
           ffprobe -v error -select_streams a:0 -show_entries stream=codec_name,sample_rate,channels -of default=noprint_wrappers=1 vinhetas/radio-hits-cada-5.mp3
       - name: Versionar áudio resultante
+        if: github.event_name != 'pull_request'
         id: publish_audio
         shell: bash
         run: |
