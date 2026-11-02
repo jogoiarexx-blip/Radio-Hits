@@ -4,7 +4,7 @@
 Voz sintetizada; não imita locutor humano identificado. A trilha instrumental
 é composta matematicamente aqui, sem samples, músicas de terceiros ou IA musical.
 Requer Python >=3.10, edge-tts, numpy, ffmpeg e ffprobe.
-Saída compatível com a grade UTC existente: vinhetas/radio-hits-cada-5.mp3
+Três MP3 curtos alternados a cada cinco músicas, sincronizados por duração no catálogo.
 """
 from __future__ import annotations
 
@@ -18,19 +18,38 @@ import wave
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "vinhetas" / "radio-hits-cada-5.mp3"
 VOICE = "pt-BR-FranciscaNeural"
-TEXT = (
-    "É sucesso atrás de sucesso! Você tá na Rádio Hits! "
-    "Música boa, energia lá em cima! Rádio Hits... a sua frequência musical!"
-)
 SAMPLE_RATE = 44100
 BPM = 128
+# A primeira versão preserva o nome original por compatibilidade.
+# As versões seguintes são usadas apenas no modo Rádio.
+VARIANTS = [
+    {
+        "filename": "radio-hits-cada-5.mp3",
+        "name": "Energia",
+        "text": "É sucesso atrás de sucesso! Você tá na Rádio Hits! Música boa, energia lá em cima! Rádio Hits, a sua frequência musical!",
+        "rate": "+13%", "pitch": "+5Hz", "bpm": 128, "seed": 20261102,
+    },
+    {
+        "filename": "radio-hits-alto-astral.mp3",
+        "name": "Alto astral",
+        "text": "Aumenta o som! O melhor da música tá aqui! Rádio Hits! A trilha sonora dos seus melhores momentos!",
+        "rate": "+15%", "pitch": "+6Hz", "bpm": 132, "seed": 20261103,
+    },
+    {
+        "filename": "radio-hits-classicos.mp3",
+        "name": "Clássicos",
+        "text": "Lembra daquela música? Aqui, os clássicos ganham vida de novo! Rádio Hits, a sua frequência musical!",
+        "rate": "+10%", "pitch": "+4Hz", "bpm": 124, "seed": 20261104,
+    },
+]
 
 
-async def voice_track(target: Path) -> None:
+async def voice_track(target: Path, variant: dict) -> None:
     import edge_tts
-    await edge_tts.Communicate(TEXT, VOICE, rate="+11%", pitch="+4Hz").save(str(target))
+    await edge_tts.Communicate(
+        variant["text"], VOICE, rate=variant["rate"], pitch=variant["pitch"]
+    ).save(str(target))
 
 
 def duration(path: Path) -> float:
@@ -41,7 +60,7 @@ def duration(path: Path) -> float:
     return float(proc.stdout.strip())
 
 
-def original_instrumental(path: Path, seconds: float) -> None:
+def original_instrumental(path: Path, seconds: float, variant: dict) -> None:
     """Beat dançante original: 128 BPM, acordes Am–F–C–G, baixo, palmas e synth.
 
     É tudo gerado por osciladores e ruído pseudoaleatório determinístico;
@@ -51,8 +70,8 @@ def original_instrumental(path: Path, seconds: float) -> None:
     sr = SAMPLE_RATE
     length = int(math.ceil(seconds * sr))
     mix = np.zeros((length, 2), dtype=np.float64)
-    rng = np.random.default_rng(20261102)
-    beat = 60 / BPM
+    rng = np.random.default_rng(variant['seed'])
+    beat = 60 / variant['bpm']
     bar = beat * 4
 
     def add(start: float, samples, pan: float = 0.5) -> None:
@@ -136,12 +155,29 @@ def original_instrumental(path: Path, seconds: float) -> None:
             .34 if k % 2 else .66)
 
     # Assinatura melódica exclusiva: sobe na abertura e encerra com brilho.
-    hook = [(659.25, 0.0), (783.99, .23), (880.0, .47),
-            (1046.5, .71), (880.0, .95)]
+    hooks = [
+        [(659.25, 0.0), (783.99, .23), (880.0, .47), (1046.5, .71), (880.0, .95)],
+        [(523.25, 0.0), (659.25, .18), (783.99, .40), (1046.5, .62), (1174.7, .82)],
+        [(880.0, 0.0), (783.99, .27), (659.25, .52), (783.99, .80), (1046.5, 1.08)],
+    ]
+    hook = hooks[variant['seed'] - 20261102]
     for hz, at in hook:
         if at < seconds:
             tone(hz, at, min(.38, seconds - at), .050, 7.5, .62)
     tone(1046.50, max(0, seconds - .67), .55, .067, 4, .48)
+    # Whoosh estéreo original de abertura e acento do encerramento.
+    # Ruído filtrado / envoltória crescente, sem efeito comercial.
+    swoosh_len = int(min(.48, seconds) * sr)
+    if swoosh_len:
+        t = np.arange(swoosh_len) / sr
+        sweep = rng.standard_normal(swoosh_len)
+        sweep[1:] -= .93 * sweep[:-1].copy()
+        env = np.sin(np.pi * t / max(.001, t[-1])) ** 2
+        add(.05, sweep * env * .033, .22)
+        add(.085, sweep[::-1] * env * .027, .78)
+    for a, hz in ((seconds - .62, 1318.5), (seconds - .44, 1568.0)):
+        if a >= 0:
+            tone(hz, a, min(.28, seconds-a), .031, 12, .65)
 
     # Entradas/saídas naturais; normalização é somente do instrumental.
     count_in = min(length, int(sr * .09))
@@ -160,54 +196,56 @@ def original_instrumental(path: Path, seconds: float) -> None:
         wav.writeframes(pcm.tobytes())
 
 
+def render_variant(dirname: Path, variant: dict) -> dict:
+    output = ROOT / "vinhetas" / variant["filename"]
+    raw = dirname / (variant["name"].replace(" ", "_") + "_voz.mp3")
+    backing = dirname / (variant["name"].replace(" ", "_") + "_base.wav")
+    asyncio.run(voice_track(raw, variant))
+    if not raw.is_file() or raw.stat().st_size < 9000:
+        raise RuntimeError("A locução feminina não foi gerada: " + variant["name"])
+    length_voice = duration(raw)
+    length_music = max(7.0, length_voice + .83)
+    if not 4.0 <= length_voice <= 25 or length_music > 30:
+        raise RuntimeError("Vinheta longa demais: " + variant["name"])
+    original_instrumental(backing, length_music, variant)
+    # Locução ao centro, música estéreo com ducking suave; processamento
+    # conserva inteligibilidade e elimina picos. Intro tem ~280 ms.
+    filters = (
+        "[0:a]aformat=sample_rates=44100:channel_layouts=stereo,"
+        "highpass=f=95,acompressor=threshold=0.10:ratio=2.6:attack=8:release=110,"
+        "volume=1.35,adelay=280|280[voz];"
+        "[1:a]aformat=sample_rates=44100:channel_layouts=stereo,"
+        "volume=0.66[base];"
+        "[base][voz]sidechaincompress=threshold=0.065:ratio=8:"
+        "attack=10:release=260[musica];"
+        "[musica][voz]amix=inputs=2:duration=longest:normalize=0,"
+        "alimiter=limit=0.89[out]"
+    )
+    subprocess.run([
+        "ffmpeg", "-nostdin", "-y", "-hide_banner", "-loglevel", "error",
+        "-i", str(raw), "-i", str(backing), "-filter_complex", filters,
+        "-map", "[out]", "-c:a", "libmp3lame", "-b:a", "160k",
+        "-ar", "44100", "-ac", "2", str(output)
+    ], check=True)
+    seconds = duration(output)
+    if not 6 <= seconds <= 30 or output.stat().st_size < 60_000:
+        raise RuntimeError("Vinheta inválida: " + variant["name"])
+    return {
+        "name": variant["name"], "file": str(output.relative_to(ROOT)),
+        "voice": VOICE, "bpm": variant["bpm"], "durationSeconds": round(seconds,3),
+        "bytes": output.stat().st_size, "text": variant["text"]
+    }
+
+
 def main() -> None:
     for command in ("ffmpeg", "ffprobe"):
         if not shutil.which(command):
             raise SystemExit("Ferramenta necessária ausente: " + command)
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix="radiohits_feminina_") as dirname:
-        raw = Path(dirname) / "locucao_feminina.mp3"
-        backing = Path(dirname) / "trilha_original.wav"
-        asyncio.run(voice_track(raw))
-        if not raw.is_file() or raw.stat().st_size < 9000:
-            raise RuntimeError("A locução feminina não foi gerada")
-        length_voice = duration(raw)
-        length_music = max(8.0, length_voice + .76)
-        if not 5 <= length_voice <= 26 or length_music > 30:
-            raise RuntimeError("Locução muito longa para uma vinheta curta")
-        original_instrumental(backing, length_music)
-        # A voz começa aos 270ms. Sidechain: instrumental abaixa
-        # automaticamente durante a fala e sobe nos espaços entre frases.
-        # Limiter e filtro passa-altas protegem inteligibilidade e evitam clipping.
-        filters = (
-            "[0:a]aformat=sample_rates=44100:channel_layouts=stereo,"
-            "highpass=f=95,acompressor=threshold=0.10:ratio=2.6:attack=8:release=110,"
-            "volume=1.35,adelay=270|270[voz];"
-            "[1:a]aformat=sample_rates=44100:channel_layouts=stereo,"
-            "volume=0.62[base];"
-            "[base][voz]sidechaincompress=threshold=0.065:ratio=9:"
-            "attack=12:release=270[musica];"
-            "[musica][voz]amix=inputs=2:duration=longest:normalize=0,"
-            "alimiter=limit=0.89[out]"
-        )
-        proc = [
-            "ffmpeg", "-nostdin", "-y", "-hide_banner", "-loglevel", "error",
-            "-i", str(raw), "-i", str(backing),
-            "-filter_complex", filters,
-            "-map", "[out]", "-c:a", "libmp3lame", "-b:a", "160k",
-            "-ar", "44100", "-ac", "2", str(OUTPUT)
-        ]
-        subprocess.run(proc, check=True)
-    length = duration(OUTPUT)
-    if not 6 <= length <= 30 or OUTPUT.stat().st_size < 60_000:
-        raise RuntimeError("Vinheta com duração ou tamanho incorretos")
-    print(json.dumps({
-        "file": str(OUTPUT.relative_to(ROOT)),
-        "voice": VOICE,
-        "style": "pop animado 128 BPM, música original, voz feminina em primeiro plano",
-        "durationSeconds": round(length, 3),
-        "bytes": OUTPUT.stat().st_size, "text": TEXT
-    }, ensure_ascii=False))
+    (ROOT / "vinhetas").mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="radiohits_vinhetas_") as work:
+        results = [render_variant(Path(work), v) for v in VARIANTS]
+    print(json.dumps({"status":"OK", "voice":VOICE, "variants":results},
+                     ensure_ascii=False))
 
 
 if __name__ == "__main__":
