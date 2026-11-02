@@ -15,6 +15,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIO = {".mp3", ".m4a", ".ogg", ".opus", ".wav", ".flac", ".aac"}
+ROOT_DEMOS = {
+    "horizonte-azul.mp3", "cidade-neon.mp3", "calma-de-outubro.mp3",
+    "entre-ondas.mp3", "rota-noturna.mp3", "sol-de-vidro.mp3",
+}
 
 # Regra pelo título: classificação musical, não apenas pela década.
 # Formato: (identificador do título, pasta de destino, gênero, título, artista).
@@ -107,9 +111,9 @@ def organize(root: Path = ROOT):
         rel = file.relative_to(music).as_posix()
         rule = match(file.name)
         if rule is None:
-            # Os seis MP3 originais do projeto ficam na raiz; não tratá-los
-            # como uploads não reconhecidos.
-            if file.parent != music:
+            # Apenas os seis MP3 originais podem ficar sem classificação
+            # na raiz: quaisquer uploads desconhecidos devem ser relatados.
+            if file.parent != music or file.name not in ROOT_DEMOS:
                 unknown.append(rel)
             continue
         _, folder, genre, title, artist = rule
