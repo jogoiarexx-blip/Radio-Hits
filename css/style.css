@@ -94,3 +94,42 @@
   .download-track-button{font-size:10px;min-width:65px}
   .download-cancel-button{font-size:10px}
 }
+
+/* Navegação por pastas reais do catálogo — desktop e celular. */
+.folder-section{margin:16px 0 28px}
+.folder-section .section-title{margin:10px 0 9px}
+.folder-section-description{margin:0 0 16px;color:#94a2aa;font-size:12px;line-height:1.6}
+.folder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.folder-card{background:linear-gradient(135deg,#17242b,#151c23 74%);border:1px solid #303c44;border-radius:13px;padding:16px 13px;display:flex;align-items:center;gap:11px;min-height:87px;text-align:left;min-width:0;transition:background .2s,border-color .2s,transform .2s;touch-action:manipulation}
+.folder-card:hover{border-color:#688771;background:#1d2b2b;transform:translateY(-2px)}
+.folder-card.is-active{background:linear-gradient(125deg,#233b2b,#1a2827);border-color:var(--accent);box-shadow:inset 0 0 0 1px #b8f45833}
+.folder-card-icon{width:43px;height:43px;flex:none;border:1px solid #3a5548;border-radius:11px;background:#233b30;color:#b8f458;display:grid;place-items:center}
+.folder-card-icon .icon{width:24px;height:24px}
+.folder-card-text{flex:1;min-width:0}
+.folder-card-text strong{display:block;font-size:12px;font-weight:750;line-height:1.35;overflow-wrap:anywhere}
+.folder-card-text small{display:block;font-size:10px;color:#96a6af;margin-top:5px}
+.folder-arrow{width:16px;height:16px;color:#71877b}
+.folder-card.is-active .folder-card-text strong,.folder-card.is-active .folder-arrow{color:var(--accent)}
+#track-catalog-section{scroll-margin-top:16px}
+@media(max-width:1050px){.folder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:690px){
+  .folder-section{margin:14px 0 22px}
+  .folder-section-description{font-size:11px}
+  .folder-grid{gap:8px}
+  .folder-card{padding:12px 9px;min-height:73px;gap:9px}
+  .folder-card-icon{width:35px;height:35px;border-radius:9px}
+  .folder-card-icon .icon{width:19px;height:19px}
+  .folder-card-text strong{font-size:11px}
+  .folder-card-text small{font-size:9px}
+  .folder-arrow{display:none}
+}
+@media(prefers-reduced-motion:reduce){.folder-card{transition:none}.folder-card:hover{transform:none}}
+
+/* Acesso direto de volta às pastas e reprodução da seleção. */
+.explore-selection-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px}
+.explore-back-button,.explore-play-button{min-height:37px;border-radius:8px;border:1px solid #3a5342;padding:7px 11px;background:#1c2823;font-size:11px;font-weight:750;color:#c8e6bf}
+.explore-back-button:hover,.explore-play-button:hover{border-color:var(--accent)}
+.explore-play-button{background:var(--accent);border-color:var(--accent);color:#142019;display:inline-flex;align-items:center;gap:7px}
+.explore-play-button svg{width:13px;height:13px}
+.explore-play-button:disabled{cursor:not-allowed;background:#28312b;color:#78867c;border-color:#313b34}
+@media(max-width:690px){.tracks-section .section-title.row-between{align-items:flex-start;flex-direction:column}.tracks-section .chips{max-width:100%;width:100%}.explore-selection-actions button{min-height:42px}}

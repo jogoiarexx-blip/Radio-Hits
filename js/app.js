@@ -139,7 +139,7 @@
 
   const state = {
     tracks: [], mode: 'radio', view: 'radio', currentId: null,
-    radioOrder: [], radioIndex: 0, query: '', genre: 'Todos',
+    radioOrder: [], radioIndex: 0, query: '', genre: 'Todos', folder: 'Todas',
     favorites: new Set(Array.isArray(saved.favorites) ? saved.favorites : []),
     playlists: saved.playlists && typeof saved.playlists === 'object' && !Array.isArray(saved.playlists) ? saved.playlists : {},
     selectedPlaylist: null, pendingAddId: null,
@@ -230,23 +230,67 @@
       ? `<button class="download-cancel-button" data-action="download-cancel" data-id="${escapeHtml(t.id)}" title="Cancelar e apagar download parcial" aria-label="Cancelar download de ${escapeHtml(t.title)}">Cancelar</button>` : '';
     return `<div class="track-row ${active ? 'is-active':''}"><button class="track-main track-main-play" data-action="play-track" data-id="${escapeHtml(t.id)}" aria-label="Tocar ${escapeHtml(t.title)}"><img src="${art(t)}" alt="" loading="lazy"><span class="track-text"><strong>${escapeHtml(t.title)}</strong><small>${escapeHtml(t.artist)}</small></span></button><span class="track-genre">${escapeHtml(t.genre)}</span><span class="track-duration">${timeFmt(t.duration)}</span><div class="track-actions"><button class="icon-button ${liked?'is-liked':''}" data-action="like-track" data-id="${escapeHtml(t.id)}" title="${liked?'Remover dos favoritos':'Favoritar'}" aria-label="${liked?'Desfavoritar':'Favoritar'} ${escapeHtml(t.title)}">${icon('heart')}</button><button class="icon-button" data-action="add-playlist" data-id="${escapeHtml(t.id)}" title="Adicionar à playlist" aria-label="Adicionar ${escapeHtml(t.title)} a uma playlist">${icon('plus')}</button>${saveButton}${cancelButton}</div></div>`;
   }
+  const FOLDER_LABELS = {
+    'as melhores 80 e 90': 'Anos 80 e 90',
+    'malhacao-internacional-2003': 'Malhação Internacional 2003',
+    'classicos': 'Clássicos', 'romanticas': 'Românticas',
+    'mpb': 'MPB', 'hip hop': 'Hip Hop',
+    'rock': 'Rock', 'dance': 'Dance', 'pop': 'Pop',
+    'country': 'Country', 'reggae': 'Reggae',
+    'avulsas': 'Avulsas'
+  };
+  // As pastas vêm do caminho real de cada arquivo no catálogo.
+  function trackFolder(track) {
+    const match = String(track?.src || '').match(/^\.?\/?musicas\/([^/?#]+)\//i);
+    if (!match) return 'Avulsas';
+    try { return decodeURIComponent(match[1]); } catch (_) { return match[1]; }
+  }
+  function folderLabel(name) {
+    return FOLDER_LABELS[String(name).toLowerCase()] || String(name).replace(/[-_]+/g, ' ');
+  }
+  function musicFolders() {
+    const folders = new Map();
+    state.tracks.forEach(t => {
+      const id = trackFolder(t);
+      if (!folders.has(id)) folders.set(id, {id, label: folderLabel(id), count: 0});
+      folders.get(id).count++;
+    });
+    return [...folders.values()].sort((a,b) => a.label.localeCompare(b.label, 'pt-BR'));
+  }
+  function renderFolders() {
+    const folders = musicFolders();
+    if (state.folder !== 'Todas' && !folders.some(f => f.id === state.folder))
+      state.folder = 'Todas';
+    const cards = [{id:'Todas',label:'Todas as músicas',count:state.tracks.length},...folders];
+    $('music-folder-grid').innerHTML = cards.map(f => {
+      const selected = state.folder === f.id && state.genre === 'Todos';
+      const label = f.count === 1 ? '1 faixa' : f.count + ' faixas';
+      return '<button type="button" class="folder-card '+(selected?'is-active':'')+'" data-action="folder" data-folder="'+escapeHtml(f.id)+'" aria-label="Explorar '+escapeHtml(f.label)+', '+label+'" aria-pressed="'+selected+'"><span class="folder-card-icon">'+icon(f.id==='Todas'?'grid':'folder')+'</span><span class="folder-card-text"><strong>'+escapeHtml(f.label)+'</strong><small>'+label+'</small></span>'+icon('arrow','icon folder-arrow')+'</button>';
+    }).join('');
+    $('music-folder-count').textContent = folders.length + (folders.length===1?' pasta':' pastas');
+  }
   function visibleTracks() {
     const query = state.query.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     return state.tracks.filter(t => {
+      if (state.folder !== 'Todas' && trackFolder(t) !== state.folder) return false;
       if (state.genre !== 'Todos' && t.genre !== state.genre) return false;
       if (!query) return true;
-      return `${t.title} ${t.artist} ${t.genre}`.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(query);
+      return (t.title+' '+t.artist+' '+t.genre+' '+folderLabel(trackFolder(t))).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(query);
     });
   }
   function renderExplore() {
+    renderFolders();
     const tracks = visibleTracks();
     $('discover-grid').innerHTML = tracks.slice(0, 4).map(card).join('') || empty('Nenhuma faixa encontrada', 'Experimente outra busca.');
-    $('all-tracks').innerHTML = tracks.map(songRow).join('') || empty('Sem resultados', 'Experimente outro gênero ou termo.');
-    $('explore-track-count').textContent = `${tracks.length} ${tracks.length === 1 ? 'faixa' : 'faixas'} · ${libraryDuration(tracks.reduce((n,t)=>n+Number(t.duration),0))}`;
+    $('all-tracks').innerHTML = tracks.map(songRow).join('') || empty('Sem resultados', 'Experimente outra pasta, gênero ou termo.');
+    $('explore-selection-title').textContent = state.folder !== 'Todas' ? folderLabel(state.folder) :
+      state.genre !== 'Todos' ? state.genre : 'Todas as faixas';
+    $('explore-track-count').textContent = tracks.length+' '+(tracks.length === 1 ? 'faixa' : 'faixas')+' · '+libraryDuration(tracks.reduce((n,t)=>n+Number(t.duration),0));
+    $('play-selection').disabled = tracks.length === 0;
     $('preview-grid').innerHTML = state.tracks.slice(0, 4).map(card).join('') || empty('Biblioteca vazia','Adicione MP3 na pasta músicas.');
     const genres = ['Todos', ...new Set(state.tracks.map(t => t.genre).filter(Boolean))];
-    $('genre-filters').innerHTML = genres.map(g => `<button data-action="genre" data-genre="${escapeHtml(g)}" class="${state.genre === g ? 'is-active' : ''}">${escapeHtml(g)}</button>`).join('');
-    $('sidebar-track-count').textContent = `${state.tracks.length} ${state.tracks.length === 1 ? 'faixa' : 'faixas'}`;
+    $('genre-filters').innerHTML = genres.map(g => '<button data-action="genre" data-genre="'+escapeHtml(g)+'" class="'+(state.genre===g?'is-active':'')+'" aria-pressed="'+(state.genre===g)+'">'+escapeHtml(g)+'</button>').join('');
+    $('sidebar-track-count').textContent = state.tracks.length+' '+(state.tracks.length===1?'faixa':'faixas');
     const clock = $('sidebar-library-runtime');
     if (clock) clock.textContent = libraryDuration(state.tracks.reduce((n,t)=>n+Number(t.duration),0)) + ' de música';
     renderOffline();
@@ -760,7 +804,26 @@
       case 'open-offline-saved': jumpToDownloads('offline-library'); break;
       case 'add-playlist': showPlaylistChooser(id); break;
       case 'switch-explore': navigate('explorar'); break;
-      case 'genre': state.genre = el.dataset.genre; renderExplore(); break;
+      case 'genre':
+        state.folder='Todas';
+        state.genre=el.dataset.genre;
+        renderExplore();
+        $('track-catalog-section').scrollIntoView({behavior:'smooth',block:'start'});
+        break;
+      case 'back-to-folders': $('music-folders').scrollIntoView({behavior:'smooth',block:'start'}); break;
+      case 'play-selection': {
+        const tracks=visibleTracks();
+        if (!tracks.length) return toast('Não há músicas nesta seleção.');
+        selectSong(tracks[0].id,tracks.map(t=>t.id));
+        break;
+      }
+      case 'folder':
+        if (el.dataset.folder !== 'Todas' && !musicFolders().some(f=>f.id===el.dataset.folder)) break;
+        state.folder=el.dataset.folder;
+        state.genre='Todos';
+        renderExplore();
+        $('track-catalog-section').scrollIntoView({behavior:'smooth',block:'start'});
+        break;
       case 'open-playlist': state.selectedPlaylist=el.dataset.playlist;renderPlaylists();break;
       case 'play-playlist': { const ids = (state.playlists[el.dataset.playlist] || []).filter(id => trackById(id)); if (!ids.length) return toast('A playlist está vazia.'); selectSong(ids[0],ids); break; }
       case 'remove-playlist-song': { const ids=state.playlists[el.dataset.playlist] || []; state.playlists[el.dataset.playlist]=ids.filter(x=>x!==id);persist();renderPlaylists();toast('Música removida desta playlist');break; }
@@ -808,7 +871,7 @@
   $('about-button').addEventListener('click', about);
   $('modal-close').addEventListener('click', () => $('modal').close());
   $('modal').addEventListener('click', e => {if(e.target===$('modal')) $('modal').close();});
-  $('search').addEventListener('input', e => {state.query=e.target.value; state.genre='Todos'; navigate('explorar');});
+  $('search').addEventListener('input', e => {state.query=e.target.value; if(state.view!=='explorar') navigate('explorar'); else renderExplore();});
   document.addEventListener('keydown', e => {
     if (e.key==='/' && !['INPUT','TEXTAREA'].includes(document.activeElement?.tagName) && !$('modal').open) {e.preventDefault();$('search').focus();}
     if (e.code==='Space' && !['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement?.tagName) && !$('modal').open) {e.preventDefault();togglePlayback();}

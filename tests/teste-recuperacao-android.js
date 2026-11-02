@@ -31,6 +31,6 @@ assert.match(app,/code !== lastErrorCode/);
 assert.match(app,/window\.RadioHitsAndroidState\(current\)/);
 assert.match(app,/Array\.isArray\(info\.queueIds\)/);
 assert.match(gradle,/versionCode 12/);
-assert.match(html,/js\/app\.js\?v=battery-4/);
-assert.match(sw,/radio-hits-shell-v16/);
+assert.match(html,/js\/app\.js\?v=folders-5/);
+assert.match(sw,/radio-hits-shell-v17/);
 console.log('RECOVERY CONTRACT OK: snapshot, fila, radio e retry, sem repeticao de erro.');

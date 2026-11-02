@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#0b0e13">
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="stylesheet" href="./css/style.css?v=mobile-3">
+  <link rel="stylesheet" href="./css/style.css?v=folders-5">
   <title>Radio Hits — sua música, seu ritmo</title>
 </head>
 <body>
@@ -20,6 +20,7 @@
     <symbol id="i-pause" viewBox="0 0 24 24"><path fill="currentColor" d="M6 5h4v14H6zm8 0h4v14h-4z"/></symbol>
     <symbol id="i-radio" viewBox="0 0 24 24"><path d="M5 16a10 10 0 0 1 0-8m14 8a10 10 0 0 0 0-8M8 13a6 6 0 0 1 0-2m8 2a6 6 0 0 0 0-2m-4 1v8m-3 0h6M12 12v.01"/></symbol>
     <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7.5V5a2 2 0 0 1 2-2h5l2.3 3H19a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7.5Z"/></symbol>
     <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.9a5.6 5.6 0 0 0-7.9 0l-.9.9-.9-.9a5.6 5.6 0 0 0-7.9 7.9 5.6 5.6 0 0 0 0 7.9l.9.9L12 21l7.9-7.3.9-.9a5.6 5.6 0 0 0 0-7.9Z"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
     <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M3 6h.01M3 12h.01M3 18h.01"/></symbol>
@@ -76,6 +77,22 @@
 
       <div class="view is-hidden" id="view-explorar">
         <div class="page-intro"><span class="eyebrow">ESCOLHA O QUE TOCAR</span><h1>Descubra seu próximo som<span class="accent-period">.</span></h1><p>Sem algoritmos escondidos. Você no controle de cada faixa.</p></div>
+        <section class="folder-section" aria-labelledby="music-folders-heading" id="music-folders">
+          <div class="section-title row-between"><div><span class="eyebrow">BIBLIOTECA ORGANIZADA</span><h2 id="music-folders-heading">Explorar por pastas</h2></div><span class="small-note" id="music-folder-count" aria-live="polite">Carregando pastas...</span></div>
+          <p class="folder-section-description">Escolha Rock, Hip Hop, Dance e outras pastas para ver suas músicas. As pastas acompanham o catálogo automaticamente.</p>
+          <div id="music-folder-grid" class="folder-grid" aria-label="Pastas de músicas"></div>
+        </section>
+        <section class="genre-showcase" aria-label="Explore por estilo musical">
+ <div class="section-title row-between"><div><span class="eyebrow">SUAS ESTAÇÕES</span><h2>Escolha a sua vibe</h2></div><span class="small-note">Biblioteca por categoria</span></div>
+ <div class="genre-showcase-grid">
+ <button class="genre-feature" type="button" data-action="genre" data-genre="Anos 80 e 90" aria-label="Explorar Anos 80 e 90"><img loading="lazy" src="./assets/capas/genero-80-90.svg" alt=""><span class="genre-feature-label">CLÁSSICOS</span></button>
+<button class="genre-feature" type="button" data-action="genre" data-genre="Rock" aria-label="Explorar Rock"><img loading="lazy" src="./assets/capas/genero-rock.svg" alt=""><span class="genre-feature-label">GUITARRAS</span></button>
+<button class="genre-feature" type="button" data-action="genre" data-genre="Hip Hop" aria-label="Explorar Hip Hop"><img loading="lazy" src="./assets/capas/genero-hiphop.svg" alt=""><span class="genre-feature-label">BATIDAS</span></button>
+<button class="genre-feature" type="button" data-action="genre" data-genre="Malhação Internacional 2003" aria-label="Explorar Malhação Internacional 2003"><img loading="lazy" src="./assets/capas/genero-malhacao.svg" alt=""><span class="genre-feature-label">TRILHA 2003</span></button>
+ </div>
+</section>
+        <section class="discover-section"><div class="section-title row-between"><div><span class="eyebrow">SUA SELEÇÃO</span><h2>Em destaque</h2></div><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><span class="small-note" id="explore-track-count"></span><button class="outline-button" type="button" id="refresh-library" aria-label="Atualizar catálogo de músicas">Atualizar músicas</button></div></div><div id="discover-grid" class="album-grid"></div></section>
+        <section class="tracks-section" id="track-catalog-section"><div class="section-title row-between"><div><span class="eyebrow">MÚSICAS DA SELEÇÃO</span><h2 id="explore-selection-title">Todas as faixas</h2><div class="explore-selection-actions"><button type="button" data-action="back-to-folders" class="explore-back-button">Trocar pasta</button><button type="button" data-action="play-selection" id="play-selection" class="explore-play-button"><svg class="icon icon-filled" aria-hidden="true"><use href="#i-play"/></svg>Tocar seleção</button></div></div><div class="chips" id="genre-filters"></div></div><div class="table-header"><span>FAIXA</span><span>GÊNERO</span><svg class="icon"><use href="#i-clock"/></svg><span></span></div><div id="all-tracks" class="track-list"></div></section>
         <section class="offline-dashboard" id="downloads-dashboard" aria-labelledby="offline-dashboard-title">
           <div class="offline-dashboard-head">
             <div><span class="eyebrow">OUÇA SEM INTERNET</span><h2 id="offline-dashboard-title">Downloads</h2><p id="offline-dashboard-summary">Verificando faixas disponíveis...</p></div>
@@ -92,17 +109,6 @@
           <div class="track-list" id="offline-available-tracks"></div>
           <p class="fine-print">Toque em Baixar ao lado de qualquer música para salvá-la neste dispositivo. Os downloads não são enviados automaticamente para outro celular.</p>
         </section>
-        <section class="genre-showcase" aria-label="Explore por estilo musical">
- <div class="section-title row-between"><div><span class="eyebrow">SUAS ESTAÇÕES</span><h2>Escolha a sua vibe</h2></div><span class="small-note">Biblioteca por categoria</span></div>
- <div class="genre-showcase-grid">
- <button class="genre-feature" type="button" data-action="genre" data-genre="Anos 80 e 90" aria-label="Explorar Anos 80 e 90"><img loading="lazy" src="./assets/capas/genero-80-90.svg" alt=""><span class="genre-feature-label">CLÁSSICOS</span></button>
-<button class="genre-feature" type="button" data-action="genre" data-genre="Rock" aria-label="Explorar Rock"><img loading="lazy" src="./assets/capas/genero-rock.svg" alt=""><span class="genre-feature-label">GUITARRAS</span></button>
-<button class="genre-feature" type="button" data-action="genre" data-genre="Hip Hop" aria-label="Explorar Hip Hop"><img loading="lazy" src="./assets/capas/genero-hiphop.svg" alt=""><span class="genre-feature-label">BATIDAS</span></button>
-<button class="genre-feature" type="button" data-action="genre" data-genre="Malhação Internacional 2003" aria-label="Explorar Malhação Internacional 2003"><img loading="lazy" src="./assets/capas/genero-malhacao.svg" alt=""><span class="genre-feature-label">TRILHA 2003</span></button>
- </div>
-</section>
-        <section class="discover-section"><div class="section-title row-between"><div><span class="eyebrow">SUA SELEÇÃO</span><h2>Em destaque</h2></div><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end"><span class="small-note" id="explore-track-count"></span><button class="outline-button" type="button" id="refresh-library" aria-label="Atualizar catálogo de músicas">Atualizar músicas</button></div></div><div id="discover-grid" class="album-grid"></div></section>
-        <section class="tracks-section"><div class="section-title row-between"><div><span class="eyebrow">CATÁLOGO COMPLETO</span><h2>Todas as faixas</h2></div><div class="chips" id="genre-filters"></div></div><div class="table-header"><span>FAIXA</span><span>GÊNERO</span><svg class="icon"><use href="#i-clock"/></svg><span></span></div><div id="all-tracks" class="track-list"></div></section>
         <section class="tracks-section" id="offline-library"><div class="section-title row-between"><div><span class="eyebrow">NO SEU DISPOSITIVO</span><h2>Minhas músicas offline</h2></div><span class="small-note" id="offline-count">Carregando downloads...</span></div><div class="track-list" id="offline-tracks"></div><p class="fine-print">Os áudios são salvos apenas quando você toca em Baixar. Use a lista acima para adicionar mais músicas e esta seção para ouvir ou excluir os arquivos baixados.</p></section>
       </div>
 
@@ -124,6 +130,6 @@
   <audio id="audio" preload="metadata"></audio>
   <script src="./js/native-bridge.js?v=bridge-2" defer></script>
   <script src="./js/offline.js?v=stream-3" defer></script>
-  <script src="./js/app.js?v=battery-4" defer></script>
+  <script src="./js/app.js?v=folders-5" defer></script>
 </body>
 </html>
