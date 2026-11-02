@@ -33,6 +33,7 @@ with tempfile.TemporaryDirectory() as temp:
     (music / "Skillet - Monster (Official Video).m4a").write_bytes(b"identidade-terceira")
     (music / "Richard Marx - Right Here Waiting (Official Music Video).m4a").write_bytes(b"identidade-quarta")
     (music / "horizonte-azul.mp3").write_bytes(b"original-do-projeto")
+    (music / "Sem Artista - Musica Desconhecida.m4a").write_bytes(b"desconhecida-na-raiz")
     (incoming / "Vengaboys - Boom, Boom, Boom, Boom-new.mp3").write_bytes(b"identidade-beta")
     (incoming / "nao sei musica.mp3").write_bytes(b"nao alterar")
     (incoming / "Rick Astley - Never Gonna Give You Up.m4a").write_bytes(b"conflito")
@@ -46,11 +47,13 @@ with tempfile.TemporaryDirectory() as temp:
     }}))
     result=organize(root)
     assert len(result["moved"])==4, result
-    assert len(result["unknown"])==1 and len(result["conflicts"])==1, result
+    assert len(result["unknown"])==2 and len(result["conflicts"])==1, result
     assert (music / "rock" / "INXS - By My Side.m4a").read_bytes()==b"identidade-alfa"
     assert (music / "rock" / "Skillet - Monster (Official Video).m4a").read_bytes()==b"identidade-terceira"
     assert (music / "romanticas" / "Richard Marx - Right Here Waiting (Official Music Video).m4a").read_bytes()==b"identidade-quarta"
     assert (music / "horizonte-azul.mp3").read_bytes()==b"original-do-projeto"
+    assert (music / "Sem Artista - Musica Desconhecida.m4a").read_bytes()==b"desconhecida-na-raiz"
+    assert not any("horizonte-azul" in f for f in result["unknown"])
     assert (music / "dance" / "Vengaboys - Boom, Boom, Boom, Boom-new.mp3").read_bytes()==b"identidade-beta"
     assert (incoming / "nao sei musica.mp3").exists()
     assert (incoming / "Rick Astley - Never Gonna Give You Up.m4a").read_bytes()==b"conflito"
