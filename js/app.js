@@ -286,6 +286,7 @@
     $('explore-selection-title').textContent = state.folder !== 'Todas' ? folderLabel(state.folder) :
       state.genre !== 'Todos' ? state.genre : 'Todas as faixas';
     $('explore-track-count').textContent = tracks.length+' '+(tracks.length === 1 ? 'faixa' : 'faixas')+' · '+libraryDuration(tracks.reduce((n,t)=>n+Number(t.duration),0));
+    $('play-selection').disabled = tracks.length === 0;
     $('preview-grid').innerHTML = state.tracks.slice(0, 4).map(card).join('') || empty('Biblioteca vazia','Adicione MP3 na pasta músicas.');
     const genres = ['Todos', ...new Set(state.tracks.map(t => t.genre).filter(Boolean))];
     $('genre-filters').innerHTML = genres.map(g => '<button data-action="genre" data-genre="'+escapeHtml(g)+'" class="'+(state.genre===g?'is-active':'')+'" aria-pressed="'+(state.genre===g)+'">'+escapeHtml(g)+'</button>').join('');
@@ -809,6 +810,13 @@
         renderExplore();
         $('track-catalog-section').scrollIntoView({behavior:'smooth',block:'start'});
         break;
+      case 'back-to-folders': $('music-folders').scrollIntoView({behavior:'smooth',block:'start'}); break;
+      case 'play-selection': {
+        const tracks=visibleTracks();
+        if (!tracks.length) return toast('Não há músicas nesta seleção.');
+        selectSong(tracks[0].id,tracks.map(t=>t.id));
+        break;
+      }
       case 'folder':
         if (el.dataset.folder !== 'Todas' && !musicFolders().some(f=>f.id===el.dataset.folder)) break;
         state.folder=el.dataset.folder;
