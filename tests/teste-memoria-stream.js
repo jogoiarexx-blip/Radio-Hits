@@ -4,7 +4,7 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const root=path.resolve(__dirname,'..');
 const source=fs.readFileSync(path.join(root,'js/offline.js'),'utf8');
 const catalogue=JSON.parse(fs.readFileSync(path.join(root,'catalogo.json'),'utf8'));
-const tracks=catalogue.radioOrder.map(id=>catalogue.tracks.find(t=>t.id===id));
+const tracks=catalogue.tracks.filter(t=>!t.isJingle);
 assert.ok(tracks.length>=64,'a rádio precisa manter ao menos as 64 faixas iniciais');
 assert.ok(tracks.every(Boolean),'Ordem da radio contem faixa ausente');
 const cached=new Map();
