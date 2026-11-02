@@ -185,7 +185,7 @@
   }
   function playableTracks() { return state.tracks.filter(t => t.src && Number(t.duration) > 0); }
   function radioTracks() {
-    const available = playableTracks();
+    const available = libraryTracks().filter(t => t.src && Number(t.duration) > 0);
     return state.radioOrder.length ? state.radioOrder.map(id => available.find(t => t.id === id)).filter(Boolean) : available;
   }
   function getRadioInfo(now = Date.now()) {
@@ -230,6 +230,7 @@
       ? `<button class="download-cancel-button" data-action="download-cancel" data-id="${escapeHtml(t.id)}" title="Cancelar e apagar download parcial" aria-label="Cancelar download de ${escapeHtml(t.title)}">Cancelar</button>` : '';
     return `<div class="track-row ${active ? 'is-active':''}"><button class="track-main track-main-play" data-action="play-track" data-id="${escapeHtml(t.id)}" aria-label="Tocar ${escapeHtml(t.title)}"><img src="${art(t)}" alt="" loading="lazy"><span class="track-text"><strong>${escapeHtml(t.title)}</strong><small>${escapeHtml(t.artist)}</small></span></button><span class="track-genre">${escapeHtml(t.genre)}</span><span class="track-duration">${timeFmt(t.duration)}</span><div class="track-actions"><button class="icon-button ${liked?'is-liked':''}" data-action="like-track" data-id="${escapeHtml(t.id)}" title="${liked?'Remover dos favoritos':'Favoritar'}" aria-label="${liked?'Desfavoritar':'Favoritar'} ${escapeHtml(t.title)}">${icon('heart')}</button><button class="icon-button" data-action="add-playlist" data-id="${escapeHtml(t.id)}" title="Adicionar à playlist" aria-label="Adicionar ${escapeHtml(t.title)} a uma playlist">${icon('plus')}</button>${saveButton}${cancelButton}</div></div>`;
   }
+  function libraryTracks() { return state.tracks.filter(t => !t.isJingle); }
   const FOLDER_LABELS = {
     'as melhores 80 e 90': 'Anos 80 e 90',
     'malhacao-internacional-2003': 'Malhação Internacional 2003',
@@ -250,7 +251,7 @@
   }
   function musicFolders() {
     const folders = new Map();
-    state.tracks.forEach(t => {
+    libraryTracks().forEach(t => {
       const id = trackFolder(t);
       if (!folders.has(id)) folders.set(id, {id, label: folderLabel(id), count: 0});
       folders.get(id).count++;
@@ -261,7 +262,7 @@
     const folders = musicFolders();
     if (state.folder !== 'Todas' && !folders.some(f => f.id === state.folder))
       state.folder = 'Todas';
-    const cards = [{id:'Todas',label:'Todas as músicas',count:state.tracks.length},...folders];
+    const cards = [{id:'Todas',label:'Todas as músicas',count:libraryTracks().length},...folders];
     $('music-folder-grid').innerHTML = cards.map(f => {
       const selected = state.folder === f.id && state.genre === 'Todos';
       const label = f.count === 1 ? '1 faixa' : f.count + ' faixas';
@@ -271,7 +272,7 @@
   }
   function visibleTracks() {
     const query = state.query.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-    return state.tracks.filter(t => {
+    return libraryTracks().filter(t => {
       if (state.folder !== 'Todas' && trackFolder(t) !== state.folder) return false;
       if (state.genre !== 'Todos' && t.genre !== state.genre) return false;
       if (!query) return true;
@@ -287,17 +288,17 @@
       state.genre !== 'Todos' ? state.genre : 'Todas as faixas';
     $('explore-track-count').textContent = tracks.length+' '+(tracks.length === 1 ? 'faixa' : 'faixas')+' · '+libraryDuration(tracks.reduce((n,t)=>n+Number(t.duration),0));
     $('play-selection').disabled = tracks.length === 0;
-    $('preview-grid').innerHTML = state.tracks.slice(0, 4).map(card).join('') || empty('Biblioteca vazia','Adicione MP3 na pasta músicas.');
-    const genres = ['Todos', ...new Set(state.tracks.map(t => t.genre).filter(Boolean))];
+    $('preview-grid').innerHTML = libraryTracks().slice(0, 4).map(card).join('') || empty('Biblioteca vazia','Adicione MP3 na pasta músicas.');
+    const genres = ['Todos', ...new Set(libraryTracks().map(t => t.genre).filter(Boolean))];
     $('genre-filters').innerHTML = genres.map(g => '<button data-action="genre" data-genre="'+escapeHtml(g)+'" class="'+(state.genre===g?'is-active':'')+'" aria-pressed="'+(state.genre===g)+'">'+escapeHtml(g)+'</button>').join('');
-    $('sidebar-track-count').textContent = state.tracks.length+' '+(state.tracks.length===1?'faixa':'faixas');
+    $('sidebar-track-count').textContent = libraryTracks().length+' '+(libraryTracks().length===1?'faixa':'faixas');
     const clock = $('sidebar-library-runtime');
-    if (clock) clock.textContent = libraryDuration(state.tracks.reduce((n,t)=>n+Number(t.duration),0)) + ' de música';
+    if (clock) clock.textContent = libraryDuration(libraryTracks().reduce((n,t)=>n+Number(t.duration),0)) + ' de música';
     renderOffline();
   }
   function renderOffline() {
     const available = state.tracks.filter(t => t.src && Number(t.duration) > 0);
-    const saved = state.tracks.filter(t => offlineSources.has(offline.absolute(t.src)));
+    const saved = libraryTracks().filter(t => offlineSources.has(offline.absolute(t.src)));
     const count = $('offline-count'), area = $('offline-tracks');
     const availableCount = $('offline-available-count');
     const availableArea = $('offline-available-tracks');
@@ -427,7 +428,7 @@
     }
   });
   function renderFavorites() {
-    const tracks = state.tracks.filter(t => state.favorites.has(t.id));
+    const tracks = libraryTracks().filter(t => state.favorites.has(t.id));
     $('favorite-tracks').innerHTML = tracks.length ? tracks.map(songRow).join('') : empty('Seus favoritos aparecerão aqui', 'Toque no coração de qualquer faixa para guardar.', 'Explorar faixas');
   }
   function renderPlaylists() {
@@ -704,7 +705,7 @@
     } else playRadio();
   }
   function selectSong(id, queueIds) {
-    const t = trackById(id); if (!t) return;
+    const t = trackById(id); if (!t || t.isJingle) return;
     state.mode = 'ondemand';
     radioWantsPlayback = false;
     const ids = [...new Set((queueIds || visibleTracks().map(t=>t.id)).filter(id => Boolean(trackById(id))))];
@@ -720,7 +721,7 @@
       audio.pause(); return;
     }
     if (state.mode === 'radio') { playRadio(); return; }
-    const t = trackById(state.currentId) || state.tracks[0];
+    const t = trackById(state.currentId) || libraryTracks()[0];
     if (!t) return toast('Adicione músicas para começar.');
     // Não reinicie arquivos locais blob: quando o usuário só quer retomar a faixa.
     if (!audio.src || (audio.src !== new URL(t.src, document.baseURI).href && activeOfflineId !== t.id)) loadTrack(t, 0);
@@ -758,7 +759,7 @@
     window.scrollTo({top:0,behavior:'instant'});
   }
   function toggleLike(id) {
-    if (!trackById(id)) return;
+    if (!trackById(id) || trackById(id).isJingle) return;
     if (state.favorites.has(id)) { state.favorites.delete(id); toast('Removida dos favoritos'); }
     else { state.favorites.add(id); toast('Adicionada aos favoritos'); }
     persist(); renderPlayer(); renderExplore(); renderFavorites(); renderPlaylists();
@@ -958,7 +959,7 @@
       state.loaded=true;
       const info=getRadioInfo();
       state.currentId=info?.track?.id||state.tracks[0]?.id||null;
-      if (state.currentId) state.queue=state.tracks.map(t=>t.id);
+      if (state.currentId) state.queue=libraryTracks().map(t=>t.id);
       renderRadio(info);renderExplore();renderFavorites();renderPlaylists();renderQueue(info);renderPlayer();
       syncOffline();
       refreshNativeDownloadJobs();
@@ -999,14 +1000,14 @@
           cover:t.cover||'./assets/capas/padrao.svg',duration:Number(t.duration)}));
       const oldIds = new Set(state.tracks.map(t => t.id));
       const additions = updated.filter(t => !oldIds.has(t.id)).length;
-      const signature = tracks => JSON.stringify(tracks.map(t => [t.id,t.title,t.artist,t.src,t.duration,t.genre,t.cover,t.year,t.downloadAllowed,t.gainDb,t.loudnessLufs]));
+      const signature = tracks => JSON.stringify(tracks.map(t => [t.id,t.title,t.artist,t.src,t.duration,t.genre,t.cover,t.year,t.downloadAllowed,t.gainDb,t.loudnessLufs,t.isJingle]));
       const orderChanged = JSON.stringify(state.radioOrder) !== JSON.stringify(data.radioOrder || []);
       if (signature(updated) !== signature(state.tracks) || orderChanged) {
         state.tracks = updated;
         state.radioOrder = Array.isArray(data.radioOrder) ? data.radioOrder : [];
         if (!trackById(state.currentId)) state.currentId = getRadioInfo()?.track?.id || updated[0]?.id || null;
-        state.queue = state.queue.filter(id => trackById(id));
-        if (!state.queue.length) { state.queue = updated.map(t=>t.id); state.queueIndex = 0; }
+        state.queue = state.queue.filter(id => trackById(id) && !trackById(id).isJingle);
+        if (!state.queue.length) { state.queue = libraryTracks().map(t=>t.id); state.queueIndex = 0; }
         else state.queueIndex = Math.max(0, state.queue.indexOf(state.currentId));
         const info = getRadioInfo();
         applyVolumeForTrack();
