@@ -50,6 +50,10 @@ jobs:
           if [ ! -x "$SDKMANAGER" ]; then SDKMANAGER="$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager"; fi
           yes | "$SDKMANAGER" --licenses > /dev/null || true
           "$SDKMANAGER" "platforms;android-36" "build-tools;36.0.0"
+      - name: Regenerar catalogo com vinhetas
+        run: |
+          python -m pip install --disable-pip-version-check mutagen==1.47.0
+          python scripts/gerar_catalogo.py
       - name: Validar ponte, interface e catalogo
         run: |
           node --check js/native-bridge.js
@@ -59,6 +63,7 @@ jobs:
           node tests/teste-fila-android.js
           node tests/teste-recuperacao-android.js
           node tests/teste-radio-64.js
+          node tests/teste-vinheta.js
           node tests/teste-explorar-pastas.js
           node tests/teste-bateria-background.js
           node tests/teste-memoria-stream.js
@@ -73,7 +78,7 @@ jobs:
         run: |
           mkdir -p android/app/src/main/assets/offline-site
           cp index.html catalogo.json manifest.webmanifest sw.js android/app/src/main/assets/offline-site/
-          cp -R css js assets android/app/src/main/assets/offline-site/
+          cp -R css js assets vinhetas android/app/src/main/assets/offline-site/
       - name: Compilar APK para teste
         working-directory: android
         run: gradle --no-daemon :app:assembleDebug
