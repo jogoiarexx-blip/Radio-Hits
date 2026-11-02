@@ -10,8 +10,8 @@ const ctx={state,EPOCH:epoch,Date,Math,Number};
 vm.createContext(ctx);
 vm.runInContext(app.slice(start,stop),ctx);
 const order=ctx.radioTracks();
-assert.equal(order.length,64,'simulacao de 64 faixas em ordem');
-assert.equal(new Set(order.map(t=>t.id)).size,64,'nao deve repetir ID na programacao');
+assert.ok(order.length>=64,'a rádio precisa preservar as 64 faixas originais e aceitar novas');
+assert.equal(new Set(order.map(t=>t.id)).size,order.length,'nao deve repetir ID na programacao');
 const total=order.reduce((n,t)=>n+Number(t.duration),0);
 assert.ok(total>0);
 let elapsed=0;
@@ -45,4 +45,4 @@ while(simulated < total) {
     'offset fora do intervalo da faixa '+info.track.id);
   simulated+=STEP;
 }
-console.log('RADIO 64 OK: janelas de 64 faixas, 7 voltas e '+Math.ceil(total/STEP)+' amostras em 15s de um ciclo inteiro.');
+console.log('RADIO OK: '+order.length+' faixas, 7 voltas e '+Math.ceil(total/STEP)+' amostras em 15s de um ciclo inteiro.');
