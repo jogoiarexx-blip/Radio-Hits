@@ -40,7 +40,11 @@ final class OfflineStore {
                 && "jogoiarexx-blip.github.io".equalsIgnoreCase(uri.getHost())
                 && (uri.getPort()==-1 || uri.getPort()==443)
                 && uri.getQuery()==null && uri.getFragment()==null
-                && "/Radio-Hits/vinhetas/radio-hits-cada-5.mp3".equals(uri.getEncodedPath());
+                && (
+                    "/Radio-Hits/vinhetas/radio-hits-cada-5.mp3".equals(uri.getEncodedPath())
+                    || "/Radio-Hits/vinhetas/radio-hits-alto-astral.mp3".equals(uri.getEncodedPath())
+                    || "/Radio-Hits/vinhetas/radio-hits-classicos.mp3".equals(uri.getEncodedPath())
+                );
         } catch (Exception error) { return false; }
     }
 

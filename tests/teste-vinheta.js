@@ -16,7 +16,10 @@ const byId=new Map(catalog.tracks.map(t=>[t.id,t]));
 assert.equal(byId.size,catalog.tracks.length,'ID unico no Media3');
 assert.equal(catalog.radioOrder.length,catalog.tracks.length,'programacao cobre todos os itens');
 assert.ok(jingles.every(t=>t.duration>=5&&t.duration<=30),'vinheta curta');
-assert.ok(jingles.every(t=>t.src==='./vinhetas/radio-hits-cada-5.mp3'));
+const names=['radio-hits-cada-5.mp3','radio-hits-alto-astral.mp3','radio-hits-classicos.mp3'];
+assert.ok(jingles.every((t,i)=>t.src==='./vinhetas/'+names[i%3]),
+  'as 3 vinhetas devem alternar sem perder blocos de cinco');
+assert.ok(new Set(jingles.map(t=>t.src)).size===3,'variantes de rádio ausentes');
 assert.ok(jingles.every(t=>t.downloadAllowed===false),'vinheta nao eh musica baixavel');
 assert.ok(jingles.every(t=>t.gainDb<=0),'jingle nao amplifica volume');
 for(let i=0,musicCount=0;i<catalog.radioOrder.length;i++){
@@ -54,9 +57,11 @@ assert.match(app,/function libraryTracks\(\) \{ return state\.tracks\.filter\(t 
 assert.match(app,/if \(!t \|\| t\.isJingle\) return;/,'bloqueio da vinheta sob demanda');
 assert.match(android,/static boolean validStreamUrl\(String src\)/);
 assert.match(android,/\/Radio-Hits\/vinhetas\/radio-hits-cada-5\.mp3/);
+assert.match(android,/\/Radio-Hits\/vinhetas\/radio-hits-alto-astral\.mp3/);
+assert.match(android,/\/Radio-Hits\/vinhetas\/radio-hits-classicos\.mp3/);
 assert.match(activity,/return OfflineStore\.validStreamUrl\(url\)/);
 assert.match(snapshot,/OfflineStore\.validStreamUrl\(url\)/);
 const media=get('scripts/preparar_site.py');
 assert.match(media,/'vinhetas'/,'asset de vinheta precisa ser publicado');
-console.log('VINHETA OK: '+songs.length+' musicas, '+jingles.length+
+console.log('VINHETAS ALTERNADAS OK (3 versões): '+songs.length+' musicas, '+jingles.length+
   ' entradas (a cada 5 hits), UTC, retorno de ciclo, isolamento sob demanda e Android.');

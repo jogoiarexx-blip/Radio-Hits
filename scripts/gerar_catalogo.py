@@ -114,32 +114,42 @@ def main():
         gain=max(-10.0,min(0.0,float(loudness.get('gainDb') or 0.0)))
         tracks.append({'id':ident,'title':title,'artist':artist,'genre':genre,'duration':seconds,'src':source,'cover':cover,'year':meta.get('year',2026),'downloadAllowed':meta.get('downloadAllowed') is True,
                        'gainDb':gain,'loudnessLufs':loudness.get('lufs')})
-    # Blocos sincronizados: sempre 5 músicas e, em seguida, uma vinheta.
-    # Cada inserção possui ID único, mas todas usam o MESMO pequeno MP3.
-    # Isso preserva IDs únicos no Media3 Android e no relógio UTC do navegador.
-    jingle_path = ROOT / 'vinhetas' / 'radio-hits-cada-5.mp3'
-    if not jingle_path.is_file():
-        raise SystemExit('Vinheta ausente: gere vinhetas/radio-hits-cada-5.mp3 antes de publicar')
-    jingle_seconds = duration(jingle_path)
-    if jingle_seconds is None or not 5 <= jingle_seconds <= 30:
-        raise SystemExit('Vinheta com duração inválida (5–30 segundos)')
+    # A cada 5 músicas, alternar determinística e ciclicamente
+    # três vinhetas femininas. IDs continuam exclusivos e estáveis.
+    # O relógio UTC usa durações exatas de cada MP3 (incluindo VBR padding).
+    jingle_options = [
+        ('radio-hits-cada-5.mp3', 'Energia'),
+        ('radio-hits-alto-astral.mp3', 'Alto astral'),
+        ('radio-hits-classicos.mp3', 'Clássicos'),
+    ]
+    jingle_seconds = {}
+    for filename, _ in jingle_options:
+        asset = ROOT / 'vinhetas' / filename
+        if not asset.is_file():
+            raise SystemExit(f'Vinheta ausente: {asset}')
+        measured = duration(asset)
+        if measured is None or not 6 <= measured <= 30:
+            raise SystemExit(f'Duração inválida na vinheta: {filename}')
+        jingle_seconds[filename] = measured
     radio_order = []
     jingles = []
     for song_number, track in enumerate(tracks, 1):
         radio_order.append(track['id'])
         if song_number % 5 == 0:
-            jingle_id = f'vinheta-radio-hits-{song_number // 5:03d}'
+            jingle_number = song_number // 5
+            filename, label = jingle_options[(jingle_number - 1) % len(jingle_options)]
+            jingle_id = f'vinheta-radio-hits-{jingle_number:03d}'
             jingles.append({
-                'id': jingle_id, 'title': 'Vinheta • Rádio Hits',
+                'id': jingle_id, 'title': f'Rádio Hits • {label}',
                 'artist': 'Rádio Hits', 'genre': 'Vinheta',
-                'isJingle': True, 'duration': jingle_seconds,
-                'src': './vinhetas/radio-hits-cada-5.mp3',
+                'isJingle': True, 'duration': jingle_seconds[filename],
+                'src': './vinhetas/' + filename,
                 'cover': './assets/capas/genero-radio-hits.svg',
                 'year': 2026, 'downloadAllowed': False, 'gainDb': 0.0,
-                'loudnessLufs': None
+                'loudnessLufs': None,
             })
             radio_order.append(jingle_id)
-    result={'name':'Radio Hits','version':2,'tracks':tracks+jingles,'radioOrder':radio_order}
+    result={'name':'Radio Hits','version':3,'tracks':tracks+jingles,'radioOrder':radio_order}
     target=ROOT/'catalogo.json'
     target.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(f'Catálogo gerado: {len(tracks)} músicas + {len(jingles)} entradas de vinheta / {sum(t["duration"] for t in tracks+jingles):.1f}s de rádio. -> {target}')

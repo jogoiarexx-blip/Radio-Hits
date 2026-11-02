@@ -22,11 +22,16 @@ for i,song in enumerate(songs,1):
     expected_order.append(song['id'])
     if i%5==0:
         expected_order.append('vinheta-radio-hits-%03d' % (i//5))
-jingle_path=ROOT/'vinhetas/radio-hits-cada-5.mp3'
-jingle_ok=jingle_path.is_file() and jingle_path.stat().st_size>30000
+files=['radio-hits-cada-5.mp3','radio-hits-alto-astral.mp3','radio-hits-classicos.mp3']
+jingle_ok=all((ROOT/'vinhetas'/file).is_file() and
+    (ROOT/'vinhetas'/file).stat().st_size>60000 for file in files)
 jingle_ok=jingle_ok and len(jingles)==len(songs)//5
-jingle_ok=jingle_ok and all(t.get('src')=='./vinhetas/radio-hits-cada-5.mp3'
-    and t.get('downloadAllowed') is False and t.get('genre')=='Vinheta' for t in jingles)
+jingle_ok=jingle_ok and all(
+    t['src']=='./vinhetas/'+files[i%3]
+    and t.get('downloadAllowed') is False
+    and t.get('genre')=='Vinheta'
+    and 6<=float(t['duration'])<=30
+    for i,t in enumerate(jingles))
 print(f'Verificação: {len(expected)} arquivos, {len(songs)} músicas e {len(jingles)} vinhetas por ciclo.')
 for src in missing: print('AUSENTE:',src)
 for src in extra: print('INEXISTENTE:',src)
