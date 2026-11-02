@@ -20,7 +20,7 @@ assert.equal(new Set(order).size, tracks.length, 'Ordem deve ter IDs sem repeti�
 assert.equal(new Set(tracks.map(t => t.id)).size, tracks.length, 'IDs únicos');
 assert.ok(tracks.every(t => order.includes(t.id)), 'Faixa sem lugar na rádio');
 assert.ok(tracks.every(t => t.duration > 0 && Number.isFinite(t.duration)), 'Duração inválida');
-assert.ok(tracks.every(t => t.src.startsWith('./musicas/')), 'URL de áudio inválida');
+assert.ok(tracks.every(t => t.src.startsWith(t.isJingle?'./vinhetas/':'./musicas/')), 'URL de áudio inválida');
 assert.ok(tracks.every(t => t.cover.startsWith('./assets/')), 'Capa não validada');
 assert.ok(tracks.every(t => typeof t.downloadAllowed === 'boolean'), 'Permissão offline não explícita');
 
