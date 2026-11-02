@@ -670,5 +670,46 @@
     "genre": "Anos 80 e 90",
     "cover": "./assets/capas/padrao.svg",
     "downloadAllowed": false
+  },
+  "classicos/Elvis Presley - Can't Help Falling In Love (Official Audio)-new.mp3": {
+    "title": "Can't Help Falling in Love",
+    "artist": "Elvis Presley",
+    "genre": "Clássicos",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "classicos/Elvis Presley - Suspicious Minds (Official Music Video)-new.mp3": {
+    "title": "Suspicious Minds",
+    "artist": "Elvis Presley",
+    "genre": "Clássicos",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "as melhores 80 e 90/Flashdance • What a Feeling • Irene Cara-new.mp3": {
+    "title": "Flashdance... What a Feeling",
+    "artist": "Irene Cara",
+    "genre": "Anos 80 e 90",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "romanticas/Glory of Love-new.mp3": {
+    "title": "Glory of Love",
+    "genre": "Românticas",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "dance/Ice MC - Think about the way [Official Video]-new.mp3": {
+    "title": "Think About the Way",
+    "artist": "Ice MC",
+    "genre": "Dance",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "country/Shania Twain - You’re Still The One (Official Music Video)-new.mp3": {
+    "title": "You're Still the One",
+    "artist": "Shania Twain",
+    "genre": "Country",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   }
 }
