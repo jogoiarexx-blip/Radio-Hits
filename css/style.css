@@ -94,3 +94,33 @@
   .download-track-button{font-size:10px;min-width:65px}
   .download-cancel-button{font-size:10px}
 }
+
+/* Navegação por pastas reais do catálogo — desktop e celular. */
+.folder-section{margin:16px 0 28px}
+.folder-section .section-title{margin:10px 0 9px}
+.folder-section-description{margin:0 0 16px;color:#94a2aa;font-size:12px;line-height:1.6}
+.folder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.folder-card{background:linear-gradient(135deg,#17242b,#151c23 74%);border:1px solid #303c44;border-radius:13px;padding:16px 13px;display:flex;align-items:center;gap:11px;min-height:87px;text-align:left;min-width:0;transition:background .2s,border-color .2s,transform .2s;touch-action:manipulation}
+.folder-card:hover{border-color:#688771;background:#1d2b2b;transform:translateY(-2px)}
+.folder-card.is-active{background:linear-gradient(125deg,#233b2b,#1a2827);border-color:var(--accent);box-shadow:inset 0 0 0 1px #b8f45833}
+.folder-card-icon{width:43px;height:43px;flex:none;border:1px solid #3a5548;border-radius:11px;background:#233b30;color:#b8f458;display:grid;place-items:center}
+.folder-card-icon .icon{width:24px;height:24px}
+.folder-card-text{flex:1;min-width:0}
+.folder-card-text strong{display:block;font-size:12px;font-weight:750;line-height:1.35;overflow-wrap:anywhere}
+.folder-card-text small{display:block;font-size:10px;color:#96a6af;margin-top:5px}
+.folder-arrow{width:16px;height:16px;color:#71877b}
+.folder-card.is-active .folder-card-text strong,.folder-card.is-active .folder-arrow{color:var(--accent)}
+#track-catalog-section{scroll-margin-top:16px}
+@media(max-width:1050px){.folder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:690px){
+  .folder-section{margin:14px 0 22px}
+  .folder-section-description{font-size:11px}
+  .folder-grid{gap:8px}
+  .folder-card{padding:12px 9px;min-height:73px;gap:9px}
+  .folder-card-icon{width:35px;height:35px;border-radius:9px}
+  .folder-card-icon .icon{width:19px;height:19px}
+  .folder-card-text strong{font-size:11px}
+  .folder-card-text small{font-size:9px}
+  .folder-arrow{display:none}
+}
+@media(prefers-reduced-motion:reduce){.folder-card{transition:none}.folder-card:hover{transform:none}}
