@@ -47,20 +47,24 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # A geração do MP3 deixa o checkout modificado. Primeiro registre
+          # o commit local, só depois faça rebase com possíveis mudanças no
+          # catálogo publicadas por outro workflow.
+          git add vinhetas/radio-hits-cada-5.mp3
+          if git diff --cached --quiet; then
+            echo "Audio nao mudou."
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "Atualizar vinheta feminina com trilha original animada"
           for attempt in 1 2 3 4 5; do
             git fetch origin main
-            git pull --rebase origin main
-            git add vinhetas/radio-hits-cada-5.mp3
-            if git diff --cached --quiet; then
-              echo "Audio nao mudou."
-              echo 'changed=false' >> "$GITHUB_OUTPUT"
-              exit 0
-            fi
-            git commit -m "Adicionar vinheta original em portugues com locucao neural"
+            git rebase origin/main
             if git push origin HEAD:main; then
               echo 'changed=true' >> "$GITHUB_OUTPUT"
               exit 0
             fi
+            echo "Push concorrente; sincronizando ($attempt/5)"
             sleep 4
           done
           exit 1
