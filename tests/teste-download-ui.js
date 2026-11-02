@@ -8,8 +8,8 @@ const js = fs.readFileSync(path.join(root, 'js/app.js'), 'utf8');
 const css = fs.readFileSync(path.join(root, 'css/style.css'), 'utf8');
 const offline = fs.readFileSync(path.join(root, 'js/offline.js'), 'utf8');
 const catalog = JSON.parse(fs.readFileSync(path.join(root,'catalogo.json'),'utf8'));
-const available = catalog.tracks.filter(t=>t.src && Number(t.duration)>0);
-assert.equal(available.length,catalog.tracks.length,'Todas as faixas devem estar disponíveis para download');
+const available = catalog.tracks.filter(t=>!t.isJingle && t.src && Number(t.duration)>0);
+assert.equal(available.length,catalog.tracks.filter(t=>!t.isJingle).length,'Todas as musicas, mas nao a vinheta, devem ter download');
 assert.match(html,/id="downloads-dashboard"/,'Painel de downloads deve aparecer em Explorar');
 assert.match(html,/id="offline-available-tracks"/,'Lista de músicas para baixar ausente');
 assert.match(html,/id="offline-tracks"/,'Lista de downloads salvos ausente');
@@ -27,4 +27,4 @@ assert.match(html,/id="preload-status"/,'Indicador de pré-carregamento ausente'
 assert.match(js,/addEventListener\('canplay'/,'Pré-carregamento precisa avisar quando pode iniciar');
 assert.match(css,/\.download-track-button/);
 assert.match(css,/@media\(max-width:740px\)/);
-console.log('DOWNLOADS UI OK:',catalog.tracks.length,'músicas com botão Baixar e reprodução offline individual.');
+console.log('DOWNLOADS UI OK:',available.length,'músicas com botão Baixar e sem vinheta sob demanda.');
