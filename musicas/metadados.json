@@ -711,5 +711,82 @@
     "genre": "Country",
     "cover": "./assets/capas/padrao.svg",
     "downloadAllowed": false
+  },
+  "rock/Europe - The Final Countdown (Official Video).m4a": {
+    "title": "The Final Countdown",
+    "artist": "Europe",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Foreigner - I Want To Know What Love Is (Official Music Video).m4a": {
+    "title": "I Want to Know What Love Is",
+    "artist": "Foreigner",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Goo Goo Dolls – Iris [Official Music Video] [4K Remaster].m4a": {
+    "title": "Iris",
+    "artist": "Goo Goo Dolls",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Metallica - Nothing Else Matters (Official Music Video).m4a": {
+    "title": "Nothing Else Matters",
+    "artist": "Metallica",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Nirvana - Smells Like Teen Spirit (Official Music Video).m4a": {
+    "title": "Smells Like Teen Spirit",
+    "artist": "Nirvana",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "romanticas/Richard Marx - Right Here Waiting (Official Music Video).m4a": {
+    "title": "Right Here Waiting",
+    "artist": "Richard Marx",
+    "genre": "Românticas",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Skillet - Awake and Alive (Official Audio).m4a": {
+    "title": "Awake and Alive",
+    "artist": "Skillet",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Skillet - Monster (Official Video).m4a": {
+    "title": "Monster",
+    "artist": "Skillet",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "as melhores 80 e 90/Starship - Nothing's Gonna Stop Us Now (Official Music Video) [HD].m4a": {
+    "title": "Nothing's Gonna Stop Us Now",
+    "artist": "Starship",
+    "genre": "Anos 80 e 90",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Survivor - Eye Of The Tiger (Official HD Video).m4a": {
+    "title": "Eye of the Tiger",
+    "artist": "Survivor",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/skillet Hero.m4a": {
+    "title": "Hero",
+    "artist": "Skillet",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   }
 }
