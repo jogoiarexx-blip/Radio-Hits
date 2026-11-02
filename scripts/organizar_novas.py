@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Organiza musica/novas-do-rar por gênero sem reencodar ou apagar músicas.
+"""Organiza músicas novas da raiz e novas-do-rar por gênero sem reencodar.
 
 Execução local: python scripts/organizar_novas.py
-Apenas arquivos reconhecidos são movidos. Novas músicas desconhecidas ficam na
-pasta de entrada e são relatadas para classificação manual.
+Apenas arquivos reconhecidos são movidos. Desconhecidos ficam onde estão.
 """
 from __future__ import annotations
 
@@ -55,6 +54,17 @@ RULES = [
     ("boom boom boom boom", "dance", "Dance", "Boom, Boom, Boom, Boom!!", "Vengaboys"),
     ("shalala lala", "dance", "Dance", "Shalala Lala", "Vengaboys"),
     ("is this love", "rock", "Rock", "Is This Love", "Whitesnake"),
+    ("europe the final countdown", "rock", "Rock", "The Final Countdown", "Europe"),
+    ("foreigner i want to know what love is", "rock", "Rock", "I Want to Know What Love Is", "Foreigner"),
+    ("goo goo dolls iris", "rock", "Rock", "Iris", "Goo Goo Dolls"),
+    ("metallica nothing else matters", "rock", "Rock", "Nothing Else Matters", "Metallica"),
+    ("nirvana smells like teen spirit", "rock", "Rock", "Smells Like Teen Spirit", "Nirvana"),
+    ("richard marx right here waiting", "romanticas", "Românticas", "Right Here Waiting", "Richard Marx"),
+    ("skillet awake and alive", "rock", "Rock", "Awake and Alive", "Skillet"),
+    ("skillet monster", "rock", "Rock", "Monster", "Skillet"),
+    ("skillet hero", "rock", "Rock", "Hero", "Skillet"),
+    ("starship nothing s gonna stop us now", "as melhores 80 e 90", "Anos 80 e 90", "Nothing's Gonna Stop Us Now", "Starship"),
+    ("survivor eye of the tiger", "rock", "Rock", "Eye of the Tiger", "Survivor"),
 ]
 
 
@@ -76,7 +86,14 @@ def match(filename: str):
 def organize(root: Path = ROOT):
     music = root / "musicas"
     source = music / "novas-do-rar"
-    if not source.exists():
+    # Aceita uploads tanto na pasta de entrada quanto na raiz de musicas/.
+    # A raiz contém também as seis faixas demonstrativas do projeto; elas
+    # não serão movidas porque só trabalhamos com regras explícitas.
+    candidates = []
+    if source.exists():
+        candidates.extend(p for p in source.rglob("*") if p.is_file() and p.suffix.lower() in AUDIO)
+    candidates.extend(p for p in music.iterdir() if p.is_file() and p.suffix.lower() in AUDIO)
+    if not candidates:
         return {"moved": [], "unknown": [], "conflicts": [], "counts": {}}
     metadata_path = music / "metadados.json"
     profiles_path = music / "volume-perfis.json"
@@ -86,13 +103,14 @@ def organize(root: Path = ROOT):
         raise ValueError("Metadados ou perfis inválidos")
     profile_tracks = profiles.get("tracks", {})
     moved, unknown, conflicts = [], [], []
-    for file in sorted(source.rglob("*")):
-        if not file.is_file() or file.suffix.lower() not in AUDIO:
-            continue
+    for file in sorted(candidates):
         rel = file.relative_to(music).as_posix()
         rule = match(file.name)
         if rule is None:
-            unknown.append(rel)
+            # Os seis MP3 originais do projeto ficam na raiz; não tratá-los
+            # como uploads não reconhecidos.
+            if file.parent != music:
+                unknown.append(rel)
             continue
         _, folder, genre, title, artist = rule
         destination = music / folder / file.name
