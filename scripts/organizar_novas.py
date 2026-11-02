@@ -59,6 +59,9 @@ RULES = [
 
 
 def normalized(value: str) -> str:
+    # Aspas curvas no nome (ex.: You’re) devem separar palavras,
+    # não colar "youre" e impedir reconhecimento da música.
+    value = value.translate(str.maketrans({"\u2019": "'", "\u2018": "'", "\u02bc": "'", "\u201b": "'"}))
     value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode().lower()
     return " ".join(re.findall(r"[a-z0-9]+", value))
 

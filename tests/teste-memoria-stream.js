@@ -5,7 +5,7 @@ const root=path.resolve(__dirname,'..');
 const source=fs.readFileSync(path.join(root,'js/offline.js'),'utf8');
 const catalogue=JSON.parse(fs.readFileSync(path.join(root,'catalogo.json'),'utf8'));
 const tracks=catalogue.radioOrder.map(id=>catalogue.tracks.find(t=>t.id===id));
-assert.equal(tracks.length,64,'Cenario da radio exige 64 faixas');
+assert.ok(tracks.length>=64,'a rádio precisa manter ao menos as 64 faixas iniciais');
 assert.ok(tracks.every(Boolean),'Ordem da radio contem faixa ausente');
 const cached=new Map();
 const transfer=[];
@@ -72,14 +72,14 @@ const offline=environment.window.RadioHitsOffline;
     assert.ok(offline.activeObjectURLCount()<=2,
       'URLs temporarias nao devem crescer com a playlist: '+i);
   }
-  assert.equal(cached.size,64,'todos os downloads permaneceram no disco');
-  assert.equal(fetchCount,64,'sem downloads implicitos em segundo plano');
-  assert.ok(revoked>=63,'URLs antigas devem ser revogadas apos 64 transicoes');
+  assert.equal(cached.size,tracks.length,'todos os downloads permaneceram no disco');
+  assert.equal(fetchCount,tracks.length,'sem downloads implicitos em segundo plano');
+  assert.ok(revoked>=tracks.length-1,'URLs antigas devem ser revogadas apos cada transicao');
   assert.equal(offline.activeObjectURLCount(),1,'somente ultimo objeto URL ativo');
   // Uma transferencia truncada nao pode entrar na biblioteca offline.
   incomplete=true;
   const bad={src:'./musicas/erro.mp3',id:'erro'};
   await assert.rejects(()=>offline.download(bad),/incompleto|terminated|erro|fetch/i);
   assert.ok(!cached.has(offline.absolute(bad.src)),'parcial nao deve parecer concluido');
-  console.log('MEMORIA/STREAM OK: 64 faixas, 64 leituras em fluxo, 63 revogacoes e truncamento recusado.');
+  console.log('MEMORIA/STREAM OK: '+tracks.length+' faixas, leituras em fluxo, '+revoked+' revogacoes e truncamento recusado.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

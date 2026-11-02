@@ -16,6 +16,7 @@ assert match("Vengaboys - Boom, Boom, Boom, Boom-new.mp3")[1] == "dance"
 assert match("Eros Ramazzotti e Tina Turner - Cosas de la Vida (Can't Stop Thinking of You).m4a")[1] == "as melhores 80 e 90"
 assert match("Joan Osborne - One Of Us (Official Music Video).m4a")[1] == "rock"
 assert match("Whitesnake - Is This Love.mp3")[1] == "rock"
+assert match("Shania Twain - You’re Still The One (Official Music Video)-new.mp3")[1] == "country"
 assert match("desconhecido.mp3") is None
 
 with tempfile.TemporaryDirectory() as temp:

@@ -9,6 +9,8 @@ on:
       - '.github/workflows/organizar-novas.yml'
   pull_request:
     paths:
+      - 'tests/teste-radio-64.js'
+      - 'tests/teste-memoria-stream.js'
       - 'scripts/organizar_novas.py'
       - 'tests/test_organizar_novas.py'
       - '.github/workflows/organizar-novas.yml'
@@ -29,6 +31,10 @@ jobs:
           python-version: '3.12'
       - name: Validar 35 regras e teste de movimentação
         run: python tests/test_organizar_novas.py
+      - name: Validar rádio e downloads com catálogo crescente
+        run: |
+          node tests/teste-radio-64.js
+          node tests/teste-memoria-stream.js
   organizar:
     if: github.event_name != 'pull_request'
     needs: verificar
