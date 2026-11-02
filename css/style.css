@@ -124,3 +124,12 @@
   .folder-arrow{display:none}
 }
 @media(prefers-reduced-motion:reduce){.folder-card{transition:none}.folder-card:hover{transform:none}}
+
+/* Acesso direto de volta às pastas e reprodução da seleção. */
+.explore-selection-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px}
+.explore-back-button,.explore-play-button{min-height:37px;border-radius:8px;border:1px solid #3a5342;padding:7px 11px;background:#1c2823;font-size:11px;font-weight:750;color:#c8e6bf}
+.explore-back-button:hover,.explore-play-button:hover{border-color:var(--accent)}
+.explore-play-button{background:var(--accent);border-color:var(--accent);color:#142019;display:inline-flex;align-items:center;gap:7px}
+.explore-play-button svg{width:13px;height:13px}
+.explore-play-button:disabled{cursor:not-allowed;background:#28312b;color:#78867c;border-color:#313b34}
+@media(max-width:690px){.tracks-section .section-title.row-between{align-items:flex-start;flex-direction:column}.tracks-section .chips{max-width:100%;width:100%}.explore-selection-actions button{min-height:42px}}
