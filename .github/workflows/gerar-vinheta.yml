@@ -70,7 +70,7 @@ jobs:
           done
           exit 1
       - name: Reconstruir catálogo, site e APK com a nova duração
-        if: steps.publish_audio.outputs.changed == 'true'
+        if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
