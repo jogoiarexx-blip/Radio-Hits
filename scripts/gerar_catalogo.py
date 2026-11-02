@@ -114,9 +114,34 @@ def main():
         gain=max(-10.0,min(0.0,float(loudness.get('gainDb') or 0.0)))
         tracks.append({'id':ident,'title':title,'artist':artist,'genre':genre,'duration':seconds,'src':source,'cover':cover,'year':meta.get('year',2026),'downloadAllowed':meta.get('downloadAllowed') is True,
                        'gainDb':gain,'loudnessLufs':loudness.get('lufs')})
-    result={'name':'Radio Hits','version':1,'tracks':tracks,'radioOrder':[t['id'] for t in tracks]}
+    # Blocos sincronizados: sempre 5 músicas e, em seguida, uma vinheta.
+    # Cada inserção possui ID único, mas todas usam o MESMO pequeno MP3.
+    # Isso preserva IDs únicos no Media3 Android e no relógio UTC do navegador.
+    jingle_path = ROOT / 'vinhetas' / 'radio-hits-cada-5.mp3'
+    if not jingle_path.is_file():
+        raise SystemExit('Vinheta ausente: gere vinhetas/radio-hits-cada-5.mp3 antes de publicar')
+    jingle_seconds = duration(jingle_path)
+    if jingle_seconds is None or not 5 <= jingle_seconds <= 30:
+        raise SystemExit('Vinheta com duração inválida (5–30 segundos)')
+    radio_order = []
+    jingles = []
+    for song_number, track in enumerate(tracks, 1):
+        radio_order.append(track['id'])
+        if song_number % 5 == 0:
+            jingle_id = f'vinheta-radio-hits-{song_number // 5:03d}'
+            jingles.append({
+                'id': jingle_id, 'title': 'Vinheta • Rádio Hits',
+                'artist': 'Rádio Hits', 'genre': 'Vinheta',
+                'isJingle': True, 'duration': jingle_seconds,
+                'src': './vinhetas/radio-hits-cada-5.mp3',
+                'cover': './assets/capas/genero-radio-hits.svg',
+                'year': 2026, 'downloadAllowed': False, 'gainDb': 0.0,
+                'loudnessLufs': None
+            })
+            radio_order.append(jingle_id)
+    result={'name':'Radio Hits','version':2,'tracks':tracks+jingles,'radioOrder':radio_order}
     target=ROOT/'catalogo.json'
     target.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    print(f'Catálogo gerado: {len(tracks)} faixas / {sum(t["duration"] for t in tracks):.1f}s no total. -> {target}')
+    print(f'Catálogo gerado: {len(tracks)} músicas + {len(jingles)} entradas de vinheta / {sum(t["duration"] for t in tracks+jingles):.1f}s de rádio. -> {target}')
 
 if __name__=='__main__': main()
