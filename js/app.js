@@ -797,7 +797,7 @@
     openModal('Criar playlist', `<form id="new-playlist-form"><label for="new-playlist-name">Nome da playlist</label><input type="text" id="new-playlist-name" name="name" placeholder="Ex.: Minhas favoritas" maxlength="55" required autofocus><button type="submit" class="primary-action">Criar coleção</button></form>`);
     $('new-playlist-form').addEventListener('submit', e => {
       e.preventDefault(); const name = String(new FormData(e.currentTarget).get('name') || '').trim();
-      if (!name) return;
+      if (!name || ['__proto__','prototype','constructor'].includes(name)) return toast('Escolha outro nome para a playlist.');
       if (Object.prototype.hasOwnProperty.call(state.playlists, name)) return toast('Já existe uma playlist com esse nome.');
       state.playlists[name] = []; state.selectedPlaylist = name;
       if (state.pendingAddId && trackById(state.pendingAddId)) state.playlists[name].push(state.pendingAddId);
@@ -812,7 +812,7 @@
       format: 'radio-hits-library', version: 1,
       favorites: [...state.favorites].filter(id => trackById(id) && !trackById(id).isJingle),
       playlists: Object.fromEntries(Object.entries(state.playlists)
-        .filter(([name,ids]) => name && Array.isArray(ids))
+        .filter(([name,ids]) => name && !['__proto__','prototype','constructor'].includes(name) && Array.isArray(ids))
         .map(([name,ids]) => [name,ids.filter(id => trackById(id) && !trackById(id).isJingle)]))
     }, null, 2);
   }
@@ -823,9 +823,9 @@
         || typeof data.playlists !== 'object' || Array.isArray(data.playlists))
       throw new Error('Formato de backup inválido');
     const validId = id => typeof id === 'string' && trackById(id) && !trackById(id).isJingle;
-    const playlists = {};
+    const playlists = Object.create(null);
     for (const [name, ids] of Object.entries(data.playlists)) {
-      if (!name || name.length > 55 || !Array.isArray(ids)) continue;
+      if (!name || name.length > 55 || ['__proto__','prototype','constructor'].includes(name) || !Array.isArray(ids)) continue;
       if (Object.keys(playlists).length >= 200) break;
       playlists[name] = [...new Set(ids.filter(validId))].slice(0, 10000);
     }
