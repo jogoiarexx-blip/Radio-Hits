@@ -85,6 +85,7 @@
         }
         const request={
           mode:state.mode,id:selected,index,positionMs:Math.round(position*1000),
+          epochMs:Number(state.radioSchedule?.epochMs)||EPOCH, scheduleRevision:state.radioSchedule?.revision||'legacy',
           volume:state.volume,leveling:state.leveling,shuffle:state.shuffle && state.mode !== 'radio',
           repeat:state.repeat==='all',
           tracks:tracks.map(t=>({
@@ -139,7 +140,7 @@
 
   const state = {
     tracks: [], mode: 'radio', view: 'radio', currentId: null,
-    radioOrder: [], radioIndex: 0, query: '', genre: 'Todos', folder: 'Todas',
+    radioOrder: [], radioSchedule: {epochMs:EPOCH,revision:'legacy'}, radioIndex: 0, query: '', genre: 'Todos', folder: 'Todas',
     favorites: new Set(Array.isArray(saved.favorites) ? saved.favorites : []),
     playlists: saved.playlists && typeof saved.playlists === 'object' && !Array.isArray(saved.playlists) ? saved.playlists : {},
     selectedPlaylist: null, pendingAddId: null,
@@ -193,7 +194,8 @@
     if (!tracks.length) return null;
     const total = tracks.reduce((n, t) => n + Number(t.duration), 0);
     if (total <= 0) return null;
-    let pos = ((((now - EPOCH) / 1000) % total) + total) % total;
+    const epoch = Number(state.radioSchedule?.epochMs) || EPOCH;
+    let pos = ((((now - epoch) / 1000) % total) + total) % total;
     for (let i = 0; i < tracks.length; i++) {
       const duration = Number(tracks[i].duration);
       if (pos < duration || i === tracks.length - 1) return { track: tracks[i], index: i, offset: Math.min(pos, Math.max(0, duration - .05)), remaining: duration - pos, tracks };
@@ -238,6 +240,7 @@
     'mpb': 'MPB', 'hip hop': 'Hip Hop',
     'rock': 'Rock', 'dance': 'Dance', 'pop': 'Pop',
     'country': 'Country', 'reggae': 'Reggae',
+    'religiosas': 'Música Religiosa',
     'avulsas': 'Avulsas'
   };
   // As pastas vêm do caminho real de cada arquivo no catálogo.
@@ -956,6 +959,7 @@
       state.tracks=data.tracks.filter(t => t && t.id && t.title && t.src && Number(t.duration)>0)
         .map(t=>({...t,artist:t.artist||'Artista independente',genre:t.genre||'Outros',cover:t.cover||'./assets/capas/padrao.svg',duration:Number(t.duration)}));
       state.radioOrder=Array.isArray(data.radioOrder)?data.radioOrder:[];
+      state.radioSchedule=data.radioSchedule && Number.isSafeInteger(Number(data.radioSchedule.epochMs)) ? data.radioSchedule : {epochMs:EPOCH,revision:'legacy'};
       state.loaded=true;
       const info=getRadioInfo();
       state.currentId=info?.track?.id||state.tracks[0]?.id||null;
@@ -999,12 +1003,14 @@
         .map(t => ({...t,artist:t.artist||'Artista independente',genre:t.genre||'Outros',
           cover:t.cover||'./assets/capas/padrao.svg',duration:Number(t.duration)}));
       const oldIds = new Set(state.tracks.map(t => t.id));
-      const additions = updated.filter(t => !oldIds.has(t.id)).length;
+      const additions = updated.filter(t => !t.isJingle && !oldIds.has(t.id)).length;
       const signature = tracks => JSON.stringify(tracks.map(t => [t.id,t.title,t.artist,t.src,t.duration,t.genre,t.cover,t.year,t.downloadAllowed,t.gainDb,t.loudnessLufs,t.isJingle]));
-      const orderChanged = JSON.stringify(state.radioOrder) !== JSON.stringify(data.radioOrder || []);
+      const orderChanged = JSON.stringify(state.radioOrder) !== JSON.stringify(data.radioOrder || [])
+        || (state.radioSchedule?.revision||'legacy') !== (data.radioSchedule?.revision||'legacy');
       if (signature(updated) !== signature(state.tracks) || orderChanged) {
         state.tracks = updated;
         state.radioOrder = Array.isArray(data.radioOrder) ? data.radioOrder : [];
+        state.radioSchedule = data.radioSchedule && Number.isSafeInteger(Number(data.radioSchedule.epochMs)) ? data.radioSchedule : {epochMs:EPOCH,revision:'legacy'};
         if (!trackById(state.currentId)) state.currentId = getRadioInfo()?.track?.id || updated[0]?.id || null;
         state.queue = state.queue.filter(id => trackById(id) && !trackById(id).isJingle);
         if (!state.queue.length) { state.queue = libraryTracks().map(t=>t.id); state.queueIndex = 0; }
@@ -1014,7 +1020,7 @@
         renderRadio(info); renderExplore(); renderFavorites(); renderPlaylists(); renderQueue(info); renderPlayer();
         toast(additions ? additions + ' nova(s) música(s) encontrada(s)!' : 'Biblioteca atualizada.');
       } else if (manual) {
-        toast('Sua biblioteca já está atualizada: ' + updated.length + ' músicas.');
+        toast('Sua biblioteca já está atualizada: ' + updated.filter(t=>!t.isJingle).length + ' músicas.');
       }
     } catch (error) {
       console.error('Radio Hits: falha ao atualizar músicas', error);
