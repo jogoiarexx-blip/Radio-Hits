@@ -45,9 +45,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validar 72 regras e teste de movimentação
+      - name: Validar regras e movimentar uploads na cópia de testes
         run: |
           python tests/test_organizar_novas.py
+          python scripts/organizar_novas.py
+      - name: Validar programação
+        run: |
           python tests/test_programacao.py
       - name: Certificar a nova grade com os MP3 reais (antes de publicar)
         run: |
@@ -87,7 +90,7 @@ jobs:
             git reset --hard origin/main
             python scripts/organizar_novas.py | tee organizar-resultado.txt
             # Incluir remoções de uploads da raiz junto com as novas pastas.
-            git add -A
+            git add -A -- musicas/ '*.mp3' '*.m4a' '*.ogg' '*.opus' '*.wav' '*.flac' '*.aac'
             if git diff --cached --quiet; then
               echo "Nenhum arquivo novo para mover."
               echo "changed=false" >> "$GITHUB_OUTPUT"
