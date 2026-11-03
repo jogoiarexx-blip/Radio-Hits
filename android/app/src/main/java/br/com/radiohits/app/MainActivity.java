@@ -261,6 +261,10 @@ public final class MainActivity extends Activity {
                 extra.putDouble("radiohits_gain_db",Math.max(-10,Math.min(0,gainDb)));
                 long durationMs=Math.max(0,Math.min(86_400_000L,track.optLong("durationMs",0)));
                 extra.putLong("radiohits_duration_ms",durationMs);
+                long epochMs=req.optLong("epochMs",PlaybackClock.EPOCH_MS);
+                if(epochMs<1577836800000L || epochMs>4102444800000L) epochMs=PlaybackClock.EPOCH_MS;
+                extra.putLong("radiohits_epoch_ms",epochMs);
+                extra.putString("radiohits_schedule_revision",req.optString("scheduleRevision","legacy"));
                 MediaMetadata metadata = new MediaMetadata.Builder()
                     .setTitle(track.optString("title", "Música"))
                     .setArtist(track.optString("artist", "Radio Hits"))
