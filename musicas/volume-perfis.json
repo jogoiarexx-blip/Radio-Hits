@@ -1,133 +1,133 @@
 {
   "version": 1,
   "method": "EBU R128 35s central; apenas atenuação",
-  "targetLufs": -14.3,
+  "targetLufs": -14.0,
   "tracks": {
     "Hip Hop/Akon - Smack That (feat. Eminem).mp3": {
       "sha256": "dd66c9854f6a6dbe8e3aa18d3958b6752249dd98fa5f787030cebeccfc958f33",
       "lufs": -9.4,
       "truePeakDbfs": 1.9,
       "sampleSeconds": 35,
-      "gainDb": -4.9
+      "gainDb": -4.6
     },
     "Hip Hop/Alicia Keys - No One (Official Music Video).m4a": {
       "sha256": "94cca13b70be6b3b601ffe999c44649767effa0a7d5ff26c8c396db5733efbd3",
       "lufs": -11.3,
       "truePeakDbfs": -0.5,
       "sampleSeconds": 35,
-      "gainDb": -3.0
+      "gainDb": -2.7
     },
     "Hip Hop/Cry Me a River.m4a": {
       "sha256": "5c7ead9e3ad44132184365aa0f5a4bee59677b0c7f66a0d47cc5abc0fba985bc",
       "lufs": -8.1,
       "truePeakDbfs": 3.2,
       "sampleSeconds": 35,
-      "gainDb": -6.2
+      "gainDb": -5.9
     },
     "Hip Hop/Don't Matter.m4a": {
       "sha256": "032cbbb12df5ebfeaf8ebc962fa758251185e807e6d956e1c255b6151d0b27f2",
       "lufs": -10.3,
       "truePeakDbfs": 1.5,
       "sampleSeconds": 35,
-      "gainDb": -4.0
+      "gainDb": -3.7
     },
     "Hip Hop/Flo Rida - Low (feat. T-Pain) [Official Video].m4a": {
       "sha256": "113571ec2e0eb87db9afd6a1f1f9a4dd3a18dcf35c0d51f68cd6851125eaf6b9",
       "lufs": -13.7,
       "truePeakDbfs": -1.5,
       "sampleSeconds": 35,
-      "gainDb": -0.6
+      "gainDb": -0.3
     },
     "Hip Hop/I Wanna Love You.m4a": {
       "sha256": "5c73578d292cd835ea2a9ce2a035fa8c22416e18c69e1bd95547ee75d809fb75",
       "lufs": -10,
       "truePeakDbfs": 1.5,
       "sampleSeconds": 35,
-      "gainDb": -4.3
+      "gainDb": -4.0
     },
     "Hip Hop/In Da Club [DtrIWQ8J9jw].mp3": {
       "sha256": "0398dd3cd21458dbfb37a7a79af3415029cbfb6c52feb627284f7e64165a606f",
       "lufs": -8.3,
       "truePeakDbfs": 2.8,
       "sampleSeconds": 35,
-      "gainDb": -6.0
+      "gainDb": -5.7
     },
     "Hip Hop/Just A Lil Bit.m4a": {
       "sha256": "5565fa70bf768d9c6c158c15bb86cbbacb99d75f5ecfc10ea5879f93f20bf294",
       "lufs": -9.1,
       "truePeakDbfs": 1.6,
       "sampleSeconds": 35,
-      "gainDb": -5.2
+      "gainDb": -4.9
     },
     "Hip Hop/Many Men (Wish Death).m4a": {
       "sha256": "29126fdc1b6c91cc177c823d434a1c337d8178c037aa7580a3ebb592f8971733",
       "lufs": -7.3,
       "truePeakDbfs": 1.1,
       "sampleSeconds": 35,
-      "gainDb": -7.0
+      "gainDb": -6.7
     },
     "Hip Hop/Miss Independent.m4a": {
       "sha256": "e139670680baa8c5a563c3bd5366888f0590b2771289e96c761d950ca52108fa",
       "lufs": -8,
       "truePeakDbfs": 1.4,
       "sampleSeconds": 35,
-      "gainDb": -6.3
+      "gainDb": -6.0
     },
     "Hip Hop/Nelly - Dilemma (feat. Kelly Rowland).mp3": {
       "sha256": "18968b7ff2c41c44bf925eee632d72a233eccf3cafc338270cb5eed7b5866eee",
       "lufs": -10.2,
       "truePeakDbfs": 1.8,
       "sampleSeconds": 35,
-      "gainDb": -4.1
+      "gainDb": -3.8
     },
     "Hip Hop/Ridin' [F_TuSBUXgmE].mp3": {
       "sha256": "47fbf8fd38a8c065bbaec80e3612afe870aa12d0e704ac5f6082bb2b99cf1c12",
       "lufs": -9.6,
       "truePeakDbfs": 3,
       "sampleSeconds": 35,
-      "gainDb": -4.7
+      "gainDb": -4.4
     },
     "Hip Hop/Say Goodbye [TxfBE1qX924].mp3": {
       "sha256": "623f24073850b394395d862e31e01f80ac09a3ff572f792d078da984197b1e50",
       "lufs": -9.7,
       "truePeakDbfs": 2.4,
       "sampleSeconds": 35,
-      "gainDb": -4.6
+      "gainDb": -4.3
     },
     "Hip Hop/The Real Slim Shady.m4a": {
       "sha256": "63e32d99ca2d8470e3f4425f845c33e286a009fa6ee55e279a2a42223ee96381",
       "lufs": -9.1,
       "truePeakDbfs": 1.5,
       "sampleSeconds": 35,
-      "gainDb": -5.2
+      "gainDb": -4.9
     },
     "Hip Hop/Usher - Love in This Club (feat. Young Jeezy).mp3": {
       "sha256": "a9a92cb0ebc124c9f7078df5f38f0028716b13144d886ad0342d19114d742aad",
       "lufs": -7.3,
       "truePeakDbfs": 1.4,
       "sampleSeconds": 35,
-      "gainDb": -7.0
+      "gainDb": -6.7
     },
     "Hip Hop/What Goes Around..._...Comes Around (Interlude) [bxBiTm7vtCs].mp3": {
       "sha256": "e68a74bde7043a1d612850f1ac9a5416552a1b320ce26e5e14db57d13939b9fe",
       "lufs": -8.9,
       "truePeakDbfs": 2.9,
       "sampleSeconds": 35,
-      "gainDb": -5.4
+      "gainDb": -5.1
     },
     "Hip Hop/What's Luv (feat. Ashanti).m4a": {
       "sha256": "d5acc753d2405f086d228cefc1acf5e6b659542838106c7d986cbde9d5c3f374",
       "lufs": -9.6,
       "truePeakDbfs": 1.7,
       "sampleSeconds": 35,
-      "gainDb": -4.7
+      "gainDb": -4.4
     },
     "as melhores 80 e 90/(Everything I Do) I Do It For You (Official Music Video)-new.mp3": {
       "sha256": "dcdf358a45a212d34b80c1a567ef80ae76b0ca511dfba63f889be72502c3eb9c",
       "lufs": -9.6,
       "truePeakDbfs": 0.7,
       "sampleSeconds": 35,
-      "gainDb": -4.7
+      "gainDb": -4.4
     },
     "as melhores 80 e 90/10.000 MANIACS - BECAUSE THE NIGHT (OFFICIAL MUSIC VIDEO)-new.mp3": {
       "sha256": "54374906bb9497bade618282f88b03233fd1683e65b28d11a1ac99688da3578f",
@@ -148,7 +148,7 @@
       "lufs": -12,
       "truePeakDbfs": 0.5,
       "sampleSeconds": 35,
-      "gainDb": -2.3
+      "gainDb": -2.0
     },
     "as melhores 80 e 90/Celine Dion Because You Loved Me-new.mp3": {
       "sha256": "3a88d389165c9b04698cd39ec29cdb3b979f1f6715860d93859f2dc7d73db3b4",
@@ -162,14 +162,14 @@
       "lufs": -13.4,
       "truePeakDbfs": 0.6,
       "sampleSeconds": 35,
-      "gainDb": -0.9
+      "gainDb": -0.6
     },
     "as melhores 80 e 90/Desireless - Voyage Voyage (Official HD Video)-new.mp3": {
       "sha256": "2eb1cc6baa0a85cb2bafd78b366ac8bab18ef96bc3fd18c817d9c4dbb2c1d572",
       "lufs": -8.8,
       "truePeakDbfs": 1.9,
       "sampleSeconds": 35,
-      "gainDb": -5.5
+      "gainDb": -5.2
     },
     "as melhores 80 e 90/Eros Ramazzotti e Tina Turner - Cosas de la Vida (Can't Stop Thinking of You).m4a": {
       "sha256": "42611fa17db1d15319c086ffd96d492e33da2c5d0acf0bcae04da2237c27d115",
@@ -183,14 +183,14 @@
       "lufs": -9.7,
       "truePeakDbfs": 0.3,
       "sampleSeconds": 35,
-      "gainDb": -4.6
+      "gainDb": -4.3
     },
     "as melhores 80 e 90/Flashdance • What a Feeling • Irene Cara-new.mp3": {
       "sha256": "875121199a6f71ee3e2a70f89e34977b995f041e63f9c5f5fe06d31257002485",
       "lufs": -12.3,
       "truePeakDbfs": 2.3,
       "sampleSeconds": 35,
-      "gainDb": -2.0
+      "gainDb": -1.7
     },
     "as melhores 80 e 90/Gonna Make You Sweat (Everybody Dance Now) (Official HD Video)-new.mp3": {
       "sha256": "205d7123191afdc9070e467ae0eaaf897fa61d0fbb1cfb46b671340a11d2d417",
@@ -204,14 +204,14 @@
       "lufs": -13.1,
       "truePeakDbfs": 0.1,
       "sampleSeconds": 35,
-      "gainDb": -1.2
+      "gainDb": -0.9
     },
     "as melhores 80 e 90/Journey - Don't Stop Believin' (from Live in Houston 1981_ The Escape Tour)-new.mp3": {
       "sha256": "c1179e1ccaf191d9cec082178cef5295d8a525f66c9a709b3ec4c6094186f9bd",
       "lufs": -9.3,
       "truePeakDbfs": 0.5,
       "sampleSeconds": 35,
-      "gainDb": -5.0
+      "gainDb": -4.7
     },
     "as melhores 80 e 90/La Bouche - Sweet dreams (Official Video) (VOD)-new.mp3": {
       "sha256": "8e780139c986fb2cce36b4b47e85e78364687e75d48734481ba60cf6d432af2c",
@@ -246,21 +246,21 @@
       "lufs": -11.5,
       "truePeakDbfs": 1.2,
       "sampleSeconds": 35,
-      "gainDb": -2.8
+      "gainDb": -2.5
     },
     "as melhores 80 e 90/Pet Shop Boys - It's A Sin (Official Video) [HD REMASTERED]-new.mp3": {
       "sha256": "75c2c02c0469e2484fb4598df18878966dfafeba4c8c5a4d119d4f410a7738a8",
       "lufs": -9.2,
       "truePeakDbfs": 0.7,
       "sampleSeconds": 35,
-      "gainDb": -5.1
+      "gainDb": -4.8
     },
     "as melhores 80 e 90/Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster).m4a": {
       "sha256": "58d0c981d72b48ab53986993a777da696e6cca27c9d9840ef1975db03376bae2",
       "lufs": -11.5,
       "truePeakDbfs": -0.7,
       "sampleSeconds": 35,
-      "gainDb": -2.8
+      "gainDb": -2.5
     },
     "as melhores 80 e 90/Roxette - It Must Have Been Love (Official Music Video)-new.mp3": {
       "sha256": "18ff0897c68c4af8ce50f048c01be8896d9727a902e8725fec55e855e2aeafe5",
@@ -274,14 +274,14 @@
       "lufs": -11.8,
       "truePeakDbfs": 0.7,
       "sampleSeconds": 35,
-      "gainDb": -2.5
+      "gainDb": -2.2
     },
     "as melhores 80 e 90/Scorpions - Wind Of Change (Official Music Video)-new.mp3": {
       "sha256": "c5ad52f139e9beba5304593fd31e2dd1963e89316f2c28d00d781e125e675350",
       "lufs": -10.8,
       "truePeakDbfs": 0.9,
       "sampleSeconds": 35,
-      "gainDb": -3.5
+      "gainDb": -3.2
     },
     "as melhores 80 e 90/Starship - Nothing's Gonna Stop Us Now (Official Music Video) [HD].m4a": {
       "sha256": "6d20ad4a6060d2586a3af8b30cc649d46f5b9efdf33f4b6c99ac6240fb5bb27c",
@@ -302,7 +302,7 @@
       "lufs": -9.3,
       "truePeakDbfs": 0.6,
       "sampleSeconds": 35,
-      "gainDb": -5.0
+      "gainDb": -4.7
     },
     "as melhores 80 e 90/Toni Braxton - Un-Break My Heart (Official HD Video).m4a": {
       "sha256": "dacbbb3b8e8b3f35c8bc700a4bd52e4c41f5bbe70f559aef7cfc5b85fbaf265c",
@@ -316,7 +316,7 @@
       "lufs": -10.7,
       "truePeakDbfs": 1.9,
       "sampleSeconds": 35,
-      "gainDb": -3.6
+      "gainDb": -3.3
     },
     "calma-de-outubro.mp3": {
       "sha256": "a230f51ae816b7602bbe5262bfc30b9d8613c40c6e98aca67eb9dd48e87d0f54",
@@ -337,21 +337,21 @@
       "lufs": -13.3,
       "truePeakDbfs": -1.3,
       "sampleSeconds": 35,
-      "gainDb": -1.0
+      "gainDb": -0.7
     },
     "classicos/Elvis Presley - Suspicious Minds (Official Music Video)-new.mp3": {
       "sha256": "effc35e47f812fad4780b6a08471d1962d6e5972757b6754912497a405931027",
       "lufs": -12.9,
       "truePeakDbfs": 0.2,
       "sampleSeconds": 35,
-      "gainDb": -1.4
+      "gainDb": -1.1
     },
     "country/Luke Combs - Forever After All (Official Video)-new.mp3": {
       "sha256": "ee2748394c5915f7a7e5ca87dfd0d604556430b525d109634e23dce57e074010",
       "lufs": -9.8,
       "truePeakDbfs": -1.3,
       "sampleSeconds": 35,
-      "gainDb": -4.5
+      "gainDb": -4.2
     },
     "country/Shania Twain - You’re Still The One (Official Music Video)-new.mp3": {
       "sha256": "f8d92b5dca36a8e9203a672ee4ab2b782ceedd61f4025522808765e9a8b52525",
@@ -360,19 +360,68 @@
       "sampleSeconds": 35,
       "gainDb": 0.0
     },
+    "dance/Alok, Bruno Martini, Zeeba - Never Let Me Go (Official Music Video) [4K] [ri-fIya76ac].mp3": {
+      "sha256": "7c6790f5e89cf227de18cf1a777e78bfbe3cb7ac98f2f90986f291d8fee7a2f7",
+      "lufs": -14.0,
+      "truePeakDbfs": -1.8,
+      "sampleSeconds": 35,
+      "gainDb": 0.0
+    },
+    "dance/Avicii - Hey Brother.mp3": {
+      "sha256": "1398c1657c92066a91ae2bde491a99130f967436d8d6865fb227e36786fb3030",
+      "lufs": -23.1,
+      "truePeakDbfs": -7.3,
+      "sampleSeconds": 5.0,
+      "gainDb": 0.0
+    },
+    "dance/Avicii - Levels.mp3": {
+      "sha256": "bb22f5f0a1dfcf8df2b3adfbbb06d5308dbc9dbb1cd995dc9187e49c45041229",
+      "lufs": -12.0,
+      "truePeakDbfs": 0.2,
+      "sampleSeconds": 5.0,
+      "gainDb": -2.0
+    },
+    "dance/Avicii - The Nights (Tradução_Legendado) [Zr7v3XK_hQg].mp3": {
+      "sha256": "6c46224973e1addcece3f1e2b17f14f09c969d37ebe5a25df0ab68afdfaa34c8",
+      "lufs": -11.7,
+      "truePeakDbfs": 0.8,
+      "sampleSeconds": 35,
+      "gainDb": -2.3
+    },
+    "dance/Avicii - Waiting For Love.mp3": {
+      "sha256": "df65b6f95491acfe887c0d33a3cf688575cf7f3bb126b3c057d2ef35580858c4",
+      "lufs": -6.6,
+      "truePeakDbfs": 1.5,
+      "sampleSeconds": 35,
+      "gainDb": -7.4
+    },
+    "dance/Avicii - Wake Me Up (Official Lyric Video).mp3": {
+      "sha256": "e3804b8c62081a7205d8b091dd28474049964a49dc9ba7042e2f1a87e02e23e7",
+      "lufs": -9.1,
+      "truePeakDbfs": 1.4,
+      "sampleSeconds": 35,
+      "gainDb": -4.9
+    },
+    "dance/Calvin Harris - Summer [Tradução_Legendado] [JkXUq3S0ELA].mp3": {
+      "sha256": "edd23668900070e9d7acffa16c64d81f3c322b64ad481793f0b69ff8e02ab30a",
+      "lufs": -7.3,
+      "truePeakDbfs": 2.2,
+      "sampleSeconds": 35,
+      "gainDb": -6.7
+    },
     "dance/Ice MC - Think about the way [Official Video]-new.mp3": {
       "sha256": "e4470ae03349c9f00416bfa3b271fcc35c845ec4d0059d4f664ff2e935c17fdd",
       "lufs": -6.4,
       "truePeakDbfs": 1.4,
       "sampleSeconds": 35,
-      "gainDb": -7.9
+      "gainDb": -7.6
     },
     "dance/Mr.President - Coco Jamboo (1996) [Official Video]-new.mp3": {
       "sha256": "e8330362bdbb670a75df2e7765c03369bfce40b6ba15dec6e38c36e8a004970a",
       "lufs": -11.7,
       "truePeakDbfs": 0,
       "sampleSeconds": 35,
-      "gainDb": -2.6
+      "gainDb": -2.3
     },
     "dance/Stevie B - Spring Love (Official Music Video)-new.mp3": {
       "sha256": "7b9877f2aa3635ac2429c662ffb01b3ca4e40f229310b0c6756b768fb93a70d2",
@@ -386,14 +435,14 @@
       "lufs": -8.3,
       "truePeakDbfs": 2.5,
       "sampleSeconds": 35,
-      "gainDb": -6.0
+      "gainDb": -5.7
     },
     "dance/Vengaboys - Shalala lala-new.mp3": {
       "sha256": "8f7a8cf6e02c79641e7d64c13e501ec75170c0a2525d1ca7ec226a2a69d5e9d1",
       "lufs": -8.2,
       "truePeakDbfs": 3.2,
       "sampleSeconds": 35,
-      "gainDb": -6.1
+      "gainDb": -5.8
     },
     "entre-ondas.mp3": {
       "sha256": "7848a3b94413d5a5ecb3842d335de35ddb8047474e9099f659e3b9b92dfab2c7",
@@ -414,224 +463,238 @@
       "lufs": -11.5,
       "truePeakDbfs": 0.1,
       "sampleSeconds": 35,
-      "gainDb": -2.8
+      "gainDb": -2.5
     },
     "malhacao-internacional-2003/02-avril-lavigne-sk8er-boi.mp3": {
       "sha256": "f3e68cc15e9e5fd35d170aa8b5808918e2ed7599c4a86f5e8fd8de417b268092",
       "lufs": -9,
       "truePeakDbfs": 0.4,
       "sampleSeconds": 35,
-      "gainDb": -5.3
+      "gainDb": -5.0
     },
     "malhacao-internacional-2003/03-foo-fighters-times-like-these.mp3": {
       "sha256": "fd0effdd524d481b3e78c65d4ec07a8dc35ea320caa84ade524c4c4a5159adb4",
       "lufs": -8.9,
       "truePeakDbfs": -0.6,
       "sampleSeconds": 35,
-      "gainDb": -5.4
+      "gainDb": -5.1
     },
     "malhacao-internacional-2003/04-eve-feat-drag-on-got-what-you-need.mp3": {
       "sha256": "6a1003c44c376cf5f1bef94d461544c7e0ca070caf21185f09b448f91efdd6f5",
       "lufs": -11.6,
       "truePeakDbfs": 0.4,
       "sampleSeconds": 35,
-      "gainDb": -2.7
+      "gainDb": -2.4
     },
     "malhacao-internacional-2003/05-nelly-feat-kelly-rowland-dilemma.mp3": {
       "sha256": "50c6fd9b6770536c9193cfb1d87e7df0b9db288bbed86d35c9d1a4b2adf806c9",
       "lufs": -12.2,
       "truePeakDbfs": 0.4,
       "sampleSeconds": 35,
-      "gainDb": -2.1
+      "gainDb": -1.8
     },
     "malhacao-internacional-2003/06-ja-rule-feat-ashanti-mesmerize.mp3": {
       "sha256": "c0008fef3a75c396690a476b38dd784dcb852a83ca00b60971a9d281ae9d828e",
       "lufs": -13.1,
       "truePeakDbfs": 0.3,
       "sampleSeconds": 35,
-      "gainDb": -1.2
+      "gainDb": -0.9
     },
     "malhacao-internacional-2003/07-beyonce-feat-jay-z-crazy-in-love.mp3": {
       "sha256": "b6bb783251be4be618f4f475d04ca08594bf4c0f7621ff0597334f9fab3c1bf4",
       "lufs": -12.4,
       "truePeakDbfs": -0.3,
       "sampleSeconds": 35,
-      "gainDb": -1.9
+      "gainDb": -1.6
     },
     "malhacao-internacional-2003/08-t-a-t-u-all-the-things-she-said.mp3": {
       "sha256": "e37a079be30045b2c659d79759d98fff5dea07eb97d5587c0661a72e5d3ee67b",
       "lufs": -10.7,
       "truePeakDbfs": 0.5,
       "sampleSeconds": 35,
-      "gainDb": -3.6
+      "gainDb": -3.3
     },
     "malhacao-internacional-2003/09-chevelle-send-the-pain-below.mp3": {
       "sha256": "210bfa62b976ef3571e352f72f92920864bf42321d160193cd94a6f8393d68a8",
       "lufs": -12,
       "truePeakDbfs": -0.8,
       "sampleSeconds": 35,
-      "gainDb": -2.3
+      "gainDb": -2.0
     },
     "malhacao-internacional-2003/10-damian-marley-and-you-be-loved-and-be-loved.mp3": {
       "sha256": "e81ebd97f50febe8f200ea2a625a072e8f22cc70d7f840233f826a10654f2ee5",
       "lufs": -11.7,
       "truePeakDbfs": -0.9,
       "sampleSeconds": 35,
-      "gainDb": -2.6
+      "gainDb": -2.3
     },
     "malhacao-internacional-2003/11-jennifer-lopez-i-m-glad.mp3": {
       "sha256": "b227e156c7b91547a340ecdfe5e699bd461b291d3502705598bff698688fc934",
       "lufs": -13.3,
       "truePeakDbfs": 0.1,
       "sampleSeconds": 35,
-      "gainDb": -1.0
+      "gainDb": -0.7
     },
     "malhacao-internacional-2003/12-thalia-feat-fat-joe-i-want-you.mp3": {
       "sha256": "346046b6052331e522c5529df627fdc8bdd74843483c9c30f4cb8dd084112d88",
       "lufs": -12.1,
       "truePeakDbfs": -0.5,
       "sampleSeconds": 35,
-      "gainDb": -2.2
+      "gainDb": -1.9
     },
     "malhacao-internacional-2003/13-stacie-orrico-i-promise-i-will.mp3": {
       "sha256": "609f1ba821c3cdbe827c9a13f4b394b5b0aa8a46d6577e1ede3caaad54d9f45e",
       "lufs": -10.8,
       "truePeakDbfs": -1.4,
       "sampleSeconds": 35,
-      "gainDb": -3.5
+      "gainDb": -3.2
     },
     "malhacao-internacional-2003/14-vanessa-carlton-pretty-baby.mp3": {
       "sha256": "db7f05be00602f4c2644765399dc4bb925f127437515e577fe7861b467dbe2e7",
       "lufs": -10.8,
       "truePeakDbfs": -0.6,
       "sampleSeconds": 35,
-      "gainDb": -3.5
+      "gainDb": -3.2
     },
     "malhacao-internacional-2003/15-paul-j-falling.mp3": {
       "sha256": "5c82a2e269681639d97d31841e62dee2c9eb4b50278c963ef3f0fae84319b746",
       "lufs": -10.8,
       "truePeakDbfs": -0.3,
       "sampleSeconds": 35,
-      "gainDb": -3.5
+      "gainDb": -3.2
     },
     "malhacao-internacional-2003/16-arena-brothers-sisters.mp3": {
       "sha256": "b49f9d8dcd8ff1b32d55e48a879c6e334a07e9bee27dfe0584ef7da598f7c271",
       "lufs": -10.7,
       "truePeakDbfs": -0.2,
       "sampleSeconds": 35,
-      "gainDb": -3.6
+      "gainDb": -3.3
     },
     "mpb/ANAVITÓRIA - Trevo (Vevo Presents)-new.mp3": {
       "sha256": "8e8874f661797b30f6e0a0cad7c3cd0d02bcf1e86ad25815757a684505835d57",
       "lufs": -10.8,
       "truePeakDbfs": 0.2,
       "sampleSeconds": 35,
-      "gainDb": -3.5
+      "gainDb": -3.2
     },
     "pop/Jason Mraz - I'm Yours (Official Video) [4K Remaster]-new.mp3": {
       "sha256": "29c3a7e8b91279bd70f26fe9915867318ee1ed1a5bce3416822cbc4ac71f0512",
       "lufs": -12.8,
       "truePeakDbfs": -2.2,
       "sampleSeconds": 35,
-      "gainDb": -1.5
+      "gainDb": -1.2
     },
     "pop/New West - Those Eyes (Lyrics)-new.mp3": {
       "sha256": "7552849e187ea3cfcbe364f1cb97d1d2f0059d44258c7a75c5163a87ef2b1e19",
       "lufs": -9.1,
       "truePeakDbfs": 0.3,
       "sampleSeconds": 35,
-      "gainDb": -5.2
+      "gainDb": -4.9
+    },
+    "pop/The Chainsmokers Coldplay - Something Just Like This (Official Lyric Video).mp3": {
+      "sha256": "c0775455907cb7f82b994246cb470bbd1aa924335ed0440dc830466cea8af7a7",
+      "lufs": -7.8,
+      "truePeakDbfs": 0.7,
+      "sampleSeconds": 35,
+      "gainDb": -6.2
     },
     "reggae/MAGIC! - Rude (Official Video)-new.mp3": {
       "sha256": "15e144a5bda77f0d41cdad702b10d4b02bd4eab1bfa00c839b5b545b8f5947eb",
       "lufs": -9.1,
       "truePeakDbfs": 1,
       "sampleSeconds": 35,
-      "gainDb": -5.2
+      "gainDb": -4.9
     },
     "religiosas/Acalma minha tempestade   Frei Gilson ao vivo (360º).m4a": {
       "sha256": "2487637bba24bc7a6d41019ef5a9b14323465bc2ddd8156ffb9e46337ce61ad2",
       "lufs": -10.3,
       "truePeakDbfs": 0.9,
       "sampleSeconds": 35,
-      "gainDb": -4.0
+      "gainDb": -3.7
     },
     "religiosas/Deixa Deus sonhar em ti (com Bruna Ramos)   Frei Gilson ao vivo (360º).m4a": {
       "sha256": "c2c3fc094fedc6b0ab1038139cccb0352274c94c43438504eb3173067bee8dd1",
       "lufs": -10.5,
       "truePeakDbfs": 1.2,
       "sampleSeconds": 35,
-      "gainDb": -3.8
+      "gainDb": -3.5
     },
     "religiosas/Eu Seguirei (Ao Vivo).m4a": {
       "sha256": "e52e40194d67e2b92d7887af52604ce5b04e276cfb8e32682743ef646cc3523b",
       "lufs": -6.8,
       "truePeakDbfs": 1.2,
       "sampleSeconds": 35,
-      "gainDb": -7.5
+      "gainDb": -7.2
     },
     "religiosas/Eu Te Levantarei.m4a": {
       "sha256": "f54f18b887a8c8d20e4f513914e3821a0a8c52cff17d5e6938fef3695b269d58",
       "lufs": -7.8,
       "truePeakDbfs": 1.3,
       "sampleSeconds": 35,
-      "gainDb": -6.5
+      "gainDb": -6.2
     },
     "religiosas/Terra Seca   DVD Não Vou Desistir   Fraternidade São João Paulo II.m4a": {
       "sha256": "d87a72257d3ad4dec7ec55bf44c441de905a81fc8ea5a9589ac0b0b259440b21",
       "lufs": -7.7,
       "truePeakDbfs": 1,
       "sampleSeconds": 35,
-      "gainDb": -6.6
+      "gainDb": -6.3
     },
     "religiosas/Tu és o centro (com Bruna Ramos)   Frei Gilson ao vivo (360º).m4a": {
       "sha256": "36294f600cfb6afaaf06ebfe1b7304667137a0fe7ce536d38ee0af24f9f26369",
       "lufs": -10.9,
       "truePeakDbfs": 0.5,
       "sampleSeconds": 35,
-      "gainDb": -3.4
+      "gainDb": -3.1
     },
     "rock/AC DC - Back In Black (Official 4K Video).mp3": {
       "sha256": "19a94e930d342f55fc5b92e70d5240547c1cfbb0e967602065f8cfd821e81d28",
       "lufs": -9,
       "truePeakDbfs": 0.9,
       "sampleSeconds": 35,
-      "gainDb": -5.3
+      "gainDb": -5.0
     },
     "rock/AC DC - Thunderstruck (Official Video).mp3": {
       "sha256": "b695e5e6e33721d97b8ea4e4611e761d30edd19d9c8a9d740e682bc7644c4de4",
       "lufs": -8.4,
       "truePeakDbfs": 1.2,
       "sampleSeconds": 35,
-      "gainDb": -5.9
+      "gainDb": -5.6
     },
     "rock/Aerosmith - I Don t Want to Miss a Thing (Official HD Video).mp3": {
       "sha256": "3bb20dc7c8996a6cb78a5cc8d9cdd115668417aec58c9bad96a99d8df8281da4",
       "lufs": -9.4,
       "truePeakDbfs": -0.8,
       "sampleSeconds": 35,
-      "gainDb": -4.9
+      "gainDb": -4.6
     },
     "rock/Avril Lavigne - Complicated (Official Video).mp3": {
       "sha256": "4e1977d435b776fbd6e0992a63104b88d9946a5648cab463610ad24a6488b803",
       "lufs": -9.6,
       "truePeakDbfs": 0,
       "sampleSeconds": 35,
-      "gainDb": -4.7
+      "gainDb": -4.4
+    },
+    "rock/Avril Lavigne - I m With You (Official Video).mp3": {
+      "sha256": "e0b640b794179484338d384c038005e29f71a3fe162003873f0adc1c7ac5ffb2",
+      "lufs": -9.9,
+      "truePeakDbfs": 0.4,
+      "sampleSeconds": 35,
+      "gainDb": -4.1
     },
     "rock/Bon Jovi - It s My Life (Official Music Video).mp3": {
       "sha256": "e65990dec37babf59a481e8ac61ab114fe9ea4b3b5868ba9ece173093ece5382",
       "lufs": -7,
       "truePeakDbfs": 1.3,
       "sampleSeconds": 35,
-      "gainDb": -7.3
+      "gainDb": -7.0
     },
     "rock/Crowded House - Don't Dream It's Over (Official Music Video)-new.mp3": {
       "sha256": "37197d7479629381d24fb97e81eee4c354e8150ac23aaf42087414c9404e3546",
       "lufs": -11.6,
       "truePeakDbfs": 0.4,
       "sampleSeconds": 35,
-      "gainDb": -2.7
+      "gainDb": -2.4
     },
     "rock/Europe - The Final Countdown (Official Video).m4a": {
       "sha256": "20550fb0936a94f845c595670806b6bcd59b8e785df67055bb1c49044d5af447",
@@ -652,7 +715,7 @@
       "lufs": -8.2,
       "truePeakDbfs": 0.5,
       "sampleSeconds": 35,
-      "gainDb": -6.1
+      "gainDb": -5.8
     },
     "rock/Foreigner - I Want To Know What Love Is (Official Music Video).m4a": {
       "sha256": "041a69eaca3e9e409f38fb7107c2b455aa2bab8b90c73d1e6d423dd2b8bd19a1",
@@ -666,28 +729,42 @@
       "lufs": -11.9,
       "truePeakDbfs": 0.1,
       "sampleSeconds": 35,
-      "gainDb": -2.4
+      "gainDb": -2.1
+    },
+    "rock/Green Day - Boulevard Of Broken Dreams Official Music Video 4K Upgrade.mp3": {
+      "sha256": "a186e369628797761c9632893065e3fcb606bcd051b1a29c8ba5999085767e78",
+      "lufs": -12.1,
+      "truePeakDbfs": 0.1,
+      "sampleSeconds": 35,
+      "gainDb": -1.9
     },
     "rock/INXS - By My Side.m4a": {
       "sha256": "446c2d82b7cc616eeefd2ce76d122a1c20be6ad2f013330d60ab12b2c3127597",
       "lufs": -12.7,
       "truePeakDbfs": 0.8,
       "sampleSeconds": 35,
-      "gainDb": -1.6
+      "gainDb": -1.3
+    },
+    "rock/Imagine Dragons - Thunder.mp3": {
+      "sha256": "850a97350ee09923bfde7ac13cd3f15e73b893c04964612e4b9b7acb6154a6c1",
+      "lufs": -7.0,
+      "truePeakDbfs": 1.7,
+      "sampleSeconds": 35,
+      "gainDb": -7.0
     },
     "rock/In The End Official HD Music Video - Linkin Park.mp3": {
       "sha256": "ac7f211fe0a7499abd7c65dc761e52ffe51119cda7c2ec6a6e481bd23964415c",
       "lufs": -6.6,
       "truePeakDbfs": 1.9,
       "sampleSeconds": 35,
-      "gainDb": -7.7
+      "gainDb": -7.4
     },
     "rock/Joan Osborne - One Of Us (Official Music Video).m4a": {
       "sha256": "3c73c942b320b00c63393f29671922ae91d4ac86dc7e1e87665e2a50c459f677",
       "lufs": -10.5,
       "truePeakDbfs": 0.4,
       "sampleSeconds": 35,
-      "gainDb": -3.8
+      "gainDb": -3.5
     },
     "rock/Metallica - Nothing Else Matters (Official Music Video).m4a": {
       "sha256": "f17655cf4560b1020ca850e744b3d2811a41d340526fd9b33f470570fd235bb6",
@@ -696,19 +773,33 @@
       "sampleSeconds": 35,
       "gainDb": 0.0
     },
+    "rock/Nickelback - Far Away.mp3": {
+      "sha256": "84c96e43acee6ab2ec8061ef871d5f3bae3b09b631b53e788dd8bad724859809",
+      "lufs": -12.2,
+      "truePeakDbfs": -1.8,
+      "sampleSeconds": 35,
+      "gainDb": -1.8
+    },
     "rock/Nirvana - Smells Like Teen Spirit (Official Music Video).m4a": {
       "sha256": "c12d08883f92550c828f8a6754c446b62edf2587644724c46b271076460975c9",
       "lufs": -7.6,
       "truePeakDbfs": 0.5,
       "sampleSeconds": 35,
-      "gainDb": -6.7
+      "gainDb": -6.4
+    },
+    "rock/Numb (Official Music Video) 4K UPGRADE – Linkin Park.mp3": {
+      "sha256": "8632a80a5b4f24caaac241395d7a769cdb126cfff2527cce15372942dce00244",
+      "lufs": -8.0,
+      "truePeakDbfs": 0.6,
+      "sampleSeconds": 35,
+      "gainDb": -6.0
     },
     "rock/Pearl Jam-Last Kiss [uvjTo-hRD5c].mp3": {
       "sha256": "7ae28cca0ac952b7a65913ecbdc2959b1fd4e2956b4e97c966a00037895a967b",
       "lufs": -7.5,
       "truePeakDbfs": 1.4,
       "sampleSeconds": 35,
-      "gainDb": -6.8
+      "gainDb": -6.5
     },
     "rock/Pink Floyd - Another Brick In The Wall, Part Two (Official Music Video).mp3": {
       "sha256": "6743335479cbaeb58d64ec76dc410a037fc5c39898c6457074f930a6c61491c3",
@@ -729,7 +820,7 @@
       "lufs": -7.1,
       "truePeakDbfs": 0.3,
       "sampleSeconds": 35,
-      "gainDb": -7.2
+      "gainDb": -6.9
     },
     "rock/Red Hot Chili Peppers - Under The Bridge [Official Music Video]-new.mp3": {
       "sha256": "3d46032d652ad779ea3ade524773968d9ffa753b8f17650eac159563fd3e5c6f",
@@ -743,28 +834,28 @@
       "lufs": -6.4,
       "truePeakDbfs": 0.6,
       "sampleSeconds": 35,
-      "gainDb": -7.9
+      "gainDb": -7.6
     },
     "rock/Skillet - Awake and Alive (Official Audio).m4a": {
       "sha256": "a843a9e3a7abc202533216156041977685626f15394662d2c26ed9b4b48308b6",
       "lufs": -8.1,
       "truePeakDbfs": 0.1,
       "sampleSeconds": 35,
-      "gainDb": -6.2
+      "gainDb": -5.9
     },
     "rock/Skillet - Monster (Official Video).m4a": {
       "sha256": "ae372f50c0a6b55eb4efb16ede264bb1cdc5f53a13072189238e2842cf14a357",
       "lufs": -8.6,
       "truePeakDbfs": -1.3,
       "sampleSeconds": 35,
-      "gainDb": -5.7
+      "gainDb": -5.4
     },
     "rock/Starship - Sara (Official Music Video)-new.mp3": {
       "sha256": "70120fb72f062e8c342010e8ad7bd27405ef2efdcb2211e13598bb743986ccc5",
       "lufs": -13.1,
       "truePeakDbfs": -1.9,
       "sampleSeconds": 35,
-      "gainDb": -1.2
+      "gainDb": -0.9
     },
     "rock/Steve Winwood - Valerie (Official Video)-new.mp3": {
       "sha256": "7496f3271f162b04b7fa00a1969ecdd8ea8b7efd876f56528076308458815c5c",
@@ -778,14 +869,14 @@
       "lufs": -12.1,
       "truePeakDbfs": 0.4,
       "sampleSeconds": 35,
-      "gainDb": -2.2
+      "gainDb": -1.9
     },
     "rock/System Of A Down - Lonely Day (Official HD Video).mp3": {
       "sha256": "baeac74cc4c1fa67016001833646abe9192ddd5b682ea05b71192f44f3ad832e",
       "lufs": -7.8,
       "truePeakDbfs": 1,
       "sampleSeconds": 35,
-      "gainDb": -6.5
+      "gainDb": -6.2
     },
     "rock/The Outfield - Your Love (Official HD Video).mp3": {
       "sha256": "e9a13803a857ca23004fe97f8510ab564d841a97ab7325dcf150305fcb2a8626",
@@ -799,14 +890,14 @@
       "lufs": -12.1,
       "truePeakDbfs": 0.3,
       "sampleSeconds": 35,
-      "gainDb": -2.2
+      "gainDb": -1.9
     },
     "rock/Toto - Africa (Official HD Video).mp3": {
       "sha256": "bd3656b3d9de29896cc688a49d1be27f6ac2b350425a40bcbac33ab44583a731",
       "lufs": -10.6,
       "truePeakDbfs": 0.4,
       "sampleSeconds": 35,
-      "gainDb": -3.7
+      "gainDb": -3.4
     },
     "rock/Toto - Hold The Line (Official Video).mp3": {
       "sha256": "fbee33da5826bade5a85a96019a419f3af88f8b098c6246d6ce49b60c0b57264",
@@ -827,21 +918,21 @@
       "lufs": -5.9,
       "truePeakDbfs": 1.2,
       "sampleSeconds": 35,
-      "gainDb": -8.4
+      "gainDb": -8.1
     },
     "romanticas/Glory of Love-new.mp3": {
       "sha256": "dd8a387b90241c98254289e9d4f9f0b72d0eacab45b9340bd4707b6d03e2b5bd",
       "lufs": -10.7,
       "truePeakDbfs": 0.8,
       "sampleSeconds": 35,
-      "gainDb": -3.6
+      "gainDb": -3.3
     },
     "romanticas/Richard Marx - Right Here Waiting (Official Music Video).m4a": {
       "sha256": "1c650bc70a991584a1fa5ae849e001bfebfcfd5d4e8a64122279468ffbf6cbad",
       "lufs": -10.8,
       "truePeakDbfs": 0.3,
       "sampleSeconds": 35,
-      "gainDb": -3.5
+      "gainDb": -3.2
     },
     "romanticas/Run to Me-new.mp3": {
       "sha256": "cc22e6d39b1b42c14e8c0362b2a737ef8d3ea0f94cb720674f2751a0e4ae3a6b",
@@ -863,34 +954,6 @@
       "truePeakDbfs": -4.6,
       "sampleSeconds": 28.06,
       "gainDb": 0.0
-    },
-    "dance/Avicii - Hey Brother.mp3": {
-      "sha256": "1398c1657c92066a91ae2bde491a99130f967436d8d6865fb227e36786fb3030",
-      "lufs": -23.1,
-      "truePeakDbfs": -7.3,
-      "sampleSeconds": 5.0,
-      "gainDb": 0.0
-    },
-    "dance/Avicii - Levels.mp3": {
-      "sha256": "bb22f5f0a1dfcf8df2b3adfbbb06d5308dbc9dbb1cd995dc9187e49c45041229",
-      "lufs": -12.0,
-      "truePeakDbfs": 0.2,
-      "sampleSeconds": 5.0,
-      "gainDb": -2.3
-    },
-    "dance/Avicii - Waiting For Love.mp3": {
-      "sha256": "df65b6f95491acfe887c0d33a3cf688575cf7f3bb126b3c057d2ef35580858c4",
-      "lufs": -6.6,
-      "truePeakDbfs": 1.5,
-      "sampleSeconds": 35,
-      "gainDb": -7.7
-    },
-    "dance/Avicii - Wake Me Up (Official Lyric Video).mp3": {
-      "sha256": "e3804b8c62081a7205d8b091dd28474049964a49dc9ba7042e2f1a87e02e23e7",
-      "lufs": -9.1,
-      "truePeakDbfs": 1.4,
-      "sampleSeconds": 35,
-      "gainDb": -5.2
     }
   }
 }
