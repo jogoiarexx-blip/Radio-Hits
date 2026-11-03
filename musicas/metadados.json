@@ -828,5 +828,54 @@
     "genre": "Música Religiosa",
     "cover": "./assets/capas/padrao.svg",
     "downloadAllowed": false
+  },
+  "rock/AC DC - Back In Black (Official 4K Video).mp3": {
+    "title": "Back in Black",
+    "artist": "AC/DC",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/In The End Official HD Music Video - Linkin Park.mp3": {
+    "title": "In the End",
+    "artist": "Linkin Park",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Pearl Jam-Last Kiss [uvjTo-hRD5c].mp3": {
+    "title": "Last Kiss",
+    "artist": "Pearl Jam",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Pink Floyd - Another Brick In The Wall, Part Two (Official Music Video).mp3": {
+    "title": "Another Brick in the Wall, Part 2",
+    "artist": "Pink Floyd",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Red Hot Chili Peppers - By The Way Official Music Video.mp3": {
+    "title": "By the Way",
+    "artist": "Red Hot Chili Peppers",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Seether - Broken ft. Amy Lee.mp3": {
+    "title": "Broken (feat. Amy Lee)",
+    "artist": "Seether",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/System Of A Down - Lonely Day (Official HD Video).mp3": {
+    "title": "Lonely Day",
+    "artist": "System of a Down",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   }
 }
