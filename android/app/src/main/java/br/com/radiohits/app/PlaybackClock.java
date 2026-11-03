@@ -9,6 +9,10 @@ final class PlaybackClock {
         Position(int index, long offsetMs) { this.index=index; this.offsetMs=offsetMs; }
     }
     static Position at(long nowMs, long[] durationsMs) {
+        return at(nowMs,durationsMs,EPOCH_MS);
+    }
+    static Position at(long nowMs, long[] durationsMs, long epochMs) {
+        if (epochMs < 1577836800000L || epochMs > 4102444800000L) return null;
         if (durationsMs == null || durationsMs.length == 0) return null;
         long total=0;
         for (long duration : durationsMs) {
@@ -16,7 +20,7 @@ final class PlaybackClock {
                 || total > Long.MAX_VALUE-duration) return null;
             total += duration;
         }
-        long elapsed = Math.floorMod(nowMs - EPOCH_MS,total);
+        long elapsed = Math.floorMod(nowMs - epochMs,total);
         for (int i=0;i<durationsMs.length;i++) {
             long duration=durationsMs[i];
             if (elapsed<duration || i==durationsMs.length-1)
