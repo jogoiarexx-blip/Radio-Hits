@@ -13,6 +13,7 @@ on:
       - 'sw.js'
       - 'manifest.webmanifest'
       - 'tests/teste-bridge-android.js'
+      - 'tests/teste-backup-biblioteca.js'
       - '.github/workflows/android-apk.yml'
   pull_request:
     paths:
@@ -79,6 +80,7 @@ jobs:
           node tests/teste-grade-atualizacao.js
           node tests/teste-vinheta.js
           node tests/teste-explorar-pastas.js
+          node tests/teste-backup-biblioteca.js
           node tests/teste-bateria-background.js
           node tests/teste-memoria-stream.js
           javac -d /tmp/radiohits-recovery android/app/src/main/java/br/com/radiohits/app/PlaybackClock.java android/app/src/main/java/br/com/radiohits/app/PlaybackRetryPolicy.java tests/PlaybackRecoveryCheck.java
