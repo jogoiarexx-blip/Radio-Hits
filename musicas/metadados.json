@@ -788,5 +788,45 @@
     "genre": "Rock",
     "cover": "./assets/capas/padrao.svg",
     "downloadAllowed": false
+  },
+  "religiosas/Acalma minha tempestade   Frei Gilson ao vivo (360º).m4a": {
+    "title": "Acalma Minha Tempestade (Ao Vivo)",
+    "artist": "Frei Gilson",
+    "genre": "Música Religiosa",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "religiosas/Deixa Deus sonhar em ti (com Bruna Ramos)   Frei Gilson ao vivo (360º).m4a": {
+    "title": "Deixa Deus Sonhar em Ti (Ao Vivo)",
+    "artist": "Frei Gilson feat. Bruna Ramos",
+    "genre": "Música Religiosa",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "religiosas/Eu Seguirei (Ao Vivo).m4a": {
+    "title": "Eu Seguirei (Ao Vivo)",
+    "genre": "Música Religiosa",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "religiosas/Eu Te Levantarei.m4a": {
+    "title": "Eu Te Levantarei",
+    "genre": "Música Religiosa",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "religiosas/Terra Seca   DVD Não Vou Desistir   Fraternidade São João Paulo II.m4a": {
+    "title": "Terra Seca (Ao Vivo)",
+    "artist": "Fraternidade São João Paulo II",
+    "genre": "Música Religiosa",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "religiosas/Tu és o centro (com Bruna Ramos)   Frei Gilson ao vivo (360º).m4a": {
+    "title": "Tu És o Centro (Ao Vivo)",
+    "artist": "Frei Gilson feat. Bruna Ramos",
+    "genre": "Música Religiosa",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   }
 }
