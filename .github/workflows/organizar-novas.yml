@@ -18,6 +18,8 @@ on:
       - 'musicas/*.wav'
       - 'musicas/*.flac'
       - 'musicas/*.aac'
+      - 'scripts/verificar_catalogo.py'
+      - 'scripts/gerar_catalogo.py'
       - 'scripts/organizar_novas.py'
       - 'tests/test_organizar_novas.py'
       - '.github/workflows/organizar-novas.yml'
