@@ -5,7 +5,8 @@ Duração real obtida por mutagen (`pip install mutagen`) ou ffprobe.
 Para evitar sincronização incorreta da rádio, arquivos sem duração válida são ignorados.
 """
 from __future__ import annotations
-import json, re, shutil, subprocess, sys, unicodedata
+import json, re, shutil, subprocess, sys, unicodedata, hashlib
+from programar_radio import programar
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -131,9 +132,10 @@ def main():
         if measured is None or not 6 <= measured <= 30:
             raise SystemExit(f'Duração inválida na vinheta: {filename}')
         jingle_seconds[filename] = measured
+    ordered_songs = programar(tracks)
     radio_order = []
     jingles = []
-    for song_number, track in enumerate(tracks, 1):
+    for song_number, track in enumerate(ordered_songs, 1):
         radio_order.append(track['id'])
         if song_number % 5 == 0:
             jingle_number = song_number // 5
@@ -149,7 +151,16 @@ def main():
                 'loudnessLufs': None,
             })
             radio_order.append(jingle_id)
-    result={'name':'Radio Hits','version':3,'tracks':tracks+jingles,'radioOrder':radio_order}
+    by_id = {t['id']: t for t in tracks+jingles}
+    # Identifica explicitamente uma grade. Mesmo ID, ordem e durações
+    # resultam sempre na mesma revisão em navegador e Media3.
+    fingerprint = [[id, round(by_id[id]['duration'] * 1000)] for id in radio_order]
+    revision = hashlib.sha256(json.dumps(fingerprint,separators=(',',':')).encode()).hexdigest()[:16]
+    epoch_ms = 1767225600000  # 2026-01-01T00:00:00Z; compatível com Android.
+    result={'name':'Radio Hits','version':4,'tracks':tracks+jingles,'radioOrder':radio_order,
+            'radioSchedule':{'revision':revision,'epochMs':epoch_ms,
+                             'strategy':'curadoria-deterministica-v1',
+                             'songCount':len(tracks),'jingleCount':len(jingles)}}
     target=ROOT/'catalogo.json'
     target.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(f'Catálogo gerado: {len(tracks)} músicas + {len(jingles)} entradas de vinheta / {sum(t["duration"] for t in tracks+jingles):.1f}s de rádio. -> {target}')
