@@ -90,7 +90,9 @@ jobs:
             git reset --hard origin/main
             python scripts/organizar_novas.py | tee organizar-resultado.txt
             # Incluir remoções de uploads da raiz junto com as novas pastas.
-            git add -A -- musicas/ '*.mp3' '*.m4a' '*.ogg' '*.opus' '*.wav' '*.flac' '*.aac'
+            git add -A -- musicas/
+            # Inclui as exclusões dos MP3/M4A da raiz sem exigir que todas as extensões existam.
+            git add -u -- .
             if git diff --cached --quiet; then
               echo "Nenhum arquivo novo para mover."
               echo "changed=false" >> "$GITHUB_OUTPUT"
