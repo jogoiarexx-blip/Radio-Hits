@@ -40,7 +40,9 @@ final class PlaybackSnapshot {
                 t.put("title",String.valueOf(item.mediaMetadata.title==null?"Música":item.mediaMetadata.title));
                 t.put("artist",String.valueOf(item.mediaMetadata.artist==null?"Radio Hits":item.mediaMetadata.artist));
                 t.put("gainDb",extra==null?0:extra.getDouble("radiohits_gain_db",0));
-                t.put("durationMs",extra==null?0:extra.getLong("radiohits_duration_ms",0));
+                 t.put("durationMs",extra==null?0:extra.getLong("radiohits_duration_ms",0));
+                 t.put("epochMs",extra==null?PlaybackClock.EPOCH_MS:extra.getLong("radiohits_epoch_ms",PlaybackClock.EPOCH_MS));
+                 t.put("scheduleRevision",extra==null?"legacy":extra.getString("radiohits_schedule_revision","legacy"));
                 tracks.put(t);
                 if (tracks.length()>MAX_TRACKS) return false;
             }
@@ -88,6 +90,10 @@ final class PlaybackSnapshot {
                 extras.putString("radiohits_url",url);
                 extras.putDouble("radiohits_gain_db",Math.max(-10,Math.min(0,gain)));
                 extras.putLong("radiohits_duration_ms",duration);
+                 long epochMs=t.optLong("epochMs",PlaybackClock.EPOCH_MS);
+                 if(epochMs<1577836800000L || epochMs>4102444800000L) epochMs=PlaybackClock.EPOCH_MS;
+                 extras.putLong("radiohits_epoch_ms",epochMs);
+                 extras.putString("radiohits_schedule_revision",t.optString("scheduleRevision","legacy"));
                 MediaMetadata metadata=new MediaMetadata.Builder()
                     .setTitle(t.optString("title","Música"))
                     .setArtist(t.optString("artist","Radio Hits"))
@@ -102,7 +108,8 @@ final class PlaybackSnapshot {
             int index=Math.max(0,Math.min(items.size()-1,data.optInt("index",0)));
             long positionMs=Math.max(0,Math.min(86_400_000L,data.optLong("positionMs",0)));
             if("radio".equals(mode)) {
-                PlaybackClock.Position live=PlaybackClock.at(System.currentTimeMillis(),durations);
+                long epochMs=tracks.getJSONObject(0).optLong("epochMs",PlaybackClock.EPOCH_MS);
+                 PlaybackClock.Position live=PlaybackClock.at(System.currentTimeMillis(),durations,epochMs);
                 if(live==null) return false;
                 index=live.index;
                 positionMs=live.offsetMs;
