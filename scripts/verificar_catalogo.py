@@ -2,7 +2,7 @@
 """Confere 100% dos áudios, vinheta e sequenciamento UTC da rádio."""
 from pathlib import Path
 from urllib.parse import unquote
-import json, hashlib
+import json, hashlib, os
 from programar_radio import programar
 ROOT=Path(__file__).resolve().parents[1]
 MUSIC=ROOT/'musicas'
@@ -64,6 +64,16 @@ schedule_ok=(schedule.get('revision')==revision
     and schedule.get('jingleCount')==len(jingles))
 print(f'Verificação: {len(expected)} arquivos, {len(songs)} músicas e {len(jingles)} vinhetas por ciclo; revisão {revision}.')
 for src in unreadable: print('ARQUIVO DE AUDIO ILEGIVEL (fora da grade):',src)
+summary_file=os.environ.get('GITHUB_STEP_SUMMARY')
+if summary_file:
+    with open(summary_file, 'a', encoding='utf-8') as report:
+        report.write('## Auditoria da biblioteca Radio Hits\\n\\n')
+        report.write(f'- Músicas decodificáveis e catalogadas: **{len(songs)}**\\n')
+        report.write(f'- Áudios ilegíveis mantidos fora da rádio: **{len(unreadable)}**\\n')
+        report.write(f'- Ausentes no catálogo: **{len(missing)}**\\n')
+        for src in unreadable:
+            report.write('- Reenviar ou corrigir: \`' + src.replace('\\`', '') + '\`\\n')
+        report.write('\\nÁudios ilegíveis não são considerados certificados.\\n')
 for src in missing: print('AUSENTE:',src)
 for src in extra: print('INEXISTENTE:',src)
 for src in bad: print('DADOS INVALIDOS:',src)
