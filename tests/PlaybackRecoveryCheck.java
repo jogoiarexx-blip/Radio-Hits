@@ -20,6 +20,13 @@ public final class PlaybackRecoveryCheck {
         check(p.index==2 && p.offsetMs==89000L,"relogio antes de epoch");
         p=PlaybackClock.at(start+60000L-3L,tracks);
         check(p.index==0 && p.offsetMs==59950L,"margem final");
+        // A época é recebida pela mesma grade UTC que o navegador.
+        long newEpoch=start+86_400_000L;
+        PlaybackClock.Position shifted=PlaybackClock.at(newEpoch,new long[]{60_000L,125_000L,90_000L},newEpoch);
+        check(shifted.index==0 && shifted.offsetMs==0,"época da programação");
+        shifted=PlaybackClock.at(newEpoch+85_000L,tracks,newEpoch);
+        check(shifted.index==1 && shifted.offsetMs==25_000L,"offset com época dinâmica");
+        check(PlaybackClock.at(newEpoch,tracks,0)==null,"época inválida");
         check(PlaybackClock.at(start,new long[]{1,0,3})==null,"duracao invalida");
         check(PlaybackRetryPolicy.maxRetries()==4,"retentativas limitadas");
         check(PlaybackRetryPolicy.delayMs(0)==2000L,"retry inicial");

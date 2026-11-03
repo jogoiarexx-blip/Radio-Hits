@@ -36,11 +36,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validar 46 regras e teste de movimentação
-        run: python tests/test_organizar_novas.py
+      - name: Validar 52 regras e teste de movimentação
+        run: |
+          python tests/test_organizar_novas.py
+          python tests/test_programacao.py
       - name: Validar rádio e downloads com catálogo crescente
         run: |
           node tests/teste-radio-64.js
+          node tests/teste-grade-atualizacao.js
           node tests/teste-memoria-stream.js
   organizar:
     if: github.event_name != 'pull_request'

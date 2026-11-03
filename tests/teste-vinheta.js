@@ -22,6 +22,13 @@ assert.ok(jingles.every((t,i)=>t.src==='./vinhetas/'+names[i%3]),
 assert.ok(new Set(jingles.map(t=>t.src)).size===3,'variantes de rádio ausentes');
 assert.ok(jingles.every(t=>t.downloadAllowed===false),'vinheta nao eh musica baixavel');
 assert.ok(jingles.every(t=>t.gainDb<=0),'jingle nao amplifica volume');
+const sequence=catalog.radioOrder.map(id=>byId.get(id)).filter(t=>!t.isJingle);
+assert.equal(sequence.length,songs.length);
+assert.ok(sequence.every((t,i)=>i===0||t.artist!==sequence[i-1].artist),
+  'curadoria não pode encadear o mesmo artista');
+assert.ok(sequence.every((t,i)=>i<2||t.genre!==sequence[i-1].genre||t.genre!==sequence[i-2].genre),
+  'não manter três músicas consecutivas do mesmo estilo');
+assert.match(catalog.radioSchedule.revision,/^[a-f0-9]{16}$/);
 for(let i=0,musicCount=0;i<catalog.radioOrder.length;i++){
   const id=catalog.radioOrder[i],t=byId.get(id);
   assert.ok(t,'faixa em ordem deve existir '+id);
@@ -37,7 +44,7 @@ for(let i=0,musicCount=0;i<catalog.radioOrder.length;i++){
 const start=app.indexOf('  function playableTracks()');
 const stop=app.indexOf('  function queueFutureRadio(',start);
 assert.ok(start>0&&stop>start);
-const state={tracks:catalog.tracks,radioOrder:catalog.radioOrder};
+const state={tracks:catalog.tracks,radioOrder:catalog.radioOrder,radioSchedule:catalog.radioSchedule};
 const ctx={state,EPOCH:Date.UTC(2026,0,1),Date,Math,Number};
 vm.createContext(ctx);vm.runInContext(app.slice(start,stop),ctx);
 const playlist=ctx.radioTracks();

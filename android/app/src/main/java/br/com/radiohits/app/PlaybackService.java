@@ -154,7 +154,8 @@ public final class PlaybackService extends MediaSessionService {
             if(item.mediaMetadata.extras==null) return;
             durations[i]=item.mediaMetadata.extras.getLong("radiohits_duration_ms",0);
         }
-        PlaybackClock.Position clock=PlaybackClock.at(System.currentTimeMillis(),durations);
+        long epochMs=current.mediaMetadata.extras.getLong("radiohits_epoch_ms",PlaybackClock.EPOCH_MS);
+        PlaybackClock.Position clock=PlaybackClock.at(System.currentTimeMillis(),durations,epochMs);
         if(clock==null) return;
         long drift=Math.abs(player.getCurrentPosition()-clock.offsetMs);
         if(player.getCurrentMediaItemIndex()!=clock.index || drift>4000L) {

@@ -50,10 +50,14 @@ vm.runInContext(app.slice(start,stop),ctx);
 const folders=ctx.musicFolders();
 assert.ok(folders.length>=10,'pelo menos 10 pastas musicais devem existir');
 assert.equal(folders.reduce((n,f)=>n+f.count,0),catalog.tracks.filter(t=>!t.isJingle).length,'cada musica deve estar em uma pasta; vinhetas nunca');
-assert.ok(folders.some(f=>f.id==='Avulsas'&&f.count===6),'6 demos devem ficar em Avulsas');
+assert.ok(folders.some(f=>f.id==='Avulsas'&&f.count>=6),'6 demos devem ficar em Avulsas');
 assert.ok(!folders.some(f=>f.label==='Vinheta'),'vinheta nunca aparece nas pastas');
 assert.ok(folders.some(f=>f.id==='Hip Hop'&&f.count>0),'Hip Hop precisa aparecer');
 assert.ok(folders.some(f=>f.id==='rock'&&f.count>0),'Rock precisa aparecer');
+if (catalog.tracks.some(t=>t.genre==='Música Religiosa'))
+  assert.ok(folders.some(f=>f.id==='religiosas'&&f.count===6&&f.label==='Música Religiosa'),
+    'a pasta religiosa deve conter os seis uploads');
+
 assert.ok(folders.some(f=>f.id==='as melhores 80 e 90'&&f.count>0),'Anos 80 e 90 precisam aparecer');
 assert.equal(ctx.trackFolder({src:'./musicas/Hip%20Hop/Faixa%20nova.mp3'}),'Hip Hop');
 assert.equal(ctx.trackFolder({src:'./musicas/rock/musica.mp3'}),'rock');

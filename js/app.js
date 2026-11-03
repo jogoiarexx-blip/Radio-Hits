@@ -85,6 +85,8 @@
         }
         const request={
           mode:state.mode,id:selected,index,positionMs:Math.round(position*1000),
+          epochMs:Number(state.radioPlayback?.epochMs??state.radioSchedule?.epochMs)||EPOCH,
+          scheduleRevision:state.radioPlayback?.revision||state.radioSchedule?.revision||'legacy',
           volume:state.volume,leveling:state.leveling,shuffle:state.shuffle && state.mode !== 'radio',
           repeat:state.repeat==='all',
           tracks:tracks.map(t=>({
@@ -139,7 +141,7 @@
 
   const state = {
     tracks: [], mode: 'radio', view: 'radio', currentId: null,
-    radioOrder: [], radioIndex: 0, query: '', genre: 'Todos', folder: 'Todas',
+    radioOrder: [], radioSchedule: {epochMs:EPOCH,revision:'legacy'}, radioPlayback: null, radioIndex: 0, query: '', genre: 'Todos', folder: 'Todas',
     favorites: new Set(Array.isArray(saved.favorites) ? saved.favorites : []),
     playlists: saved.playlists && typeof saved.playlists === 'object' && !Array.isArray(saved.playlists) ? saved.playlists : {},
     selectedPlaylist: null, pendingAddId: null,
@@ -185,15 +187,20 @@
   }
   function playableTracks() { return state.tracks.filter(t => t.src && Number(t.duration) > 0); }
   function radioTracks() {
+    // Atualizações não devem trocar o áudio no meio de uma transmissão ativa.
+    if (state.radioPlayback && state.mode === 'radio' && radioWantsPlayback)
+      return state.radioPlayback.tracks;
     const available = playableTracks();
-    return state.radioOrder.length ? state.radioOrder.map(id => available.find(t => t.id === id)).filter(Boolean) : available;
+    const byId = new Map(available.map(t => [t.id,t]));
+    return state.radioOrder.length ? state.radioOrder.map(id => byId.get(id)).filter(Boolean) : available;
   }
   function getRadioInfo(now = Date.now()) {
     const tracks = radioTracks();
     if (!tracks.length) return null;
     const total = tracks.reduce((n, t) => n + Number(t.duration), 0);
     if (total <= 0) return null;
-    let pos = ((((now - EPOCH) / 1000) % total) + total) % total;
+    const epoch = Number(state.radioPlayback?.epochMs ?? state.radioSchedule?.epochMs) || EPOCH;
+    let pos = ((((now - epoch) / 1000) % total) + total) % total;
     for (let i = 0; i < tracks.length; i++) {
       const duration = Number(tracks[i].duration);
       if (pos < duration || i === tracks.length - 1) return { track: tracks[i], index: i, offset: Math.min(pos, Math.max(0, duration - .05)), remaining: duration - pos, tracks };
@@ -238,6 +245,7 @@
     'mpb': 'MPB', 'hip hop': 'Hip Hop',
     'rock': 'Rock', 'dance': 'Dance', 'pop': 'Pop',
     'country': 'Country', 'reggae': 'Reggae',
+    'religiosas': 'Música Religiosa',
     'avulsas': 'Avulsas'
   };
   // As pastas vêm do caminho real de cada arquivo no catálogo.
@@ -690,10 +698,18 @@
     }
   }
   function playRadio() {
+    // Ao pressionar Rádio, o ouvinte adere conscientemente à nova revisão.
+    // Durante a transmissão, a programação em uso fica congelada.
+    state.radioPlayback=null;
     const info = getRadioInfo();
     if (!info) { toast('Ainda não há músicas na rádio.'); return; }
     state.mode = 'radio';
     radioWantsPlayback = true;
+    state.radioPlayback = {
+      tracks:info.tracks,
+      epochMs:Number(state.radioSchedule?.epochMs)||EPOCH,
+      revision:state.radioSchedule?.revision||'legacy'
+    };
     loadTrack(info.track, info.offset);
     requestPlay();
     renderRadio(info); renderQueue(info); renderExplore(); renderPlayer();
@@ -701,6 +717,7 @@
   function toggleRadio() {
     if (state.mode === 'radio' && !audio.paused) {
       radioWantsPlayback = false;
+      state.radioPlayback = null;
       audio.pause();
     } else playRadio();
   }
@@ -708,6 +725,7 @@
     const t = trackById(id); if (!t || t.isJingle) return;
     state.mode = 'ondemand';
     radioWantsPlayback = false;
+    state.radioPlayback = null;
     const ids = [...new Set((queueIds || visibleTracks().map(t=>t.id)).filter(id => Boolean(trackById(id))))];
     state.queue = ids.includes(id) ? ids : [id, ...ids];
     state.queueIndex = state.queue.indexOf(id);
@@ -717,7 +735,7 @@
   function togglePlayback() {
     if (!state.loaded) return;
     if (!audio.paused) {
-      if (state.mode === 'radio') radioWantsPlayback = false;
+      if (state.mode === 'radio') { radioWantsPlayback = false; state.radioPlayback = null; }
       audio.pause(); return;
     }
     if (state.mode === 'radio') { playRadio(); return; }
@@ -956,6 +974,7 @@
       state.tracks=data.tracks.filter(t => t && t.id && t.title && t.src && Number(t.duration)>0)
         .map(t=>({...t,artist:t.artist||'Artista independente',genre:t.genre||'Outros',cover:t.cover||'./assets/capas/padrao.svg',duration:Number(t.duration)}));
       state.radioOrder=Array.isArray(data.radioOrder)?data.radioOrder:[];
+      state.radioSchedule=data.radioSchedule && Number.isSafeInteger(Number(data.radioSchedule.epochMs)) ? data.radioSchedule : {epochMs:EPOCH,revision:'legacy'};
       state.loaded=true;
       const info=getRadioInfo();
       state.currentId=info?.track?.id||state.tracks[0]?.id||null;
@@ -999,12 +1018,14 @@
         .map(t => ({...t,artist:t.artist||'Artista independente',genre:t.genre||'Outros',
           cover:t.cover||'./assets/capas/padrao.svg',duration:Number(t.duration)}));
       const oldIds = new Set(state.tracks.map(t => t.id));
-      const additions = updated.filter(t => !oldIds.has(t.id)).length;
+      const additions = updated.filter(t => !t.isJingle && !oldIds.has(t.id)).length;
       const signature = tracks => JSON.stringify(tracks.map(t => [t.id,t.title,t.artist,t.src,t.duration,t.genre,t.cover,t.year,t.downloadAllowed,t.gainDb,t.loudnessLufs,t.isJingle]));
-      const orderChanged = JSON.stringify(state.radioOrder) !== JSON.stringify(data.radioOrder || []);
+      const orderChanged = JSON.stringify(state.radioOrder) !== JSON.stringify(data.radioOrder || [])
+        || (state.radioSchedule?.revision||'legacy') !== (data.radioSchedule?.revision||'legacy');
       if (signature(updated) !== signature(state.tracks) || orderChanged) {
         state.tracks = updated;
         state.radioOrder = Array.isArray(data.radioOrder) ? data.radioOrder : [];
+        state.radioSchedule = data.radioSchedule && Number.isSafeInteger(Number(data.radioSchedule.epochMs)) ? data.radioSchedule : {epochMs:EPOCH,revision:'legacy'};
         if (!trackById(state.currentId)) state.currentId = getRadioInfo()?.track?.id || updated[0]?.id || null;
         state.queue = state.queue.filter(id => trackById(id) && !trackById(id).isJingle);
         if (!state.queue.length) { state.queue = libraryTracks().map(t=>t.id); state.queueIndex = 0; }
@@ -1012,9 +1033,11 @@
         const info = getRadioInfo();
         applyVolumeForTrack();
         renderRadio(info); renderExplore(); renderFavorites(); renderPlaylists(); renderQueue(info); renderPlayer();
-        toast(additions ? additions + ' nova(s) música(s) encontrada(s)!' : 'Biblioteca atualizada.');
+        toast(state.radioPlayback && state.mode==='radio'
+          ? 'Nova programação disponível. A rádio atual continua; reinicie para atualizar.'
+          : additions ? additions + ' nova(s) música(s) encontrada(s)!' : 'Biblioteca atualizada.');
       } else if (manual) {
-        toast('Sua biblioteca já está atualizada: ' + updated.length + ' músicas.');
+        toast('Sua biblioteca já está atualizada: ' + updated.filter(t=>!t.isJingle).length + ' músicas.');
       }
     } catch (error) {
       console.error('Radio Hits: falha ao atualizar músicas', error);
