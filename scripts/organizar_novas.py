@@ -78,6 +78,19 @@ RULES = [
     ("eu te levantarei", "religiosas", "Música Religiosa", "Eu Te Levantarei", None),
     ("terra seca", "religiosas", "Música Religiosa", "Terra Seca (Ao Vivo)", "Fraternidade São João Paulo II"),
     ("tu es o centro", "religiosas", "Música Religiosa", "Tu És o Centro (Ao Vivo)", "Frei Gilson feat. Bruna Ramos"),
+    ("never let me go", "dance", "Dance", "Never Let Me Go", "Alok, Bruno Martini & Zeeba"),
+    ("avicii the nights", "dance", "Dance", "The Nights", "Avicii"),
+    ("avicii hey brother", "dance", "Dance", "Hey Brother", "Avicii"),
+    ("avicii levels", "dance", "Dance", "Levels", "Avicii"),
+    ("avicii waiting for love", "dance", "Dance", "Waiting for Love", "Avicii"),
+    ("avicii wake me up", "dance", "Dance", "Wake Me Up", "Avicii"),
+    ("i m with you", "rock", "Rock", "I'm With You", "Avril Lavigne"),
+    ("calvin harris summer", "dance", "Dance", "Summer", "Calvin Harris"),
+    ("boulevard of broken dreams", "rock", "Rock", "Boulevard of Broken Dreams", "Green Day"),
+    ("imagine dragons thunder", "rock", "Rock", "Thunder", "Imagine Dragons"),
+    ("nickelback far away", "rock", "Rock", "Far Away", "Nickelback"),
+    ("numb official music video", "rock", "Rock", "Numb", "Linkin Park"),
+    ("something just like this", "pop", "Pop", "Something Just Like This", "The Chainsmokers & Coldplay"),
     # Rock — novos MP3 recebidos soltos em musicas/ em 03/11/2026.
     ("ac dc back in black", "rock", "Rock", "Back in Black", "AC/DC"),
     ("in the end official hd music video linkin park", "rock", "Rock", "In the End", "Linkin Park"),
@@ -114,6 +127,8 @@ def organize(root: Path = ROOT):
     if source.exists():
         candidates.extend(p for p in source.rglob("*") if p.is_file() and p.suffix.lower() in AUDIO)
     candidates.extend(p for p in music.iterdir() if p.is_file() and p.suffix.lower() in AUDIO)
+    # Alguns uploads pelo GitHub são colocados na raiz do repositório.
+    candidates.extend(p for p in root.iterdir() if p.is_file() and p.suffix.lower() in AUDIO)
     if not candidates:
         return {"moved": [], "unknown": [], "conflicts": [], "counts": {}}
     metadata_path = music / "metadados.json"
@@ -125,7 +140,7 @@ def organize(root: Path = ROOT):
     profile_tracks = profiles.get("tracks", {})
     moved, unknown, conflicts = [], [], []
     for file in sorted(candidates):
-        rel = file.relative_to(music).as_posix()
+        rel = file.relative_to(music).as_posix() if file.is_relative_to(music) else file.relative_to(root).as_posix()
         rule = match(file.name)
         if rule is None:
             # Apenas os seis MP3 originais podem ficar sem classificação

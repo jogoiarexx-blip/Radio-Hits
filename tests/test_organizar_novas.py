@@ -7,8 +7,8 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from organizar_novas import RULES, match, organize, normalized
 
-assert len(RULES) == 59
-assert len({r[0] for r in RULES}) == 59
+assert len(RULES) == 72
+assert len({r[0] for r in RULES}) == 72
 for key, folder, genre, title, artist in RULES:
     assert match(key + ".mp3") is not None, key
 assert match("Madonna - Papa Don't Preach (Official Video) [HD].m4a")[1] == "as melhores 80 e 90"
@@ -47,6 +47,7 @@ with tempfile.TemporaryDirectory() as temp:
     incoming=music / "novas-do-rar"
     incoming.mkdir(parents=True)
     (incoming / "INXS - By My Side.m4a").write_bytes(b"identidade-alfa")
+    (root / "Avicii - Levels.mp3").write_bytes(b"faixa-root")
     (music / "Skillet - Monster (Official Video).m4a").write_bytes(b"identidade-terceira")
     (music / "Richard Marx - Right Here Waiting (Official Music Video).m4a").write_bytes(b"identidade-quarta")
     (music / "horizonte-azul.mp3").write_bytes(b"original-do-projeto")
@@ -67,9 +68,10 @@ with tempfile.TemporaryDirectory() as temp:
         "novas-do-rar/INXS - By My Side.m4a":{"sha256":"abcd","lufs":-15.2}
     }}))
     result=organize(root)
-    assert len(result["moved"])==8, result
+    assert len(result["moved"])==9, result
     assert len(result["unknown"])==2 and len(result["conflicts"])==1, result
     assert (music / "rock" / "INXS - By My Side.m4a").read_bytes()==b"identidade-alfa"
+    assert (music / "dance" / "Avicii - Levels.mp3").read_bytes()==b"faixa-root"
     assert (music / "rock" / "Skillet - Monster (Official Video).m4a").read_bytes()==b"identidade-terceira"
     assert (music / "romanticas" / "Richard Marx - Right Here Waiting (Official Music Video).m4a").read_bytes()==b"identidade-quarta"
     assert (music / "religiosas" / "Eu Te Levantarei.m4a").read_bytes()==b"arquivo-religioso"
@@ -100,4 +102,4 @@ with tempfile.TemporaryDirectory() as temp:
     repeat=organize(root)
     assert not repeat["moved"], "deve ser idempotente"
 
-print("ORGANIZAR NOVAS OK: 59 regras, raiz e pasta temporaria, integridade, metadados, volume e conflitos.")
+print("ORGANIZAR NOVAS OK: 72 regras, raiz e pasta temporaria, integridade, metadados, volume e conflitos.")
