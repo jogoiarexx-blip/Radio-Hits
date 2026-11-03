@@ -290,7 +290,14 @@
   function renderExplore() {
     renderFolders();
     const tracks = visibleTracks();
-    $('discover-grid').innerHTML = tracks.slice(0, 4).map(card).join('') || empty('Nenhuma faixa encontrada', 'Experimente outra busca.');
+    // Descoberta local baseada nos gêneros favoritos, sem perfil remoto.
+    const favoriteGenres = new Map();
+    libraryTracks().filter(t => state.favorites.has(t.id)).forEach(t =>
+      favoriteGenres.set(t.genre, (favoriteGenres.get(t.genre) || 0) + 1));
+    const suggested = [...tracks].sort((a,b) =>
+      (favoriteGenres.get(b.genre)||0) - (favoriteGenres.get(a.genre)||0));
+    $('discover-grid').innerHTML = suggested.slice(0, 4).map(card).join('') ||
+      empty('Nenhuma faixa encontrada', 'Experimente outra busca.');
     $('all-tracks').innerHTML = tracks.map(songRow).join('') || empty('Sem resultados', 'Experimente outra pasta, gênero ou termo.');
     $('explore-selection-title').textContent = state.folder !== 'Todas' ? folderLabel(state.folder) :
       state.genre !== 'Todos' ? state.genre : 'Todas as faixas';
@@ -441,16 +448,17 @@
   }
   function renderPlaylists() {
     const names = Object.keys(state.playlists);
+    const backupControls = '<div class="playlist-detail-tools"><button class="outline-button" data-action="backup-library">Copiar backup da biblioteca</button><button class="outline-button" data-action="restore-library">Restaurar backup</button></div>';
     $('playlist-grid').innerHTML = names.length ? names.map((name,i) => {
       const ids = Array.isArray(state.playlists[name]) ? state.playlists[name] : [];
       const cover = trackById(ids[0])?.cover || './assets/capas/padrao.svg';
       return `<button class="playlist-tile ${state.selectedPlaylist === name?'is-selected':''}" data-action="open-playlist" data-playlist="${escapeHtml(name)}"><img src="${escapeHtml(cover)}" alt=""><strong>${escapeHtml(name)}</strong><small>${ids.length} ${ids.length===1?'música':'músicas'}</small></button>`;
     }).join('') : empty('Crie sua primeira playlist','Depois adicione faixas usando o botão + no catálogo.');
     const name = state.selectedPlaylist;
-    if (!name || !Object.prototype.hasOwnProperty.call(state.playlists,name)) { $('playlist-detail').innerHTML = ''; return; }
+    if (!name || !Object.prototype.hasOwnProperty.call(state.playlists,name)) { $('playlist-detail').innerHTML = backupControls; return; }
     const ids = Array.isArray(state.playlists[name]) ? state.playlists[name] : [];
     const tracks = ids.map(trackById).filter(Boolean);
-    $('playlist-detail').innerHTML = `<div class="playlist-detail-tools"><h3>${escapeHtml(name)}</h3><button class="outline-button" data-action="play-playlist" data-playlist="${escapeHtml(name)}">${icon('play','icon icon-filled')} Tocar playlist</button></div>${tracks.length ? tracks.map(t => `${songRow(t)}<div style="display:flex;justify-content:flex-end"><button class="side-add" data-action="remove-playlist-song" data-id="${escapeHtml(t.id)}" data-playlist="${escapeHtml(name)}">Remover desta playlist</button></div>`).join('') : empty('Playlist vazia','Adicione faixas usando o catálogo.')}`;
+    $('playlist-detail').innerHTML = backupControls + `<div class="playlist-detail-tools"><h3>${escapeHtml(name)}</h3><button class="outline-button" data-action="play-playlist" data-playlist="${escapeHtml(name)}">${icon('play','icon icon-filled')} Tocar playlist</button></div>${tracks.length ? tracks.map(t => `${songRow(t)}<div style="display:flex;justify-content:flex-end"><button class="side-add" data-action="remove-playlist-song" data-id="${escapeHtml(t.id)}" data-playlist="${escapeHtml(name)}">Remover desta playlist</button></div>`).join('') : empty('Playlist vazia','Adicione faixas usando o catálogo.')}`;
   }
   function renderRadio(info = getRadioInfo()) {
     if (!info) {
@@ -798,6 +806,55 @@
     });
     $('new-playlist-name').focus();
   }
+  // Backup portátil sem conta/servidor. IDs inexistentes são ignorados no restore.
+  function exportLibrary() {
+    return JSON.stringify({
+      format: 'radio-hits-library', version: 1,
+      favorites: [...state.favorites].filter(id => trackById(id) && !trackById(id).isJingle),
+      playlists: Object.fromEntries(Object.entries(state.playlists)
+        .filter(([name,ids]) => name && Array.isArray(ids))
+        .map(([name,ids]) => [name,ids.filter(id => trackById(id) && !trackById(id).isJingle)]))
+    }, null, 2);
+  }
+  function restoreLibrary(text) {
+    const data = JSON.parse(text);
+    if (!data || data.format !== 'radio-hits-library' || data.version !== 1
+        || !Array.isArray(data.favorites) || !data.playlists
+        || typeof data.playlists !== 'object' || Array.isArray(data.playlists))
+      throw new Error('Formato de backup inválido');
+    const validId = id => typeof id === 'string' && trackById(id) && !trackById(id).isJingle;
+    const playlists = {};
+    for (const [name, ids] of Object.entries(data.playlists)) {
+      if (!name || name.length > 55 || !Array.isArray(ids)) continue;
+      if (Object.keys(playlists).length >= 200) break;
+      playlists[name] = [...new Set(ids.filter(validId))].slice(0, 10000);
+    }
+    state.playlists = playlists;
+    state.favorites = new Set(data.favorites.filter(validId));
+    state.selectedPlaylist = null;
+    persist();renderFavorites();renderPlaylists();renderExplore();renderPlayer();
+  }
+  async function backupLibrary() {
+    const content = exportLibrary();
+    try {
+      await navigator.clipboard.writeText(content);
+      toast('Backup copiado. Guarde o texto em local seguro.');
+    } catch (_) {
+      openModal('Backup da biblioteca', '<p>Copie e guarde este texto para restaurar suas listas em outro aparelho.</p><textarea id="backup-text" rows="9" readonly></textarea>');
+      $('backup-text').value = content;
+      $('backup-text').focus();$('backup-text').select();
+    }
+  }
+  function restoreLibraryDialog() {
+    openModal('Restaurar biblioteca', '<p>Cole o backup gerado no outro aparelho. As playlists e favoritos atuais serão substituídos. Arquivos não existentes neste catálogo serão ignorados.</p><form id="restore-form"><textarea name="backup" rows="9" maxlength="2000000" required aria-label="Conteúdo do backup"></textarea><button class="primary-action" type="submit">Restaurar playlists e favoritos</button></form>');
+    $('restore-form').addEventListener('submit', e => {
+      e.preventDefault();
+      try {
+        restoreLibrary(String(new FormData(e.currentTarget).get('backup') || ''));
+        $('modal').close();toast('Biblioteca restaurada neste aparelho.');
+      } catch (error) { toast('Backup inválido: '+error.message); }
+    });
+  }
   function showPlaylistChooser(id) {
     state.pendingAddId = id;
     const names = Object.keys(state.playlists);
@@ -848,6 +905,8 @@
       case 'remove-playlist-song': { const ids=state.playlists[el.dataset.playlist] || []; state.playlists[el.dataset.playlist]=ids.filter(x=>x!==id);persist();renderPlaylists();toast('Música removida desta playlist');break; }
       case 'choose-playlist': { const name=el.dataset.playlist, id=state.pendingAddId; if (!Object.prototype.hasOwnProperty.call(state.playlists,name)) break; if (!state.playlists[name].includes(id)) state.playlists[name].push(id);persist();state.pendingAddId=null;$('modal').close();toast('Adicionada à playlist');renderPlaylists();break; }
       case 'new-playlist': createPlaylistDialog();break;
+      case 'backup-library': backupLibrary();break;
+      case 'restore-library': restoreLibraryDialog();break;
       case 'close-modal': $('modal').close();break;
     }
   }
