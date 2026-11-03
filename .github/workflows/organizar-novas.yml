@@ -20,6 +20,8 @@ on:
       - 'tests/teste-memoria-stream.js'
       - 'scripts/organizar_novas.py'
       - 'tests/test_organizar_novas.py'
+      - 'tests/test_programacao.py'
+      - 'scripts/programar_radio.py'
       - '.github/workflows/organizar-novas.yml'
   workflow_dispatch:
 permissions:
