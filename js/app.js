@@ -515,6 +515,15 @@
     $('hero-radio-play').innerHTML = `${icon(playing && state.mode==='radio'?'pause':'play','icon icon-filled')}<span>${playing && state.mode==='radio'?'Pausar rádio':'Ouvir rádio'}</span>`;
     $('station-play').classList.toggle('is-playing', playing && state.mode === 'radio');
     document.querySelector('.station-card').classList.toggle('is-playing', playing && state.mode === 'radio');
+    // O vinil acompanha a reprodução real, não apenas o modo selecionado.
+    const visualTrack=trackById(state.currentId) || getRadioInfo()?.track;
+    const cover=$('vinyl-cover');
+    if (cover) {
+      const source=visualTrack?.cover || './assets/capas/padrao.svg';
+      if (cover.getAttribute('src') !== source) cover.setAttribute('src',source);
+    }
+    $('vinyl-deck')?.classList.toggle('is-playing', playing && !!state.currentId);
+    $('player-shell')?.classList.toggle('is-playing', playing && !!state.currentId);
   }
   function renderPlayer() {
     const current = trackById(state.currentId) || getRadioInfo()?.track;
