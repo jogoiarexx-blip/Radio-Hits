@@ -7,7 +7,28 @@ from programar_radio import programar
 ROOT=Path(__file__).resolve().parents[1]
 MUSIC=ROOT/'musicas'
 AUDIO={'.mp3','.ogg','.m4a','.wav','.flac','.aac','.opus'}
-expected={'./musicas/'+p.relative_to(MUSIC).as_posix() for p in MUSIC.rglob('*') if p.is_file() and p.suffix.lower() in AUDIO}
+# Faixas que não podem ser decodificadas ficam fora da transmissão; reportar
+# explicitamente em vez de bloquear a organização das demais faixas.
+try:
+    from mutagen import File as AudioFile
+except ImportError:
+    AudioFile = None
+expected=set()
+unreadable=[]
+for p in MUSIC.rglob('*'):
+    if not p.is_file() or p.suffix.lower() not in AUDIO:
+        continue
+    src='./musicas/'+p.relative_to(MUSIC).as_posix()
+    if AudioFile is not None:
+        try:
+            info=AudioFile(p)
+            if info is None or info.info is None or float(info.info.length)<=0:
+                unreadable.append(src)
+                continue
+        except (ValueError, OSError, AttributeError, TypeError):
+            unreadable.append(src)
+            continue
+    expected.add(src)
 data=json.loads((ROOT/'catalogo.json').read_text(encoding='utf-8'))
 tracks=data['tracks']
 songs=[t for t in tracks if not t.get('isJingle')]
@@ -42,6 +63,7 @@ schedule_ok=(schedule.get('revision')==revision
     and schedule.get('songCount')==len(songs)
     and schedule.get('jingleCount')==len(jingles))
 print(f'Verificação: {len(expected)} arquivos, {len(songs)} músicas e {len(jingles)} vinhetas por ciclo; revisão {revision}.')
+for src in unreadable: print('ARQUIVO DE AUDIO ILEGIVEL (fora da grade):',src)
 for src in missing: print('AUSENTE:',src)
 for src in extra: print('INEXISTENTE:',src)
 for src in bad: print('DADOS INVALIDOS:',src)
