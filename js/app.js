@@ -735,7 +735,7 @@
   function togglePlayback() {
     if (!state.loaded) return;
     if (!audio.paused) {
-      if (state.mode === 'radio') radioWantsPlayback = false;
+      if (state.mode === 'radio') { radioWantsPlayback = false; state.radioPlayback = null; }
       audio.pause(); return;
     }
     if (state.mode === 'radio') { playRadio(); return; }
