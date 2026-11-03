@@ -5,7 +5,7 @@ const catalog=JSON.parse(fs.readFileSync(path.join(__dirname,'../catalogo.json')
 const start=app.indexOf('  function playableTracks()'),stop=app.indexOf('  function queueFutureRadio(',start);
 assert.ok(start>=0 && stop>start);
 const epoch=Date.UTC(2026,0,1,0,0,0);
-const state={tracks:catalog.tracks,radioOrder:catalog.radioOrder};
+const state={tracks:catalog.tracks,radioOrder:catalog.radioOrder,radioSchedule:catalog.radioSchedule};
 const ctx={state,EPOCH:epoch,Date,Math,Number};
 vm.createContext(ctx);
 vm.runInContext(app.slice(start,stop),ctx);
@@ -14,6 +14,8 @@ assert.ok(order.length>=64,'a rádio precisa preservar as 64 faixas originais e 
 assert.equal(new Set(order.map(t=>t.id)).size,order.length,'nao deve repetir ID na programacao');
 const total=order.reduce((n,t)=>n+Number(t.duration),0);
 assert.ok(total>0);
+assert.ok(catalog.radioSchedule && /^[a-f0-9]{16}$/.test(catalog.radioSchedule.revision),'revisão musical não identificada');
+assert.equal(catalog.radioSchedule.epochMs,epoch,'epoch UTC consistente');
 let elapsed=0;
 for(let i=0;i<order.length;i++){
   const duration=Number(order[i].duration);
@@ -32,7 +34,7 @@ for(const cycles of [1,3,7]){
 }
 const service=fs.readFileSync(path.join(__dirname,'../android/app/src/main/java/br/com/radiohits/app/PlaybackService.java'),'utf8');
 assert.match(service,/synchronizeRadioClock\(\)/);
-assert.match(service,/PlaybackClock\.at\(System\.currentTimeMillis\(\),durations\)/);
+assert.match(service,/PlaybackClock\.at\(System\.currentTimeMillis\(\),durations,epochMs\)/);
 assert.match(service,/drift>4000L/);
 assert.match(service,/player\.seekTo\(clock\.index,clock\.offsetMs\)/);
 // Percurso acelerado do ciclo completo: nao representa audio decodificado.
