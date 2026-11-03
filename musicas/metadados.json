@@ -877,5 +877,96 @@
     "genre": "Rock",
     "cover": "./assets/capas/padrao.svg",
     "downloadAllowed": false
+  },
+  "dance/Alok, Bruno Martini, Zeeba - Never Let Me Go (Official Music Video) [4K] [ri-fIya76ac].mp3": {
+    "title": "Never Let Me Go",
+    "artist": "Alok, Bruno Martini & Zeeba",
+    "genre": "Dance",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "dance/Avicii - The Nights (Tradução_Legendado) [Zr7v3XK_hQg].mp3": {
+    "title": "The Nights",
+    "artist": "Avicii",
+    "genre": "Dance",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Avril Lavigne - I m With You (Official Video).mp3": {
+    "title": "I'm With You",
+    "artist": "Avril Lavigne",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "dance/Calvin Harris - Summer [Tradução_Legendado] [JkXUq3S0ELA].mp3": {
+    "title": "Summer",
+    "artist": "Calvin Harris",
+    "genre": "Dance",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Green Day - Boulevard Of Broken Dreams Official Music Video 4K Upgrade.mp3": {
+    "title": "Boulevard of Broken Dreams",
+    "artist": "Green Day",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Imagine Dragons - Thunder.mp3": {
+    "title": "Thunder",
+    "artist": "Imagine Dragons",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Nickelback - Far Away.mp3": {
+    "title": "Far Away",
+    "artist": "Nickelback",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Numb (Official Music Video) 4K UPGRADE – Linkin Park.mp3": {
+    "title": "Numb",
+    "artist": "Linkin Park",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "pop/The Chainsmokers Coldplay - Something Just Like This (Official Lyric Video).mp3": {
+    "title": "Something Just Like This",
+    "artist": "The Chainsmokers & Coldplay",
+    "genre": "Pop",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "dance/Avicii - Hey Brother.mp3": {
+    "title": "Hey Brother",
+    "artist": "Avicii",
+    "genre": "Dance",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "dance/Avicii - Levels.mp3": {
+    "title": "Levels",
+    "artist": "Avicii",
+    "genre": "Dance",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "dance/Avicii - Waiting For Love.mp3": {
+    "title": "Waiting for Love",
+    "artist": "Avicii",
+    "genre": "Dance",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "dance/Avicii - Wake Me Up (Official Lyric Video).mp3": {
+    "title": "Wake Me Up",
+    "artist": "Avicii",
+    "genre": "Dance",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   }
 }

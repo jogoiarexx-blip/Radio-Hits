@@ -3,34 +3,6 @@
   "method": "EBU R128 35s central; apenas atenuação",
   "targetLufs": -14.3,
   "tracks": {
-    "Avicii - Hey Brother.mp3": {
-      "sha256": "1398c1657c92066a91ae2bde491a99130f967436d8d6865fb227e36786fb3030",
-      "lufs": -23.1,
-      "truePeakDbfs": -7.3,
-      "sampleSeconds": 5.0,
-      "gainDb": 0.0
-    },
-    "Avicii - Levels.mp3": {
-      "sha256": "bb22f5f0a1dfcf8df2b3adfbbb06d5308dbc9dbb1cd995dc9187e49c45041229",
-      "lufs": -12.0,
-      "truePeakDbfs": 0.2,
-      "sampleSeconds": 5.0,
-      "gainDb": -2.3
-    },
-    "Avicii - Waiting For Love.mp3": {
-      "sha256": "df65b6f95491acfe887c0d33a3cf688575cf7f3bb126b3c057d2ef35580858c4",
-      "lufs": -6.6,
-      "truePeakDbfs": 1.5,
-      "sampleSeconds": 35,
-      "gainDb": -7.7
-    },
-    "Avicii - Wake Me Up (Official Lyric Video).mp3": {
-      "sha256": "e3804b8c62081a7205d8b091dd28474049964a49dc9ba7042e2f1a87e02e23e7",
-      "lufs": -9.1,
-      "truePeakDbfs": 1.4,
-      "sampleSeconds": 35,
-      "gainDb": -5.2
-    },
     "Hip Hop/Akon - Smack That (feat. Eminem).mp3": {
       "sha256": "dd66c9854f6a6dbe8e3aa18d3958b6752249dd98fa5f787030cebeccfc958f33",
       "lufs": -9.4,
@@ -891,6 +863,34 @@
       "truePeakDbfs": -4.6,
       "sampleSeconds": 28.06,
       "gainDb": 0.0
+    },
+    "dance/Avicii - Hey Brother.mp3": {
+      "sha256": "1398c1657c92066a91ae2bde491a99130f967436d8d6865fb227e36786fb3030",
+      "lufs": -23.1,
+      "truePeakDbfs": -7.3,
+      "sampleSeconds": 5.0,
+      "gainDb": 0.0
+    },
+    "dance/Avicii - Levels.mp3": {
+      "sha256": "bb22f5f0a1dfcf8df2b3adfbbb06d5308dbc9dbb1cd995dc9187e49c45041229",
+      "lufs": -12.0,
+      "truePeakDbfs": 0.2,
+      "sampleSeconds": 5.0,
+      "gainDb": -2.3
+    },
+    "dance/Avicii - Waiting For Love.mp3": {
+      "sha256": "df65b6f95491acfe887c0d33a3cf688575cf7f3bb126b3c057d2ef35580858c4",
+      "lufs": -6.6,
+      "truePeakDbfs": 1.5,
+      "sampleSeconds": 35,
+      "gainDb": -7.7
+    },
+    "dance/Avicii - Wake Me Up (Official Lyric Video).mp3": {
+      "sha256": "e3804b8c62081a7205d8b091dd28474049964a49dc9ba7042e2f1a87e02e23e7",
+      "lufs": -9.1,
+      "truePeakDbfs": 1.4,
+      "sampleSeconds": 35,
+      "gainDb": -5.2
     }
   }
 }
