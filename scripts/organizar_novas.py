@@ -69,6 +69,15 @@ RULES = [
     ("skillet hero", "rock", "Rock", "Hero", "Skillet"),
     ("starship nothing s gonna stop us now", "as melhores 80 e 90", "Anos 80 e 90", "Nothing's Gonna Stop Us Now", "Starship"),
     ("survivor eye of the tiger", "rock", "Rock", "Eye of the Tiger", "Survivor"),
+    # Lote de músicas religiosas recebido na raiz em 03/11/2026.
+    # Dois arquivos não informam artista: preservar os metadados já existentes
+    # ou as tags do áudio, sem inventar atribuição.
+    ("acalma minha tempestade", "religiosas", "Música Religiosa", "Acalma Minha Tempestade (Ao Vivo)", "Frei Gilson"),
+    ("deixa deus sonhar em ti", "religiosas", "Música Religiosa", "Deixa Deus Sonhar em Ti (Ao Vivo)", "Frei Gilson feat. Bruna Ramos"),
+    ("eu seguirei", "religiosas", "Música Religiosa", "Eu Seguirei (Ao Vivo)", None),
+    ("eu te levantarei", "religiosas", "Música Religiosa", "Eu Te Levantarei", None),
+    ("terra seca", "religiosas", "Música Religiosa", "Terra Seca (Ao Vivo)", "Fraternidade São João Paulo II"),
+    ("tu es o centro", "religiosas", "Música Religiosa", "Tu És o Centro (Ao Vivo)", "Frei Gilson feat. Bruna Ramos"),
 ]
 
 
