@@ -201,3 +201,53 @@
   .vinyl-deck .vinyl-record,.mini-vinyl{animation:none!important}
   .vinyl-tonearm{transition:none!important}
 }
+
+
+/* REV LP2: reflexos estáticos (sem canvas, sem blur animado).
+   O navegador só anima transform quando a reprodução estiver visível. */
+.vinyl-deck::before{
+  content:"";position:absolute;z-index:0;
+  width:250px;height:250px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,#b8f45824 0%,#b8f45811 37%,transparent 70%);
+  opacity:.45;transition:opacity .5s ease;
+}
+.vinyl-deck.is-playing::before{opacity:.82}
+.vinyl-deck .vinyl-record{z-index:1}
+.vinyl-deck .vinyl-tonearm{z-index:3}
+.vinyl-deck.is-playing .vinyl-record,
+.player-shell.is-playing .mini-vinyl{will-change:transform}
+/* As imagens do rótulo continuam nítidas; toda a rotação é do disco. */
+.vinyl-deck .vinyl-label img{user-select:none;-webkit-user-drag:none}
+/* No celular o LP fica abaixo do texto, não atrás das ações. */
+@media(max-width:690px){
+  .hero{height:auto;min-height:450px;display:flex;flex-direction:column}
+  .hero-copy{flex:0 0 auto;width:100%;max-width:none;padding:24px 18px 0;min-width:0}
+  .hero-art.vinyl-deck{
+    position:relative;inset:auto;right:auto;top:auto;bottom:auto;
+    display:grid;place-items:center;flex:0 0 210px;
+    height:210px;width:100%;margin:0;opacity:1;
+  }
+  .vinyl-deck .vinyl-record{width:162px;height:162px}
+  .vinyl-deck .vinyl-tonearm{top:33px;left:calc(50% + 34px);width:84px;height:8px}
+  .vinyl-deck .orbit{opacity:.45}
+  .vinyl-deck .orbit-a{width:220px;height:220px}
+  .vinyl-deck .orbit-b{width:185px;height:185px}
+  .vinyl-deck .orbit-c{width:150px;height:150px}
+  .vinyl-deck::before{width:220px;height:220px}
+  .vinyl-deck .hero-art-label{right:12px;bottom:8px;font-size:9px;opacity:.8}
+  .mini-vinyl{width:43px;height:43px;flex-basis:43px}
+  .player-track .mini-vinyl img{width:61%;height:61%;border-radius:50%}
+}
+@media(max-width:380px){
+  .hero{min-height:460px}
+  .hero-copy{padding:21px 14px 0}
+  .hero-actions{gap:6px}
+  .hero-art.vinyl-deck{flex-basis:196px;height:196px}
+  .vinyl-deck .vinyl-record{width:150px;height:150px}
+  .vinyl-deck .vinyl-tonearm{top:29px;left:calc(50% + 30px);width:77px}
+  .vinyl-deck .orbit-a{width:205px;height:205px}
+}
+@media(prefers-reduced-motion:reduce){
+  .vinyl-deck::before{transition:none}
+  .vinyl-deck .vinyl-tonearm{transition:none}
+}
