@@ -86,7 +86,8 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             python scripts/organizar_novas.py | tee organizar-resultado.txt
-            git add -A musicas
+            # Incluir remoções de uploads da raiz junto com as novas pastas.
+            git add -A
             if git diff --cached --quiet; then
               echo "Nenhum arquivo novo para mover."
               echo "changed=false" >> "$GITHUB_OUTPUT"
