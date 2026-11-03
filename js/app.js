@@ -292,7 +292,7 @@
     const tracks = visibleTracks();
     // Descoberta local baseada nos gêneros favoritos, sem perfil remoto.
     const favoriteGenres = new Map();
-    libraryTracks().filter(t => state.favorites.has(t.id)).forEach(t =>
+    libraryTracks().filter(t => state.favorites instanceof Set && state.favorites.has(t.id)).forEach(t =>
       favoriteGenres.set(t.genre, (favoriteGenres.get(t.genre) || 0) + 1));
     const suggested = [...tracks].sort((a,b) =>
       (favoriteGenres.get(b.genre)||0) - (favoriteGenres.get(a.genre)||0));
