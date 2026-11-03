@@ -34,7 +34,7 @@ const $=id=>{
   if(!elements.has(id))elements.set(id,{innerHTML:'',textContent:'',scrollIntoView:()=>{}});
   return elements.get(id);
 };
-const state={tracks:catalog.tracks,folder:'Todas',genre:'Todos',query:''};
+const state={tracks:catalog.tracks,folder:'Todas',genre:'Todos',query:'',favorites:new Set()};
 const ctx={
   state,$,Map,Set,decodeURIComponent,
   escapeHtml:value=>String(value).replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s])),
