@@ -36,7 +36,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validar 52 regras e teste de movimentação
+      - name: Validar 59 regras e teste de movimentação
         run: |
           python tests/test_organizar_novas.py
           python tests/test_programacao.py
