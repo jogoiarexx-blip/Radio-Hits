@@ -72,7 +72,7 @@ if summary_file:
         report.write(f'- Áudios ilegíveis mantidos fora da rádio: **{len(unreadable)}**\\n')
         report.write(f'- Ausentes no catálogo: **{len(missing)}**\\n')
         for src in unreadable:
-            report.write('- Reenviar ou corrigir: \`' + src.replace('\\`', '') + '\`\\n')
+            report.write('- Reenviar ou corrigir: `' + src.replace('`', '') + '`\\n')
         report.write('\\nÁudios ilegíveis não são considerados certificados.\\n')
 for src in missing: print('AUSENTE:',src)
 for src in extra: print('INEXISTENTE:',src)
