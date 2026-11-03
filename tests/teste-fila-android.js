@@ -39,9 +39,9 @@ assert.match(app,/refreshNativeDownloadJobs/);
 assert.match(html,/native-bridge\.js\?v=bridge-2/);
 assert.match(sw,/native-bridge\.js\?v=bridge-2/);
 // O nome do cache muda a cada release; garantir versao e assets coerentes.
-assert.match(sw,/const CACHE = 'radio-hits-shell-v\\d+';/);
-const cssUrl=html.match(/href="(\\.\\/css\\/style\\.css\\?v=[^"]+)"/)?.[1];
-const jsUrl=html.match(/src="(\\.\\/js\\/app\\.js\\?v=[^"]+)"/)?.[1];
+assert.match(sw,/const CACHE = 'radio-hits-shell-v\d+';/);
+const cssUrl=html.match(/href="([^"]*style\.css\?v=[^"]+)"/)?.[1];
+const jsUrl=html.match(/src="([^"]*\/app\.js\?v=[^"]+)"/)?.[1];
 assert.ok(cssUrl && sw.includes("'"+cssUrl+"'"),'O cache precisa usar o CSS atual');
 assert.ok(jsUrl && sw.includes("'"+jsUrl+"'"),'O cache precisa usar o JS atual');
 assert.ok(html.indexOf('js/native-bridge.js') < html.indexOf('js/offline.js'));
