@@ -78,6 +78,14 @@ RULES = [
     ("eu te levantarei", "religiosas", "Música Religiosa", "Eu Te Levantarei", None),
     ("terra seca", "religiosas", "Música Religiosa", "Terra Seca (Ao Vivo)", "Fraternidade São João Paulo II"),
     ("tu es o centro", "religiosas", "Música Religiosa", "Tu És o Centro (Ao Vivo)", "Frei Gilson feat. Bruna Ramos"),
+    # Rock — novos MP3 recebidos soltos em musicas/ em 03/11/2026.
+    ("ac dc back in black", "rock", "Rock", "Back in Black", "AC/DC"),
+    ("in the end official hd music video linkin park", "rock", "Rock", "In the End", "Linkin Park"),
+    ("pearl jam last kiss", "rock", "Rock", "Last Kiss", "Pearl Jam"),
+    ("pink floyd another brick in the wall part two", "rock", "Rock", "Another Brick in the Wall, Part 2", "Pink Floyd"),
+    ("red hot chili peppers by the way", "rock", "Rock", "By the Way", "Red Hot Chili Peppers"),
+    ("seether broken ft amy lee", "rock", "Rock", "Broken (feat. Amy Lee)", "Seether"),
+    ("system of a down lonely day", "rock", "Rock", "Lonely Day", "System of a Down"),
 ]
 
 
