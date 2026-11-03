@@ -522,8 +522,10 @@
       const source=visualTrack?.cover || './assets/capas/padrao.svg';
       if (cover.getAttribute('src') !== source) cover.setAttribute('src',source);
     }
-    $('vinyl-deck')?.classList.toggle('is-playing', playing && !!state.currentId);
-    $('player-shell')?.classList.toggle('is-playing', playing && !!state.currentId);
+    // Evita composicao grafica em abas ocultas e no Android em segundo plano.
+    const animateVinyl = playing && !!state.currentId && !document.hidden;
+    $('vinyl-deck')?.classList.toggle('is-playing', animateVinyl);
+    $('player-shell')?.classList.toggle('is-playing', animateVinyl);
   }
   function renderPlayer() {
     const current = trackById(state.currentId) || getRadioInfo()?.track;
@@ -1120,6 +1122,7 @@
   window.addEventListener('offline', updateConnectionNotice);
   updateConnectionNotice();
   document.addEventListener('visibilitychange', () => {
+    setPlayVisuals();
     if (document.hidden && standby) clearStandby();
     if (!document.hidden) {
       tick();
