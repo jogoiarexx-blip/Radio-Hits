@@ -133,3 +133,71 @@
 .explore-play-button svg{width:13px;height:13px}
 .explore-play-button:disabled{cursor:not-allowed;background:#28312b;color:#78867c;border-color:#313b34}
 @media(max-width:690px){.tracks-section .section-title.row-between{align-items:flex-start;flex-direction:column}.tracks-section .chips{max-width:100%;width:100%}.explore-selection-actions button{min-height:42px}}
+
+
+/* Vitrola LP: desenho vetorial em CSS, sem imagens adicionais nem canvas. */
+.vinyl-deck{isolation:isolate;pointer-events:none}
+.vinyl-deck .vinyl-record{
+  position:relative;width:208px;height:208px;border:6px solid #101815;
+  border-radius:50%;display:grid;place-items:center;overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 50%,transparent 0 25%,#101417 25.3% 31%,transparent 31.4%),
+    repeating-radial-gradient(circle at center,#101417 0 2px,#252c2e 2.7px,#070b0c 4.4px,#161b1c 6.3px),
+    #0b1011;
+  box-shadow:inset 0 0 0 2px #495450, inset 0 0 18px #000,
+    0 20px 42px #05090a9c,0 0 0 1px #9ae05b45;
+  transform:none;animation:radiohits-vinyl-spin 2.15s linear infinite;
+  animation-play-state:paused;
+}
+.vinyl-deck.is-playing .vinyl-record{animation-play-state:running}
+.vinyl-deck .vinyl-record::before{
+  content:"";position:absolute;inset:2%;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 20deg,transparent 0deg,#b8dfc21f 28deg,transparent 52deg,
+    transparent 180deg,#e8f4f22a 204deg,transparent 238deg);
+}
+.vinyl-deck .vinyl-grooves{
+  position:absolute;inset:7%;border-radius:50%;pointer-events:none;
+  background:repeating-radial-gradient(circle,transparent 0 5px,#effff80b 5.4px 6px,transparent 6.5px 9px);
+}
+.vinyl-deck .vinyl-label{position:relative;z-index:1;width:42%;aspect-ratio:1;
+  border:5px solid #b8f458;border-radius:50%;overflow:hidden;
+  box-shadow:0 0 0 3px #101815,0 0 0 6px #b8f4583b;
+  background:#283c2c}
+.vinyl-label img{width:100%;height:100%;object-fit:cover;display:block}
+.vinyl-spindle{position:absolute;z-index:3;top:50%;left:50%;width:10px;height:10px;
+  transform:translate(-50%,-50%);border:2px solid #ecfff0;border-radius:50%;
+  background:#101415;box-shadow:0 0 0 4px #080c0c80}
+.vinyl-tonearm{
+  position:absolute;z-index:4;top:53px;left:64%;width:114px;height:9px;
+  border-radius:6px;transform-origin:calc(100% - 2px) 50%;
+  transform:rotate(-40deg);
+  background:linear-gradient(180deg,#f1f3f0,#96a59e 48%,#37463f);
+  box-shadow:0 3px 6px #0008;transition:transform .8s cubic-bezier(.2,.72,.25,1);
+}
+.vinyl-deck.is-playing .vinyl-tonearm{transform:rotate(-26deg)}
+.vinyl-tonearm::before{content:"";position:absolute;right:-12px;top:-10px;width:29px;height:29px;
+  border-radius:50%;background:radial-gradient(circle,#b7c9bd 0 24%,#39463e 28% 60%,#8c9c8e 64%);
+  box-shadow:0 3px 7px #000a}
+.vinyl-tonearm-head{position:absolute;left:-12px;top:-1px;width:27px;height:15px;
+  border-radius:3px;background:linear-gradient(140deg,#e0e7e0,#626d67);
+  box-shadow:0 3px 6px #0008;transform:rotate(-10deg)}
+@keyframes radiohits-vinyl-spin{to{transform:rotate(360deg)}}
+.mini-vinyl{position:relative;flex:0 0 53px;width:53px;height:53px;
+  display:grid;place-items:center;border-radius:50%;overflow:hidden;
+  border:3px solid #0b1112;
+  background:repeating-radial-gradient(circle,#0c1012 0 2px,#343d3e 2.3px 3px,#101516 3.5px 5px);
+  box-shadow:0 0 0 1px #4d6255,0 3px 9px #0008;
+  animation:radiohits-vinyl-spin 2.15s linear infinite;animation-play-state:paused}
+.player-shell.is-playing .mini-vinyl{animation-play-state:running}
+.player-track .mini-vinyl img{width:61%;height:61%;object-fit:cover;border-radius:50%;display:block}
+.mini-vinyl-spindle{position:absolute;top:50%;left:50%;width:5px;height:5px;
+  transform:translate(-50%,-50%);background:#0b1112;border:1px solid #f4fff2;border-radius:50%}
+@media(max-width:690px){
+  .vinyl-deck .vinyl-record{width:158px;height:158px}
+  .vinyl-deck .vinyl-tonearm{width:82px;top:62px;left:62%}
+  .mini-vinyl{width:43px;height:43px;flex-basis:43px}
+}
+@media(prefers-reduced-motion:reduce){
+  .vinyl-deck .vinyl-record,.mini-vinyl{animation:none!important}
+  .vinyl-tonearm{transition:none!important}
+}
