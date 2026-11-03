@@ -18,7 +18,9 @@ assert.match(service,/hasCapability\(NetworkCapabilities\.NET_CAPABILITY_VALIDAT
 assert.match(snap,/snapshot\.put\("positionMs"/);
 assert.match(snap,/snapshot\.put\("index"/);
 assert.match(snap,/snapshot\.put\("tracks"/);
-assert.match(snap,/PlaybackClock\.at\(System\.currentTimeMillis\(\),durations\)/);
+assert.match(snap,/PlaybackClock\.at\(System\.currentTimeMillis\(\),durations,epochMs\)/);
+assert.match(snap,/radiohits_epoch_ms/);
+assert.match(activity,/radiohits_schedule_revision/);
 assert.match(snap,/player\.pause\(\)/);
 assert.match(snap,/OfflineStore\.saved\(ctx,url\)/);
 assert.match(snap,/OfflineStore\.validStreamUrl\(url\)/);
