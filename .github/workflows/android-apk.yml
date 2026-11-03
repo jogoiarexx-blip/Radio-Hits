@@ -16,6 +16,7 @@ on:
       - 'tests/teste-backup-biblioteca.js'
       - 'tests/teste-vinil.js'
       - 'tests/teste-fila-android.js'
+      - 'tests/teste-recuperacao-android.js'
       - '.github/workflows/android-apk.yml'
   pull_request:
     paths:
@@ -29,6 +30,7 @@ on:
       - 'sw.js'
       - 'tests/teste-vinil.js'
       - 'tests/teste-fila-android.js'
+      - 'tests/teste-recuperacao-android.js'
       - '.github/workflows/android-apk.yml'
       - 'tests/teste-vinil.js'
   workflow_dispatch:
