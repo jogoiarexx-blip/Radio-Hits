@@ -7,28 +7,18 @@ from programar_radio import programar
 ROOT=Path(__file__).resolve().parents[1]
 MUSIC=ROOT/'musicas'
 AUDIO={'.mp3','.ogg','.m4a','.wav','.flac','.aac','.opus'}
-# Faixas que não podem ser decodificadas ficam fora da transmissão; reportar
-# explicitamente em vez de bloquear a organização das demais faixas.
-try:
-    from mutagen import File as AudioFile
-except ImportError:
-    AudioFile = None
+# Mesma função usada pelo gerador: não divergir ao julgar áudios ilegíveis.
+from gerar_catalogo import duration
 expected=set()
 unreadable=[]
 for p in MUSIC.rglob('*'):
     if not p.is_file() or p.suffix.lower() not in AUDIO:
         continue
     src='./musicas/'+p.relative_to(MUSIC).as_posix()
-    if AudioFile is not None:
-        try:
-            info=AudioFile(p)
-            if info is None or info.info is None or float(info.info.length)<=0:
-                unreadable.append(src)
-                continue
-        except (ValueError, OSError, AttributeError, TypeError):
-            unreadable.append(src)
-            continue
-    expected.add(src)
+    if duration(p) is None:
+        unreadable.append(src)
+    else:
+        expected.add(src)
 data=json.loads((ROOT/'catalogo.json').read_text(encoding='utf-8'))
 tracks=data['tracks']
 songs=[t for t in tracks if not t.get('isJingle')]
