@@ -271,3 +271,25 @@
 @media(max-width:690px){.vinyl-deck .vinyl-play-hit{width:162px;height:162px}}
 @media(max-width:380px){.vinyl-deck .vinyl-play-hit{width:150px;height:150px}}
 @media(prefers-reduced-motion:reduce){.vinyl-play-hit::after{transition:none}}
+
+/* LP Premium 4 — estados reais de carregamento e recuperacao. */
+.vinyl-deck .vinyl-status{
+  position:absolute;z-index:7;bottom:12px;left:16px;
+  padding:4px 8px;border:1px solid #b8f45842;border-radius:5px;
+  background:#101a18c9;color:#d6f9b3;letter-spacing:.12em;font-size:9px;
+  font-weight:800;line-height:1.4;pointer-events:none;
+}
+.vinyl-deck.is-buffering .vinyl-record{animation-play-state:paused}
+.vinyl-deck.is-buffering .vinyl-tonearm{transform:rotate(-40deg)}
+.vinyl-deck.is-buffering .vinyl-play-hit::after{
+  content:"";border:3px solid #172414;border-top-color:#e8ffe0;
+  box-shadow:0 0 0 3px #b8f458;
+  background:transparent;width:24px;height:24px;
+  animation:vinyl-buffer-spin .9s linear infinite;
+}
+@keyframes vinyl-buffer-spin{to{transform:rotate(360deg)}}
+.player-shell.is-buffering .mini-vinyl{animation-play-state:paused}
+@media(max-width:690px){.vinyl-deck .vinyl-status{bottom:8px;left:11px;font-size:8px}}
+@media(prefers-reduced-motion:reduce){
+  .vinyl-deck.is-buffering .vinyl-play-hit::after{animation:none}
+}

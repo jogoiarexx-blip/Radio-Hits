@@ -24,6 +24,7 @@
       if (Number.isFinite(Number(info.position))) position = Math.max(0,Number(info.position));
       if (Number(info.duration) > 0) duration = Number(info.duration);
       if (Number(info.readyState) > 0) ready = Number(info.readyState);
+      if (typeof state !== 'undefined') state.buffering = info.buffering === true;
       if (wasPaused !== paused) emit(paused?'pause':'play');
       emit('timeupdate');
       if (error && code !== lastErrorCode) emit('error');
@@ -50,6 +51,7 @@
         if(changed || queueChanged) {
           renderPlayer();renderRadio();renderExplore();renderQueue();
         }
+        setPlayVisuals();
       }
     };
     return {
@@ -144,7 +146,7 @@
     radioOrder: [], radioSchedule: {epochMs:EPOCH,revision:'legacy'}, radioPlayback: null, radioIndex: 0, query: '', genre: 'Todos', folder: 'Todas',
     favorites: new Set(Array.isArray(saved.favorites) ? saved.favorites : []),
     playlists: saved.playlists && typeof saved.playlists === 'object' && !Array.isArray(saved.playlists) ? saved.playlists : {},
-    selectedPlaylist: null, pendingAddId: null,
+    selectedPlaylist: null, pendingAddId: null, buffering: false,
     queue: [], queueIndex: 0, shuffle: false, repeat: 'off',
     volume: Number.isFinite(Number(saved.volume)) ? Math.min(1, Math.max(0, Number(saved.volume))) : .75,
     leveling: saved.leveling !== false,
@@ -508,6 +510,7 @@
   }
   function setPlayVisuals() {
     const playing = !audio.paused && !audio.ended;
+    const loading = !!state.buffering && !!state.currentId && (playing || state.playRequested) && !audio.error;
     const playIcon = playing ? 'pause' : 'play';
     $('player-play').innerHTML = icon(playIcon, 'icon icon-filled');
     $('player-play').setAttribute('aria-label', playing?'Pausar':'Reproduzir');
@@ -523,9 +526,17 @@
       if (cover.getAttribute('src') !== source) cover.setAttribute('src',source);
     }
     // Evita composicao grafica em abas ocultas e no Android em segundo plano.
-    const animateVinyl = playing && !!state.currentId && !document.hidden;
+    const animateVinyl = playing && !loading && !!state.currentId && !document.hidden;
     $('vinyl-deck')?.classList.toggle('is-playing', animateVinyl);
     $('player-shell')?.classList.toggle('is-playing', animateVinyl);
+    $('vinyl-deck')?.classList.toggle('is-buffering', loading && !document.hidden);
+    $('player-shell')?.classList.toggle('is-buffering', loading && !document.hidden);
+    const status=$('vinyl-status');
+    if (status) {
+      const message = loading ? 'CARREGANDO' : audio.error ? 'ERRO NO ÁUDIO' :
+        playing ? 'TOCANDO' : state.currentId ? 'PAUSADO' : 'PRONTO';
+      if (status.textContent !== message) status.textContent=message;
+    }
     $('vinyl-play-hit')?.setAttribute('aria-label', playing ? 'Pausar música' : 'Reproduzir música');
   }
   function renderPlayer() {
@@ -702,6 +713,7 @@
       }
     }
     state.currentId=t.id;
+    state.buffering = true;
     applyVolumeForTrack(t);
     updateMediaSession(t);
     renderPlayer();
@@ -711,7 +723,9 @@
     try {await offlineLoading;} catch(e){console.warn('Falha no offline',e);}
     if (!audio.src) return;
     state.playRequested = true;
+    setPlayVisuals();
     try { await audio.play(); } catch (err) {
+      state.buffering = false;
       state.playRequested = false;
       if (err?.name !== 'AbortError') toast('Não foi possível iniciar. Verifique o áudio ou toque em reproduzir.');
       setPlayVisuals();
@@ -825,7 +839,7 @@
       favorites: [...state.favorites].filter(id => trackById(id) && !trackById(id).isJingle),
       playlists: Object.fromEntries(Object.entries(state.playlists)
         .filter(([name,ids]) => name && !['__proto__','prototype','constructor'].includes(name) && Array.isArray(ids))
-        .map(([name,ids]) => [name,ids.filter(id => trackById(id) && !trackById(id).isJingle)]))
+        .map(([name,ids]) => [name,[...new Set(ids.filter(id => trackById(id) && !trackById(id).isJingle))].slice(0,10000)]))
     }, null, 2);
   }
   function restoreLibrary(text) {
@@ -968,6 +982,22 @@
     if (e.code==='Space' && !['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement?.tagName) && !$('modal').open) {e.preventDefault();togglePlayback();}
   });
   function bindAudioEvents(element) {
+    element.addEventListener('loadstart', () => {
+      if (element !== audio) return;
+      state.buffering=true;setPlayVisuals();
+    });
+    for (const eventName of ['waiting','stalled','seeking']) {
+      element.addEventListener(eventName, () => {
+        if (element !== audio) return;
+        state.buffering=true;setPlayVisuals();
+      });
+    }
+    for (const eventName of ['playing','canplay','seeked']) {
+      element.addEventListener(eventName, () => {
+        if (element !== audio) return;
+        state.buffering=false;setPlayVisuals();
+      });
+    }
     element.addEventListener('loadedmetadata', () => {
       if (element !== audio) return;
       if (state.pendingSeek !== null) {
@@ -987,9 +1017,10 @@
     element.addEventListener('play', () => {
       if (element === audio) { setPlayVisuals(); prepareNextAudio(); }
     });
-    element.addEventListener('pause', () => { if (element === audio) setPlayVisuals(); });
+    element.addEventListener('pause', () => { if (element === audio) {state.playRequested=false;state.buffering=false;setPlayVisuals();} });
     element.addEventListener('ended', () => {
       if (element !== audio) return;
+      state.buffering=false;setPlayVisuals();
       if (state.mode === 'radio') {
         // Não reinicie a mesma música quando o áudio terminar alguns
         // milissegundos antes do relógio da programação mudar.
@@ -997,6 +1028,7 @@
       } else nextTrack(false);
     });
     element.addEventListener('error', () => {
+      if (element === audio) { state.buffering=false;setPlayVisuals(); }
       if (element === audio && audio.error && state.playRequested)
         toast(nativeBridge
           ? 'Falha no áudio. Se a rede não voltar, toque em reproduzir para tentar novamente.'

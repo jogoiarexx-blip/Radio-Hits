@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#0b0e13">
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="stylesheet" href="./css/style.css?v=vinyl-3">
+  <link rel="stylesheet" href="./css/style.css?v=vinyl-4">
   <title>Radio Hits — sua música, seu ritmo</title>
 </head>
 <body>
@@ -67,7 +67,7 @@
       <div class="view" id="view-radio">
         <section class="hero">
           <div class="hero-copy"><div class="hero-kicker"><span class="live-pulse"></span> SUA FREQUÊNCIA, SEU MUNDO</div><h1>A trilha sonora<br>do seu <em>momento.</em></h1><p>Entre na rádio ou escolha a próxima música. Tudo em um só lugar, do seu jeito.</p><div class="hero-actions"><button class="primary-action" id="hero-radio-play"><svg class="icon icon-filled"><use href="#i-play"/></svg><span>Ouvir rádio</span></button><button class="ghost-action" data-action="switch-explore">Explorar músicas <svg class="icon"><use href="#i-arrow"/></svg></button><button class="ghost-action hero-download-link" data-action="open-downloads"><svg class="icon"><use href="#i-download"/></svg> Downloads</button></div></div>
-          <div class="hero-art vinyl-deck" id="vinyl-deck"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div><div class="hero-disc vinyl-record" id="vinyl-record"><div class="vinyl-grooves"></div><div class="vinyl-label"><img id="vinyl-cover" src="./assets/capas/padrao.svg" alt="" loading="eager"></div><span class="vinyl-spindle"></span></div><div class="vinyl-tonearm" aria-hidden="true"><span class="vinyl-tonearm-head"></span></div><button id="vinyl-play-hit" class="vinyl-play-hit" type="button" aria-label="Reproduzir música" title="Reproduzir ou pausar música"></button><div class="hero-art-label">RADIO HITS <span>VINYL EDITION</span></div></div>
+          <div class="hero-art vinyl-deck" id="vinyl-deck"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div><div class="hero-disc vinyl-record" id="vinyl-record"><div class="vinyl-grooves"></div><div class="vinyl-label"><img id="vinyl-cover" src="./assets/capas/padrao.svg" alt="" loading="eager"></div><span class="vinyl-spindle"></span></div><div class="vinyl-tonearm" aria-hidden="true"><span class="vinyl-tonearm-head"></span></div><button id="vinyl-play-hit" class="vinyl-play-hit" type="button" aria-label="Reproduzir música" title="Reproduzir ou pausar música"></button><span id="vinyl-status" class="vinyl-status" role="status" aria-live="polite">PRONTO</span><div class="hero-art-label">RADIO HITS <span>VINYL EDITION</span></div></div>
         </section>
         <div class="section-title row-between"><div><span class="eyebrow">SINTONIZE AGORA</span><h2>Rádio Radio Hits</h2></div><span class="status-label"><span class="status-dot"></span> PROGRAMAÇÃO AUTOMÁTICA</span></div>
         <section class="station-card"><div class="station-art"><img id="station-cover" src="./assets/capas/horizonte-azul.svg" alt="Capa da música atual" loading="eager"></div><div class="station-content"><div class="station-top"><span class="station-badge">RADIO HITS <span>01</span></span><span class="station-clock" id="station-clock">--:--</span></div><span class="station-small-label">TOCANDO NA PROGRAMAÇÃO</span><h3 id="station-title">Carregando...</h3><p id="station-artist">Seleção Radio Hits</p><div class="station-bottom"><button class="station-play" id="station-play"><svg class="icon icon-filled"><use href="#i-play"/></svg><span>Escutar agora</span></button><span>Todos na mesma faixa*</span></div></div><div class="station-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></section>
@@ -130,6 +130,6 @@
   <audio id="audio" preload="metadata"></audio>
   <script src="./js/native-bridge.js?v=bridge-2" defer></script>
   <script src="./js/offline.js?v=stream-3" defer></script>
-  <script src="./js/app.js?v=vinyl-3" defer></script>
+  <script src="./js/app.js?v=vinyl-4" defer></script>
 </body>
 </html>

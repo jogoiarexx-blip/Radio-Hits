@@ -29,6 +29,7 @@ vm.runInContext(app.slice(begin,end),ctx);
 const backup=JSON.parse(ctx.exportLibrary());
 assert.deepEqual(backup.favorites,['rock-1']);
 assert.deepEqual(backup.playlists.Favoritas,['rock-1']);
+assert.equal(backup.playlists.Favoritas.length,1,'Exportacao deve remover duplicados');
 ctx.restoreLibrary(JSON.stringify(backup));
 assert.deepEqual([...state.favorites],['rock-1']);
 assert.deepEqual(Array.from(state.playlists.Favoritas),['rock-1']);
