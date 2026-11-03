@@ -7,8 +7,8 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from organizar_novas import RULES, match, organize, normalized
 
-assert len(RULES) == 46
-assert len({r[0] for r in RULES}) == 46
+assert len(RULES) == 52
+assert len({r[0] for r in RULES}) == 52
 for key, folder, genre, title, artist in RULES:
     assert match(key + ".mp3") is not None, key
 assert match("Madonna - Papa Don't Preach (Official Video) [HD].m4a")[1] == "as melhores 80 e 90"
@@ -22,6 +22,12 @@ assert match("Goo Goo Dolls – Iris [Official Music Video] [4K Remaster].m4a")[
 assert match("skillet Hero.m4a")[1] == "rock"
 assert match("Starship - Nothing's Gonna Stop Us Now (Official Music Video) [HD].m4a")[1] == "as melhores 80 e 90"
 assert match("Richard Marx - Right Here Waiting (Official Music Video).m4a")[1] == "romanticas"
+assert match("Acalma minha tempestade   Frei Gilson ao vivo (360º).m4a")[1] == "religiosas"
+assert match("Deixa Deus sonhar em ti (com Bruna Ramos)   Frei Gilson ao vivo (360º).m4a")[1] == "religiosas"
+assert match("Eu Seguirei (Ao Vivo).m4a")[4] is None
+assert match("Eu Te Levantarei.m4a")[4] is None
+assert match("Terra Seca   DVD Não Vou Desistir   Fraternidade São João Paulo II.m4a")[1] == "religiosas"
+assert match("Tu és o centro (com Bruna Ramos)   Frei Gilson ao vivo (360º).m4a")[1] == "religiosas"
 assert match("desconhecido.mp3") is None
 
 with tempfile.TemporaryDirectory() as temp:
@@ -33,6 +39,8 @@ with tempfile.TemporaryDirectory() as temp:
     (music / "Skillet - Monster (Official Video).m4a").write_bytes(b"identidade-terceira")
     (music / "Richard Marx - Right Here Waiting (Official Music Video).m4a").write_bytes(b"identidade-quarta")
     (music / "horizonte-azul.mp3").write_bytes(b"original-do-projeto")
+    (music / "Eu Te Levantarei.m4a").write_bytes(b"arquivo-religioso")
+    (music / "Acalma minha tempestade   Frei Gilson ao vivo (360º).m4a").write_bytes(b"outro-religioso")
     (music / "Sem Artista - Musica Desconhecida.m4a").write_bytes(b"desconhecida-na-raiz")
     (incoming / "Vengaboys - Boom, Boom, Boom, Boom-new.mp3").write_bytes(b"identidade-beta")
     (incoming / "nao sei musica.mp3").write_bytes(b"nao alterar")
@@ -46,11 +54,13 @@ with tempfile.TemporaryDirectory() as temp:
         "novas-do-rar/INXS - By My Side.m4a":{"sha256":"abcd","lufs":-15.2}
     }}))
     result=organize(root)
-    assert len(result["moved"])==4, result
+    assert len(result["moved"])==6, result
     assert len(result["unknown"])==2 and len(result["conflicts"])==1, result
     assert (music / "rock" / "INXS - By My Side.m4a").read_bytes()==b"identidade-alfa"
     assert (music / "rock" / "Skillet - Monster (Official Video).m4a").read_bytes()==b"identidade-terceira"
     assert (music / "romanticas" / "Richard Marx - Right Here Waiting (Official Music Video).m4a").read_bytes()==b"identidade-quarta"
+    assert (music / "religiosas" / "Eu Te Levantarei.m4a").read_bytes()==b"arquivo-religioso"
+    assert (music / "religiosas" / "Acalma minha tempestade   Frei Gilson ao vivo (360º).m4a").read_bytes()==b"outro-religioso"
     assert (music / "horizonte-azul.mp3").read_bytes()==b"original-do-projeto"
     assert (music / "Sem Artista - Musica Desconhecida.m4a").read_bytes()==b"desconhecida-na-raiz"
     assert not any("horizonte-azul" in f for f in result["unknown"])
@@ -62,6 +72,9 @@ with tempfile.TemporaryDirectory() as temp:
     assert after["rock/INXS - By My Side.m4a"]["genre"]=="Rock"
     assert after["rock/INXS - By My Side.m4a"]["downloadAllowed"] is False
     assert after["antigo.mp3"]["title"]=="Antigo"
+    assert after["religiosas/Eu Te Levantarei.m4a"]["genre"] == "Música Religiosa"
+    assert "artist" not in after["religiosas/Eu Te Levantarei.m4a"]
+    assert after["religiosas/Acalma minha tempestade   Frei Gilson ao vivo (360º).m4a"]["artist"] == "Frei Gilson"
     assert "novas-do-rar/INXS - By My Side.m4a" not in after
     volumes=json.loads((music/"volume-perfis.json").read_text())["tracks"]
     assert "rock/INXS - By My Side.m4a" in volumes
@@ -69,4 +82,4 @@ with tempfile.TemporaryDirectory() as temp:
     repeat=organize(root)
     assert not repeat["moved"], "deve ser idempotente"
 
-print("ORGANIZAR NOVAS OK: 46 regras, raiz e pasta temporaria, integridade, metadados, volume e conflitos.")
+print("ORGANIZAR NOVAS OK: 52 regras, raiz e pasta temporaria, integridade, metadados, volume e conflitos.")
