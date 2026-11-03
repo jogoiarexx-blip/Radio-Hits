@@ -526,6 +526,7 @@
     const animateVinyl = playing && !!state.currentId && !document.hidden;
     $('vinyl-deck')?.classList.toggle('is-playing', animateVinyl);
     $('player-shell')?.classList.toggle('is-playing', animateVinyl);
+    $('vinyl-play-hit')?.setAttribute('aria-label', playing ? 'Pausar música' : 'Reproduzir música');
   }
   function renderPlayer() {
     const current = trackById(state.currentId) || getRadioInfo()?.track;
@@ -926,6 +927,7 @@
     const action=e.target.closest('[data-action]'); if (action) handleAction(action);
   });
   $('hero-radio-play').addEventListener('click', toggleRadio);
+  $('vinyl-play-hit').addEventListener('click', togglePlayback);
   $('station-play').addEventListener('click', toggleRadio);
   $('player-play').addEventListener('click', togglePlayback);
   $('next').addEventListener('click', () => nextTrack(true));

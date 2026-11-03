@@ -251,3 +251,23 @@
   .vinyl-deck::before{transition:none}
   .vinyl-deck .vinyl-tonearm{transition:none}
 }
+
+/* Controle clicável do disco — mouse, touch e teclado. */
+.vinyl-deck .vinyl-play-hit{
+  position:absolute;z-index:6;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:208px;height:208px;border-radius:50%;background:transparent;
+  pointer-events:auto;cursor:pointer;border:0;
+}
+.vinyl-play-hit::after{
+  content:"▶";position:absolute;right:20px;bottom:17px;
+  width:35px;height:35px;display:grid;place-items:center;
+  background:var(--accent);color:#0d180f;border-radius:50%;
+  font-size:13px;line-height:1;box-shadow:0 3px 14px #0008;
+  opacity:.9;transition:opacity .2s ease,transform .2s ease;
+}
+.vinyl-deck.is-playing .vinyl-play-hit::after{content:"Ⅱ";font-weight:900}
+.vinyl-play-hit:hover::after,.vinyl-play-hit:focus-visible::after{opacity:1;transform:scale(1.08)}
+.vinyl-deck .vinyl-play-hit:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+@media(max-width:690px){.vinyl-deck .vinyl-play-hit{width:162px;height:162px}}
+@media(max-width:380px){.vinyl-deck .vinyl-play-hit{width:150px;height:150px}}
+@media(prefers-reduced-motion:reduce){.vinyl-play-hit::after{transition:none}}
