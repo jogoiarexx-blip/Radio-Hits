@@ -15,7 +15,7 @@ for genre, artists in {
 }.items():
     for i, artist in enumerate(artists):
         tracks.append({"id":f"{genre}-{i}","genre":genre,"artist":artist})
-assert len(tracks)==23
+assert len(tracks)==24
 original=[t["id"] for t in tracks]
 one=programar(tracks)
 two=programar(list(reversed(tracks)))
