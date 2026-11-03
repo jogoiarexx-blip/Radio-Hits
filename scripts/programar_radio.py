@@ -34,10 +34,20 @@ def programar(musicas: list[dict]) -> list[dict]:
             genre_penalty = int(bool(last_genres) and last_genres[-1] == genre)
             three_penalty = int(len(last_genres)>=2 and last_genres[-2:] == [genre,genre])
             recent_penalty = last_genres.count(genre)
+            # Evita consumir cedo demais as músicas dos outros gêneros:
+            # se restar um gênero com mais de 2 músicas por intervalo
+            # disponível, haverá trincas inevitáveis no final do ciclo.
+            # A preferência prospectiva atua antes das penalidades locais.
+            remaining_count = len(remaining) - 1
+            future_excess = 0
+            for other_genre, total in counts.items():
+                left = total - int(other_genre == genre)
+                others_left = remaining_count - left
+                future_excess = max(future_excess, left - 2 * (others_left + 1))
             # Evita colocar o mesmo artista muito próximo, depois diversifica gênero.
-            tie = hashlib.sha256(("radiohits-grade-v1|" + _key(song)).encode()).hexdigest()
-            return (artist_penalty, three_penalty, genre_penalty,
-                    recent_penalty, -counts[genre], tie)
+            tie = hashlib.sha256(("radiohits-grade-v2|" + _key(song)).encode()).hexdigest()
+            return (max(0, future_excess), artist_penalty, three_penalty,
+                    genre_penalty, recent_penalty, -counts[genre], tie)
         winner = min(remaining, key=score)
         remaining.remove(winner)
         result.append(winner)
