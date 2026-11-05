@@ -91,6 +91,8 @@ public final class MainActivity extends Activity {
         web.setBackgroundColor(0xFF0B0E13);
         web.getSettings().setJavaScriptEnabled(true);
         web.getSettings().setDomStorageEnabled(true);
+        // Revalidar interface do Pages a cada abertura online.
+        web.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         web.getSettings().setMediaPlaybackRequiresUserGesture(false);
         web.getSettings().setAllowFileAccess(false);
         web.getSettings().setAllowContentAccess(false);

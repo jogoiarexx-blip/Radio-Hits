@@ -293,3 +293,33 @@
 @media(prefers-reduced-motion:reduce){
   .vinyl-deck.is-buffering .vinyl-play-hit::after{animation:none}
 }
+
+/* Instalacao PWA e aviso discreto de versao nova. */
+.pwa-install-banner[hidden],.pwa-update-notice[hidden]{display:none!important}
+.pwa-install-banner{display:flex;align-items:center;gap:14px;margin:0 0 16px;padding:15px 39px 15px 17px;
+ position:relative;border-radius:13px;border:1px solid #3d6346;background:linear-gradient(100deg,#182b25,#18262c)}
+.pwa-install-copy{flex:1;min-width:0}
+.pwa-install-copy strong{font-size:13px;font-weight:850;color:#e7f9dc}
+.pwa-install-copy p{font-size:11px;margin:4px 0 0;color:#a6c6b1}
+.pwa-install-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pwa-install-actions .primary-action,.pwa-install-actions .outline-button{min-height:38px}
+.pwa-dismiss{position:absolute;right:8px;top:5px;background:transparent;border:0;
+ color:#b5cabc;width:27px;height:27px;font-size:22px;line-height:1;cursor:pointer}
+.pwa-update-notice{display:flex;gap:12px;align-items:center;justify-content:space-between;
+ background:#273322;border:1px solid #5a7443;color:#d7f6c6;border-radius:10px;
+ padding:11px 14px;margin:0 0 16px;font-size:12px}
+.pwa-update-notice .outline-button{flex:none;border:1px solid #b7ed83;color:#ddffbb;min-height:34px}
+.pwa-install-dialog{max-width:min(430px,calc(100vw - 24px));width:100%;color:#e9f4eb;
+ background:#182126;border:1px solid #4b6656;border-radius:13px;padding:23px}
+.pwa-install-dialog::backdrop{background:#060a0ddb}
+.pwa-install-dialog h2{margin:0 0 12px;font-size:19px}
+.pwa-install-dialog p{font-size:13px;line-height:1.6;color:#bacbc3}
+.pwa-install-dialog strong{color:#e7ffe0}
+.pwa-install-dialog .primary-action{margin-top:9px}
+@media(max-width:690px){
+ .pwa-install-banner{align-items:flex-start;flex-direction:column;padding:13px 31px 13px 13px;gap:10px}
+ .pwa-install-actions{width:100%}
+ .pwa-install-actions button{min-height:42px}
+ .pwa-update-notice{align-items:flex-start;flex-direction:column}
+ .pwa-update-notice button{min-height:40px}
+}

@@ -1,6 +1,6 @@
 /* Cache só da interface. Música NÃO é baixada nem pré-armazenada no cache offline. */
-const CACHE = 'radio-hits-shell-v23';
-const CORE = ['./assets/branding/radio-hits-mark.svg','./assets/branding/hero-radio-hits.svg','./assets/capas/genero-80-90.svg','./assets/capas/genero-rock.svg','./assets/capas/genero-hiphop.svg','./assets/capas/genero-malhacao.svg','./assets/capas/genero-radio-hits.svg','./', './index.html','./css/style.css?v=vinyl-4','./js/native-bridge.js?v=bridge-2','./js/offline.js?v=stream-3','./js/app.js?v=vinyl-4','./catalogo.json','./assets/favicon.svg','./assets/capas/padrao.svg'];
+const CACHE = 'radio-hits-shell-v24';
+const CORE = ['./assets/branding/radio-hits-mark.svg','./assets/branding/hero-radio-hits.svg','./assets/capas/genero-80-90.svg','./assets/capas/genero-rock.svg','./assets/capas/genero-hiphop.svg','./assets/capas/genero-malhacao.svg','./assets/capas/genero-radio-hits.svg','./', './index.html','./css/style.css?v=vinyl-4','./js/native-bridge.js?v=bridge-2','./js/offline.js?v=stream-3','./js/app.js?v=vinyl-4','./catalogo.json','./assets/branding/radio-hits-icon-192.png','./assets/branding/radio-hits-icon-512.png','./js/install.js?v=1','./assets/favicon.svg','./assets/capas/padrao.svg'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
 });
@@ -11,6 +11,10 @@ self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET' || new URL(e.request.url).origin !== self.location.origin) return;
   const path=new URL(e.request.url).pathname;
   if (/\.(mp3|m4a|ogg|opus|wav|flac|aac)$/i.test(path)) return;
+  if (path.endsWith('/app-version.json')) {
+    e.respondWith(fetch(e.request,{cache:'no-store'}));
+    return;
+  }
   if (path.endsWith('/catalogo.json')) {
     e.respondWith(fetch(e.request).then(r => {
       if (r.ok) { const copy=r.clone(); caches.open(CACHE).then(c=>c.put('./catalogo.json',copy)); }

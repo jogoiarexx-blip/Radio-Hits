@@ -1,11 +1,36 @@
 {
+  "id": "./",
   "name": "Radio Hits — Rádio e Música",
   "short_name": "Radio Hits",
-  "description": "Rádio sincronizada e músicas sob demanda.",
+  "description": "Rádio sincronizada, músicas sob demanda e playlists no celular.",
+  "lang": "pt-BR",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#0b0e13",
   "theme_color": "#0b0e13",
-  "icons": [{"src":"./assets/branding/radio-hits-mark.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]
+  "categories": [
+    "music",
+    "entertainment"
+  ],
+  "icons": [
+    {
+      "src": "./assets/branding/radio-hits-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/branding/radio-hits-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/branding/radio-hits-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
 }

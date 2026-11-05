@@ -32,7 +32,7 @@ assert.match(app,/state\.mode !== 'radio' && nativeId/);
 assert.match(app,/code !== lastErrorCode/);
 assert.match(app,/window\.RadioHitsAndroidState\(current\)/);
 assert.match(app,/Array\.isArray\(info\.queueIds\)/);
-assert.match(gradle,/versionCode 14/);
+assert.ok(Number(gradle.match(/versionCode\s+(\d+)/)?.[1]) >= 15);
 const htmlApp=html.match(/src="(\.\/js\/app\.js\?v=[^"]+)"/)?.[1];
 assert.ok(htmlApp,'O HTML precisa carregar app.js com versão');
 assert.ok(sw.includes("'"+htmlApp+"'"),'O service worker deve conter a mesma versão de app.js');

@@ -11,6 +11,9 @@
   <meta name="theme-color" content="#0b0e13">
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Radio Hits">
+  <link rel="apple-touch-icon" href="./assets/branding/radio-hits-icon-192.png">
   <link rel="stylesheet" href="./css/style.css?v=vinyl-4">
   <title>Radio Hits — sua música, seu ritmo</title>
 </head>
@@ -64,6 +67,15 @@
       </header>
 
       <div id="offline-network-notice" class="offline-network-notice" role="status" hidden></div>
+      <section id="pwa-install-banner" class="pwa-install-banner" aria-label="Instalar Radio Hits" hidden>
+        <div class="pwa-install-copy"><strong>Radio Hits no celular</strong><p>Instale na tela inicial. Novas versões chegam automaticamente, sem reinstalar.</p></div>
+        <div class="pwa-install-actions"><button id="pwa-install-button" class="primary-action" type="button">Instalar aplicativo</button><button id="pwa-install-help" class="outline-button" type="button">Como instalar</button></div>
+        <button id="pwa-install-dismiss" class="pwa-dismiss" type="button" aria-label="Fechar aviso de instalação">×</button>
+      </section>
+      <div id="pwa-update-notice" class="pwa-update-notice" role="status" hidden>
+        <span>Atualização disponível. O app será atualizado quando a música parar.</span>
+        <button id="pwa-update-now" class="outline-button" type="button">Atualizar agora</button>
+      </div>
       <div class="view" id="view-radio">
         <section class="hero">
           <div class="hero-copy"><div class="hero-kicker"><span class="live-pulse"></span> SUA FREQUÊNCIA, SEU MUNDO</div><h1>A trilha sonora<br>do seu <em>momento.</em></h1><p>Entre na rádio ou escolha a próxima música. Tudo em um só lugar, do seu jeito.</p><div class="hero-actions"><button class="primary-action" id="hero-radio-play"><svg class="icon icon-filled"><use href="#i-play"/></svg><span>Ouvir rádio</span></button><button class="ghost-action" data-action="switch-explore">Explorar músicas <svg class="icon"><use href="#i-arrow"/></svg></button><button class="ghost-action hero-download-link" data-action="open-downloads"><svg class="icon"><use href="#i-download"/></svg> Downloads</button></div></div>
@@ -125,11 +137,19 @@
     <div class="player-options"><span class="mode-chip" id="player-mode">RÁDIO</span><button type="button" class="leveling-button is-active" id="leveling-toggle" aria-pressed="true" aria-label="Ativar ou desativar volume equilibrado" title="Desativar volume equilibrado">VOL</button><button class="icon-button" id="volume-button" title="Silenciar" aria-label="Silenciar"><svg class="icon"><use href="#i-volume"/></svg></button><input id="volume" type="range" min="0" max="100" value="75" aria-label="Volume"><button class="icon-button queue-open" id="queue-open" title="Ver fila" aria-label="Ver fila"><svg class="icon"><use href="#i-list"/></svg></button></div></footer>
   <nav class="mobile-nav" aria-label="Navegação para celular"><button data-view="radio" class="is-active"><svg class="icon"><use href="#i-radio"/></svg><span>Rádio</span></button><button data-view="explorar"><svg class="icon"><use href="#i-grid"/></svg><span>Explorar</span></button><button data-view="favoritos"><svg class="icon"><use href="#i-heart"/></svg><span>Favoritos</span></button><button data-view="playlists"><svg class="icon"><use href="#i-list"/></svg><span>Playlists</span></button></nav>
 
+  <dialog id="pwa-install-dialog" class="pwa-install-dialog" aria-labelledby="pwa-install-heading">
+    <h2 id="pwa-install-heading">Instalar Radio Hits</h2>
+    <p><strong>Android (Chrome):</strong> abra o menu ⋮ e escolha <strong>Instalar app</strong> ou <strong>Adicionar à tela inicial</strong>.</p>
+    <p><strong>iPhone (Safari):</strong> toque em Compartilhar e depois em <strong>Adicionar à Tela de Início</strong>.</p>
+    <p>O app abre sem a barra do navegador, verifica atualizações e mantém suas playlists neste dispositivo.</p>
+    <button id="pwa-install-close" class="primary-action" type="button">Entendi</button>
+  </dialog>
   <dialog id="modal" class="modal"><div class="modal-header"><h2 id="modal-heading">Nova playlist</h2><button class="icon-button" id="modal-close" aria-label="Fechar"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="modal-body"></div></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <audio id="audio" preload="metadata"></audio>
   <script src="./js/native-bridge.js?v=bridge-2" defer></script>
   <script src="./js/offline.js?v=stream-3" defer></script>
   <script src="./js/app.js?v=vinyl-4" defer></script>
+  <script src="./js/install.js?v=1" defer></script>
 </body>
 </html>

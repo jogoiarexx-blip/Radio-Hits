@@ -15,7 +15,7 @@ const webOffline = get('js/offline.js');
 const app = get('js/app.js');
 
 assert.match(build,/androidx\.work:work-runtime:2\.12\.0/);
-assert.match(build,/versionCode 14/);
+assert.ok(Number(build.match(/versionCode\s+(\d+)/)?.[1]) >= 15);
 assert.match(worker,/enqueueUniqueWork/,'WorkManager deve persistir por arquivo');
 assert.match(worker,/ExistingWorkPolicy\.REPLACE/,'Reenfileirar substitui a tentativa cancelada');
 assert.match(worker,/NetworkType\.CONNECTED/,'Fila deve aguardar rede');

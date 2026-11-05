@@ -104,6 +104,7 @@
     };
   }
   let audio = nativeBridge ? createNativeAudio() : $('audio');
+  window.RadioHitsMayReload = () => !audio.src || audio.paused || audio.ended;
   // O navegador prepara uma segunda saída para trocar de faixa sem reiniciar
   // o download no instante da transição. No APK, o Media3 já prepara a fila.
   let standby = null;
@@ -1166,8 +1167,4 @@
   window.addEventListener('focus', () => refreshCatalog(false));
   setInterval(() => { if (!document.hidden) refreshCatalog(false); }, 300000);
   init();
-  // PWA: caches only the app shell, never predownloads the music library.
-  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
-  }
 })();
