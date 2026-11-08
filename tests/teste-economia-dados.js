@@ -4,7 +4,7 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const app=read('js/app.js'),html=read('index.html'),sw=read('sw.js');
 const cat=JSON.parse(read('catalogo.json')),songs=cat.tracks.filter(t=>!t.isJingle);
-assert.ok(songs.length>=160);
+assert.ok(songs.length>=150,'desativar seis demos não deve afetar as músicas comerciais válidas');
 assert.equal(songs.filter(t=>t.lowSrc).length,songs.length);
 for(const t of songs) {
   assert.ok(t.lowSrc.startsWith('./musicas-leves/'),t.lowSrc);
