@@ -20,7 +20,7 @@ index.write_text(html,encoding='utf-8')
 worker=DIST/'sw.js'
 code=worker.read_text(encoding='utf-8')
 code=re.sub(r"const CACHE = 'radio-hits-shell-v\d+';",
-            "const CACHE = 'radio-hits-shell-v24-"+revision+"';",code,count=1)
+            "const CACHE = 'radio-hits-shell-v25-"+revision+"';",code,count=1)
 worker.write_text(code,encoding='utf-8')
 for folder in ['css','js','assets','musicas','vinhetas']:
     shutil.copytree(ROOT/folder,DIST/folder,ignore=shutil.ignore_patterns('metadados.json','volume-perfis.json','*.md','*.py','__pycache__'))

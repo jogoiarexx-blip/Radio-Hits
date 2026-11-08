@@ -26,7 +26,8 @@ assert.match(builder,/app-version\.json/);
 assert.match(builder,/GITHUB_SHA/);
 assert.match(builder,/radiohits-revision/);
 assert.match(android,/setCacheMode\(WebSettings\.LOAD_NO_CACHE\)/);
-assert.match(sw,/radio-hits-shell-v24/);
+assert.match(sw,/radio-hits-shell-v25/);
+assert.match(sw,/js\/sleep-timer\.js\?v=1/);
 const listeners={},buttons={},reloads=[];
 function element(id){
  if(!buttons[id])buttons[id]={hidden:true,handlers:{},textContent:'',
