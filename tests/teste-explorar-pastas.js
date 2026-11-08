@@ -50,7 +50,9 @@ vm.runInContext(app.slice(start,stop),ctx);
 const folders=ctx.musicFolders();
 assert.ok(folders.length>=10,'pelo menos 10 pastas musicais devem existir');
 assert.equal(folders.reduce((n,f)=>n+f.count,0),catalog.tracks.filter(t=>!t.isJingle).length,'cada musica deve estar em uma pasta; vinhetas nunca');
-assert.ok(folders.some(f=>f.id==='Avulsas'&&f.count>=6),'6 demos devem ficar em Avulsas');
+assert.ok(!folders.some(f=>f.id==='Avulsas'),'demos desativadas não devem aparecer como músicas avulsas');
+assert.ok(!catalog.tracks.some(t=>t.artist==='Pulso Originals'),
+  'demos produzidas para o app devem estar ausentes do catálogo');
 assert.ok(!folders.some(f=>f.label==='Vinheta'),'vinheta nunca aparece nas pastas');
 assert.ok(folders.some(f=>f.id==='Hip Hop'&&f.count>0),'Hip Hop precisa aparecer');
 assert.ok(folders.some(f=>f.id==='rock'&&f.count>0),'Rock precisa aparecer');
