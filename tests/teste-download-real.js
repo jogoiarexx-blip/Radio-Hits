@@ -38,9 +38,14 @@ assert.equal(offline.isCatalogAudio(catalog.tracks[0].src),true);
 assert.equal(offline.isCatalogAudio('https://outro-servidor.com/musicas/music.mp3'),false);
 assert.equal(offline.isCatalogAudio('../admin/config.json'),false);
 assert.equal(offline.isCatalogAudio('./musicas/malicioso.html'),false);
-const commercial=catalog.tracks.find(t=>t.downloadAllowed===false);
-const original=catalog.tracks.find(t=>t.downloadAllowed===true);
-assert.ok(commercial && original,'Amostras comerciais e demonstrativas ausentes');
+// As seis demos originais estão desativadas. O fluxo de teste usa duas
+// faixas sintéticas autorizadas para nunca depender de gravações comerciais.
+assert.ok(catalog.tracks.some(t=>!t.isJingle && t.downloadAllowed===false),
+  'Biblioteca comercial deve continuar disponível');
+assert.ok(!catalog.tracks.some(t=>t.artist==='Pulso Originals'),
+  'Faixas demonstrativas não devem voltar à biblioteca');
+const commercial={id:'qa-audio-local-1',src:'./musicas/qa-audio-local-1.mp3',downloadAllowed:true};
+const original={id:'qa-audio-local-2',src:'./musicas/qa-audio-local-2.mp3',downloadAllowed:true};
 (async()=>{
   for(const t of [commercial,original]){
     const progress=[];
@@ -58,5 +63,5 @@ assert.ok(commercial && original,'Amostras comerciais e demonstrativas ausentes'
   const native=fs.readFileSync(path.join(__dirname,'../android/app/src/main/java/br/com/radiohits/app/MainActivity.java'),'utf8');
   assert.match(app,/nativeIsLocal/,'O navegador do APK precisa reconhecer mídia local');
   assert.match(native,/status\.put\("isLocal"/,'O Android precisa informar se usa arquivo salvo');
-  console.log('DOWNLOAD OFFLINE OK: comercial e instrumental, Cache Storage, blob, remoção e ponte Android.');
+  console.log('DOWNLOAD OFFLINE OK: duas faixas simuladas, Cache Storage, blob, remoção e ponte Android.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
