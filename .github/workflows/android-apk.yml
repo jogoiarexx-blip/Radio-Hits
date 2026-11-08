@@ -22,6 +22,10 @@ on:
       - 'js/sleep-timer.js'
       - 'tests/teste-fila-android.js'
       - 'tests/teste-recuperacao-android.js'
+      - 'tests/teste-explorar-pastas.js'
+      - 'tests/test_musicas_desativadas.py'
+      - 'scripts/gerar_catalogo.py'
+      - 'musicas/metadados.json'
       - '.github/workflows/android-apk.yml'
   pull_request:
     paths:
