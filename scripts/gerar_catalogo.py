@@ -84,9 +84,19 @@ def main():
         if seconds is None:
             print(f'AVISO: sem duração (faixa ignorada): {rel}. Instale mutagen ou ffprobe.',file=sys.stderr)
             continue
-        base=slugify(rel.rsplit('.',1)[0]); ident=base; i=2
-        while ident in ids:
-            ident=f'{base}-{i}'; i+=1
+        base=slugify(rel.rsplit('.',1)[0])
+        explicit=meta.get('id')
+        if explicit is not None:
+            if not isinstance(explicit,str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',explicit):
+                raise ValueError(f'ID explícito inválido: {rel}')
+            if explicit in ids:
+                raise ValueError(f'ID explícito duplicado: {explicit} ({rel})')
+            ident=explicit
+        else:
+            ident=base
+            i=2
+            while ident in ids:
+                ident=f'{base}-{i}'; i+=1
         ids.add(ident)
         fallback_title, fallback_artist = filename_info(path.stem)
         try:

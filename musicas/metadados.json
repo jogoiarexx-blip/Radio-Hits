@@ -970,10 +970,137 @@
     "downloadAllowed": false
   },
   "as melhores 80 e 90/Michael Sembello - Maniac (From Flashdance ) (Official Audio).mp3": {
-    "title": "Flashdance... What a Feeling",
-    "artist": "Irene Cara",
+    "title": "Maniac",
+    "artist": "Michael Sembello",
     "genre": "Anos 80 e 90",
     "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false,
+    "year": 1983
+  },
+  "rock/Bon Jovi - Wanted Dead Or Alive (Official Music Video).mp3": {
+    "id": "bon-jovi-wanted-dead-or-alive-official-music-video",
+    "title": "Wanted Dead or Alive",
+    "artist": "Bon Jovi",
+    "genre": "Rock",
+    "year": 1986,
+    "cover": "./assets/capas/genero-rock.svg",
+    "downloadAllowed": false
+  },
+  "romanticas/Eric Carmen - Hungry Eyes (Official HD Video).mp3": {
+    "id": "eric-carmen-hungry-eyes-official-hd-video",
+    "title": "Hungry Eyes",
+    "artist": "Eric Carmen",
+    "genre": "Românticas",
+    "year": 1987,
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "downloadAllowed": false
+  },
+  "rock/Europe - Carrie (Official Video).mp3": {
+    "id": "europe-carrie-official-video",
+    "title": "Carrie",
+    "artist": "Europe",
+    "genre": "Rock",
+    "year": 1986,
+    "cover": "./assets/capas/genero-rock.svg",
+    "downloadAllowed": false
+  },
+  "rock/Guns N Roses - Don t Cry.mp3": {
+    "id": "guns-n-roses-don-t-cry",
+    "title": "Don't Cry",
+    "artist": "Guns N' Roses",
+    "genre": "Rock",
+    "year": 1991,
+    "cover": "./assets/capas/genero-rock.svg",
+    "downloadAllowed": false
+  },
+  "rock/Guns N Roses - Patience.mp3": {
+    "id": "guns-n-roses-patience",
+    "title": "Patience",
+    "artist": "Guns N' Roses",
+    "genre": "Rock",
+    "year": 1988,
+    "cover": "./assets/capas/genero-rock.svg",
+    "downloadAllowed": false
+  },
+  "rock/Kansas - Carry On Wayward Son (Official Audio).mp3": {
+    "id": "kansas-carry-on-wayward-son-official-audio",
+    "title": "Carry On Wayward Son",
+    "artist": "Kansas",
+    "genre": "Rock",
+    "year": 1976,
+    "cover": "./assets/capas/genero-rock.svg",
+    "downloadAllowed": false
+  },
+  "as melhores 80 e 90/Kenny Loggins - Danger Zone (Official Video - Top Gun).mp3": {
+    "id": "kenny-loggins-danger-zone-official-video-top-gun",
+    "title": "Danger Zone",
+    "artist": "Kenny Loggins",
+    "genre": "Anos 80 e 90",
+    "year": 1986,
+    "cover": "./assets/capas/genero-80-90.svg",
+    "downloadAllowed": false
+  },
+  "as melhores 80 e 90/Kenny Loggins - Footloose (Official Video).mp3": {
+    "id": "kenny-loggins-footloose-official-video",
+    "title": "Footloose",
+    "artist": "Kenny Loggins",
+    "genre": "Anos 80 e 90",
+    "year": 1984,
+    "cover": "./assets/capas/genero-80-90.svg",
+    "downloadAllowed": false
+  },
+  "as melhores 80 e 90/Kim Carnes - Bette Davis Eyes.mp3": {
+    "id": "kim-carnes-bette-davis-eyes",
+    "title": "Bette Davis Eyes",
+    "artist": "Kim Carnes",
+    "genre": "Anos 80 e 90",
+    "year": 1981,
+    "cover": "./assets/capas/genero-80-90.svg",
+    "downloadAllowed": false
+  },
+  "as melhores 80 e 90/Limahl - Never Ending Story (Official Music Video).mp3": {
+    "id": "limahl-never-ending-story-official-music-video",
+    "title": "The NeverEnding Story",
+    "artist": "Limahl",
+    "genre": "Anos 80 e 90",
+    "year": 1984,
+    "cover": "./assets/capas/genero-80-90.svg",
+    "downloadAllowed": false
+  },
+  "as melhores 80 e 90/Men At Work - Down Under (Official HD Video).mp3": {
+    "id": "men-at-work-down-under-official-hd-video",
+    "title": "Down Under",
+    "artist": "Men at Work",
+    "genre": "Anos 80 e 90",
+    "year": 1981,
+    "cover": "./assets/capas/genero-80-90.svg",
+    "downloadAllowed": false
+  },
+  "as melhores 80 e 90/Simple Minds - Don t You (Forget About Me).mp3": {
+    "id": "simple-minds-don-t-you-forget-about-me",
+    "title": "Don't You (Forget About Me)",
+    "artist": "Simple Minds",
+    "genre": "Anos 80 e 90",
+    "year": 1985,
+    "cover": "./assets/capas/genero-80-90.svg",
+    "downloadAllowed": false
+  },
+  "rock/Skillet - _Rise_ lyric video [b3jQ0tFqG_0].mp3": {
+    "id": "skillet-rise-lyric-video-b3jq0tfqg-0",
+    "title": "Rise",
+    "artist": "Skillet",
+    "genre": "Rock",
+    "year": 2013,
+    "cover": "./assets/capas/genero-rock.svg",
+    "downloadAllowed": false
+  },
+  "rock/Slow Ride- Foghat (Full Version) [GcCNcgoyG_0].mp3": {
+    "id": "slow-ride-foghat-full-version-gccncgoyg-0",
+    "title": "Slow Ride (Full Version)",
+    "artist": "Foghat",
+    "genre": "Rock",
+    "year": 1975,
+    "cover": "./assets/capas/genero-rock.svg",
     "downloadAllowed": false
   }
 }

@@ -29,7 +29,7 @@ RULES = [
     ("can t help falling in love", "classicos", "Clássicos", "Can't Help Falling in Love", "Elvis Presley"),
     ("suspicious minds", "classicos", "Clássicos", "Suspicious Minds", "Elvis Presley"),
     ("cosas de la vida", "as melhores 80 e 90", "Anos 80 e 90", "Cosas de la Vida (Can't Stop Thinking of You)", "Eros Ramazzotti e Tina Turner"),
-    ("flashdance", "as melhores 80 e 90", "Anos 80 e 90", "Flashdance... What a Feeling", "Irene Cara"),
+    ("flashdance what a feeling", "as melhores 80 e 90", "Anos 80 e 90", "Flashdance... What a Feeling", "Irene Cara"),
     ("glory of love", "romanticas", "Românticas", "Glory of Love", None),
     ("mmmbop", "as melhores 80 e 90", "Anos 80 e 90", "MMMBop", "Hanson"),
     ("think about the way", "dance", "Dance", "Think About the Way", "Ice MC"),
@@ -99,7 +99,23 @@ RULES = [
     ("red hot chili peppers by the way", "rock", "Rock", "By the Way", "Red Hot Chili Peppers"),
     ("seether broken ft amy lee", "rock", "Rock", "Broken (feat. Amy Lee)", "Seether"),
     ("system of a down lonely day", "rock", "Rock", "Lonely Day", "System of a Down"),
-]
+    # Novos uploads (08/11/2026): classificação explícita por artista e música.
+    ("bon jovi wanted dead or alive", "rock", "Rock", "Wanted Dead or Alive", "Bon Jovi"),
+    ("eric carmen hungry eyes", "romanticas", "Românticas", "Hungry Eyes", "Eric Carmen"),
+    ("europe carrie", "rock", "Rock", "Carrie", "Europe"),
+    ("guns n roses don t cry", "rock", "Rock", "Don't Cry", "Guns N' Roses"),
+    ("guns n roses patience", "rock", "Rock", "Patience", "Guns N' Roses"),
+    ("kansas carry on wayward son", "rock", "Rock", "Carry On Wayward Son", "Kansas"),
+    ("kenny loggins danger zone", "as melhores 80 e 90", "Anos 80 e 90", "Danger Zone", "Kenny Loggins"),
+    ("kenny loggins footloose", "as melhores 80 e 90", "Anos 80 e 90", "Footloose", "Kenny Loggins"),
+    ("kim carnes bette davis eyes", "as melhores 80 e 90", "Anos 80 e 90", "Bette Davis Eyes", "Kim Carnes"),
+    ("limahl never ending story", "as melhores 80 e 90", "Anos 80 e 90", "The NeverEnding Story", "Limahl"),
+    ("men at work down under", "as melhores 80 e 90", "Anos 80 e 90", "Down Under", "Men at Work"),
+    ("simple minds don t you", "as melhores 80 e 90", "Anos 80 e 90", "Don't You (Forget About Me)", "Simple Minds"),
+    ("skillet rise", "rock", "Rock", "Rise", "Skillet"),
+    ("slow ride foghat", "rock", "Rock", "Slow Ride (Full Version)", "Foghat"),
+    ("michael sembello maniac", "as melhores 80 e 90", "Anos 80 e 90", "Maniac", "Michael Sembello"),
+] 
 
 
 def normalized(value: str) -> str:

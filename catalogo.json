@@ -12,7 +12,7 @@
       "cover": "./assets/capas/horizonte-azul.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -19.5
     },
     {
@@ -25,7 +25,7 @@
       "cover": "./assets/capas/cidade-neon.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -18.2
     },
     {
@@ -38,7 +38,7 @@
       "cover": "./assets/capas/calma-de-outubro.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -19.9
     },
     {
@@ -51,7 +51,7 @@
       "cover": "./assets/capas/entre-ondas.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -17.9
     },
     {
@@ -64,7 +64,7 @@
       "cover": "./assets/capas/rota-noturna.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -17.9
     },
     {
@@ -77,7 +77,7 @@
       "cover": "./assets/capas/sol-de-vidro.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -18.7
     },
     {
@@ -103,7 +103,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -19.1
     },
     {
@@ -116,7 +116,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -20.3
     },
     {
@@ -142,7 +142,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -16.9
     },
     {
@@ -155,7 +155,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -1.0,
+      "gainDb": -1,
       "loudnessLufs": -13.4
     },
     {
@@ -194,7 +194,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -15.8
     },
     {
@@ -220,7 +220,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -14.4
     },
     {
@@ -233,7 +233,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -24.8
     },
     {
@@ -259,7 +259,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -14.4
     },
     {
@@ -350,7 +350,7 @@
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
       "downloadAllowed": false,
-      "gainDb": -2.0,
+      "gainDb": -2,
       "loudnessLufs": -12.4
     },
     {
@@ -480,7 +480,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -6.0,
+      "gainDb": -6,
       "loudnessLufs": -8.4
     },
     {
@@ -493,7 +493,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -5.0,
+      "gainDb": -5,
       "loudnessLufs": -9.4
     },
     {
@@ -532,7 +532,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -14.4
     },
     {
@@ -571,7 +571,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -14.4
     },
     {
@@ -610,7 +610,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -15.7
     },
     {
@@ -623,7 +623,7 @@
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -5.0,
+      "gainDb": -5,
       "loudnessLufs": -9.4
     },
     {
@@ -844,7 +844,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -15.1
     },
     {
@@ -922,7 +922,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -14.7
     },
     {
@@ -1000,7 +1000,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -19.1
     },
     {
@@ -1026,7 +1026,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -16
     },
     {
@@ -1065,7 +1065,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -21
     },
     {
@@ -1078,7 +1078,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -18.6
     },
     {
@@ -1104,7 +1104,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -14.9
     },
     {
@@ -1143,7 +1143,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -21
     },
     {
@@ -1182,7 +1182,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -17.1
     },
     {
@@ -1273,7 +1273,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -8.0,
+      "gainDb": -8,
       "loudnessLufs": -6.4
     },
     {
@@ -1299,7 +1299,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -14.4
     },
     {
@@ -1312,7 +1312,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -18.9
     },
     {
@@ -1338,7 +1338,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -14.7
     },
     {
@@ -1403,7 +1403,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -14.8
     },
     {
@@ -1559,7 +1559,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -24.3
     },
     {
@@ -1572,7 +1572,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -16.6
     },
     {
@@ -1585,7 +1585,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -8.0,
+      "gainDb": -8,
       "loudnessLufs": -6.4
     },
     {
@@ -1612,7 +1612,7 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -0.4,
-      "loudnessLufs": -14.0
+      "loudnessLufs": -14
     },
     {
       "id": "dance-avicii-the-nights-traducao-legendado-zr7v3xk-hqg",
@@ -1677,7 +1677,7 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -7.4,
-      "loudnessLufs": -7.0
+      "loudnessLufs": -7
     },
     {
       "id": "rock-nickelback-far-away",
@@ -1703,7 +1703,7 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.4,
-      "loudnessLufs": -8.0
+      "loudnessLufs": -8
     },
     {
       "id": "pop-the-chainsmokers-coldplay-something-just-like-this-official-lyric-video",
@@ -1728,7 +1728,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -23.1
     },
     {
@@ -1742,7 +1742,7 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.4,
-      "loudnessLufs": -12.0
+      "loudnessLufs": -12
     },
     {
       "id": "dance-avicii-waiting-for-love",
@@ -1772,39 +1772,39 @@
     },
     {
       "id": "as-melhores-80-e-90-michael-sembello-maniac-from-flashdance-official-audio",
-      "title": "Flashdance... What a Feeling",
-      "artist": "Irene Cara",
+      "title": "Maniac",
+      "artist": "Michael Sembello",
       "genre": "Anos 80 e 90",
       "duration": 244.793,
       "src": "./musicas/as%20melhores%2080%20e%2090/Michael%20Sembello%20-%20Maniac%20%28From%20Flashdance%20%29%20%28Official%20Audio%29.mp3",
       "cover": "./assets/capas/genero-80-90.svg",
-      "year": 2026,
+      "year": 1983,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -15.2
     },
     {
       "id": "bon-jovi-wanted-dead-or-alive-official-music-video",
-      "title": "Wanted Dead Or Alive",
+      "title": "Wanted Dead or Alive",
       "artist": "Bon Jovi",
-      "genre": "Outros",
+      "genre": "Rock",
       "duration": 249.615,
-      "src": "./musicas/Bon%20Jovi%20-%20Wanted%20Dead%20Or%20Alive%20%28Official%20Music%20Video%29.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/rock/Bon%20Jovi%20-%20Wanted%20Dead%20Or%20Alive%20%28Official%20Music%20Video%29.mp3",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 1986,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -32.1
     },
     {
       "id": "eric-carmen-hungry-eyes-official-hd-video",
       "title": "Hungry Eyes",
       "artist": "Eric Carmen",
-      "genre": "Outros",
+      "genre": "Românticas",
       "duration": 227.416,
-      "src": "./musicas/Eric%20Carmen%20-%20Hungry%20Eyes%20%28Official%20HD%20Video%29.mp3",
+      "src": "./musicas/romanticas/Eric%20Carmen%20-%20Hungry%20Eyes%20%28Official%20HD%20Video%29.mp3",
       "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "year": 1987,
       "downloadAllowed": false,
       "gainDb": -0.5,
       "loudnessLufs": -13.9
@@ -1813,156 +1813,156 @@
       "id": "europe-carrie-official-video",
       "title": "Carrie",
       "artist": "Europe",
-      "genre": "Outros",
+      "genre": "Rock",
       "duration": 270.768,
-      "src": "./musicas/Europe%20-%20Carrie%20%28Official%20Video%29.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/rock/Europe%20-%20Carrie%20%28Official%20Video%29.mp3",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 1986,
       "downloadAllowed": false,
-      "gainDb": -2.0,
+      "gainDb": -2,
       "loudnessLufs": -12.4
     },
     {
       "id": "guns-n-roses-don-t-cry",
-      "title": "Guns N' Roses - Don't Cry",
-      "artist": "GunsNRosesVEVO",
-      "genre": "Outros",
+      "title": "Don't Cry",
+      "artist": "Guns N' Roses",
+      "genre": "Rock",
       "duration": 313.104,
-      "src": "./musicas/Guns%20N%20Roses%20-%20Don%20t%20Cry.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/rock/Guns%20N%20Roses%20-%20Don%20t%20Cry.mp3",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 1991,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -22.3
     },
     {
       "id": "guns-n-roses-patience",
-      "title": "Guns N' Roses - Patience",
-      "artist": "GunsNRosesVEVO",
-      "genre": "Outros",
+      "title": "Patience",
+      "artist": "Guns N' Roses",
+      "genre": "Rock",
       "duration": 356.362,
-      "src": "./musicas/Guns%20N%20Roses%20-%20Patience.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/rock/Guns%20N%20Roses%20-%20Patience.mp3",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 1988,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -18.7
     },
     {
       "id": "kansas-carry-on-wayward-son-official-audio",
       "title": "Carry On Wayward Son",
       "artist": "Kansas",
-      "genre": "Outros",
+      "genre": "Rock",
       "duration": 323.338,
-      "src": "./musicas/Kansas%20-%20Carry%20On%20Wayward%20Son%20%28Official%20Audio%29.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/rock/Kansas%20-%20Carry%20On%20Wayward%20Son%20%28Official%20Audio%29.mp3",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 1976,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -18.3
     },
     {
       "id": "kenny-loggins-danger-zone-official-video-top-gun",
       "title": "Danger Zone",
       "artist": "Kenny Loggins",
-      "genre": "Outros",
+      "genre": "Anos 80 e 90",
       "duration": 225.814,
-      "src": "./musicas/Kenny%20Loggins%20-%20Danger%20Zone%20%28Official%20Video%20-%20Top%20Gun%29.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Kenny%20Loggins%20-%20Danger%20Zone%20%28Official%20Video%20-%20Top%20Gun%29.mp3",
+      "cover": "./assets/capas/genero-80-90.svg",
+      "year": 1986,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -21.4
     },
     {
       "id": "kenny-loggins-footloose-official-video",
       "title": "Footloose",
       "artist": "Kenny Loggins",
-      "genre": "Outros",
+      "genre": "Anos 80 e 90",
       "duration": 175.729,
-      "src": "./musicas/Kenny%20Loggins%20-%20Footloose%20%28Official%20Video%29.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Kenny%20Loggins%20-%20Footloose%20%28Official%20Video%29.mp3",
+      "cover": "./assets/capas/genero-80-90.svg",
+      "year": 1984,
       "downloadAllowed": false,
       "gainDb": -0.1,
       "loudnessLufs": -14.3
     },
     {
       "id": "kim-carnes-bette-davis-eyes",
-      "title": "Kim Carnes - Bette Davis Eyes",
-      "artist": "KimCarnesVEVO",
-      "genre": "Outros",
+      "title": "Bette Davis Eyes",
+      "artist": "Kim Carnes",
+      "genre": "Anos 80 e 90",
       "duration": 213.734,
-      "src": "./musicas/Kim%20Carnes%20-%20Bette%20Davis%20Eyes.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Kim%20Carnes%20-%20Bette%20Davis%20Eyes.mp3",
+      "cover": "./assets/capas/genero-80-90.svg",
+      "year": 1981,
       "downloadAllowed": false,
       "gainDb": -3.7,
       "loudnessLufs": -10.7
     },
     {
       "id": "limahl-never-ending-story-official-music-video",
-      "title": "Limahl - Never Ending Story (Official Music Video)",
-      "artist": "RHINO",
-      "genre": "Outros",
+      "title": "The NeverEnding Story",
+      "artist": "Limahl",
+      "genre": "Anos 80 e 90",
       "duration": 209.58,
-      "src": "./musicas/Limahl%20-%20Never%20Ending%20Story%20%28Official%20Music%20Video%29.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Limahl%20-%20Never%20Ending%20Story%20%28Official%20Music%20Video%29.mp3",
+      "cover": "./assets/capas/genero-80-90.svg",
+      "year": 1984,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -22.5
     },
     {
       "id": "men-at-work-down-under-official-hd-video",
-      "title": "Men At Work - Down Under (Official HD Video)",
-      "artist": "MenAtWorkVEVO",
-      "genre": "Outros",
+      "title": "Down Under",
+      "artist": "Men at Work",
+      "genre": "Anos 80 e 90",
       "duration": 220.761,
-      "src": "./musicas/Men%20At%20Work%20-%20Down%20Under%20%28Official%20HD%20Video%29.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Men%20At%20Work%20-%20Down%20Under%20%28Official%20HD%20Video%29.mp3",
+      "cover": "./assets/capas/genero-80-90.svg",
+      "year": 1981,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -15.1
     },
     {
       "id": "simple-minds-don-t-you-forget-about-me",
-      "title": "Don t You (Forget About Me)",
+      "title": "Don't You (Forget About Me)",
       "artist": "Simple Minds",
-      "genre": "Outros",
+      "genre": "Anos 80 e 90",
       "duration": 262.78,
-      "src": "./musicas/Simple%20Minds%20-%20Don%20t%20You%20%28Forget%20About%20Me%29.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/as%20melhores%2080%20e%2090/Simple%20Minds%20-%20Don%20t%20You%20%28Forget%20About%20Me%29.mp3",
+      "cover": "./assets/capas/genero-80-90.svg",
+      "year": 1985,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -15.1
     },
     {
       "id": "skillet-rise-lyric-video-b3jq0tfqg-0",
-      "title": "Skillet - \"Rise\" lyric video",
+      "title": "Rise",
       "artist": "Skillet",
-      "genre": "Outros",
+      "genre": "Rock",
       "duration": 227.396,
-      "src": "./musicas/Skillet%20-%20_Rise_%20lyric%20video%20%5Bb3jQ0tFqG_0%5D.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/rock/Skillet%20-%20_Rise_%20lyric%20video%20%5Bb3jQ0tFqG_0%5D.mp3",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2013,
       "downloadAllowed": false,
       "gainDb": -7.6,
       "loudnessLufs": -6.8
     },
     {
       "id": "slow-ride-foghat-full-version-gccncgoyg-0",
-      "title": "Slow Ride- Foghat (Full Version)",
-      "artist": "soccerbabe2545",
-      "genre": "Outros",
+      "title": "Slow Ride (Full Version)",
+      "artist": "Foghat",
+      "genre": "Rock",
       "duration": 496.144,
-      "src": "./musicas/Slow%20Ride-%20Foghat%20%28Full%20Version%29%20%5BGcCNcgoyG_0%5D.mp3",
-      "cover": "./assets/capas/genero-radio-hits.svg",
-      "year": 2026,
+      "src": "./musicas/rock/Slow%20Ride-%20Foghat%20%28Full%20Version%29%20%5BGcCNcgoyG_0%5D.mp3",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 1975,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": -14.5
     },
     {
@@ -1976,7 +1976,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -1990,7 +1990,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2004,7 +2004,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2018,7 +2018,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2032,7 +2032,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2046,7 +2046,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2060,7 +2060,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2074,7 +2074,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2088,7 +2088,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2102,7 +2102,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2116,7 +2116,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2130,7 +2130,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2144,7 +2144,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2158,7 +2158,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2172,7 +2172,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2186,7 +2186,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2200,7 +2200,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2214,7 +2214,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2228,7 +2228,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2242,7 +2242,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2256,7 +2256,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2270,7 +2270,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2284,7 +2284,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2298,7 +2298,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2312,7 +2312,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2326,7 +2326,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2340,7 +2340,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2354,7 +2354,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2368,7 +2368,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     },
     {
@@ -2382,7 +2382,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0.0,
+      "gainDb": 0,
       "loudnessLufs": null
     }
   ],

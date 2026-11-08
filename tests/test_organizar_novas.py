@@ -7,8 +7,8 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from organizar_novas import RULES, match, organize, normalized
 
-assert len(RULES) == 72
-assert len({r[0] for r in RULES}) == 72
+assert len(RULES) == 87
+assert len({r[0] for r in RULES}) == 87
 for key, folder, genre, title, artist in RULES:
     assert match(key + ".mp3") is not None, key
 assert match("Madonna - Papa Don't Preach (Official Video) [HD].m4a")[1] == "as melhores 80 e 90"
@@ -39,6 +39,14 @@ for filename in (
 ):
     rule=match(filename)
     assert rule is not None and rule[1]=="rock" and rule[2]=="Rock", (filename,rule)
+
+# Garantir que "Maniac" nao seja confundida com a musica-tema "What a Feeling".
+assert match("Michael Sembello - Maniac (From Flashdance ) (Official Audio).mp3")[3] == "Maniac"
+assert match("Flashdance • What a Feeling • Irene Cara-new.mp3")[3] == "Flashdance... What a Feeling"
+for filename, folder, genre, title, artist, year, key in [["Bon Jovi - Wanted Dead Or Alive (Official Music Video).mp3","rock","Rock","Wanted Dead or Alive","Bon Jovi",1986,"bon jovi wanted dead or alive"],["Eric Carmen - Hungry Eyes (Official HD Video).mp3","romanticas","Românticas","Hungry Eyes","Eric Carmen",1987,"eric carmen hungry eyes"],["Europe - Carrie (Official Video).mp3","rock","Rock","Carrie","Europe",1986,"europe carrie"],["Guns N Roses - Don t Cry.mp3","rock","Rock","Don't Cry","Guns N' Roses",1991,"guns n roses don t cry"],["Guns N Roses - Patience.mp3","rock","Rock","Patience","Guns N' Roses",1988,"guns n roses patience"],["Kansas - Carry On Wayward Son (Official Audio).mp3","rock","Rock","Carry On Wayward Son","Kansas",1976,"kansas carry on wayward son"],["Kenny Loggins - Danger Zone (Official Video - Top Gun).mp3","as melhores 80 e 90","Anos 80 e 90","Danger Zone","Kenny Loggins",1986,"kenny loggins danger zone"],["Kenny Loggins - Footloose (Official Video).mp3","as melhores 80 e 90","Anos 80 e 90","Footloose","Kenny Loggins",1984,"kenny loggins footloose"],["Kim Carnes - Bette Davis Eyes.mp3","as melhores 80 e 90","Anos 80 e 90","Bette Davis Eyes","Kim Carnes",1981,"kim carnes bette davis eyes"],["Limahl - Never Ending Story (Official Music Video).mp3","as melhores 80 e 90","Anos 80 e 90","The NeverEnding Story","Limahl",1984,"limahl never ending story"],["Men At Work - Down Under (Official HD Video).mp3","as melhores 80 e 90","Anos 80 e 90","Down Under","Men at Work",1981,"men at work down under"],["Simple Minds - Don t You (Forget About Me).mp3","as melhores 80 e 90","Anos 80 e 90","Don't You (Forget About Me)","Simple Minds",1985,"simple minds don t you"],["Skillet - _Rise_ lyric video [b3jQ0tFqG_0].mp3","rock","Rock","Rise","Skillet",2013,"skillet rise"],["Slow Ride- Foghat (Full Version) [GcCNcgoyG_0].mp3","rock","Rock","Slow Ride (Full Version)","Foghat",1975,"slow ride foghat"]]:
+    found=match(filename)
+    assert found is not None and found[1:5]==(folder,genre,title,artist),(filename,found)
+
 assert match("desconhecido.mp3") is None
 
 with tempfile.TemporaryDirectory() as temp:
@@ -102,4 +110,4 @@ with tempfile.TemporaryDirectory() as temp:
     repeat=organize(root)
     assert not repeat["moved"], "deve ser idempotente"
 
-print("ORGANIZAR NOVAS OK: 72 regras, raiz e pasta temporaria, integridade, metadados, volume e conflitos.")
+print("ORGANIZAR NOVAS OK: 87 regras, raiz e pasta temporaria, integridade, metadados, volume e conflitos.")
