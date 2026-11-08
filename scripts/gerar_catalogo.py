@@ -8,6 +8,7 @@ from __future__ import annotations
 import json, re, shutil, subprocess, sys, unicodedata, hashlib
 from programar_radio import programar
 from pathlib import Path
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 MUSIC = ROOT / 'musicas'
@@ -119,11 +120,12 @@ def main():
         if cover == './assets/capas/padrao.svg':
             cover=genre_art.get(genre,'./assets/capas/genero-radio-hits.svg')
         # Keep paths relative to GitHub Pages subdirectory; quote every component.
-        from urllib.parse import quote
         source='./musicas/'+ '/'.join(quote(part) for part in path.relative_to(MUSIC).parts)
+        # A edicao compacta e gerada apenas no Pages. Originais nao mudam.
+        low_source='./musicas-leves/'+ '/'.join(quote(part) for part in path.relative_to(MUSIC).with_suffix('.m4a').parts)
         loudness=volume_profiles.get(rel,{})
         gain=max(-10.0,min(0.0,float(loudness.get('gainDb') or 0.0)))
-        tracks.append({'id':ident,'title':title,'artist':artist,'genre':genre,'duration':seconds,'src':source,'cover':cover,'year':meta.get('year',2026),'downloadAllowed':meta.get('downloadAllowed') is True,
+        tracks.append({'id':ident,'title':title,'artist':artist,'genre':genre,'duration':seconds,'src':source,'lowSrc':low_source,'cover':cover,'year':meta.get('year',2026),'downloadAllowed':meta.get('downloadAllowed') is True,
                        'gainDb':gain,'loudnessLufs':loudness.get('lufs')})
     # A cada 5 músicas, alternar determinística e ciclicamente
     # três vinhetas femininas. IDs continuam exclusivos e estáveis.
