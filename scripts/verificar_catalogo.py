@@ -6,6 +6,8 @@ import json, hashlib, os
 from programar_radio import programar
 ROOT=Path(__file__).resolve().parents[1]
 MUSIC=ROOT/'musicas'
+metadata=json.loads((MUSIC/'metadados.json').read_text(encoding='utf-8'))
+disabled={name for name,record in metadata.items() if isinstance(record,dict) and record.get('enabled') is False}
 AUDIO={'.mp3','.ogg','.m4a','.wav','.flac','.aac','.opus'}
 # Mesma função usada pelo gerador: não divergir ao julgar áudios ilegíveis.
 from gerar_catalogo import duration
@@ -14,7 +16,9 @@ unreadable=[]
 for p in MUSIC.rglob('*'):
     if not p.is_file() or p.suffix.lower() not in AUDIO:
         continue
-    src='./musicas/'+p.relative_to(MUSIC).as_posix()
+    relative=p.relative_to(MUSIC).as_posix()
+    if relative in disabled: continue
+    src='./musicas/'+relative
     if duration(p) is None:
         unreadable.append(src)
     else:
@@ -52,7 +56,7 @@ schedule_ok=(schedule.get('revision')==revision
     and schedule.get('epochMs')==1767225600000
     and schedule.get('songCount')==len(songs)
     and schedule.get('jingleCount')==len(jingles))
-print(f'Verificação: {len(expected)} arquivos, {len(songs)} músicas e {len(jingles)} vinhetas por ciclo; revisão {revision}.')
+print(f'Verificação: {len(expected)} faixas ativas, {len(disabled)} desativadas, {len(songs)} músicas e {len(jingles)} vinhetas por ciclo; revisão {revision}.')
 for src in unreadable: print('ARQUIVO DE AUDIO ILEGIVEL (fora da grade):',src)
 summary_file=os.environ.get('GITHUB_STEP_SUMMARY')
 if summary_file:

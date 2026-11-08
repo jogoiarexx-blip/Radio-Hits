@@ -94,6 +94,7 @@ jobs:
           python tests/test_audio_leve.py
           node tests/teste-economia-dados.js
           python tests/test_summer_eletrohits.py
+          python tests/test_musicas_desativadas.py
           node tests/teste-radio-64.js
           node tests/teste-grade-atualizacao.js
           node tests/teste-vinheta.js

@@ -5,7 +5,8 @@
     "genre": "Chill",
     "cover": "./assets/capas/horizonte-azul.svg",
     "year": 2026,
-    "downloadAllowed": true
+    "downloadAllowed": true,
+    "enabled": false
   },
   "cidade-neon.mp3": {
     "title": "Cidade Néon",
@@ -13,7 +14,8 @@
     "genre": "Eletrônica",
     "cover": "./assets/capas/cidade-neon.svg",
     "year": 2026,
-    "downloadAllowed": true
+    "downloadAllowed": true,
+    "enabled": false
   },
   "calma-de-outubro.mp3": {
     "title": "Calma de Outubro",
@@ -21,7 +23,8 @@
     "genre": "Lo-fi",
     "cover": "./assets/capas/calma-de-outubro.svg",
     "year": 2026,
-    "downloadAllowed": true
+    "downloadAllowed": true,
+    "enabled": false
   },
   "entre-ondas.mp3": {
     "title": "Entre Ondas",
@@ -29,7 +32,8 @@
     "genre": "Ambient",
     "cover": "./assets/capas/entre-ondas.svg",
     "year": 2026,
-    "downloadAllowed": true
+    "downloadAllowed": true,
+    "enabled": false
   },
   "rota-noturna.mp3": {
     "title": "Rota Noturna",
@@ -37,7 +41,8 @@
     "genre": "Synthwave",
     "cover": "./assets/capas/rota-noturna.svg",
     "year": 2026,
-    "downloadAllowed": true
+    "downloadAllowed": true,
+    "enabled": false
   },
   "sol-de-vidro.mp3": {
     "title": "Sol de Vidro",
@@ -45,7 +50,8 @@
     "genre": "Indie",
     "cover": "./assets/capas/sol-de-vidro.svg",
     "year": 2026,
-    "downloadAllowed": true
+    "downloadAllowed": true,
+    "enabled": false
   },
   "as melhores 80 e 90/(Everything I Do) I Do It For You (Official Music Video)-new.mp3": {
     "title": "(Everything I Do) I Do It for You",

@@ -22,8 +22,23 @@ code=worker.read_text(encoding='utf-8')
 code=re.sub(r"const CACHE = 'radio-hits-shell-v\d+';",
             "const CACHE = 'radio-hits-shell-v26-"+revision+"';",code,count=1)
 worker.write_text(code,encoding='utf-8')
+# As demonstracoes desativadas ficam preservadas no Git, mas nao sao enviadas
+# ao GitHub Pages nem entram na conversao AAC para consumo economico.
+metadata=json.loads((ROOT/'musicas'/'metadados.json').read_text(encoding='utf-8'))
+disabled={name for name,info in metadata.items() if isinstance(info,dict) and info.get('enabled') is False}
+default_ignore=shutil.ignore_patterns('metadados.json','volume-perfis.json','*.md','*.py','__pycache__')
+def ignore_inactive(folder,names):
+    ignored=set(default_ignore(folder,names))
+    path=Path(folder)
+    try: relative=path.relative_to(ROOT/'musicas')
+    except ValueError: return ignored
+    for filename in names:
+        rel=(relative/filename).as_posix()
+        if rel in disabled:
+            ignored.add(filename)
+    return ignored
 for folder in ['css','js','assets','musicas','vinhetas']:
-    shutil.copytree(ROOT/folder,DIST/folder,ignore=shutil.ignore_patterns('metadados.json','volume-perfis.json','*.md','*.py','__pycache__'))
+    shutil.copytree(ROOT/folder,DIST/folder,ignore=ignore_inactive)
 size=sum(p.stat().st_size for p in DIST.rglob('*') if p.is_file())
 print(f'Site gerado com {size/1024/1024:.2f} MiB: {DIST}')
 if size > 950*1024*1024:

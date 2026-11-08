@@ -81,6 +81,10 @@ def main():
         rel=path.relative_to(MUSIC).as_posix()
         meta=metadata.get(rel,{})
         if not isinstance(meta,dict): meta={}
+        # A faixa pode permanecer fisicamente no Git, mas nao participa do app.
+        if meta.get('enabled') is False:
+            print(f'FAIXA DESATIVADA (fora da biblioteca e da radio): {rel}')
+            continue
         seconds=duration(path)
         if seconds is None:
             print(f'AVISO: sem duração (faixa ignorada): {rel}. Instale mutagen ou ffprobe.',file=sys.stderr)
