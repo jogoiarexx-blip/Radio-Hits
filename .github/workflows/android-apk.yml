@@ -10,6 +10,8 @@ on:
       - 'vinhetas/**'
       - 'index.html'
       - 'catalogo.json'
+      - 'musicas/Summer EletroHits/**'
+      - 'tests/test_summer_eletrohits.py'
       - 'sw.js'
       - 'manifest.webmanifest'
       - 'tests/teste-bridge-android.js'
@@ -89,6 +91,7 @@ jobs:
           node tests/teste-fila-android.js
           node tests/teste-recuperacao-android.js
           python tests/test_programacao.py
+          python tests/test_summer_eletrohits.py
           node tests/teste-radio-64.js
           node tests/teste-grade-atualizacao.js
           node tests/teste-vinheta.js

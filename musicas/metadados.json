@@ -1111,5 +1111,140 @@
     "year": 2004,
     "cover": "./assets/capas/genero-rock.svg",
     "downloadAllowed": false
+  },
+  "Summer EletroHits/01 Kasino Can´t Get Over Summer Eletrohits 2.m4a": {
+    "id": "summer-eletrohits-01-kasino-can-t-get-over-summer-eletrohits-2",
+    "title": "Can't Get Over",
+    "artist": "Kasino",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/02 Magic Box - If You (Summer Eletrohits 1).m4a": {
+    "id": "summer-eletrohits-02-magic-box-if-you-summer-eletrohits-1",
+    "title": "If You",
+    "artist": "Magic Box",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/06 Eric Prydz - Call On Me (Summer Eletrohits 1).m4a": {
+    "id": "summer-eletrohits-06-eric-prydz-call-on-me-summer-eletrohits-1",
+    "title": "Call on Me",
+    "artist": "Eric Prydz",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/08 Florida Inc. - Fuck It  (Summer Eletrohits 1).m4a": {
+    "id": "summer-eletrohits-08-florida-inc-fuck-it-summer-eletrohits-1",
+    "title": "Fuck It",
+    "artist": "Florida Inc.",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/13. I Wish - Infected Mushroom - Summer Eletrohits 2 .wmv.m4a": {
+    "id": "summer-eletrohits-13-i-wish-infected-mushroom-summer-eletrohits-2-wmv",
+    "title": "I Wish",
+    "artist": "Infected Mushroom",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/Alex Gaudino Feat. Crystal Waters - Destination Calabria [4mJi7RHmJEg].mp3": {
+    "id": "summer-eletrohits-alex-gaudino-feat-crystal-waters-destination-calabria-4mji7rhmjeg",
+    "title": "Destination Calabria",
+    "artist": "Alex Gaudino feat. Crystal Waters",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/Bob Sinclar & Steve Edwards - World Hold On - Summer Eletrohits 3 (Original Club Mix).m4a": {
+    "id": "summer-eletrohits-bob-sinclar-steve-edwards-world-hold-on-summer-eletrohits-3-original-club-mix",
+    "title": "World, Hold On (Original Club Mix)",
+    "artist": "Bob Sinclar feat. Steve Edwards",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/Bob Sinclar ft. Gary Pine & Steve Edwards - Love Generation - Summer Eletrohits 3 (Extended Version).m4a": {
+    "id": "summer-eletrohits-bob-sinclar-ft-gary-pine-steve-edwards-love-generation-summer-eletrohits-3-extended-version",
+    "title": "Love Generation (Extended Version)",
+    "artist": "Bob Sinclar feat. Gary Pine",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/CAROLINA MARQUEZ - The killer's song [Official video HD].m4a": {
+    "id": "summer-eletrohits-carolina-marquez-the-killer-s-song-official-video-hd",
+    "title": "The Killer's Song",
+    "artist": "Carolina Marquez",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/Guru Josh Project - Infinity (Klaas Vocal Mix) Ultra Records.mp3": {
+    "id": "summer-eletrohits-guru-josh-project-infinity-klaas-vocal-mix-ultra-records",
+    "title": "Infinity (Klaas Vocal Mix)",
+    "artist": "Guru Josh Project",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/Ian Carey feat. Michelle Shellers - Keep On Rising - Summer Eletrohits 5 [S1PycUc4yZw].mp3": {
+    "id": "summer-eletrohits-ian-carey-feat-michelle-shellers-keep-on-rising-summer-eletrohits-5-s1pycuc4yzw",
+    "title": "Keep On Rising",
+    "artist": "Ian Carey feat. Michelle Shellers",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/Ida Corr vs Fedde Le Grand Let Me Think About It (Extended) [19WUwZYM7bM].mp3": {
+    "id": "summer-eletrohits-ida-corr-vs-fedde-le-grand-let-me-think-about-it-extended-19wuwzym7bm",
+    "title": "Let Me Think About It (Extended)",
+    "artist": "Ida Corr vs. Fedde Le Grand",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/NAVE ESPACIAL - Liu & Samantha Machado (Videoclipe Oficial) [LQ-7iWrVAxU].mp3": {
+    "id": "summer-eletrohits-nave-espacial-liu-samantha-machado-videoclipe-oficial-lq-7iwrvaxu",
+    "title": "Nave Espacial",
+    "artist": "Liu & Samantha Machado",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/Tom Novy feat. Michael Marshall - Your Body - Summer Eletrohits 3 (Andy Van Remix).m4a": {
+    "id": "summer-eletrohits-tom-novy-feat-michael-marshall-your-body-summer-eletrohits-3-andy-van-remix",
+    "title": "Your Body (Andy Van Remix)",
+    "artist": "Tom Novy feat. Michael Marshall",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
+  },
+  "Summer EletroHits/Yves LaRock - Rise Up.m4a": {
+    "id": "summer-eletrohits-yves-larock-rise-up",
+    "title": "Rise Up",
+    "artist": "Yves LaRock",
+    "genre": "Summer EletroHits",
+    "cover": "./assets/capas/genero-radio-hits.svg",
+    "year": null,
+    "downloadAllowed": false
   }
 }
