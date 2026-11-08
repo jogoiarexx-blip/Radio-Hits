@@ -12,7 +12,7 @@
       "cover": "./assets/capas/horizonte-azul.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -19.5
     },
     {
@@ -25,7 +25,7 @@
       "cover": "./assets/capas/cidade-neon.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -18.2
     },
     {
@@ -38,7 +38,7 @@
       "cover": "./assets/capas/calma-de-outubro.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -19.9
     },
     {
@@ -51,7 +51,7 @@
       "cover": "./assets/capas/entre-ondas.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -17.9
     },
     {
@@ -64,7 +64,7 @@
       "cover": "./assets/capas/rota-noturna.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -17.9
     },
     {
@@ -77,7 +77,7 @@
       "cover": "./assets/capas/sol-de-vidro.svg",
       "year": 2026,
       "downloadAllowed": true,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -18.7
     },
     {
@@ -103,7 +103,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -19.1
     },
     {
@@ -116,7 +116,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -20.3
     },
     {
@@ -142,7 +142,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -16.9
     },
     {
@@ -155,7 +155,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -1,
+      "gainDb": -1.0,
       "loudnessLufs": -13.4
     },
     {
@@ -194,7 +194,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -15.8
     },
     {
@@ -220,7 +220,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -14.4
     },
     {
@@ -233,7 +233,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -24.8
     },
     {
@@ -259,7 +259,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -14.4
     },
     {
@@ -350,7 +350,7 @@
       "cover": "./assets/capas/genero-malhacao.svg",
       "year": 2003,
       "downloadAllowed": false,
-      "gainDb": -2,
+      "gainDb": -2.0,
       "loudnessLufs": -12.4
     },
     {
@@ -480,7 +480,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -6,
+      "gainDb": -6.0,
       "loudnessLufs": -8.4
     },
     {
@@ -493,7 +493,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -5,
+      "gainDb": -5.0,
       "loudnessLufs": -9.4
     },
     {
@@ -532,7 +532,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -14.4
     },
     {
@@ -571,7 +571,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -14.4
     },
     {
@@ -610,7 +610,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -15.7
     },
     {
@@ -623,7 +623,7 @@
       "cover": "./assets/capas/genero-hiphop.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -5,
+      "gainDb": -5.0,
       "loudnessLufs": -9.4
     },
     {
@@ -844,7 +844,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -15.1
     },
     {
@@ -922,7 +922,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -14.7
     },
     {
@@ -1000,7 +1000,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -19.1
     },
     {
@@ -1026,7 +1026,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -16
     },
     {
@@ -1065,7 +1065,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -21
     },
     {
@@ -1078,7 +1078,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -18.6
     },
     {
@@ -1104,7 +1104,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -14.9
     },
     {
@@ -1143,7 +1143,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -21
     },
     {
@@ -1182,7 +1182,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -17.1
     },
     {
@@ -1273,7 +1273,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -8,
+      "gainDb": -8.0,
       "loudnessLufs": -6.4
     },
     {
@@ -1299,7 +1299,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -14.4
     },
     {
@@ -1312,7 +1312,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -18.9
     },
     {
@@ -1338,7 +1338,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -14.7
     },
     {
@@ -1403,7 +1403,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -14.8
     },
     {
@@ -1559,7 +1559,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -24.3
     },
     {
@@ -1572,7 +1572,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -16.6
     },
     {
@@ -1585,7 +1585,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": -8,
+      "gainDb": -8.0,
       "loudnessLufs": -6.4
     },
     {
@@ -1728,7 +1728,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -23.1
     },
     {
@@ -1780,7 +1780,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 1983,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -15.2
     },
     {
@@ -1793,7 +1793,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 1986,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -32.1
     },
     {
@@ -1819,7 +1819,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 1986,
       "downloadAllowed": false,
-      "gainDb": -2,
+      "gainDb": -2.0,
       "loudnessLufs": -12.4
     },
     {
@@ -1832,7 +1832,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 1991,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -22.3
     },
     {
@@ -1845,7 +1845,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 1988,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -18.7
     },
     {
@@ -1858,7 +1858,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 1976,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -18.3
     },
     {
@@ -1871,7 +1871,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 1986,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -21.4
     },
     {
@@ -1910,7 +1910,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 1984,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -22.5
     },
     {
@@ -1923,7 +1923,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 1981,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -15.1
     },
     {
@@ -1936,7 +1936,7 @@
       "cover": "./assets/capas/genero-80-90.svg",
       "year": 1985,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -15.1
     },
     {
@@ -1962,7 +1962,7 @@
       "cover": "./assets/capas/genero-rock.svg",
       "year": 1975,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": -14.5
     },
     {
@@ -1976,7 +1976,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -1990,7 +1990,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2004,7 +2004,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2018,7 +2018,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2032,7 +2032,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2046,7 +2046,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2060,7 +2060,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2074,7 +2074,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2088,7 +2088,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2102,7 +2102,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2116,7 +2116,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2130,7 +2130,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2144,7 +2144,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2158,7 +2158,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2172,7 +2172,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2186,7 +2186,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2200,7 +2200,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2214,7 +2214,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2228,7 +2228,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2242,7 +2242,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2256,7 +2256,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2270,7 +2270,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2284,7 +2284,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2298,7 +2298,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2312,7 +2312,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2326,7 +2326,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2340,7 +2340,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2354,7 +2354,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2368,7 +2368,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     },
     {
@@ -2382,7 +2382,7 @@
       "cover": "./assets/capas/genero-radio-hits.svg",
       "year": 2026,
       "downloadAllowed": false,
-      "gainDb": 0,
+      "gainDb": 0.0,
       "loudnessLufs": null
     }
   ],
@@ -2391,186 +2391,186 @@
     "as-melhores-80-e-90-celine-dion-because-you-loved-me-new",
     "hip-hop-usher-love-in-this-club-feat-young-jeezy",
     "malhacao-internacional-2003-11-jennifer-lopez-i-m-glad",
-    "men-at-work-down-under-official-hd-video",
+    "dance-avicii-the-nights-traducao-legendado-zr7v3xk-hqg",
     "vinheta-radio-hits-001",
     "rock-avril-lavigne-i-m-with-you-official-video",
-    "as-melhores-80-e-90-10-000-maniacs-because-the-night-official-music-video-new",
+    "men-at-work-down-under-official-hd-video",
     "hip-hop-in-da-club-dtriwq8j9jw",
     "malhacao-internacional-2003-04-eve-feat-drag-on-got-what-you-need",
-    "kenny-loggins-footloose-official-video",
+    "dance-avicii-wake-me-up-official-lyric-video",
     "vinheta-radio-hits-002",
     "rock-system-of-a-down-lonely-day-official-hd-video",
-    "as-melhores-80-e-90-starship-nothing-s-gonna-stop-us-now-official-music-video-hd",
+    "as-melhores-80-e-90-10-000-maniacs-because-the-night-official-music-video-new",
     "hip-hop-flo-rida-low-feat-t-pain-official-video",
     "malhacao-internacional-2003-01-s-m-s-feat-rehb-just-a-bit-of-chaos",
-    "dance-avicii-the-nights-traducao-legendado-zr7v3xk-hqg",
+    "dance-mr-president-coco-jamboo-1996-official-video-new",
     "vinheta-radio-hits-003",
     "rock-aerosmith-i-don-t-want-to-miss-a-thing-official-hd-video",
-    "as-melhores-80-e-90-natalie-imbruglia-torn-official-video-new",
+    "as-melhores-80-e-90-starship-nothing-s-gonna-stop-us-now-official-music-video-hd",
     "hip-hop-what-s-luv-feat-ashanti",
     "malhacao-internacional-2003-09-chevelle-send-the-pain-below",
-    "kim-carnes-bette-davis-eyes",
+    "dance-vengaboys-boom-boom-boom-boom-new",
     "vinheta-radio-hits-004",
     "rock-foreigner-i-want-to-know-what-love-is-official-music-video",
-    "as-melhores-80-e-90-baltimora-tarzan-boy-new",
+    "as-melhores-80-e-90-natalie-imbruglia-torn-official-video-new",
     "hip-hop-what-goes-around-comes-around-interlude-bxbitm7vtcs",
     "malhacao-internacional-2003-13-stacie-orrico-i-promise-i-will",
-    "eric-carmen-hungry-eyes-official-hd-video",
+    "dance-alok-bruno-martini-zeeba-never-let-me-go-official-music-video-4k-ri-fiya76ac",
     "vinheta-radio-hits-005",
     "rock-steve-winwood-valerie-official-video-new",
-    "as-melhores-80-e-90-rick-astley-never-gonna-give-you-up-official-video-4k-remaster",
+    "as-melhores-80-e-90-baltimora-tarzan-boy-new",
     "hip-hop-say-goodbye-txfbe1qx924",
     "malhacao-internacional-2003-03-foo-fighters-times-like-these",
-    "dance-avicii-wake-me-up-official-lyric-video",
+    "dance-avicii-levels",
     "vinheta-radio-hits-006",
     "rock-skillet-awake-and-alive-official-audio",
-    "as-melhores-80-e-90-a-ha-take-on-me-official-video-4k-new",
+    "as-melhores-80-e-90-rick-astley-never-gonna-give-you-up-official-video-4k-remaster",
     "hip-hop-many-men-wish-death",
-    "guns-n-roses-don-t-cry",
     "malhacao-internacional-2003-10-damian-marley-and-you-be-loved-and-be-loved",
+    "religiosas-acalma-minha-tempestade-frei-gilson-ao-vivo-360o",
     "vinheta-radio-hits-007",
     "rock-avril-lavigne-complicated-official-video",
-    "as-melhores-80-e-90-sandra-maria-magdalena-official-video-1985-new",
+    "as-melhores-80-e-90-a-ha-take-on-me-official-video-4k-new",
     "hip-hop-nelly-dilemma-feat-kelly-rowland",
-    "dance-mr-president-coco-jamboo-1996-official-video-new",
-    "skillet-rise-lyric-video-b3jq0tfqg-0",
+    "malhacao-internacional-2003-08-t-a-t-u-all-the-things-she-said",
+    "dance-avicii-hey-brother",
     "vinheta-radio-hits-008",
     "rock-bon-jovi-it-s-my-life-official-music-video",
-    "as-melhores-80-e-90-daryl-hall-john-oates-out-of-touch-official-hd-video-new",
+    "kenny-loggins-footloose-official-video",
     "hip-hop-alicia-keys-no-one-official-music-video",
-    "malhacao-internacional-2003-08-t-a-t-u-all-the-things-she-said",
-    "dance-vengaboys-boom-boom-boom-boom-new",
+    "malhacao-internacional-2003-15-paul-j-falling",
+    "religiosas-terra-seca-dvd-nao-vou-desistir-fraternidade-sao-joao-paulo-ii",
     "vinheta-radio-hits-009",
     "rock-europe-the-final-countdown-official-video",
-    "as-melhores-80-e-90-desireless-voyage-voyage-official-hd-video-new",
-    "bon-jovi-wanted-dead-or-alive-official-music-video",
+    "as-melhores-80-e-90-sandra-maria-magdalena-official-video-1985-new",
     "hip-hop-miss-independent",
-    "malhacao-internacional-2003-15-paul-j-falling",
-    "vinheta-radio-hits-010",
-    "rock-in-the-end-official-hd-music-video-linkin-park",
-    "as-melhores-80-e-90-eros-ramazzotti-e-tina-turner-cosas-de-la-vida-can-t-stop-thinking-of-you",
-    "dance-alok-bruno-martini-zeeba-never-let-me-go-official-music-video-4k-ri-fiya76ac",
-    "kansas-carry-on-wayward-son-official-audio",
-    "hip-hop-ridin-f-tusbuxgme",
-    "vinheta-radio-hits-011",
-    "rock-the-outfield-your-love-official-hd-video",
-    "as-melhores-80-e-90-flashdance-what-a-feeling-irene-cara-new",
     "malhacao-internacional-2003-12-thalia-feat-fat-joe-i-want-you",
-    "dance-avicii-levels",
-    "religiosas-acalma-minha-tempestade-frei-gilson-ao-vivo-360o",
-    "vinheta-radio-hits-012",
-    "rock-starship-sara-official-music-video-new",
-    "as-melhores-80-e-90-alphaville-big-in-japan-official-music-video-new",
-    "slow-ride-foghat-full-version-gccncgoyg-0",
-    "hip-hop-don-t-matter",
-    "malhacao-internacional-2003-07-beyonce-feat-jay-z-crazy-in-love",
-    "vinheta-radio-hits-013",
-    "rock-evanescence-my-immortal-official-hd-music-video",
-    "as-melhores-80-e-90-gonna-make-you-sweat-everybody-dance-now-official-hd-video-new",
-    "dance-avicii-hey-brother",
-    "religiosas-terra-seca-dvd-nao-vou-desistir-fraternidade-sao-joao-paulo-ii",
-    "europe-carrie-official-video",
-    "vinheta-radio-hits-014",
-    "rock-red-hot-chili-peppers-under-the-bridge-official-music-video-new",
-    "as-melhores-80-e-90-scorpions-wind-of-change-official-music-video-new",
-    "hip-hop-i-wanna-love-you",
-    "malhacao-internacional-2003-14-vanessa-carlton-pretty-baby",
     "dance-stevie-b-spring-love-official-music-video-new",
-    "vinheta-radio-hits-015",
-    "rock-seether-broken-ft-amy-lee",
-    "as-melhores-80-e-90-toni-braxton-un-break-my-heart-official-hd-video",
-    "hip-hop-akon-smack-that-feat-eminem",
-    "limahl-never-ending-story-official-music-video",
+    "vinheta-radio-hits-010",
+    "guns-n-roses-don-t-cry",
+    "as-melhores-80-e-90-daryl-hall-john-oates-out-of-touch-official-hd-video-new",
+    "hip-hop-ridin-f-tusbuxgme",
+    "malhacao-internacional-2003-07-beyonce-feat-jay-z-crazy-in-love",
+    "eric-carmen-hungry-eyes-official-hd-video",
+    "vinheta-radio-hits-011",
+    "rock-in-the-end-official-hd-music-video-linkin-park",
+    "as-melhores-80-e-90-desireless-voyage-voyage-official-hd-video-new",
+    "hip-hop-don-t-matter",
+    "malhacao-internacional-2003-14-vanessa-carlton-pretty-baby",
     "religiosas-tu-es-o-centro-com-bruna-ramos-frei-gilson-ao-vivo-360o",
-    "vinheta-radio-hits-016",
-    "rock-inxs-by-my-side",
-    "as-melhores-80-e-90-michael-sembello-maniac-from-flashdance-official-audio",
+    "vinheta-radio-hits-012",
+    "rock-the-outfield-your-love-official-hd-video",
+    "kim-carnes-bette-davis-eyes",
+    "hip-hop-i-wanna-love-you",
     "malhacao-internacional-2003-06-ja-rule-feat-ashanti-mesmerize",
     "dance-calvin-harris-summer-traducao-legendado-jkxuq3s0ela",
+    "vinheta-radio-hits-013",
+    "skillet-rise-lyric-video-b3jq0tfqg-0",
+    "as-melhores-80-e-90-eros-ramazzotti-e-tina-turner-cosas-de-la-vida-can-t-stop-thinking-of-you",
+    "hip-hop-akon-smack-that-feat-eminem",
     "pop-jason-mraz-i-m-yours-official-video-4k-remaster-new",
-    "vinheta-radio-hits-017",
-    "rock-toto-hold-the-line-official-video",
-    "as-melhores-80-e-90-everything-i-do-i-do-it-for-you-official-music-video-new",
     "romanticas-glory-of-love-new",
+    "vinheta-radio-hits-014",
+    "rock-starship-sara-official-music-video-new",
+    "as-melhores-80-e-90-flashdance-what-a-feeling-irene-cara-new",
     "hip-hop-the-real-slim-shady",
     "religiosas-deixa-deus-sonhar-em-ti-com-bruna-ramos-frei-gilson-ao-vivo-360o",
-    "vinheta-radio-hits-018",
-    "rock-red-hot-chili-peppers-by-the-way-official-music-video",
-    "as-melhores-80-e-90-laura-branigan-self-control-official-music-video-new",
     "malhacao-internacional-2003-02-avril-lavigne-sk8er-boi",
+    "vinheta-radio-hits-015",
+    "bon-jovi-wanted-dead-or-alive-official-music-video",
+    "as-melhores-80-e-90-alphaville-big-in-japan-official-music-video-new",
     "dance-vengaboys-shalala-lala-new",
-    "kenny-loggins-danger-zone-official-video-top-gun",
-    "vinheta-radio-hits-019",
-    "rock-nirvana-smells-like-teen-spirit-official-music-video",
-    "as-melhores-80-e-90-new-order-bizarre-love-triangle-official-music-video-hd-upgrade-new",
     "classicos-elvis-presley-suspicious-minds-official-music-video-new",
     "romanticas-run-to-me-new",
+    "vinheta-radio-hits-016",
+    "kansas-carry-on-wayward-son-official-audio",
+    "as-melhores-80-e-90-gonna-make-you-sweat-everybody-dance-now-official-hd-video-new",
     "pop-new-west-those-eyes-lyrics-new",
-    "vinheta-radio-hits-020",
-    "rock-pink-floyd-another-brick-in-the-wall-part-two-official-music-video",
-    "as-melhores-80-e-90-journey-don-t-stop-believin-from-live-in-houston-1981-the-escape-tour-new",
     "hip-hop-just-a-lil-bit",
     "religiosas-eu-te-levantarei",
+    "vinheta-radio-hits-017",
+    "rock-evanescence-my-immortal-official-hd-music-video",
+    "as-melhores-80-e-90-scorpions-wind-of-change-official-music-video-new",
     "country-luke-combs-forever-after-all-official-video-new",
-    "vinheta-radio-hits-021",
-    "rock-the-police-every-breath-you-take-official-music-video",
-    "as-melhores-80-e-90-roxette-it-must-have-been-love-official-music-video-new",
     "malhacao-internacional-2003-05-nelly-feat-kelly-rowland-dilemma",
-    "simple-minds-don-t-you-forget-about-me",
     "dance-avicii-waiting-for-love",
-    "vinheta-radio-hits-022",
-    "rock-ac-dc-back-in-black-official-4k-video",
-    "as-melhores-80-e-90-madonna-papa-don-t-preach-official-video-hd",
+    "vinheta-radio-hits-018",
+    "slow-ride-foghat-full-version-gccncgoyg-0",
+    "as-melhores-80-e-90-toni-braxton-un-break-my-heart-official-hd-video",
     "mpb-anavitoria-trevo-vevo-presents-new",
     "entre-ondas",
     "classicos-elvis-presley-can-t-help-falling-in-love-official-audio-new",
-    "vinheta-radio-hits-023",
-    "rock-whitesnake-is-this-love-official-music-video-new",
-    "as-melhores-80-e-90-f-r-david-words-don-t-come-easy-high-quality-official-music-video-new",
+    "vinheta-radio-hits-019",
+    "rock-red-hot-chili-peppers-under-the-bridge-official-music-video-new",
+    "as-melhores-80-e-90-michael-sembello-maniac-from-flashdance-official-audio",
     "reggae-magic-rude-official-video-new",
     "calma-de-outubro",
     "hip-hop-cry-me-a-river",
-    "vinheta-radio-hits-024",
-    "rock-survivor-eye-of-the-tiger-official-hd-video",
-    "as-melhores-80-e-90-la-bouche-sweet-dreams-official-video-vod-new",
+    "vinheta-radio-hits-020",
+    "europe-carrie-official-video",
+    "as-melhores-80-e-90-everything-i-do-i-do-it-for-you-official-music-video-new",
     "religiosas-eu-seguirei-ao-vivo",
     "cidade-neon",
     "romanticas-richard-marx-right-here-waiting-official-music-video",
-    "vinheta-radio-hits-025",
-    "rock-toto-africa-official-hd-video",
-    "as-melhores-80-e-90-tina-turner-we-don-t-need-another-hero-thunderdome-music-video-new",
+    "vinheta-radio-hits-021",
+    "rock-seether-broken-ft-amy-lee",
+    "limahl-never-ending-story-official-music-video",
     "pop-the-chainsmokers-coldplay-something-just-like-this-official-lyric-video",
     "sol-de-vidro",
     "country-shania-twain-youre-still-the-one-official-music-video-new",
-    "vinheta-radio-hits-026",
-    "rock-red-hot-chili-peppers-californication-official-music-video-hd-upgrade",
-    "as-melhores-80-e-90-tears-for-fears-everybody-wants-to-rule-the-world-official-music-video",
-    "guns-n-roses-patience",
+    "vinheta-radio-hits-022",
+    "rock-inxs-by-my-side",
+    "as-melhores-80-e-90-laura-branigan-self-control-official-music-video-new",
+    "malhacao-internacional-2003-16-arena-brothers-sisters",
     "horizonte-azul",
-    "rock-faint-official-music-video-4k-upgrade-linkin-park",
-    "vinheta-radio-hits-027",
-    "rock-ac-dc-thunderstruck-official-video",
-    "as-melhores-80-e-90-pet-shop-boys-it-s-a-sin-official-video-hd-remastered-new",
-    "rock-nickelback-far-away",
-    "rock-skillet-hero",
+    "dance-ice-mc-think-about-the-way-official-video-new",
+    "vinheta-radio-hits-023",
+    "rock-toto-hold-the-line-official-video",
+    "as-melhores-80-e-90-new-order-bizarre-love-triangle-official-music-video-hd-upgrade-new",
+    "rock-red-hot-chili-peppers-by-the-way-official-music-video",
     "rota-noturna",
-    "vinheta-radio-hits-028",
+    "as-melhores-80-e-90-journey-don-t-stop-believin-from-live-in-houston-1981-the-escape-tour-new",
+    "vinheta-radio-hits-024",
+    "rock-nirvana-smells-like-teen-spirit-official-music-video",
+    "as-melhores-80-e-90-roxette-it-must-have-been-love-official-music-video-new",
+    "rock-pink-floyd-another-brick-in-the-wall-part-two-official-music-video",
+    "rock-the-police-every-breath-you-take-official-music-video",
+    "as-melhores-80-e-90-madonna-papa-don-t-preach-official-video-hd",
+    "vinheta-radio-hits-025",
+    "rock-ac-dc-back-in-black-official-4k-video",
+    "rock-whitesnake-is-this-love-official-music-video-new",
+    "as-melhores-80-e-90-f-r-david-words-don-t-come-easy-high-quality-official-music-video-new",
+    "rock-survivor-eye-of-the-tiger-official-hd-video",
+    "rock-toto-africa-official-hd-video",
+    "vinheta-radio-hits-026",
+    "as-melhores-80-e-90-la-bouche-sweet-dreams-official-video-vod-new",
+    "rock-red-hot-chili-peppers-californication-official-music-video-hd-upgrade",
+    "rock-faint-official-music-video-4k-upgrade-linkin-park",
+    "as-melhores-80-e-90-tina-turner-we-don-t-need-another-hero-thunderdome-music-video-new",
+    "rock-ac-dc-thunderstruck-official-video",
+    "vinheta-radio-hits-027",
+    "rock-nickelback-far-away",
+    "as-melhores-80-e-90-tears-for-fears-everybody-wants-to-rule-the-world-official-music-video",
+    "rock-skillet-hero",
     "rock-joan-osborne-one-of-us-official-music-video",
+    "kenny-loggins-danger-zone-official-video-top-gun",
+    "vinheta-radio-hits-028",
     "rock-green-day-boulevard-of-broken-dreams-official-music-video-4k-upgrade",
-    "as-melhores-80-e-90-hanson-mmmbop-official-music-video",
+    "guns-n-roses-patience",
+    "simple-minds-don-t-you-forget-about-me",
     "rock-skillet-monster-official-video",
     "rock-imagine-dragons-thunder",
     "vinheta-radio-hits-029",
-    "malhacao-internacional-2003-16-arena-brothers-sisters",
+    "as-melhores-80-e-90-pet-shop-boys-it-s-a-sin-official-video-hd-remastered-new",
     "rock-numb-official-music-video-4k-upgrade-linkin-park",
     "rock-pearl-jam-last-kiss-uvjto-hrd5c",
-    "dance-ice-mc-think-about-the-way-official-video-new",
+    "as-melhores-80-e-90-hanson-mmmbop-official-music-video",
     "rock-metallica-nothing-else-matters-official-music-video",
     "vinheta-radio-hits-030",
     "rock-crowded-house-don-t-dream-it-s-over-official-music-video-new"
   ],
   "radioSchedule": {
-    "revision": "ea5e53b4917e2400",
+    "revision": "d9c67b441e5e306f",
     "epochMs": 1767225600000,
     "strategy": "curadoria-deterministica-v1",
     "songCount": 151,
