@@ -968,5 +968,12 @@
     "genre": "Dance",
     "cover": "./assets/capas/padrao.svg",
     "downloadAllowed": false
+  },
+  "as melhores 80 e 90/Michael Sembello - Maniac (From Flashdance ) (Official Audio).mp3": {
+    "title": "Flashdance... What a Feeling",
+    "artist": "Irene Cara",
+    "genre": "Anos 80 e 90",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   }
 }
