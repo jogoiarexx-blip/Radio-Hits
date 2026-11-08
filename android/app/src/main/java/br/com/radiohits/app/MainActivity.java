@@ -251,6 +251,20 @@ public final class MainActivity extends Activity {
         } catch(Exception ignored) { }
     }
 
+    private boolean approvedLowStream(String url) {
+        if(url==null || url.length()>2048) return false;
+        try {
+            Uri parsed=Uri.parse(url);
+            String path=parsed.getEncodedPath();
+            return "https".equalsIgnoreCase(parsed.getScheme())
+                && "jogoiarexx-blip.github.io".equalsIgnoreCase(parsed.getHost())
+                && (parsed.getPort()==-1 || parsed.getPort()==443)
+                && parsed.getUserInfo()==null
+                && path!=null && path.startsWith("/Radio-Hits/musicas-leves/")
+                && !path.contains("..") && path.endsWith(".m4a")
+                && parsed.getQuery()==null && parsed.getFragment()==null;
+        } catch(Exception ignored) { return false; }
+    }
     private boolean approvedMusic(String url) {
         return OfflineStore.validStreamUrl(url);
     }
@@ -285,9 +299,11 @@ public final class MainActivity extends Activity {
                     .setAlbumTitle("radio".equals(mode) ? "Radio Hits — Rádio" : "Radio Hits")
                     .setExtras(extra).build();
                 File local=OfflineStore.saved(this,url);
+                String stream=track.optString("streamSrc","");
+                boolean economical=local==null && approvedLowStream(stream);
                 items.add(new MediaItem.Builder()
                     .setMediaId(track.optString("id"))
-                    .setUri(local!=null?Uri.fromFile(local):Uri.parse(url))
+                    .setUri(local!=null?Uri.fromFile(local):Uri.parse(economical?stream:url))
                     .setMediaMetadata(metadata).build());
             }
             int index = Math.max(0, Math.min(items.size()-1, req.optInt("index", 0)));

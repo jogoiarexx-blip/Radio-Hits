@@ -1,6 +1,6 @@
 /* Radio Hits: cache da interface sem cache automatico de audio. */
 const CACHE = 'radio-hits-shell-v26';
-const CORE = ['./assets/branding/radio-hits-mark.svg','./assets/branding/hero-radio-hits.svg','./assets/capas/genero-80-90.svg','./assets/capas/genero-rock.svg','./assets/capas/genero-hiphop.svg','./assets/capas/genero-malhacao.svg','./assets/capas/genero-radio-hits.svg','./','./index.html','./css/style.css?v=vinyl-4','./js/native-bridge.js?v=bridge-2','./js/offline.js?v=stream-3','./js/app.js?v=vinyl-4','./catalogo.json','./assets/branding/radio-hits-icon-192.png','./assets/branding/radio-hits-icon-512.png','./js/install.js?v=1','./js/sleep-timer.js?v=1','./assets/favicon.svg','./assets/capas/padrao.svg'];
+const CORE = ['./assets/branding/radio-hits-mark.svg','./assets/branding/hero-radio-hits.svg','./assets/capas/genero-80-90.svg','./assets/capas/genero-rock.svg','./assets/capas/genero-hiphop.svg','./assets/capas/genero-malhacao.svg','./assets/capas/genero-radio-hits.svg','./','./index.html','./css/style.css?v=eco-1','./js/native-bridge.js?v=bridge-2','./js/offline.js?v=stream-3','./js/app.js?v=eco-1','./catalogo.json','./assets/branding/radio-hits-icon-192.png','./assets/branding/radio-hits-icon-512.png','./js/install.js?v=1','./js/sleep-timer.js?v=1','./assets/favicon.svg','./assets/capas/padrao.svg'];
 const AUDIO_EXT=/\.(mp3|m4a|ogg|opus|wav|flac|aac)$/i;
 self.addEventListener('install',e=>e.waitUntil(
   caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));

@@ -93,7 +93,7 @@
           repeat:state.repeat==='all',
           tracks:tracks.map(t=>({
             id:t.id,title:t.title,artist:t.artist,
-            src:new URL(t.src,document.baseURI).href,gainDb:Number(t.gainDb)||0,
+            src:new URL(t.src,document.baseURI).href,streamSrc:streamSource(t),gainDb:Number(t.gainDb)||0,
             durationMs:Math.max(0,Math.round(Number(t.duration)*1000))
           }))
         };
@@ -154,6 +154,8 @@
     favorites: new Set(Array.isArray(saved.favorites) ? saved.favorites : []),
     playlists: saved.playlists && typeof saved.playlists === 'object' && !Array.isArray(saved.playlists) ? saved.playlists : {},
     selectedPlaylist: null, pendingAddId: null, buffering: false,
+    dataSaver: typeof saved.dataSaver === 'boolean' ? saved.dataSaver :
+      (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '') || navigator.connection?.saveData === true),
     queue: [], queueIndex: 0, shuffle: false, repeat: 'off',
     volume: Number.isFinite(Number(saved.volume)) ? Math.min(1, Math.max(0, Number(saved.volume))) : .75,
     leveling: saved.leveling !== false,
@@ -164,7 +166,7 @@
   setRangeFill($('volume'));
 
   function persist() {
-    try { localStorage.setItem(STORAGE, JSON.stringify({ favorites: [...state.favorites], playlists: state.playlists, volume: state.volume, leveling: state.leveling })); } catch (_) { /* Storage may be unavailable. */ }
+    try { localStorage.setItem(STORAGE, JSON.stringify({ favorites: [...state.favorites], playlists: state.playlists, volume: state.volume, leveling: state.leveling, dataSaver: state.dataSaver })); } catch (_) { /* Storage may be unavailable. */ }
   }
   function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -598,6 +600,29 @@
       navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
     } catch (_) { /* unsupported browser */ }
   }
+  function streamSource(t) {
+    const original=new URL(t.src,document.baseURI).href;
+    if(!state.dataSaver || !t.lowSrc || offlineSources.has(original))
+      return original;
+    return new URL(t.lowSrc,document.baseURI).href;
+  }
+  function refreshDataSaverButton() {
+    const button=$('data-saver-toggle');
+    if(!button)return;
+    button.setAttribute('aria-pressed',String(state.dataSaver));
+    button.textContent=state.dataSaver?'Dados: ECO':'Dados: Normal';
+    button.title=state.dataSaver?'ECO: AAC 48 kbps; toque para qualidade normal':'Toque para economizar dados móveis';
+    button.classList.toggle('is-active',state.dataSaver);
+  }
+  $('data-saver-toggle')?.addEventListener('click',()=>{
+    state.dataSaver=!state.dataSaver;
+    persist();
+    refreshDataSaverButton();
+    if(state.dataSaver && standby)clearStandby();
+    toast(state.dataSaver?'Economia ligada. Na próxima faixa, áudio mais leve.':
+      'Qualidade original a partir da próxima faixa.');
+  });
+  refreshDataSaverButton();
   // Executado próximo ao fim da faixa. Não faz pré-download de toda a biblioteca.
   // Em conexões com economia de dados, mantém o carregamento tradicional.
   function setPreloadStatus(message) {
@@ -630,7 +655,7 @@
     return id && id !== state.currentId ? trackById(id) : null;
   }
   function prepareNextAudio() {
-    if (!standby || audio.paused || audio.ended || !state.loaded || document.hidden) return;
+    if (!standby || state.dataSaver || audio.paused || audio.ended || !state.loaded || document.hidden) return;
     if (navigator.connection?.saveData) {
       setPreloadStatus('Economia de dados: sem pré-carga');
       return;
@@ -686,12 +711,13 @@
   }
   function loadTrack(t, seekTo=0) {
     if (!t) return false;
-    const target=new URL(t.src,document.baseURI).href;
+    const original=new URL(t.src,document.baseURI).href;
+    const target=streamSource(t);
     const serial=++offlineLoadVersion;
     if (!nativeBridge && usePreparedAudio(t, seekTo)) {
       offlineLoading = Promise.resolve();
-      activeOfflineId = offlineSources.has(target) ? t.id : null;
-    } else if (!nativeBridge && offlineSources.has(target)) {
+      activeOfflineId = offlineSources.has(original) ? t.id : null;
+    } else if (!nativeBridge && offlineSources.has(original)) {
       clearStandby();
       state.pendingSeek=Number(seekTo)||0;
       offlineLoading=offline.playableSource(t).then(localURL=>{

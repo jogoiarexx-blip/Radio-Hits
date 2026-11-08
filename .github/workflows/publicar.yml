@@ -48,6 +48,7 @@ jobs:
           node tests/teste-recuperacao-android.js
           python tests/test_programacao.py
           python tests/test_audio_leve.py
+          node tests/teste-economia-dados.js
           python tests/test_summer_eletrohits.py
           python tests/test_organizar_novas.py
           node tests/teste-radio-64.js
