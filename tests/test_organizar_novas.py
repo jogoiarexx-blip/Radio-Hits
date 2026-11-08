@@ -7,8 +7,8 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from organizar_novas import RULES, match, organize, normalized
 
-assert len(RULES) == 87
-assert len({r[0] for r in RULES}) == 87
+assert len(RULES) == 88
+assert len({r[0] for r in RULES}) == 88
 for key, folder, genre, title, artist in RULES:
     assert match(key + ".mp3") is not None, key
 assert match("Madonna - Papa Don't Preach (Official Video) [HD].m4a")[1] == "as melhores 80 e 90"
@@ -47,6 +47,8 @@ for filename, folder, genre, title, artist, year, key in [["Bon Jovi - Wanted De
     found=match(filename)
     assert found is not None and found[1:5]==(folder,genre,title,artist),(filename,found)
 
+spiderbait=match("Spiderbait - Black Betty (Official Video) [nU1VfYYKMDk].mp3")
+assert spiderbait[1:5] == ("rock", "Rock", "Black Betty", "Spiderbait")
 assert match("desconhecido.mp3") is None
 
 with tempfile.TemporaryDirectory() as temp:
@@ -110,4 +112,4 @@ with tempfile.TemporaryDirectory() as temp:
     repeat=organize(root)
     assert not repeat["moved"], "deve ser idempotente"
 
-print("ORGANIZAR NOVAS OK: 87 regras, raiz e pasta temporaria, integridade, metadados, volume e conflitos.")
+print("ORGANIZAR NOVAS OK: 88 regras, raiz e pasta temporaria, integridade, metadados, volume e conflitos.")

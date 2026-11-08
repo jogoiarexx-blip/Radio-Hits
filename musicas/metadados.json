@@ -1102,5 +1102,14 @@
     "year": 1975,
     "cover": "./assets/capas/genero-rock.svg",
     "downloadAllowed": false
+  },
+  "rock/Spiderbait - Black Betty (Official Video) [nU1VfYYKMDk].mp3": {
+    "id": "spiderbait-black-betty-official-video-nu1vfyykmdk",
+    "title": "Black Betty",
+    "artist": "Spiderbait",
+    "genre": "Rock",
+    "year": 2004,
+    "cover": "./assets/capas/genero-rock.svg",
+    "downloadAllowed": false
   }
 }

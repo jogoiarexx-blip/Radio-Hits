@@ -115,6 +115,7 @@ RULES = [
     ("skillet rise", "rock", "Rock", "Rise", "Skillet"),
     ("slow ride foghat", "rock", "Rock", "Slow Ride (Full Version)", "Foghat"),
     ("michael sembello maniac", "as melhores 80 e 90", "Anos 80 e 90", "Maniac", "Michael Sembello"),
+    ("spiderbait black betty", "rock", "Rock", "Black Betty", "Spiderbait"),
 ] 
 
 
