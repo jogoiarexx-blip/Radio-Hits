@@ -122,12 +122,54 @@
       "sampleSeconds": 35,
       "gainDb": -4.8
     },
+    "Summer EletroHits/01 Kasino Can´t Get Over Summer Eletrohits 2.m4a": {
+      "sha256": "f3f3a1c716c5a6b4d58c74da41ef269d3df0489e8eb836861beea64683159520",
+      "lufs": -8.2,
+      "truePeakDbfs": 1.2,
+      "sampleSeconds": 35,
+      "gainDb": -6.2
+    },
+    "Summer EletroHits/02 Magic Box - If You (Summer Eletrohits 1).m4a": {
+      "sha256": "4a28c3062d04a11d9e1d6b548024989bf3c0b1e0c1b928205ca40963c7402c50",
+      "lufs": -9.5,
+      "truePeakDbfs": 0.5,
+      "sampleSeconds": 35,
+      "gainDb": -4.9
+    },
+    "Summer EletroHits/06 Eric Prydz - Call On Me (Summer Eletrohits 1).m4a": {
+      "sha256": "66e4e2af17a15243d4888f85e250700de74c0790f092fab0e9d2ca8e6058d107",
+      "lufs": -12.7,
+      "truePeakDbfs": -0.6,
+      "sampleSeconds": 35,
+      "gainDb": -1.7
+    },
+    "Summer EletroHits/08 Florida Inc. - Fuck It  (Summer Eletrohits 1).m4a": {
+      "sha256": "6935a091341915e79eac2abc7044167942e8cc0f37761f4e8b205e4ad30c6388",
+      "lufs": -9.3,
+      "truePeakDbfs": 0.8,
+      "sampleSeconds": 35,
+      "gainDb": -5.1
+    },
+    "Summer EletroHits/13. I Wish - Infected Mushroom - Summer Eletrohits 2 .wmv.m4a": {
+      "sha256": "fb401f03264d3cf4b2acced352ef13256e29f1773e90db3498a4d04f13009452",
+      "lufs": -10.3,
+      "truePeakDbfs": 0.4,
+      "sampleSeconds": 35,
+      "gainDb": -4.1
+    },
     "Summer EletroHits/Alex Gaudino Feat. Crystal Waters - Destination Calabria [4mJi7RHmJEg].mp3": {
       "sha256": "c0a58ad78a2c8d8a039e090318f4a0b606c3afb876580e5ef22b5c7e836fa286",
       "lufs": -11.0,
       "truePeakDbfs": -0.3,
       "sampleSeconds": 35,
       "gainDb": -3.4
+    },
+    "Summer EletroHits/Bob Sinclar & Steve Edwards - World Hold On - Summer Eletrohits 3 (Original Club Mix).m4a": {
+      "sha256": "e104c7e716808a5884208acfb35a3e56d748e2c5482541fb640bf5784b674f41",
+      "lufs": -7.9,
+      "truePeakDbfs": 1.4,
+      "sampleSeconds": 35,
+      "gainDb": -6.5
     },
     "Summer EletroHits/Bob Sinclar ft. Gary Pine & Steve Edwards - Love Generation - Summer Eletrohits 3 (Extended Version).m4a": {
       "sha256": "c0fecbd9cdea549c9cb100c982bd052aa0fc7e42e41547a20fde881828b03334",
