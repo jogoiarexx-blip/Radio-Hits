@@ -104,7 +104,7 @@ public final class MainActivity extends Activity {
         web.getSettings().setJavaScriptEnabled(true);
         web.getSettings().setDomStorageEnabled(true);
         // Revalidar interface do Pages a cada abertura online.
-        web.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+        web.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         web.getSettings().setMediaPlaybackRequiresUserGesture(false);
         web.getSettings().setAllowFileAccess(false);
         web.getSettings().setAllowContentAccess(false);

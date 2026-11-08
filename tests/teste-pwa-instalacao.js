@@ -25,8 +25,8 @@ assert.match(js,/cache:'no-store'/);
 assert.match(builder,/app-version\.json/);
 assert.match(builder,/GITHUB_SHA/);
 assert.match(builder,/radiohits-revision/);
-assert.match(android,/setCacheMode\(WebSettings\.LOAD_NO_CACHE\)/);
-assert.match(sw,/radio-hits-shell-v25/);
+assert.match(android,/setCacheMode\(WebSettings\.LOAD_DEFAULT\)/);
+assert.match(sw,/radio-hits-shell-v26/);
 assert.match(sw,/js\/sleep-timer\.js\?v=1/);
 const listeners={},buttons={},reloads=[];
 function element(id){

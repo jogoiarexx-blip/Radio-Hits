@@ -11,7 +11,7 @@
   const dialog = $('pwa-install-dialog');
   const installButton = $('pwa-install-button');
   let installPrompt = null, updatePending = false, reloading = false;
-  let registration = null, lastCheck = 0;
+  let registration = null, lastCheck = 0, lastSWCheck = 0;
   const revision = document.querySelector('meta[name="radiohits-revision"]')?.content || '';
   const secure = location.protocol === 'https:' || location.hostname === 'localhost';
   let dismissed = false;
@@ -68,7 +68,7 @@
   async function checkVersion() {
     if (!revision || navigator.onLine === false || reloading) return;
     const now = Date.now();
-    if (now - lastCheck < 60_000) return;
+    if (now - lastCheck < 30 * 60_000) return;
     lastCheck = now;
     try {
       const response = await fetch('./app-version.json', {cache:'no-store'});
@@ -79,7 +79,8 @@
   }
   async function checkUpdates() {
     await checkVersion();
-    if (registration && !native && navigator.onLine !== false) {
+    if (registration && !native && navigator.onLine !== false && Date.now()-lastSWCheck >= 6 * 60 * 60_000) {
+      lastSWCheck=Date.now();
       try { await registration.update(); } catch (_) {}
     }
     applySafeUpdate();
@@ -93,7 +94,7 @@
   $('audio')?.addEventListener('ended', applySafeUpdate);
   // A ponte Media3 do APK nao utiliza necessariamente o elemento audio do DOM.
   window.setInterval(() => { if (updatePending) applySafeUpdate(); }, 3000);
-  window.setInterval(() => { if (!document.hidden) checkUpdates(); }, 15 * 60_000);
+  window.setInterval(() => { if (!document.hidden) checkUpdates(); }, 30 * 60_000);
   if ('serviceWorker' in navigator && secure && !native) {
     let hadController = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.addEventListener('controllerchange', () => {

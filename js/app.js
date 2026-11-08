@@ -1075,7 +1075,7 @@
 
   async function init() {
     try {
-      const response = await fetch('./catalogo.json?atualizado=' + Date.now(), {cache:'no-store'});
+      const response = await fetch('./catalogo.json');
       if (!response.ok) throw new Error('HTTP '+response.status);
       const data=await response.json();
       if (nativeBridge && window.RadioHitsAndroid.saveCatalog) {
@@ -1112,13 +1112,13 @@
   let lastCatalogCheck = 0;
   async function refreshCatalog(manual = false) {
     if (!state.loaded || checkingCatalog) return;
-    if (!manual && Date.now() - lastCatalogCheck < 90000) return;
+    if (!manual && Date.now() - lastCatalogCheck < 60*60*1000) return;
     checkingCatalog = true;
     lastCatalogCheck = Date.now();
     const button = $('refresh-library');
     if (button) { button.disabled = true; button.textContent = 'Verificando...'; }
     try {
-      const response = await fetch('./catalogo.json?atualizado=' + Date.now(), {cache:'no-store'});
+      const response = await fetch(manual ? './catalogo.json?atualizado='+Date.now() : './catalogo.json', manual ? {cache:'reload'} : {});
       if (!response.ok) throw new Error('HTTP ' + response.status);
       const data = await response.json();
       if (nativeBridge && window.RadioHitsAndroid.saveCatalog) {
@@ -1171,6 +1171,6 @@
     }
   });
   window.addEventListener('focus', () => refreshCatalog(false));
-  setInterval(() => { if (!document.hidden) refreshCatalog(false); }, 300000);
+  setInterval(() => { if (!document.hidden) refreshCatalog(false); }, 60*60*1000);
   init();
 })();
