@@ -40,6 +40,7 @@
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.2 15.7A8.4 8.4 0 0 1 8.3 3.8 8.6 8.6 0 1 0 20.2 15.7Z"/></symbol>
     <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
   </svg>
 
@@ -63,7 +64,7 @@
       <header class="topbar">
         <div class="topbar-heading"><span class="eyebrow">SEU ESPAÇO MUSICAL</span><span class="topbar-date" id="today-label"></span></div>
         <label class="search-box"><svg class="icon"><use href="#i-search"/></svg><input id="search" type="search" placeholder="Busque músicas, artistas..." autocomplete="off" aria-label="Buscar músicas e artistas"><kbd>/</kbd></label>
-        <button class="top-avatar" id="about-button" aria-label="Sobre o projeto">R<span class="online-indicator"></span></button>
+        <button class="top-avatar" id="about-button" aria-label="Sobre o projeto">R<span class="online-indicator"></span></button><button id="sleep-timer-open" class="icon-button sleep-timer-launch" type="button" aria-label="Configurar temporizador para dormir" title="Temporizador para dormir"><svg class="icon"><use href="#i-moon"/></svg><span id="sleep-timer-chip" class="sleep-timer-chip" hidden></span></button>
       </header>
 
       <div id="offline-network-notice" class="offline-network-notice" role="status" hidden></div>
@@ -137,6 +138,18 @@
     <div class="player-options"><span class="mode-chip" id="player-mode">RÁDIO</span><button type="button" class="leveling-button is-active" id="leveling-toggle" aria-pressed="true" aria-label="Ativar ou desativar volume equilibrado" title="Desativar volume equilibrado">VOL</button><button class="icon-button" id="volume-button" title="Silenciar" aria-label="Silenciar"><svg class="icon"><use href="#i-volume"/></svg></button><input id="volume" type="range" min="0" max="100" value="75" aria-label="Volume"><button class="icon-button queue-open" id="queue-open" title="Ver fila" aria-label="Ver fila"><svg class="icon"><use href="#i-list"/></svg></button></div></footer>
   <nav class="mobile-nav" aria-label="Navegação para celular"><button data-view="radio" class="is-active"><svg class="icon"><use href="#i-radio"/></svg><span>Rádio</span></button><button data-view="explorar"><svg class="icon"><use href="#i-grid"/></svg><span>Explorar</span></button><button data-view="favoritos"><svg class="icon"><use href="#i-heart"/></svg><span>Favoritos</span></button><button data-view="playlists"><svg class="icon"><use href="#i-list"/></svg><span>Playlists</span></button></nav>
 
+  <dialog id="sleep-timer-dialog" class="sleep-timer-dialog" aria-labelledby="sleep-timer-heading">
+    <div class="sleep-timer-head"><h2 id="sleep-timer-heading">Temporizador para dormir</h2><button id="sleep-timer-close" class="icon-button" type="button" aria-label="Fechar temporizador"><svg class="icon"><use href="#i-close"/></svg></button></div>
+    <p>Escolha quando pausar automaticamente a música.</p>
+    <div class="sleep-timer-choices">
+      <button type="button" data-sleep-minutes="15">15 minutos</button>
+      <button type="button" data-sleep-minutes="30">30 minutos</button>
+      <button type="button" data-sleep-minutes="60">60 minutos</button>
+    </div>
+    <p id="sleep-timer-status" class="sleep-timer-status" role="status" aria-live="polite">Nenhum temporizador ativo.</p>
+    <button id="sleep-timer-cancel" type="button" class="outline-button" disabled>Cancelar temporizador</button>
+    <small>No aplicativo Android, o player nativo controla o prazo mesmo com a tela bloqueada. No navegador, restrições de segundo plano podem atrasar a pausa.</small>
+  </dialog>
   <dialog id="pwa-install-dialog" class="pwa-install-dialog" aria-labelledby="pwa-install-heading">
     <h2 id="pwa-install-heading">Instalar Radio Hits</h2>
     <p><strong>Android (Chrome):</strong> abra o menu ⋮ e escolha <strong>Instalar app</strong> ou <strong>Adicionar à tela inicial</strong>.</p>
@@ -151,5 +164,6 @@
   <script src="./js/offline.js?v=stream-3" defer></script>
   <script src="./js/app.js?v=vinyl-4" defer></script>
   <script src="./js/install.js?v=1" defer></script>
+  <script src="./js/sleep-timer.js?v=1" defer></script>
 </body>
 </html>

@@ -16,10 +16,10 @@
   const send = (method, value) => {
     native.postMessage(JSON.stringify({method, value}));
   };
-  const request = method => new Promise(resolve => {
+  const request = (method, value) => new Promise(resolve => {
     const id = ++nextId;
     waiting.set(id, resolve);
-    native.postMessage(JSON.stringify({method, id}));
+    native.postMessage(JSON.stringify({method, id, value}));
     setTimeout(() => {
       if (waiting.has(id)) { waiting.delete(id); resolve('[]'); }
     }, 3000);
@@ -38,6 +38,9 @@
     pause: () => send('pause'),
     seek: value => send('seek', value),
     volume: value => send('volume', value),
-    setLeveling: value => send('setLeveling', value)
+    setLeveling: value => send('setLeveling', value),
+    setSleepTimer: minutes => request('setSleepTimer', minutes),
+    cancelSleepTimer: () => request('cancelSleepTimer'),
+    sleepTimerState: () => request('sleepTimerState')
   });
 })();

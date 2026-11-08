@@ -34,6 +34,15 @@ public final class PlaybackService extends MediaSessionService {
     // Nenhum polling do serviço em repouso; progresso salvo a cada 15 segundos
     // apenas quando o Media3 está realmente reproduzindo.
     private static final long ACTIVE_INTERVAL_MS=15000L;
+    private static final String SLEEP_PREFS="radiohits_sleep_timer_v1";
+    private static final String SLEEP_DEADLINE="deadline_ms";
+    private boolean pauseIfSleepExpired() {
+        long due=getSharedPreferences(SLEEP_PREFS,MODE_PRIVATE).getLong(SLEEP_DEADLINE,0L);
+        if(!SleepTimerClock.expired(System.currentTimeMillis(),due)) return false;
+        getSharedPreferences(SLEEP_PREFS,MODE_PRIVATE).edit().remove(SLEEP_DEADLINE).apply();
+        if(player!=null && player.getPlayWhenReady()) player.pause();
+        return true;
+    }
     private int activePulseCount=0;
     private boolean activePulseScheduled=false;
     private long currentTrackTransitions=0;
@@ -43,6 +52,7 @@ public final class PlaybackService extends MediaSessionService {
         @Override public void run() {
             activePulseScheduled=false;
             if(player==null || !player.isPlaying()) return;
+            if(pauseIfSleepExpired()) return;
             synchronizeRadioClock();
             saveSnapshot(false);
             if(playbackStableSince==0) playbackStableSince=System.currentTimeMillis();
@@ -97,6 +107,7 @@ public final class PlaybackService extends MediaSessionService {
             }
             @Override public void onIsPlayingChanged(boolean playing) {
                 if(playing) {
+                    if(pauseIfSleepExpired()) return;
                     if(playbackStableSince==0) playbackStableSince=System.currentTimeMillis();
                     scheduleActivePulse();
                 } else {

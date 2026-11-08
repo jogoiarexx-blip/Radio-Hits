@@ -51,10 +51,13 @@ jobs:
           node tests/teste-backup-biblioteca.js
           node tests/teste-vinil.js
           node tests/teste-pwa-instalacao.js
+          node tests/teste-sleep-timer.js
           node tests/teste-bateria-background.js
           node tests/teste-memoria-stream.js
           javac -d /tmp/radiohits-recovery android/app/src/main/java/br/com/radiohits/app/PlaybackClock.java android/app/src/main/java/br/com/radiohits/app/PlaybackRetryPolicy.java tests/PlaybackRecoveryCheck.java
           java -cp /tmp/radiohits-recovery br.com.radiohits.app.PlaybackRecoveryCheck
+          javac -d /tmp/radiohits-recovery android/app/src/main/java/br/com/radiohits/app/SleepTimerClock.java tests/SleepTimerCheck.java
+          java -cp /tmp/radiohits-recovery br.com.radiohits.app.SleepTimerCheck
           node --check js/app.js
           node --check js/offline.js
           node tests/auditoria-radio.js

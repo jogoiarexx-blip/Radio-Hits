@@ -105,6 +105,12 @@
   }
   let audio = nativeBridge ? createNativeAudio() : $('audio');
   window.RadioHitsMayReload = () => !audio.src || audio.paused || audio.ended;
+  window.RadioHitsPauseForSleep = () => {
+    if (state.mode === 'radio') { radioWantsPlayback = false; state.radioPlayback = null; }
+    state.playRequested = false;
+    if (!audio.paused) audio.pause();
+    setPlayVisuals();
+  };
   // O navegador prepara uma segunda saída para trocar de faixa sem reiniciar
   // o download no instante da transição. No APK, o Media3 já prepara a fila.
   let standby = null;

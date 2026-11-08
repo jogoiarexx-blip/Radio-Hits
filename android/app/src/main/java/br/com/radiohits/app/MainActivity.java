@@ -52,6 +52,17 @@ public final class MainActivity extends Activity {
     private MediaController controller;
     private String waitingPlay = null;
     private String latestState = "{}";
+    private static final String SLEEP_PREFS="radiohits_sleep_timer_v1";
+    private static final String SLEEP_DEADLINE="deadline_ms";
+    private long sleepDeadlineMs() {
+        return getSharedPreferences(SLEEP_PREFS,MODE_PRIVATE).getLong(SLEEP_DEADLINE,0L);
+    }
+    private void enforceSleepTimer() {
+        long deadline=sleepDeadlineMs();
+        if(!SleepTimerClock.expired(System.currentTimeMillis(),deadline)) return;
+        getSharedPreferences(SLEEP_PREFS,MODE_PRIVATE).edit().remove(SLEEP_DEADLINE).apply();
+        if(controller!=null && controller.getPlayWhenReady()) controller.pause();
+    }
     private double masterVolume = 0.75;
     private boolean levelingEnabled = true;
 
@@ -69,6 +80,7 @@ public final class MainActivity extends Activity {
     private final Runnable statusTick = new Runnable() {
         @Override public void run() {
             if(!uiForeground) return;
+            enforceSleepTimer();
             updateState();
             handler.postDelayed(this, 1200);
         }
@@ -341,6 +353,7 @@ public final class MainActivity extends Activity {
             status.put("errorCode",controller.getPlayerError()==null ? 0
                 : controller.getPlayerError().errorCode);
             status.put("buffering",controller.getPlaybackState()==Player.STATE_BUFFERING);
+            status.put("sleepDeadlineMs",sleepDeadlineMs());
             status.put("shuffle",controller.getShuffleModeEnabled());
             status.put("repeat",controller.getRepeatMode());
             JSONArray queueIds=new JSONArray();
@@ -371,6 +384,21 @@ public final class MainActivity extends Activity {
             int id = req.optInt("id", -1);
             String value = req.optString("value", "");
             switch (method) {
+                case "setSleepTimer": {
+                    int minutes=req.optInt("value",-1);
+                    if(!SleepTimerClock.validMinutes(minutes)) {respond(reply,id,"0");break;}
+                    long due=SleepTimerClock.deadlineMs(System.currentTimeMillis(),minutes);
+                    getSharedPreferences(SLEEP_PREFS,MODE_PRIVATE).edit().putLong(SLEEP_DEADLINE,due).apply();
+                    respond(reply,id,String.valueOf(due));
+                    break;
+                }
+                case "cancelSleepTimer":
+                    getSharedPreferences(SLEEP_PREFS,MODE_PRIVATE).edit().remove(SLEEP_DEADLINE).apply();
+                    respond(reply,id,"0");
+                    break;
+                case "sleepTimerState":
+                    respond(reply,id,String.valueOf(sleepDeadlineMs()));
+                    break;
                 case "listDownloads":
                     respond(reply, id, OfflineStore.list(getApplicationContext()));
                     break;
