@@ -1061,8 +1061,26 @@
       } else nextTrack(false);
     });
     element.addEventListener('error', () => {
-      if (element === audio) { state.buffering=false;setPlayVisuals(); }
-      if (element === audio && audio.error && state.playRequested)
+      if (element !== audio) return;
+      state.buffering=false;
+      setPlayVisuals();
+      // Se o arquivo AAC/MP4 do modo ECO não existir ou falhar, tenta
+      // automaticamente a faixa MP3 original antes de mostrar erro.
+      const track=trackById(state.currentId);
+      const original=track ? new URL(track.src,document.baseURI).href : '';
+      const failedSource=audio.currentSrc || audio.src;
+      const isEcoSource=track && state.dataSaver && track.lowSrc
+        && failedSource === new URL(track.lowSrc,document.baseURI).href;
+      if (audio.error && state.playRequested && isEcoSource && original && failedSource !== original) {
+        state.dataSaver=false;
+        persist();
+        refreshDataSaverButton();
+        loadTrack(track,Number(audio.currentTime)||0);
+        requestPlay();
+        toast('Áudio econômico indisponível. Tentando qualidade original...');
+        return;
+      }
+      if (audio.error && state.playRequested)
         toast(nativeBridge
           ? 'Falha no áudio. Se a rede não voltar, toque em reproduzir para tentar novamente.'
           : 'Falha ao carregar o áudio. Confira o arquivo no GitHub.');
