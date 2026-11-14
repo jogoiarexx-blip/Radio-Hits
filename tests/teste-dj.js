@@ -14,15 +14,19 @@ const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(x => x[1]));
 for (const [,id] of script.matchAll(/\$\('([a-z][a-z0-9-]*)'\)/g)) {
   assert.ok(ids.has(id), 'Missing DOM control: ' + id);
 }
-for (const id of ['mode','smart','play','skip','cross','genre','bpm0','bpm1','upnext','loop0','loop1']) {
+for (const id of ['mode','smart','waves','wave0','wave1','vu0','vu1','level0','level1','beat0','beat1','play','skip','cross','genre','bpm0','bpm1','upnext','loop0','loop1']) {
   assert.ok(ids.has(id), 'Required DJ control missing: ' + id);
 }
 
 const elements = new Map();
+const drawings = [];
+const canvasContext = {fillRect(){drawings.push('fill');},beginPath(){},moveTo(){},lineTo(){},stroke(){drawings.push('stroke');}};
+const frames = [];
 const options = {mode:'auto',genre:'',volume:'75',bass:'0',filter:'18000',cross:'0',fade:'10',rate0:'100',rate1:'100'};
 for (const id of ids) {
   elements.set(id,{
-    id, value:options[id]||'',checked:id==='smart',textContent:'',style:{},items:[],
+    id, value:options[id]||'',checked:id==='smart'||id==='waves',textContent:'',style:{},items:[],
+    width:384,height:72,getContext:()=>canvasContext,
     classList:{toggle(){}},replaceChildren(){this.items=[];this.value='';},appendChild(o){this.items.push(o);if(!this.value)this.value=o.value;}
   });
 }
@@ -47,6 +51,7 @@ class Node {
   constructor(){this.gain=new Param();this.frequency=new Param();this.fftSize=2048;this.frequencyBinCount=1024;}
   connect(){return this;}
   getByteFrequencyData(a){a.fill(0);}
+  getByteTimeDomainData(a){a.fill(128);}
 }
 class FakeContext{
   constructor(){this.destination={};this.currentTime=20;this.sampleRate=44100;}
@@ -70,6 +75,7 @@ const mock={
   URL,
   fetch:async()=>({ok:true,json:async()=>({tracks:sample})}),
   localStorage:{getItem:()=>null,setItem(){}},
+  requestAnimationFrame:fn=>{frames.push(fn);return frames.length;},
   setInterval:()=>1,
   setTimeout:fn=>{timeouts.push(fn);return timeouts.length;},
   clearTimeout:()=>{},
@@ -84,6 +90,12 @@ async function main(){
   await elements.get('play').onclick();
   assert.equal(sounds.length,2,'Two audio decks should be created');
   assert.ok(sounds.some(s=>!s.paused),'A deck should play on start');
+  assert.ok(frames.length>0,'Visualizer should schedule an animation frame');
+  frames.shift()(150);
+  assert.ok(drawings.includes('stroke'),'Visualizer should draw the deck waveforms');
+  elements.get('waves').checked=false;elements.get('waves').onchange();
+  assert.equal(elements.get('scope0').hidden,true,'Visualization toggle should hide deck scopes');
+  elements.get('waves').checked=true;elements.get('waves').onchange();
   assert.ok(sounds.every(s=>s.src),'Automatic mode should preload the next deck');
   assert.notEqual(sounds[0].src,sounds[1].src,'Auto DJ should not immediately queue the same track');
   await elements.get('skip').onclick();
@@ -94,12 +106,12 @@ async function main(){
   elements.get('mode').onchange();
   elements.get('cross').oninput({target:{value:'50'}});
   elements.get('smart').checked=false;elements.get('smart').onchange();
+  assert.match(elements.get('status').textContent,/aleatória/);
   elements.get('search').value='Artist C';elements.get('search').oninput();
   assert.equal(elements.get('choose').items.length,1,'Manual song search should filter the catalog');
   elements.get('send0').onclick();
   assert.match(elements.get('status').textContent,/Track C carregada/);
   assert.equal(elements.get('mode').value,'manual');
-  assert.match(elements.get('status').textContent,/aleatória/);
-  console.log('DJ Mix: syntax, DOM, catalog, dual deck, preload, mix, search and manual controls OK.');
+  console.log('DJ Mix: syntax, DOM, catalog, dual deck, preload, mix, live waveforms, search and manual controls OK.');
 }
 main().catch(err=>{console.error(err);process.exitCode=1;});
