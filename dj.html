@@ -297,7 +297,7 @@ setInterval(()=>{if(!channels.length)return;channels.forEach(c=>{if(c.loop&&!c.e
 setInterval(()=>{
  if(!playing||!channels.length)return;
  const el=channels[active].el,d=el.duration;
- if(Number.isFinite(d)&&d>0){$('progress').style.width=Math.min(100,el.currentTime/d*100)+'%';if(!manual()&&!mixing&&d-el.currentTime<=Number($('fade').value)+.5)next();}
+ if(Number.isFinite(d)&&d>0){$('progress').style.width=Math.min(100,el.currentTime/d*100)+'%';if(!manual()&&!mixing&&d-el.currentTime<=Number($('fade').value)+1.5)next();}
 },400);
 fetch('./catalogo.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();}).then(data=>{
  tracks=(data.tracks||[]).filter(t=>!t.isJingle&&(t.src||t.lowSrc));
