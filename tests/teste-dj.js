@@ -14,9 +14,26 @@ const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(x => x[1]));
 for (const [,id] of script.matchAll(/\$\('([a-z][a-z0-9-]*)'\)/g)) {
   assert.ok(ids.has(id), 'Missing DOM control: ' + id);
 }
-for (const id of ['mode','smart','waves','wave0','wave1','vu0','vu1','level0','level1','beat0','beat1','play','skip','cross','genre','bpm0','bpm1','upnext','loop0','loop1']) {
+for (const id of ['mode','smart','beatgrid','waves','wave0','wave1','vu0','vu1','level0','level1','beat0','beat1','play','skip','cross','genre','bpm0','bpm1','upnext','loop0','loop1']) {
   assert.ok(ids.has(id), 'Required DJ control missing: ' + id);
 }
+
+// Test beat-aware entry math separately from browser audio timing.
+const begin=script.indexOf('function nextBeatDelayMs('),end=script.indexOf('\\nasync function next(){',begin);
+assert.ok(begin>=0&&end>begin,'Beat-alignment function must exist');
+const beatFn=script.slice(begin,end);
+const beatOptions={beatgrid:{checked:true},smart:{checked:true},fade:{value:'10'}};
+const beatContext=vm.createContext({$:id=>beatOptions[id]});
+vm.runInContext(beatFn,beatContext);
+const beatChannel={bpm:120,beats:[1,2,3,4,5,6,7,8],lastBeat:8,el:{currentTime:8.2,duration:60,playbackRate:1}};
+assert.ok(Math.abs(vm.runInContext('nextBeatDelayMs',beatContext)(beatChannel)-300)<1,
+  'With 120 BPM, onset at 8 s and current time 8.2 s should wait about 300 ms');
+beatChannel.el.currentTime=49.2;
+assert.equal(vm.runInContext('nextBeatDelayMs',beatContext)(beatChannel),0,'stale beat phase must fall back');
+beatChannel.el.currentTime=8.2;beatChannel.beats.length=0;
+assert.equal(vm.runInContext('nextBeatDelayMs',beatContext)(beatChannel),0,'insufficient beat evidence must fall back');
+beatChannel.beats=[1,2,3,4,5,6,7,8];beatOptions.beatgrid.checked=false;
+assert.equal(vm.runInContext('nextBeatDelayMs',beatContext)(beatChannel),0,'user can disable quantization');
 
 const elements = new Map();
 const drawings = [];
@@ -25,7 +42,7 @@ const frames = [];
 const options = {mode:'auto',genre:'',volume:'75',bass:'0',filter:'18000',cross:'0',fade:'10',rate0:'100',rate1:'100'};
 for (const id of ids) {
   elements.set(id,{
-    id, value:options[id]||'',checked:id==='smart'||id==='waves',textContent:'',style:{},items:[],
+    id, value:options[id]||'',checked:id==='smart'||id==='waves'||id==='beatgrid',textContent:'',style:{},items:[],
     width:384,height:72,getContext:()=>canvasContext,
     classList:{toggle(){}},replaceChildren(){this.items=[];this.value='';},appendChild(o){this.items.push(o);if(!this.value)this.value=o.value;}
   });
@@ -105,6 +122,8 @@ async function main(){
   elements.get('mode').value='manual';
   elements.get('mode').onchange();
   elements.get('cross').oninput({target:{value:'50'}});
+  elements.get('beatgrid').checked=false;elements.get('beatgrid').onchange();
+  assert.match(elements.get('status').textContent,/Entrada imediata/);
   elements.get('smart').checked=false;elements.get('smart').onchange();
   assert.match(elements.get('status').textContent,/aleatória/);
   elements.get('search').value='Artist C';elements.get('search').oninput();
