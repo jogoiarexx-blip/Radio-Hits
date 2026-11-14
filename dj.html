@@ -1,20 +1,105 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0e13"><title>DJ Mix | Radio Hits</title><style>
 :root{color-scheme:dark;font-family:system-ui,Arial,sans-serif;background:#090d16;color:#f7f8ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#24204b,#090d16 55%);min-height:100vh}header,main{max-width:1050px;margin:auto;padding:20px}header{display:flex;justify-content:space-between;align-items:center;gap:15px}a{color:#a6a5ff;text-decoration:none}h1{font-size:clamp(2rem,6vw,4rem);margin:10px 0}h1 span{color:#9a85ff}.muted{color:#a5a9bd}.panel{background:#171b2bcc;border:1px solid #34384f;border-radius:22px;padding:22px;margin:18px 0}.deckgrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.deck{min-width:0;text-align:center}.disc{width:min(170px,70%);aspect-ratio:1;border-radius:50%;margin:18px auto;background:repeating-radial-gradient(circle,#11131c 0 3px,#303246 4px 6px);border:9px solid #25283c;display:grid;place-items:center;box-shadow:0 0 30px #7557d733}.disc:after{content:'';background:#a58aff;width:26%;aspect-ratio:1;border-radius:50%;border:8px solid #24223a}.spinning{animation:spin 3s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}button,select{background:#262b43;color:white;border:1px solid #424861;border-radius:12px;padding:12px 16px;font:inherit}button{cursor:pointer}button.primary{background:#8c6bff;border-color:#8c6bff;color:#fff;font-weight:700}button:disabled{opacity:.5}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.tag{color:#b7a7ff;font-size:.75rem;font-weight:800;letter-spacing:.15em}.track{overflow-wrap:anywhere;min-height:3em}.meter{height:8px;border-radius:10px;background:#2b3047;overflow:hidden;margin:16px 0}.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8a69ff,#35d9dc);transition:width .2s}.notice{font-size:.9rem;color:#aeb5c8}input[type=range]{accent-color:#9a85ff;width:160px}@media(max-width:600px){header,main{padding:14px}.panel{padding:16px}.disc{width:80%}.deckgrid{gap:8px}.track{font-size:.95rem}}
-</style></head><body><header><strong>◉ RADIO HITS <span style="color:#a78bfa">/ DJ MIX</span></strong><a href="./index.html">← Rádio original</a></header><main><div class="tag">AUTOMIX EXPERIMENTAL</div><h1>DJ <span>automático.</span></h1><p class="muted">As músicas da Rádio Hits em uma sessão contínua, com crossfade e efeitos de filtro.</p><section class="panel"><div class="controls"><button class="primary" id="play">▶ Iniciar DJ</button><button id="skip">Próxima mixagem ⏭</button><label>Estilo <select id="genre"><option value="">Todos</option></select></label></div><p id="status" class="notice" role="status">Carregando catálogo...</p><div class="meter"><i id="progress"></i></div><div class="deckgrid"><div class="deck"><span class="tag">DECK A</span><div class="disc" id="disc0"></div><strong id="title0" class="track">Aguardando música</strong><p id="artist0" class="muted"></p></div><div class="deck"><span class="tag">DECK B</span><div class="disc" id="disc1"></div><strong id="title1" class="track">Aguardando música</strong><p id="artist1" class="muted"></p></div></div><div class="controls"><label>Crossfade <select id="fade"><option value="6">6 segundos</option><option value="10" selected>10 segundos</option><option value="16">16 segundos</option></select></label><label>Filtro <input id="filter" type="range" min="800" max="18000" value="18000"></label><label>Volume <input id="volume" type="range" min="0" max="100" value="75"></label></div></section><p class="notice">Esta é uma versão de testes: as transições são mixadas no navegador. Não há detecção precisa de BPM, separação de vocais ou transmissão sincronizada para todos os ouvintes. Mantenha esta página aberta para ouvir o set.</p></main><script>
+</style></head><body><header><strong>◉ RADIO HITS <span style="color:#a78bfa">/ DJ MIX</span></strong><a href="./index.html">← Rádio original</a></header><main><div class="tag">AUTOMIX EXPERIMENTAL</div><h1>DJ <span>automático.</span></h1><p class="muted">As músicas da Rádio Hits em uma sessão contínua, com crossfade e efeitos de filtro.</p><section class="panel"><div class="controls"><label>Modo <select id="mode"><option value="auto">DJ automático</option><option value="manual">DJ manual</option></select></label><button class="primary" id="play">▶ Iniciar DJ</button><button id="skip">Próxima mixagem ⏭</button><label>Estilo <select id="genre"><option value="">Todos</option></select></label></div><p id="status" class="notice" role="status">Carregando catálogo...</p><div class="meter"><i id="progress"></i></div><div class="deckgrid"><div class="deck"><span class="tag">DECK A</span><div class="disc" id="disc0"></div><strong id="title0" class="track">Aguardando música</strong><p id="artist0" class="muted"></p><div class="controls" style="justify-content:center"><button id="load0">Carregar A</button><button id="cue0">▶ A</button></div><label>Velocidade A <input id="rate0" type="range" min="85" max="115" value="100"></label></div><div class="deck"><span class="tag">DECK B</span><div class="disc" id="disc1"></div><strong id="title1" class="track">Aguardando música</strong><p id="artist1" class="muted"></p><div class="controls" style="justify-content:center"><button id="load1">Carregar B</button><button id="cue1">▶ B</button></div><label>Velocidade B <input id="rate1" type="range" min="85" max="115" value="100"></label></div></div><div class="controls" style="margin:18px 0"><label>Crossfader A ↔ B <input id="cross" type="range" min="0" max="100" value="0"></label><button id="sync">Igualar velocidade</button><button id="resetfx">Limpar efeitos</button></div><div class="controls"><label>Crossfade <select id="fade"><option value="6">6 segundos</option><option value="10" selected>10 segundos</option><option value="16">16 segundos</option></select></label><label>Filtro <input id="filter" type="range" min="800" max="18000" value="18000"></label><label>Volume <input id="volume" type="range" min="0" max="100" value="75"></label></div></section><p class="notice">Versão experimental: mixagem e crossfader no navegador, sem detecção precisa de BPM, separação de vocais ou transmissão sincronizada. Mantenha esta página aberta para ouvir o set.</p></main><script>
+
 'use strict';
-(()=>{const $=id=>document.getElementById(id);let tracks=[],pool=[],ctx,master,channels=[],active=0,playing=false,mixing=false,timer=0,lastId='',run=0;
-const setStatus=t=>$('status').textContent=t;
-function makePool(){pool=tracks.filter(t=>!$('genre').value||t.genre===$('genre').value);pool=pool.filter(t=>t.src||t.lowSrc);}
-function pick(){if(!pool.length)return null;const options=pool.filter(t=>t.id!==lastId);const arr=options.length?options:pool;const t=arr[Math.floor(Math.random()*arr.length)];lastId=t.id;return t;}
-function init(){if(ctx)return;ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=.75;master.connect(ctx.destination);channels=[0,1].map(i=>{const el=new Audio();el.preload='auto';const source=ctx.createMediaElementSource(el);const filter=ctx.createBiquadFilter();filter.type='lowpass';filter.frequency.value=18000;const gain=ctx.createGain();gain.gain.value=0;source.connect(filter).connect(gain).connect(master);el.addEventListener('error',()=>{if(playing&&active===i&&!mixing){setStatus('Erro no áudio. Tentando outra faixa...');next();}});return{el,filter,gain,track:null};});}
-function load(i,t){const c=channels[i];c.el.pause();c.el.src=new URL(t.src||t.lowSrc,location.href).href;c.el.load();c.track=t;$('title'+i).textContent=t.title||'Sem título';$('artist'+i).textContent=t.artist||'';}
-function visuals(){channels.forEach((c,i)=>$('disc'+i).classList.toggle('spinning',!c.el.paused));}
-async function start(){if(!pool.length){setStatus('Nenhuma música disponível.');return;}init();await ctx.resume();if(playing)return;const token=++run;const t=pick();load(active,t);channels[active].gain.gain.value=1;try{await channels[active].el.play();if(token!==run)return;playing=true;$('play').textContent='⏸ Pausar DJ';setStatus('DJ automático tocando');visuals();}catch(e){setStatus('Não foi possível reproduzir esta faixa. Verifique os arquivos de áudio.');}}
-function stop(){run++;playing=false;mixing=false;channels.forEach(c=>{c.el.pause();c.gain.gain.cancelScheduledValues(ctx.currentTime);c.gain.gain.value=0;});$('play').textContent='▶ Iniciar DJ';visuals();setStatus('DJ pausado');}
-async function next(){if(!playing||mixing)return;const from=active,to=1-active,t=pick();if(!t)return;mixing=true;load(to,t);const incoming=channels[to],outgoing=channels[from];incoming.gain.gain.value=0;try{await incoming.el.play();}catch(e){mixing=false;setStatus('Falha ao carregar próxima faixa.');return;}const token=run,seconds=Number($('fade').value),now=ctx.currentTime;outgoing.gain.gain.cancelScheduledValues(now);incoming.gain.gain.cancelScheduledValues(now);outgoing.gain.gain.setValueAtTime(outgoing.gain.gain.value,now);incoming.gain.gain.setValueAtTime(0,now);outgoing.gain.gain.linearRampToValueAtTime(0,now+seconds);incoming.gain.gain.linearRampToValueAtTime(1,now+seconds);setStatus('Mixando: '+(outgoing.track?.title||'')+' → '+t.title);visuals();setTimeout(()=>{if(token!==run)return;outgoing.el.pause();outgoing.el.removeAttribute('src');outgoing.el.load();active=to;mixing=false;visuals();setStatus('DJ automático tocando');},seconds*1000+100);}
-$('play').onclick=()=>playing?stop():start();$('skip').onclick=()=>next();$('genre').onchange=()=>{makePool();if(playing){stop();start();}};$('volume').oninput=e=>{if(master)master.gain.value=Number(e.target.value)/100;};$('filter').oninput=e=>channels.forEach(c=>c.filter.frequency.setTargetAtTime(Number(e.target.value),ctx.currentTime,.04));
-setInterval(()=>{if(!playing||mixing)return;const el=channels[active].el,d=el.duration;if(Number.isFinite(d)&&d>0){$('progress').style.width=Math.min(100,el.currentTime/d*100)+'%';if(d-el.currentTime<=Number($('fade').value)+.5)next();}else if(el.ended)next();},400);
-fetch('./catalogo.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(data=>{tracks=(data.tracks||[]).filter(t=>t.src||t.lowSrc);const genres=[...new Set(tracks.map(t=>t.genre).filter(Boolean))].sort();genres.forEach(g=>{const opt=document.createElement('option');opt.value=g;opt.textContent=g;$('genre').appendChild(opt);});makePool();setStatus(tracks.length+' músicas encontradas. Toque em Iniciar DJ.');}).catch(e=>setStatus('Falha ao carregar catálogo: '+e.message));window.addEventListener('pagehide',()=>{if(playing)stop();});
+(()=>{
+const $=id=>document.getElementById(id);
+let tracks=[],pool=[],ctx,master,channels=[],active=0,playing=false,mixing=false,lastId='',generation=0,transitionTimer=null,failures=0;
+const status=t=>$('status').textContent=t;
+const manual=()=>$('mode').value==='manual';
+function makePool(){pool=tracks.filter(t=>(!$('genre').value||t.genre===$('genre').value)&&(t.src||t.lowSrc));}
+function pick(){const options=pool.filter(t=>t.id!==lastId);const a=options.length?options:pool;if(!a.length)return null;const t=a[Math.floor(Math.random()*a.length)];lastId=t.id;return t;}
+function init(){
+ if(ctx)return;
+ ctx=new (window.AudioContext||window.webkitAudioContext)();
+ master=ctx.createGain();master.gain.value=Number($('volume').value)/100;master.connect(ctx.destination);
+ channels=[0,1].map(i=>{
+  const el=new Audio();el.preload='auto';const src=ctx.createMediaElementSource(el),filter=ctx.createBiquadFilter(),gain=ctx.createGain();
+  filter.type='lowpass';filter.frequency.value=Number($('filter').value);gain.gain.value=0;src.connect(filter).connect(gain).connect(master);
+  el.addEventListener('error',()=>{if(!el.src||!playing)return;status('Erro ao carregar faixa no deck '+(i?'B':'A'));if(!manual()&&active===i&&!mixing){failures++;if(failures<4){load(i,pick());channels[i].el.play().catch(()=>{});}else stop();}});
+  el.addEventListener('ended',()=>{if(manual())return;if(i===active&&playing&&!mixing)next();});
+  return{el,filter,gain,track:null};
+ });
+}
+function cancelMix(){
+ generation++;clearTimeout(transitionTimer);transitionTimer=null;mixing=false;
+ if(ctx)channels.forEach(c=>c.gain.gain.cancelScheduledValues(ctx.currentTime));
+}
+function load(i,t){
+ if(!t)return false;const c=channels[i];c.el.pause();c.el.src=new URL(t.src||t.lowSrc,location.href).href;c.el.load();c.el.playbackRate=Number($('rate'+i).value)/100;c.track=t;
+ $('title'+i).textContent=t.title||'Sem título';$('artist'+i).textContent=t.artist||'';return true;
+}
+function visuals(){if(!channels.length)return;channels.forEach((c,i)=>{$('disc'+i).classList.toggle('spinning',!c.el.paused);$('cue'+i).textContent=c.el.paused?'▶ '+(i?'B':'A'):'⏸ '+(i?'B':'A');});}
+function setCross(v){
+ if(!ctx)return;
+ const x=Math.max(0,Math.min(1,Number(v)/100));
+ channels[0].gain.gain.setTargetAtTime(Math.cos(x*Math.PI/2),ctx.currentTime,.025);
+ channels[1].gain.gain.setTargetAtTime(Math.sin(x*Math.PI/2),ctx.currentTime,.025);
+}
+async function start(){
+ if(!pool.length){status('Nenhuma faixa disponível neste estilo.');return;}
+ init();await ctx.resume();if(playing)return;
+ cancelMix();const t=channels[active].track||pick();if(!channels[active].track)load(active,t);
+ const token=generation;
+ try{await channels[active].el.play();if(token!==generation){channels[active].el.pause();return;}playing=true;failures=0;
+  if(manual()){setCross($('cross').value);status('Mesa manual pronta');}
+  else{channels[active].gain.gain.value=1;channels[1-active].gain.gain.value=0;$('cross').value=active?100:0;status('DJ automático tocando');}
+  $('play').textContent='⏸ Pausar DJ';visuals();
+ }catch(e){status('Não foi possível tocar esta faixa. Confira o arquivo no catálogo.');}
+}
+function stop(){
+ cancelMix();playing=false;if(channels.length)channels.forEach(c=>{c.el.pause();c.gain.gain.value=0;});
+ $('play').textContent='▶ Iniciar DJ';status('DJ pausado');visuals();
+}
+async function next(){
+ if(!playing||mixing)return;
+ if(manual()){status('No modo manual, use Carregar A/B e o crossfader.');return;}
+ const from=active,to=1-active,t=pick();if(!t)return;
+ mixing=true;load(to,t);const a=channels[from],b=channels[to],token=++generation;
+ b.gain.gain.value=0;
+ try{await b.el.play();}catch(e){mixing=false;status('Falha na próxima faixa. Tente novamente.');return;}
+ if(token!==generation){b.el.pause();return;}
+ const now=ctx.currentTime,secs=Number($('fade').value);
+ a.gain.gain.cancelScheduledValues(now);b.gain.gain.cancelScheduledValues(now);
+ a.gain.gain.setValueAtTime(a.gain.gain.value,now);b.gain.gain.setValueAtTime(0,now);
+ a.gain.gain.linearRampToValueAtTime(0,now+secs);b.gain.gain.linearRampToValueAtTime(1,now+secs);
+ status('Mixando: '+(a.track?.title||'')+' → '+t.title);visuals();
+ transitionTimer=setTimeout(()=>{
+  if(token!==generation)return;
+  a.el.pause();a.el.removeAttribute('src');a.el.load();active=to;mixing=false;failures=0;$('cross').value=active?100:0;
+  status('DJ automático tocando');visuals();
+ },secs*1000+100);
+}
+$('play').onclick=()=>playing?stop():start();
+$('skip').onclick=next;
+$('mode').onchange=()=>{
+ if(ctx){cancelMix();if(manual()){setCross($('cross').value);}else{channels[1-active].el.pause();channels[active].gain.gain.value=1;channels[1-active].gain.gain.value=0;$('cross').value=active?100:0;}}
+ status(manual()?'Modo manual: controle os dois decks.':'Modo automático: transições programadas.');visuals();
+};
+$('genre').onchange=()=>{makePool();if(playing){stop();channels.forEach(c=>c.track=null);start();}};
+$('volume').oninput=e=>{if(master)master.gain.value=Number(e.target.value)/100;};
+$('filter').oninput=e=>{if(ctx)channels.forEach(c=>c.filter.frequency.setTargetAtTime(Number(e.target.value),ctx.currentTime,.04));};
+$('cross').oninput=e=>{if(!manual()){$('mode').value='manual';cancelMix();status('Controle manual ativado');}setCross(e.target.value);};
+[0,1].forEach(i=>{
+ $('rate'+i).oninput=e=>{if(channels.length)channels[i].el.playbackRate=Number(e.target.value)/100;};
+ $('load'+i).onclick=()=>{if(!manual()){$('mode').value='manual';$('mode').onchange();}init();const t=pick();if(t){load(i,t);status('Carregado no deck '+(i?'B':'A')+': '+t.title);visuals();}};
+ $('cue'+i).onclick=async()=>{if(!manual()){$('mode').value='manual';$('mode').onchange();}init();await ctx.resume();const c=channels[i];if(!c.track)load(i,pick());if(!c.track)return;
+  try{if(c.el.paused){await c.el.play();playing=true;$('play').textContent='⏸ Pausar DJ';}else c.el.pause();setCross($('cross').value);visuals();}catch(e){status('Não foi possível tocar o deck '+(i?'B':'A'));}};
+});
+$('sync').onclick=()=>{if(!channels.length)return;const src=channels[active].el.playbackRate;channels[1-active].el.playbackRate=src;$('rate'+(1-active)).value=Math.round(src*100);status('Velocidades igualadas (sem análise de BPM)');};
+$('resetfx').onclick=()=>{$('filter').value=18000;[0,1].forEach(i=>{$('rate'+i).value=100;if(channels.length){channels[i].filter.frequency.value=18000;channels[i].el.playbackRate=1;}});status('Efeitos redefinidos');};
+setInterval(()=>{
+ if(!playing||!channels.length)return;
+ const el=channels[active].el,d=el.duration;
+ if(Number.isFinite(d)&&d>0){$('progress').style.width=Math.min(100,el.currentTime/d*100)+'%';if(!manual()&&!mixing&&d-el.currentTime<=Number($('fade').value)+.5)next();}
+},400);
+fetch('./catalogo.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();}).then(data=>{
+ tracks=(data.tracks||[]).filter(t=>t.src||t.lowSrc);
+ [...new Set(tracks.map(t=>t.genre).filter(Boolean))].sort().forEach(g=>{const o=document.createElement('option');o.value=g;o.textContent=g;$('genre').appendChild(o);});
+ makePool();status(tracks.length+' músicas encontradas. Escolha o modo e inicie o DJ.');
+}).catch(e=>status('Falha ao carregar catálogo: '+e.message));
+window.addEventListener('pagehide',()=>{if(playing)stop();});
 })();
 </script></body></html>
