@@ -51,8 +51,8 @@ function transitionPlan(from,to,sourceBpm,targetBpm){
 function plannedTransition(){
  const outgoing=channels[active]?.track,incoming=queued;
  const sourceBpm=channels[active]?.bpm||bpmKnowledge[outgoing?.id];
- const incomingBpm=channels[1-active]?.track?.id===incoming?.id
-  ?channels[1-active].bpm||bpmKnowledge[incoming?.id]
+ const incomingBpm=incoming&&channels[1-active]?.track?.id===incoming.id
+  ?channels[1-active].bpm||bpmKnowledge[incoming.id]
   :bpmKnowledge[incoming?.id];
  return transitionPlan(outgoing,incoming,sourceBpm,incomingBpm);
 }
