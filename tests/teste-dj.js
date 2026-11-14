@@ -23,7 +23,7 @@ const options = {mode:'auto',genre:'',volume:'75',bass:'0',filter:'18000',cross:
 for (const id of ids) {
   elements.set(id,{
     id, value:options[id]||'',checked:id==='smart',textContent:'',style:{},items:[],
-    classList:{toggle(){}},appendChild(o){this.items.push(o);}
+    classList:{toggle(){}},replaceChildren(){this.items=[];this.value='';},appendChild(o){this.items.push(o);if(!this.value)this.value=o.value;}
   });
 }
 const sounds=[];
@@ -80,6 +80,7 @@ async function main(){
   for(let i=0;i<6;i++)await Promise.resolve();
   assert.match(elements.get('status').textContent,/3 músicas/);
   assert.equal(elements.get('genre').items.length,2);
+  assert.equal(elements.get('choose').items.length,3,'Library should display the three test songs');
   await elements.get('play').onclick();
   assert.equal(sounds.length,2,'Two audio decks should be created');
   assert.ok(sounds.some(s=>!s.paused),'A deck should play on start');
@@ -93,8 +94,12 @@ async function main(){
   elements.get('mode').onchange();
   elements.get('cross').oninput({target:{value:'50'}});
   elements.get('smart').checked=false;elements.get('smart').onchange();
+  elements.get('search').value='Artist C';elements.get('search').oninput();
+  assert.equal(elements.get('choose').items.length,1,'Manual song search should filter the catalog');
+  elements.get('send0').onclick();
+  assert.match(elements.get('status').textContent,/Track C carregada/);
   assert.equal(elements.get('mode').value,'manual');
   assert.match(elements.get('status').textContent,/aleatória/);
-  console.log('DJ Mix: syntax, DOM, catalog, dual deck, preload, mix and manual controls OK.');
+  console.log('DJ Mix: syntax, DOM, catalog, dual deck, preload, mix, search and manual controls OK.');
 }
 main().catch(err=>{console.error(err);process.exitCode=1;});
