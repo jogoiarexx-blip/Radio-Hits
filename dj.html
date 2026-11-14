@@ -224,12 +224,7 @@ function detectBpm(){
 }
 let lastDrawTime=0;
 function drawMeters(timestamp){
- try{
- const previous=localStorage.getItem('radiohits-dj-style-v1');
- if(previous&&(MIX_STYLES[previous]||previous==='adaptativa'))setStyle(previous);
- else setStyle('adaptativa');
-}catch(e){setStyle('adaptativa');}
-if(typeof requestAnimationFrame==='function')requestAnimationFrame(drawMeters);
+ if(typeof requestAnimationFrame==='function')requestAnimationFrame(drawMeters);
  if(!$('waves').checked||!ctx||!channels.length||document.hidden||timestamp-lastDrawTime<75)return;
  lastDrawTime=timestamp;
  channels.forEach((c,i)=>{
@@ -423,6 +418,11 @@ $('send0').onclick=()=>chooseDeck(0);
 $('send1').onclick=()=>chooseDeck(1);
 $('sync').onclick=()=>{if(!channels.length)return;const a=channels[active],b=channels[1-active];if(!a.bpm||!b.bpm){status('Aguarde a estimativa de BPM nos dois decks antes de sincronizar.');return;}const ratio=a.bpm*a.el.playbackRate/b.bpm;if(ratio<.85||ratio>1.15){status('Ritmos muito diferentes para sincronização segura (limite de 15%).');return;}b.el.playbackRate=ratio;$('rate'+(1-active)).value=Math.round(ratio*100);status('BPM aproximado: deck '+(active?'A':'B')+' ajustado para '+Math.round(b.bpm*ratio));};
 $('resetfx').onclick=()=>{$('filter').value=18000;$('bass').value=0;[0,1].forEach(i=>{$('rate'+i).value=100;if(channels.length){channels[i].filter.frequency.value=18000;channels[i].bass.gain.value=0;channels[i].el.playbackRate=1;}});status('Efeitos redefinidos');};
+try{
+ const previous=localStorage.getItem('radiohits-dj-style-v1');
+ if(previous&&(MIX_STYLES[previous]||previous==='adaptativa'))setStyle(previous);
+ else setStyle('adaptativa');
+}catch(e){setStyle('adaptativa');}
 if(typeof requestAnimationFrame==='function')requestAnimationFrame(drawMeters);
 setInterval(detectBpm,120);
 setInterval(()=>{if(!channels.length)return;channels.forEach(c=>{if(c.loop&&!c.el.paused&&c.el.currentTime>=c.loop.end){try{c.el.currentTime=c.loop.start;}catch(e){c.loop=null;}}});},50);
