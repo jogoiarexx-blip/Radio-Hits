@@ -14,7 +14,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.8,
-      "loudnessLufs": -9.6
+      "loudnessLufs": -9.6,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-10-000-maniacs-because-the-night-official-music-video-new",
@@ -28,7 +30,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -19.1
+      "loudnessLufs": -19.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-alphaville-big-in-japan-official-music-video-new",
@@ -42,7 +46,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -20.3
+      "loudnessLufs": -20.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-baltimora-tarzan-boy-new",
@@ -56,7 +62,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.4,
-      "loudnessLufs": -12
+      "loudnessLufs": -12,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-celine-dion-because-you-loved-me-new",
@@ -70,7 +78,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -16.9
+      "loudnessLufs": -16.9,
+      "djIntroSec": 0.86,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-daryl-hall-john-oates-out-of-touch-official-hd-video-new",
@@ -84,7 +94,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -1.0,
-      "loudnessLufs": -13.4
+      "loudnessLufs": -13.4,
+      "djIntroSec": 2.82,
+      "djEnergyCueSec": 4.85
     },
     {
       "id": "as-melhores-80-e-90-desireless-voyage-voyage-official-hd-video-new",
@@ -98,7 +110,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.6,
-      "loudnessLufs": -8.8
+      "loudnessLufs": -8.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-f-r-david-words-don-t-come-easy-high-quality-official-music-video-new",
@@ -112,7 +126,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.7,
-      "loudnessLufs": -9.7
+      "loudnessLufs": -9.7,
+      "djIntroSec": 1.13,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-gonna-make-you-sweat-everybody-dance-now-official-hd-video-new",
@@ -126,7 +142,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -15.8
+      "loudnessLufs": -15.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-journey-don-t-stop-believin-from-live-in-houston-1981-the-escape-tour-new",
@@ -140,7 +158,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.1,
-      "loudnessLufs": -9.3
+      "loudnessLufs": -9.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-la-bouche-sweet-dreams-official-video-vod-new",
@@ -154,7 +174,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -14.4
+      "loudnessLufs": -14.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-roxette-it-must-have-been-love-official-music-video-new",
@@ -168,7 +190,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -24.8
+      "loudnessLufs": -24.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-scorpions-wind-of-change-official-music-video-new",
@@ -182,7 +206,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -3.6,
-      "loudnessLufs": -10.8
+      "loudnessLufs": -10.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-tina-turner-we-don-t-need-another-hero-thunderdome-music-video-new",
@@ -196,7 +222,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -14.4
+      "loudnessLufs": -14.4,
+      "djIntroSec": 6.47,
+      "djEnergyCueSec": 5.85
     },
     {
       "id": "malhacao-internacional-2003-01-s-m-s-feat-rehb-just-a-bit-of-chaos",
@@ -210,7 +238,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -2.9,
-      "loudnessLufs": -11.5
+      "loudnessLufs": -11.5,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "malhacao-internacional-2003-02-avril-lavigne-sk8er-boi",
@@ -224,7 +254,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -5.4,
-      "loudnessLufs": -9
+      "loudnessLufs": -9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "malhacao-internacional-2003-03-foo-fighters-times-like-these",
@@ -238,7 +270,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -5.5,
-      "loudnessLufs": -8.9
+      "loudnessLufs": -8.9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 5.35
     },
     {
       "id": "malhacao-internacional-2003-04-eve-feat-drag-on-got-what-you-need",
@@ -252,7 +286,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -2.8,
-      "loudnessLufs": -11.6
+      "loudnessLufs": -11.6,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 18.35
     },
     {
       "id": "malhacao-internacional-2003-05-nelly-feat-kelly-rowland-dilemma",
@@ -266,7 +302,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -2.2,
-      "loudnessLufs": -12.2
+      "loudnessLufs": -12.2,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 22.35
     },
     {
       "id": "malhacao-internacional-2003-06-ja-rule-feat-ashanti-mesmerize",
@@ -280,7 +318,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -1.3,
-      "loudnessLufs": -13.1
+      "loudnessLufs": -13.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "malhacao-internacional-2003-07-beyonce-feat-jay-z-crazy-in-love",
@@ -294,7 +334,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -2.0,
-      "loudnessLufs": -12.4
+      "loudnessLufs": -12.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "malhacao-internacional-2003-08-t-a-t-u-all-the-things-she-said",
@@ -308,7 +350,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -3.7,
-      "loudnessLufs": -10.7
+      "loudnessLufs": -10.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 11.35
     },
     {
       "id": "malhacao-internacional-2003-09-chevelle-send-the-pain-below",
@@ -322,7 +366,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -2.4,
-      "loudnessLufs": -12
+      "loudnessLufs": -12,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "malhacao-internacional-2003-10-damian-marley-and-you-be-loved-and-be-loved",
@@ -336,7 +382,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -2.7,
-      "loudnessLufs": -11.7
+      "loudnessLufs": -11.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "malhacao-internacional-2003-11-jennifer-lopez-i-m-glad",
@@ -350,7 +398,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -1.1,
-      "loudnessLufs": -13.3
+      "loudnessLufs": -13.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "malhacao-internacional-2003-12-thalia-feat-fat-joe-i-want-you",
@@ -364,7 +414,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -2.3,
-      "loudnessLufs": -12.1
+      "loudnessLufs": -12.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 11.35
     },
     {
       "id": "malhacao-internacional-2003-13-stacie-orrico-i-promise-i-will",
@@ -378,7 +430,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -3.6,
-      "loudnessLufs": -10.8
+      "loudnessLufs": -10.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "malhacao-internacional-2003-14-vanessa-carlton-pretty-baby",
@@ -392,7 +446,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -3.6,
-      "loudnessLufs": -10.8
+      "loudnessLufs": -10.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "malhacao-internacional-2003-15-paul-j-falling",
@@ -406,7 +462,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -3.6,
-      "loudnessLufs": -10.8
+      "loudnessLufs": -10.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "malhacao-internacional-2003-16-arena-brothers-sisters",
@@ -420,7 +478,9 @@
       "year": 2003,
       "downloadAllowed": false,
       "gainDb": -3.7,
-      "loudnessLufs": -10.7
+      "loudnessLufs": -10.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-ac-dc-thunderstruck-official-video",
@@ -434,7 +494,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.0,
-      "loudnessLufs": -8.4
+      "loudnessLufs": -8.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-aerosmith-i-don-t-want-to-miss-a-thing-official-hd-video",
@@ -448,7 +510,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.0,
-      "loudnessLufs": -9.4
+      "loudnessLufs": -9.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-avril-lavigne-complicated-official-video",
@@ -462,7 +526,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.8,
-      "loudnessLufs": -9.6
+      "loudnessLufs": -9.6,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-bon-jovi-it-s-my-life-official-music-video",
@@ -476,7 +542,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -7.4,
-      "loudnessLufs": -7
+      "loudnessLufs": -7,
+      "djIntroSec": 0.94,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-evanescence-my-immortal-official-hd-music-video",
@@ -490,7 +558,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -14.4
+      "loudnessLufs": -14.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-faint-official-music-video-4k-upgrade-linkin-park",
@@ -504,7 +574,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.2,
-      "loudnessLufs": -8.2
+      "loudnessLufs": -8.2,
+      "djIntroSec": 1.14,
+      "djEnergyCueSec": 15.85
     },
     {
       "id": "rock-red-hot-chili-peppers-californication-official-music-video-hd-upgrade",
@@ -518,7 +590,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -7.3,
-      "loudnessLufs": -7.1
+      "loudnessLufs": -7.1,
+      "djIntroSec": 2.86,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-the-outfield-your-love-official-hd-video",
@@ -532,7 +606,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -14.4
+      "loudnessLufs": -14.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-the-police-every-breath-you-take-official-music-video",
@@ -546,7 +622,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.3,
-      "loudnessLufs": -12.1
+      "loudnessLufs": -12.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-toto-africa-official-hd-video",
@@ -560,7 +638,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -3.8,
-      "loudnessLufs": -10.6
+      "loudnessLufs": -10.6,
+      "djIntroSec": 3.54,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-toto-hold-the-line-official-video",
@@ -574,7 +654,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -15.7
+      "loudnessLufs": -15.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-akon-smack-that-feat-eminem",
@@ -588,7 +670,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.0,
-      "loudnessLufs": -9.4
+      "loudnessLufs": -9.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-alicia-keys-no-one-official-music-video",
@@ -602,7 +686,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -3.1,
-      "loudnessLufs": -11.3
+      "loudnessLufs": -11.3,
+      "djIntroSec": 2.58,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-cry-me-a-river",
@@ -616,7 +702,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.3,
-      "loudnessLufs": -8.1
+      "loudnessLufs": -8.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-don-t-matter",
@@ -630,7 +718,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.1,
-      "loudnessLufs": -10.3
+      "loudnessLufs": -10.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-flo-rida-low-feat-t-pain-official-video",
@@ -644,7 +734,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -0.7,
-      "loudnessLufs": -13.7
+      "loudnessLufs": -13.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 15.85
     },
     {
       "id": "hip-hop-i-wanna-love-you",
@@ -658,7 +750,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.4,
-      "loudnessLufs": -10
+      "loudnessLufs": -10,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-in-da-club-dtriwq8j9jw",
@@ -672,7 +766,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.1,
-      "loudnessLufs": -8.3
+      "loudnessLufs": -8.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-just-a-lil-bit",
@@ -686,7 +782,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.3,
-      "loudnessLufs": -9.1
+      "loudnessLufs": -9.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-many-men-wish-death",
@@ -700,7 +798,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -7.1,
-      "loudnessLufs": -7.3
+      "loudnessLufs": -7.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 10.35
     },
     {
       "id": "hip-hop-miss-independent",
@@ -714,7 +814,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.4,
-      "loudnessLufs": -8
+      "loudnessLufs": -8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-nelly-dilemma-feat-kelly-rowland",
@@ -728,7 +830,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.2,
-      "loudnessLufs": -10.2
+      "loudnessLufs": -10.2,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 22.35
     },
     {
       "id": "hip-hop-ridin-f-tusbuxgme",
@@ -742,7 +846,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.8,
-      "loudnessLufs": -9.6
+      "loudnessLufs": -9.6,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-say-goodbye-txfbe1qx924",
@@ -756,7 +862,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.7,
-      "loudnessLufs": -9.7
+      "loudnessLufs": -9.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-the-real-slim-shady",
@@ -770,7 +878,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.3,
-      "loudnessLufs": -9.1
+      "loudnessLufs": -9.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "hip-hop-usher-love-in-this-club-feat-young-jeezy",
@@ -784,7 +894,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -7.1,
-      "loudnessLufs": -7.3
+      "loudnessLufs": -7.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 5.85
     },
     {
       "id": "hip-hop-what-goes-around-comes-around-interlude-bxbitm7vtcs",
@@ -798,7 +910,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.5,
-      "loudnessLufs": -8.9
+      "loudnessLufs": -8.9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 6.35
     },
     {
       "id": "hip-hop-what-s-luv-feat-ashanti",
@@ -812,7 +926,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.8,
-      "loudnessLufs": -9.6
+      "loudnessLufs": -9.6,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-eros-ramazzotti-e-tina-turner-cosas-de-la-vida-can-t-stop-thinking-of-you",
@@ -826,7 +942,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -15.1
+      "loudnessLufs": -15.1,
+      "djIntroSec": 0.98,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-hanson-mmmbop-official-music-video",
@@ -840,7 +958,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -1.3,
-      "loudnessLufs": -13.1
+      "loudnessLufs": -13.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-inxs-by-my-side",
@@ -854,7 +974,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -1.7,
-      "loudnessLufs": -12.7
+      "loudnessLufs": -12.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "pop-jason-mraz-i-m-yours-official-video-4k-remaster-new",
@@ -868,7 +990,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -1.6,
-      "loudnessLufs": -12.8
+      "loudnessLufs": -12.8,
+      "djIntroSec": 1.05,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-joan-osborne-one-of-us-official-music-video",
@@ -882,7 +1006,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -3.9,
-      "loudnessLufs": -10.5
+      "loudnessLufs": -10.5,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "reggae-magic-rude-official-video-new",
@@ -896,7 +1022,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.3,
-      "loudnessLufs": -9.1
+      "loudnessLufs": -9.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-madonna-papa-don-t-preach-official-video-hd",
@@ -910,7 +1038,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -14.7
+      "loudnessLufs": -14.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "dance-mr-president-coco-jamboo-1996-official-video-new",
@@ -924,7 +1054,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.7,
-      "loudnessLufs": -11.7
+      "loudnessLufs": -11.7,
+      "djIntroSec": 1.64,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-natalie-imbruglia-torn-official-video-new",
@@ -938,7 +1070,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -0.1,
-      "loudnessLufs": -14.3
+      "loudnessLufs": -14.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-new-order-bizarre-love-triangle-official-music-video-hd-upgrade-new",
@@ -952,7 +1086,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.9,
-      "loudnessLufs": -11.5
+      "loudnessLufs": -11.5,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "pop-new-west-those-eyes-lyrics-new",
@@ -966,7 +1102,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.3,
-      "loudnessLufs": -9.1
+      "loudnessLufs": -9.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-pet-shop-boys-it-s-a-sin-official-video-hd-remastered-new",
@@ -980,7 +1118,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.2,
-      "loudnessLufs": -9.2
+      "loudnessLufs": -9.2,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-red-hot-chili-peppers-under-the-bridge-official-music-video-new",
@@ -994,7 +1134,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -19.1
+      "loudnessLufs": -19.1,
+      "djIntroSec": 0.93,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-rick-astley-never-gonna-give-you-up-official-video-4k-remaster",
@@ -1008,7 +1150,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.9,
-      "loudnessLufs": -11.5
+      "loudnessLufs": -11.5,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "romanticas-run-to-me-new",
@@ -1022,7 +1166,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -16
+      "loudnessLufs": -16,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-sandra-maria-magdalena-official-video-1985-new",
@@ -1036,7 +1182,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.6,
-      "loudnessLufs": -11.8
+      "loudnessLufs": -11.8,
+      "djIntroSec": 0.8,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-starship-sara-official-music-video-new",
@@ -1050,7 +1198,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -1.3,
-      "loudnessLufs": -13.1
+      "loudnessLufs": -13.1,
+      "djIntroSec": 2.3,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-steve-winwood-valerie-official-video-new",
@@ -1064,7 +1214,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -21
+      "loudnessLufs": -21,
+      "djIntroSec": 3.2,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "dance-stevie-b-spring-love-official-music-video-new",
@@ -1078,7 +1230,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -18.6
+      "loudnessLufs": -18.6,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-tears-for-fears-everybody-wants-to-rule-the-world-official-music-video",
@@ -1092,7 +1246,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.1,
-      "loudnessLufs": -9.3
+      "loudnessLufs": -9.3,
+      "djIntroSec": 3.49,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-toni-braxton-un-break-my-heart-official-hd-video",
@@ -1106,7 +1262,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -14.9
+      "loudnessLufs": -14.9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "dance-vengaboys-boom-boom-boom-boom-new",
@@ -1120,7 +1278,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.1,
-      "loudnessLufs": -8.3
+      "loudnessLufs": -8.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 6.35
     },
     {
       "id": "dance-vengaboys-shalala-lala-new",
@@ -1134,7 +1294,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.2,
-      "loudnessLufs": -8.2
+      "loudnessLufs": -8.2,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-whitesnake-is-this-love-official-music-video-new",
@@ -1148,7 +1310,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -21
+      "loudnessLufs": -21,
+      "djIntroSec": 2.72,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "mpb-anavitoria-trevo-vevo-presents-new",
@@ -1162,7 +1326,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -3.6,
-      "loudnessLufs": -10.8
+      "loudnessLufs": -10.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-crowded-house-don-t-dream-it-s-over-official-music-video-new",
@@ -1176,7 +1342,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.8,
-      "loudnessLufs": -11.6
+      "loudnessLufs": -11.6,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-laura-branigan-self-control-official-music-video-new",
@@ -1190,7 +1358,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -17.1
+      "loudnessLufs": -17.1,
+      "djIntroSec": 1.21,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "country-luke-combs-forever-after-all-official-video-new",
@@ -1204,7 +1374,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.6,
-      "loudnessLufs": -9.8
+      "loudnessLufs": -9.8,
+      "djIntroSec": 0.83,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-a-ha-take-on-me-official-video-4k-new",
@@ -1218,7 +1390,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -3.7,
-      "loudnessLufs": -10.7
+      "loudnessLufs": -10.7,
+      "djIntroSec": 2.96,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "classicos-elvis-presley-can-t-help-falling-in-love-official-audio-new",
@@ -1232,7 +1406,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -1.1,
-      "loudnessLufs": -13.3
+      "loudnessLufs": -13.3,
+      "djIntroSec": 0.76,
+      "djEnergyCueSec": 8.35
     },
     {
       "id": "classicos-elvis-presley-suspicious-minds-official-music-video-new",
@@ -1246,7 +1422,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -1.5,
-      "loudnessLufs": -12.9
+      "loudnessLufs": -12.9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-flashdance-what-a-feeling-irene-cara-new",
@@ -1260,7 +1438,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.1,
-      "loudnessLufs": -12.3
+      "loudnessLufs": -12.3,
+      "djIntroSec": 2.34,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "romanticas-glory-of-love-new",
@@ -1274,7 +1454,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -3.7,
-      "loudnessLufs": -10.7
+      "loudnessLufs": -10.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "dance-ice-mc-think-about-the-way-official-video-new",
@@ -1288,7 +1470,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -8.0,
-      "loudnessLufs": -6.4
+      "loudnessLufs": -6.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "country-shania-twain-youre-still-the-one-official-music-video-new",
@@ -1302,7 +1486,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -0.1,
-      "loudnessLufs": -14.3
+      "loudnessLufs": -14.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-europe-the-final-countdown-official-video",
@@ -1316,7 +1502,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -14.4
+      "loudnessLufs": -14.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-foreigner-i-want-to-know-what-love-is-official-music-video",
@@ -1330,7 +1518,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -18.9
+      "loudnessLufs": -18.9,
+      "djIntroSec": 1.41,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-goo-goo-dolls-iris-official-music-video-4k-remaster",
@@ -1344,7 +1534,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.5,
-      "loudnessLufs": -11.9
+      "loudnessLufs": -11.9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-metallica-nothing-else-matters-official-music-video",
@@ -1358,7 +1550,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -14.7
+      "loudnessLufs": -14.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-nirvana-smells-like-teen-spirit-official-music-video",
@@ -1372,7 +1566,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.8,
-      "loudnessLufs": -7.6
+      "loudnessLufs": -7.6,
+      "djIntroSec": 0.94,
+      "djEnergyCueSec": 6.85
     },
     {
       "id": "romanticas-richard-marx-right-here-waiting-official-music-video",
@@ -1386,7 +1582,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -3.6,
-      "loudnessLufs": -10.8
+      "loudnessLufs": -10.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-skillet-awake-and-alive-official-audio",
@@ -1400,7 +1598,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.3,
-      "loudnessLufs": -8.1
+      "loudnessLufs": -8.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-skillet-monster-official-video",
@@ -1414,7 +1614,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.8,
-      "loudnessLufs": -8.6
+      "loudnessLufs": -8.6,
+      "djIntroSec": 1.07,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-starship-nothing-s-gonna-stop-us-now-official-music-video-hd",
@@ -1428,7 +1630,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -14.8
+      "loudnessLufs": -14.8,
+      "djIntroSec": 0.95,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-survivor-eye-of-the-tiger-official-hd-video",
@@ -1442,7 +1646,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.3,
-      "loudnessLufs": -12.1
+      "loudnessLufs": -12.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 9.35
     },
     {
       "id": "rock-skillet-hero",
@@ -1456,7 +1662,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -8.5,
-      "loudnessLufs": -5.9
+      "loudnessLufs": -5.9,
+      "djIntroSec": 1.8,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "religiosas-acalma-minha-tempestade-frei-gilson-ao-vivo-360o",
@@ -1470,7 +1678,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.1,
-      "loudnessLufs": -10.3
+      "loudnessLufs": -10.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "religiosas-deixa-deus-sonhar-em-ti-com-bruna-ramos-frei-gilson-ao-vivo-360o",
@@ -1484,7 +1694,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -3.9,
-      "loudnessLufs": -10.5
+      "loudnessLufs": -10.5,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "religiosas-eu-seguirei-ao-vivo",
@@ -1498,7 +1710,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -7.6,
-      "loudnessLufs": -6.8
+      "loudnessLufs": -6.8,
+      "djIntroSec": 0.74,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "religiosas-eu-te-levantarei",
@@ -1512,7 +1726,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.6,
-      "loudnessLufs": -7.8
+      "loudnessLufs": -7.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "religiosas-terra-seca-dvd-nao-vou-desistir-fraternidade-sao-joao-paulo-ii",
@@ -1526,7 +1742,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.7,
-      "loudnessLufs": -7.7
+      "loudnessLufs": -7.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "religiosas-tu-es-o-centro-com-bruna-ramos-frei-gilson-ao-vivo-360o",
@@ -1540,7 +1758,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -3.5,
-      "loudnessLufs": -10.9
+      "loudnessLufs": -10.9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-ac-dc-back-in-black-official-4k-video",
@@ -1554,7 +1774,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.4,
-      "loudnessLufs": -9
+      "loudnessLufs": -9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 4.85
     },
     {
       "id": "rock-in-the-end-official-hd-music-video-linkin-park",
@@ -1568,7 +1790,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -7.8,
-      "loudnessLufs": -6.6
+      "loudnessLufs": -6.6,
+      "djIntroSec": 0.81,
+      "djEnergyCueSec": 18.85
     },
     {
       "id": "rock-pearl-jam-last-kiss-uvjto-hrd5c",
@@ -1582,7 +1806,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.9,
-      "loudnessLufs": -7.5
+      "loudnessLufs": -7.5,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-pink-floyd-another-brick-in-the-wall-part-two-official-music-video",
@@ -1596,7 +1822,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -24.3
+      "loudnessLufs": -24.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-red-hot-chili-peppers-by-the-way-official-music-video",
@@ -1610,7 +1838,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -16.6
+      "loudnessLufs": -16.6,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-seether-broken-ft-amy-lee",
@@ -1624,7 +1854,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -8.0,
-      "loudnessLufs": -6.4
+      "loudnessLufs": -6.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-system-of-a-down-lonely-day-official-hd-video",
@@ -1638,7 +1870,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.6,
-      "loudnessLufs": -7.8
+      "loudnessLufs": -7.8,
+      "djIntroSec": 1.16,
+      "djEnergyCueSec": 22.85
     },
     {
       "id": "dance-alok-bruno-martini-zeeba-never-let-me-go-official-music-video-4k-ri-fiya76ac",
@@ -1652,7 +1886,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -0.4,
-      "loudnessLufs": -14
+      "loudnessLufs": -14,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 22.85
     },
     {
       "id": "dance-avicii-the-nights-traducao-legendado-zr7v3xk-hqg",
@@ -1666,7 +1902,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.7,
-      "loudnessLufs": -11.7
+      "loudnessLufs": -11.7,
+      "djIntroSec": 1.01,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-avril-lavigne-i-m-with-you-official-video",
@@ -1680,7 +1918,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -4.5,
-      "loudnessLufs": -9.9
+      "loudnessLufs": -9.9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "dance-calvin-harris-summer-traducao-legendado-jkxuq3s0ela",
@@ -1694,7 +1934,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -7.1,
-      "loudnessLufs": -7.3
+      "loudnessLufs": -7.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-green-day-boulevard-of-broken-dreams-official-music-video-4k-upgrade",
@@ -1708,7 +1950,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.3,
-      "loudnessLufs": -12.1
+      "loudnessLufs": -12.1,
+      "djIntroSec": 0.95,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-imagine-dragons-thunder",
@@ -1722,7 +1966,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -7.4,
-      "loudnessLufs": -7
+      "loudnessLufs": -7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 16.85
     },
     {
       "id": "rock-nickelback-far-away",
@@ -1736,7 +1982,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.2,
-      "loudnessLufs": -12.2
+      "loudnessLufs": -12.2,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "rock-numb-official-music-video-4k-upgrade-linkin-park",
@@ -1750,7 +1998,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.4,
-      "loudnessLufs": -8
+      "loudnessLufs": -8,
+      "djIntroSec": 1.53,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "pop-the-chainsmokers-coldplay-something-just-like-this-official-lyric-video",
@@ -1764,7 +2014,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -6.6,
-      "loudnessLufs": -7.8
+      "loudnessLufs": -7.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "dance-avicii-hey-brother",
@@ -1778,7 +2030,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -23.1
+      "loudnessLufs": -23.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "dance-avicii-levels",
@@ -1792,7 +2046,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -2.4,
-      "loudnessLufs": -12
+      "loudnessLufs": -12,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "dance-avicii-waiting-for-love",
@@ -1806,7 +2062,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -7.8,
-      "loudnessLufs": -6.6
+      "loudnessLufs": -6.6,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "dance-avicii-wake-me-up-official-lyric-video",
@@ -1820,7 +2078,9 @@
       "year": 2026,
       "downloadAllowed": false,
       "gainDb": -5.3,
-      "loudnessLufs": -9.1
+      "loudnessLufs": -9.1,
+      "djIntroSec": 0.99,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "as-melhores-80-e-90-michael-sembello-maniac-from-flashdance-official-audio",
@@ -1834,7 +2094,9 @@
       "year": 1983,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -15.2
+      "loudnessLufs": -15.2,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "bon-jovi-wanted-dead-or-alive-official-music-video",
@@ -1848,7 +2110,9 @@
       "year": 1986,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -32.1
+      "loudnessLufs": -32.1,
+      "djIntroSec": 1.31,
+      "djEnergyCueSec": 4.35
     },
     {
       "id": "eric-carmen-hungry-eyes-official-hd-video",
@@ -1862,7 +2126,9 @@
       "year": 1987,
       "downloadAllowed": false,
       "gainDb": -0.5,
-      "loudnessLufs": -13.9
+      "loudnessLufs": -13.9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "europe-carrie-official-video",
@@ -1876,7 +2142,9 @@
       "year": 1986,
       "downloadAllowed": false,
       "gainDb": -2.0,
-      "loudnessLufs": -12.4
+      "loudnessLufs": -12.4,
+      "djIntroSec": 1.49,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "guns-n-roses-don-t-cry",
@@ -1890,7 +2158,9 @@
       "year": 1991,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -22.3
+      "loudnessLufs": -22.3,
+      "djIntroSec": 4.47,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "guns-n-roses-patience",
@@ -1904,7 +2174,9 @@
       "year": 1988,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -18.7
+      "loudnessLufs": -18.7,
+      "djIntroSec": 1.86,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "kansas-carry-on-wayward-son-official-audio",
@@ -1918,7 +2190,9 @@
       "year": 1976,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -18.3
+      "loudnessLufs": -18.3,
+      "djIntroSec": 1.12,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "kenny-loggins-danger-zone-official-video-top-gun",
@@ -1932,7 +2206,9 @@
       "year": 1986,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -21.4
+      "loudnessLufs": -21.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "kenny-loggins-footloose-official-video",
@@ -1946,7 +2222,9 @@
       "year": 1984,
       "downloadAllowed": false,
       "gainDb": -0.1,
-      "loudnessLufs": -14.3
+      "loudnessLufs": -14.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "kim-carnes-bette-davis-eyes",
@@ -1960,7 +2238,9 @@
       "year": 1981,
       "downloadAllowed": false,
       "gainDb": -3.7,
-      "loudnessLufs": -10.7
+      "loudnessLufs": -10.7,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "limahl-never-ending-story-official-music-video",
@@ -1974,7 +2254,9 @@
       "year": 1984,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -22.5
+      "loudnessLufs": -22.5,
+      "djIntroSec": 2.99,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "men-at-work-down-under-official-hd-video",
@@ -1988,7 +2270,9 @@
       "year": 1981,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -15.1
+      "loudnessLufs": -15.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "simple-minds-don-t-you-forget-about-me",
@@ -2002,7 +2286,9 @@
       "year": 1985,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -15.1
+      "loudnessLufs": -15.1,
+      "djIntroSec": 2.29,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "skillet-rise-lyric-video-b3jq0tfqg-0",
@@ -2016,7 +2302,9 @@
       "year": 2013,
       "downloadAllowed": false,
       "gainDb": -7.6,
-      "loudnessLufs": -6.8
+      "loudnessLufs": -6.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "slow-ride-foghat-full-version-gccncgoyg-0",
@@ -2030,7 +2318,9 @@
       "year": 1975,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -14.5
+      "loudnessLufs": -14.5,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "spiderbait-black-betty-official-video-nu1vfyykmdk",
@@ -2044,7 +2334,9 @@
       "year": 2004,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -17.1
+      "loudnessLufs": -17.1,
+      "djIntroSec": 0.7,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "summer-eletrohits-01-kasino-can-t-get-over-summer-eletrohits-2",
@@ -2058,7 +2350,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -6.2,
-      "loudnessLufs": -8.2
+      "loudnessLufs": -8.2,
+      "djIntroSec": 0.88,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "summer-eletrohits-02-magic-box-if-you-summer-eletrohits-1",
@@ -2072,7 +2366,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -4.9,
-      "loudnessLufs": -9.5
+      "loudnessLufs": -9.5,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "summer-eletrohits-06-eric-prydz-call-on-me-summer-eletrohits-1",
@@ -2086,7 +2382,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -1.7,
-      "loudnessLufs": -12.7
+      "loudnessLufs": -12.7,
+      "djIntroSec": 1.42,
+      "djEnergyCueSec": 5.35
     },
     {
       "id": "summer-eletrohits-08-florida-inc-fuck-it-summer-eletrohits-1",
@@ -2100,7 +2398,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -5.1,
-      "loudnessLufs": -9.3
+      "loudnessLufs": -9.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "summer-eletrohits-13-i-wish-infected-mushroom-summer-eletrohits-2-wmv",
@@ -2114,7 +2414,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -4.1,
-      "loudnessLufs": -10.3
+      "loudnessLufs": -10.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 12.85
     },
     {
       "id": "summer-eletrohits-alex-gaudino-feat-crystal-waters-destination-calabria-4mji7rhmjeg",
@@ -2128,7 +2430,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -3.4,
-      "loudnessLufs": -11.0
+      "loudnessLufs": -11.0,
+      "djIntroSec": 1.5,
+      "djEnergyCueSec": 8.35
     },
     {
       "id": "summer-eletrohits-bob-sinclar-steve-edwards-world-hold-on-summer-eletrohits-3-original-club-mix",
@@ -2142,7 +2446,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -6.5,
-      "loudnessLufs": -7.9
+      "loudnessLufs": -7.9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "summer-eletrohits-bob-sinclar-ft-gary-pine-steve-edwards-love-generation-summer-eletrohits-3-extended-version",
@@ -2156,7 +2462,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -0.8,
-      "loudnessLufs": -13.6
+      "loudnessLufs": -13.6,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "summer-eletrohits-carolina-marquez-the-killer-s-song-official-video-hd",
@@ -2170,7 +2478,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -4.8,
-      "loudnessLufs": -9.6
+      "loudnessLufs": -9.6,
+      "djIntroSec": 5.68,
+      "djEnergyCueSec": 5.85
     },
     {
       "id": "summer-eletrohits-guru-josh-project-infinity-klaas-vocal-mix-ultra-records",
@@ -2184,7 +2494,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -4.3,
-      "loudnessLufs": -10.1
+      "loudnessLufs": -10.1,
+      "djIntroSec": 2.3,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "summer-eletrohits-ian-carey-feat-michelle-shellers-keep-on-rising-summer-eletrohits-5-s1pycuc4yzw",
@@ -2198,7 +2510,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -7.2,
-      "loudnessLufs": -7.2
+      "loudnessLufs": -7.2,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "summer-eletrohits-ida-corr-vs-fedde-le-grand-let-me-think-about-it-extended-19wuwzym7bm",
@@ -2212,7 +2526,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -6.1,
-      "loudnessLufs": -8.3
+      "loudnessLufs": -8.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "summer-eletrohits-nave-espacial-liu-samantha-machado-videoclipe-oficial-lq-7iwrvaxu",
@@ -2226,7 +2542,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -14.4
+      "loudnessLufs": -14.4,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 4.35
     },
     {
       "id": "summer-eletrohits-tom-novy-feat-michael-marshall-your-body-summer-eletrohits-3-andy-van-remix",
@@ -2240,7 +2558,9 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": -5.1,
-      "loudnessLufs": -9.3
+      "loudnessLufs": -9.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "summer-eletrohits-yves-larock-rise-up",
@@ -2254,7 +2574,217 @@
       "year": null,
       "downloadAllowed": false,
       "gainDb": 0.0,
-      "loudnessLufs": -15.0
+      "loudnessLufs": -15.0,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
+    },
+    {
+      "id": "rock-cpm-22-um-minuto-para-o-fim-do-mundo-ao-vivo-no-rock-in-rio-tqomv6nsqri",
+      "title": "Um Minuto Para o Fim do Mundo (Ao Vivo)",
+      "artist": "CPM 22",
+      "genre": "Rock",
+      "duration": 303.438,
+      "src": "./musicas/rock/CPM%2B22%2B-%2BUm%2BMinuto%2BPara%2Bo%2BFim%2Bdo%2BMundo%2B%28Ao%2BVivo%2Bno%2BRock%2Bin%2BRio%29%20%5BTqOMV6NsqrI%5D.mp3",
+      "lowSrc": "./musicas-leves/rock/CPM%2B22%2B-%2BUm%2BMinuto%2BPara%2Bo%2BFim%2Bdo%2BMundo%2B%28Ao%2BVivo%2Bno%2BRock%2Bin%2BRio%29%20%5BTqOMV6NsqrI%5D.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": -4.5,
+      "loudnessLufs": -9.9,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
+    },
+    {
+      "id": "rock-capital-inicial-a-sua-maneira-de-musica-ligeira-video-clipe",
+      "title": "À Sua Maneira",
+      "artist": "Capital Inicial",
+      "genre": "Rock",
+      "duration": 257.776,
+      "src": "./musicas/rock/Capital%20Inicial%20-%20%C3%80%20Sua%20Maneira%20%28De%20M%C3%BAsica%20Ligeira%29%20%28Video%20Clipe%29.mp3",
+      "lowSrc": "./musicas-leves/rock/Capital%20Inicial%20-%20%C3%80%20Sua%20Maneira%20%28De%20M%C3%BAsica%20Ligeira%29%20%28Video%20Clipe%29.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -15.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 16.35
+    },
+    {
+      "id": "rock-charlie-brown-jr-ela-vai-voltar-todos-os-defeitos-de-de-uma-mulher-perfeita",
+      "title": "Ela Vai Voltar",
+      "artist": "Charlie Brown Jr.",
+      "genre": "Rock",
+      "duration": 188.212,
+      "src": "./musicas/rock/Charlie%20Brown%20JR.%20-%20Ela%20Vai%20Voltar%20%28Todos%20Os%20Defeitos%20De%20de%20Uma%20Mulher%20Perfeita%29.mp3",
+      "lowSrc": "./musicas-leves/rock/Charlie%20Brown%20JR.%20-%20Ela%20Vai%20Voltar%20%28Todos%20Os%20Defeitos%20De%20de%20Uma%20Mulher%20Perfeita%29.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": -5.1,
+      "loudnessLufs": -9.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
+    },
+    {
+      "id": "rock-charlie-brown-jr-pontes-indestruti-veis-bztwkujdu1m",
+      "title": "Pontes Indestrutíveis",
+      "artist": "Charlie Brown Jr.",
+      "genre": "Rock",
+      "duration": 204.225,
+      "src": "./musicas/rock/Charlie%2BBrown%2BJR.%2B-%2BPontes%2BIndestrut%C3%AD_veis%20%5BbZTwKUJDU1M%5D.mp3",
+      "lowSrc": "./musicas-leves/rock/Charlie%2BBrown%2BJR.%2B-%2BPontes%2BIndestrut%C3%AD_veis%20%5BbZTwKUJDU1M%5D.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": -20.3,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
+    },
+    {
+      "id": "rock-charlie-brown-jr-lutar-pelo-que-e-meu-2ktefz7pidk",
+      "title": "Lutar Pelo Que É Meu",
+      "artist": "Charlie Brown Jr.",
+      "genre": "Rock",
+      "duration": 206.576,
+      "src": "./musicas/rock/Charlie%2BBrown%2BJr%2BLutar%2BPelo%2BQue%2B%C3%89%2BMeu%20%5B2kTeFZ7PIdk%5D.mp3",
+      "lowSrc": "./musicas-leves/rock/Charlie%2BBrown%2BJr%2BLutar%2BPelo%2BQue%2B%C3%89%2BMeu%20%5B2kTeFZ7PIdk%5D.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": -6.1,
+      "loudnessLufs": -8.3,
+      "djIntroSec": 0.86,
+      "djEnergyCueSec": 0.0
+    },
+    {
+      "id": "rock-falling-in-reverse-joseph-feat-corey-taylor-and-serj-tankian",
+      "title": "Joseph (feat. Corey Taylor and Serj Tankian)",
+      "artist": "Falling in Reverse",
+      "genre": "Rock",
+      "duration": 258.011,
+      "src": "./musicas/rock/Falling%20In%20Reverse%20-%20Joseph%20%28feat.%20Corey%20Taylor%20and%20Serj%20Tankian%29.mp3",
+      "lowSrc": "./musicas-leves/rock/Falling%20In%20Reverse%20-%20Joseph%20%28feat.%20Corey%20Taylor%20and%20Serj%20Tankian%29.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": -7.8,
+      "loudnessLufs": -6.6,
+      "djIntroSec": 0.83,
+      "djEnergyCueSec": 0.0
+    },
+    {
+      "id": "rock-from-ashes-to-new-after-death-official-music-video-jxouei6jrxm",
+      "title": "After Death",
+      "artist": "From Ashes to New",
+      "genre": "Rock",
+      "duration": 223.582,
+      "src": "./musicas/rock/From%2BAshes%2BTo%2BNew%2B-%2BAfter%2BDeath%2B%28Official%2BMusic%2BVideo%29%20%5BJxOuEI6jrxM%5D.mp3",
+      "lowSrc": "./musicas-leves/rock/From%2BAshes%2BTo%2BNew%2B-%2BAfter%2BDeath%2B%28Official%2BMusic%2BVideo%29%20%5BJxOuEI6jrxM%5D.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": -9.2,
+      "loudnessLufs": -5.2,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
+    },
+    {
+      "id": "rock-lisareawaker-feat-felix-of-stray-kids-music-clip",
+      "title": "ReawakeR (feat. Felix of Stray Kids)",
+      "artist": "LiSA",
+      "genre": "Rock",
+      "duration": 192.424,
+      "src": "./musicas/rock/LiSA%E3%80%8EReawakeR%20%28feat.%20Felix%20of%20Stray%20Kids%29%E3%80%8FMUSiC%20CLiP.mp3",
+      "lowSrc": "./musicas-leves/rock/LiSA%E3%80%8EReawakeR%20%28feat.%20Felix%20of%20Stray%20Kids%29%E3%80%8FMUSiC%20CLiP.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": -4.4,
+      "loudnessLufs": -10.0,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
+    },
+    {
+      "id": "rock-pitty-na-sua-estante-clipe-oficial",
+      "title": "Na Sua Estante",
+      "artist": "Pitty",
+      "genre": "Rock",
+      "duration": 244.376,
+      "src": "./musicas/rock/Pitty%20-%20Na%20Sua%20Estante%20%28Clipe%20Oficial%29.mp3",
+      "lowSrc": "./musicas-leves/rock/Pitty%20-%20Na%20Sua%20Estante%20%28Clipe%20Oficial%29.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": -4.6,
+      "loudnessLufs": -9.8,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
+    },
+    {
+      "id": "rock-skillet-feel-invincible-official-music-video",
+      "title": "Feel Invincible",
+      "artist": "Skillet",
+      "genre": "Rock",
+      "duration": 227.396,
+      "src": "./musicas/rock/Skillet%20-%20Feel%20Invincible%20Official%20Music%20Video.mp3",
+      "lowSrc": "./musicas-leves/rock/Skillet%20-%20Feel%20Invincible%20Official%20Music%20Video.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": -3.8,
+      "loudnessLufs": -10.6,
+      "djIntroSec": 1.11,
+      "djEnergyCueSec": 0.0
+    },
+    {
+      "id": "rock-skillet-not-gonna-die-official-music-video",
+      "title": "Not Gonna Die",
+      "artist": "Skillet",
+      "genre": "Rock",
+      "duration": 227.277,
+      "src": "./musicas/rock/Skillet%20-%20Not%20Gonna%20Die%20OFFICIAL%20MUSIC%20VIDEO.mp3",
+      "lowSrc": "./musicas-leves/rock/Skillet%20-%20Not%20Gonna%20Die%20OFFICIAL%20MUSIC%20VIDEO.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": -7.3,
+      "loudnessLufs": -7.1,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
+    },
+    {
+      "id": "rock-skillet-the-resistance-official-lyric-video",
+      "title": "The Resistance",
+      "artist": "Skillet",
+      "genre": "Rock",
+      "duration": 240.196,
+      "src": "./musicas/rock/Skillet%20-%20The%20Resistance%20Official%20Lyric%20Video.mp3",
+      "lowSrc": "./musicas-leves/rock/Skillet%20-%20The%20Resistance%20Official%20Lyric%20Video.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": -8.2,
+      "loudnessLufs": -6.2,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 8.35
+    },
+    {
+      "id": "rock-tudo-que-ela-gosta-de-escutar-xgswij9eed0",
+      "title": "Tudo Que Ela Gosta de Escutar",
+      "artist": "Charlie Brown Jr.",
+      "genre": "Rock",
+      "duration": 176.17,
+      "src": "./musicas/rock/Tudo%2BQue%2BEla%2BGosta%2BDe%2BEscutar%20%5BXGSWIJ9Eed0%5D.mp3",
+      "lowSrc": "./musicas-leves/rock/Tudo%2BQue%2BEla%2BGosta%2BDe%2BEscutar%20%5BXGSWIJ9Eed0%5D.m4a",
+      "cover": "./assets/capas/genero-rock.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": -4.9,
+      "loudnessLufs": -9.5,
+      "djIntroSec": 0.0,
+      "djEnergyCueSec": 0.0
     },
     {
       "id": "vinheta-radio-hits-001",
@@ -2703,6 +3233,34 @@
       "downloadAllowed": false,
       "gainDb": 0.0,
       "loudnessLufs": null
+    },
+    {
+      "id": "vinheta-radio-hits-033",
+      "title": "Rádio Hits • Clássicos",
+      "artist": "Rádio Hits",
+      "genre": "Vinheta",
+      "isJingle": true,
+      "duration": 7.027,
+      "src": "./vinhetas/radio-hits-classicos.mp3",
+      "cover": "./assets/capas/genero-radio-hits.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": null
+    },
+    {
+      "id": "vinheta-radio-hits-034",
+      "title": "Rádio Hits • Energia",
+      "artist": "Rádio Hits",
+      "genre": "Vinheta",
+      "isJingle": true,
+      "duration": 8.307,
+      "src": "./vinhetas/radio-hits-cada-5.mp3",
+      "cover": "./assets/capas/genero-radio-hits.svg",
+      "year": 2026,
+      "downloadAllowed": false,
+      "gainDb": 0.0,
+      "loudnessLufs": null
     }
   ],
   "radioOrder": [
@@ -2724,187 +3282,202 @@
     "malhacao-internacional-2003-01-s-m-s-feat-rehb-just-a-bit-of-chaos",
     "summer-eletrohits-nave-espacial-liu-samantha-machado-videoclipe-oficial-lq-7iwrvaxu",
     "vinheta-radio-hits-003",
-    "rock-aerosmith-i-don-t-want-to-miss-a-thing-official-hd-video",
+    "rock-cpm-22-um-minuto-para-o-fim-do-mundo-ao-vivo-no-rock-in-rio-tqomv6nsqri",
     "as-melhores-80-e-90-starship-nothing-s-gonna-stop-us-now-official-music-video-hd",
     "hip-hop-what-s-luv-feat-ashanti",
     "malhacao-internacional-2003-09-chevelle-send-the-pain-below",
     "dance-avicii-the-nights-traducao-legendado-zr7v3xk-hqg",
     "vinheta-radio-hits-004",
-    "rock-foreigner-i-want-to-know-what-love-is-official-music-video",
+    "rock-charlie-brown-jr-lutar-pelo-que-e-meu-2ktefz7pidk",
     "as-melhores-80-e-90-natalie-imbruglia-torn-official-video-new",
     "hip-hop-what-goes-around-comes-around-interlude-bxbitm7vtcs",
     "summer-eletrohits-ida-corr-vs-fedde-le-grand-let-me-think-about-it-extended-19wuwzym7bm",
     "malhacao-internacional-2003-13-stacie-orrico-i-promise-i-will",
     "vinheta-radio-hits-005",
-    "rock-steve-winwood-valerie-official-video-new",
+    "rock-aerosmith-i-don-t-want-to-miss-a-thing-official-hd-video",
     "as-melhores-80-e-90-baltimora-tarzan-boy-new",
     "hip-hop-say-goodbye-txfbe1qx924",
     "summer-eletrohits-02-magic-box-if-you-summer-eletrohits-1",
     "malhacao-internacional-2003-03-foo-fighters-times-like-these",
     "vinheta-radio-hits-006",
-    "rock-skillet-awake-and-alive-official-audio",
+    "rock-foreigner-i-want-to-know-what-love-is-official-music-video",
     "as-melhores-80-e-90-rick-astley-never-gonna-give-you-up-official-video-4k-remaster",
     "hip-hop-many-men-wish-death",
     "dance-avicii-wake-me-up-official-lyric-video",
     "summer-eletrohits-yves-larock-rise-up",
     "vinheta-radio-hits-007",
-    "spiderbait-black-betty-official-video-nu1vfyykmdk",
+    "rock-lisareawaker-feat-felix-of-stray-kids-music-clip",
     "as-melhores-80-e-90-a-ha-take-on-me-official-video-4k-new",
     "hip-hop-nelly-dilemma-feat-kelly-rowland",
     "malhacao-internacional-2003-10-damian-marley-and-you-be-loved-and-be-loved",
     "dance-mr-president-coco-jamboo-1996-official-video-new",
     "vinheta-radio-hits-008",
-    "rock-avril-lavigne-complicated-official-video",
+    "rock-steve-winwood-valerie-official-video-new",
     "kenny-loggins-footloose-official-video",
     "summer-eletrohits-ian-carey-feat-michelle-shellers-keep-on-rising-summer-eletrohits-5-s1pycuc4yzw",
     "hip-hop-alicia-keys-no-one-official-music-video",
     "malhacao-internacional-2003-08-t-a-t-u-all-the-things-she-said",
     "vinheta-radio-hits-009",
-    "rock-bon-jovi-it-s-my-life-official-music-video",
+    "rock-skillet-awake-and-alive-official-audio",
     "as-melhores-80-e-90-sandra-maria-magdalena-official-video-1985-new",
     "dance-vengaboys-boom-boom-boom-boom-new",
     "summer-eletrohits-guru-josh-project-infinity-klaas-vocal-mix-ultra-records",
     "hip-hop-miss-independent",
     "vinheta-radio-hits-010",
-    "rock-europe-the-final-countdown-official-video",
+    "spiderbait-black-betty-official-video-nu1vfyykmdk",
     "as-melhores-80-e-90-daryl-hall-john-oates-out-of-touch-official-hd-video-new",
     "malhacao-internacional-2003-15-paul-j-falling",
     "dance-alok-bruno-martini-zeeba-never-let-me-go-official-music-video-4k-ri-fiya76ac",
     "summer-eletrohits-alex-gaudino-feat-crystal-waters-destination-calabria-4mji7rhmjeg",
     "vinheta-radio-hits-011",
-    "guns-n-roses-don-t-cry",
+    "rock-avril-lavigne-complicated-official-video",
     "as-melhores-80-e-90-desireless-voyage-voyage-official-hd-video-new",
     "hip-hop-ridin-f-tusbuxgme",
     "malhacao-internacional-2003-12-thalia-feat-fat-joe-i-want-you",
     "dance-avicii-levels",
     "vinheta-radio-hits-012",
-    "rock-in-the-end-official-hd-music-video-linkin-park",
+    "rock-bon-jovi-it-s-my-life-official-music-video",
     "kim-carnes-bette-davis-eyes",
     "religiosas-acalma-minha-tempestade-frei-gilson-ao-vivo-360o",
     "summer-eletrohits-bob-sinclar-steve-edwards-world-hold-on-summer-eletrohits-3-original-club-mix",
     "hip-hop-don-t-matter",
     "vinheta-radio-hits-013",
-    "rock-the-outfield-your-love-official-hd-video",
+    "rock-europe-the-final-countdown-official-video",
     "as-melhores-80-e-90-eros-ramazzotti-e-tina-turner-cosas-de-la-vida-can-t-stop-thinking-of-you",
     "malhacao-internacional-2003-07-beyonce-feat-jay-z-crazy-in-love",
     "dance-avicii-hey-brother",
     "religiosas-terra-seca-dvd-nao-vou-desistir-fraternidade-sao-joao-paulo-ii",
     "vinheta-radio-hits-014",
-    "skillet-rise-lyric-video-b3jq0tfqg-0",
+    "rock-skillet-not-gonna-die-official-music-video",
     "as-melhores-80-e-90-flashdance-what-a-feeling-irene-cara-new",
     "hip-hop-i-wanna-love-you",
     "summer-eletrohits-bob-sinclar-ft-gary-pine-steve-edwards-love-generation-summer-eletrohits-3-extended-version",
     "malhacao-internacional-2003-14-vanessa-carlton-pretty-baby",
     "vinheta-radio-hits-015",
-    "rock-starship-sara-official-music-video-new",
+    "rock-skillet-the-resistance-official-lyric-video",
     "as-melhores-80-e-90-alphaville-big-in-japan-official-music-video-new",
     "dance-stevie-b-spring-love-official-music-video-new",
     "eric-carmen-hungry-eyes-official-hd-video",
     "hip-hop-akon-smack-that-feat-eminem",
     "vinheta-radio-hits-016",
-    "bon-jovi-wanted-dead-or-alive-official-music-video",
+    "guns-n-roses-don-t-cry",
     "as-melhores-80-e-90-gonna-make-you-sweat-everybody-dance-now-official-hd-video-new",
     "summer-eletrohits-06-eric-prydz-call-on-me-summer-eletrohits-1",
     "religiosas-tu-es-o-centro-com-bruna-ramos-frei-gilson-ao-vivo-360o",
     "malhacao-internacional-2003-06-ja-rule-feat-ashanti-mesmerize",
     "vinheta-radio-hits-017",
-    "kansas-carry-on-wayward-son-official-audio",
+    "rock-in-the-end-official-hd-music-video-linkin-park",
     "as-melhores-80-e-90-scorpions-wind-of-change-official-music-video-new",
     "dance-calvin-harris-summer-traducao-legendado-jkxuq3s0ela",
     "pop-jason-mraz-i-m-yours-official-video-4k-remaster-new",
     "romanticas-glory-of-love-new",
     "vinheta-radio-hits-018",
-    "rock-evanescence-my-immortal-official-hd-music-video",
+    "rock-tudo-que-ela-gosta-de-escutar-xgswij9eed0",
     "as-melhores-80-e-90-toni-braxton-un-break-my-heart-official-hd-video",
     "hip-hop-the-real-slim-shady",
     "summer-eletrohits-01-kasino-can-t-get-over-summer-eletrohits-2",
     "religiosas-deixa-deus-sonhar-em-ti-com-bruna-ramos-frei-gilson-ao-vivo-360o",
     "vinheta-radio-hits-019",
-    "slow-ride-foghat-full-version-gccncgoyg-0",
+    "rock-the-outfield-your-love-official-hd-video",
     "as-melhores-80-e-90-michael-sembello-maniac-from-flashdance-official-audio",
     "malhacao-internacional-2003-02-avril-lavigne-sk8er-boi",
     "dance-vengaboys-shalala-lala-new",
     "classicos-elvis-presley-suspicious-minds-official-music-video-new",
     "vinheta-radio-hits-020",
-    "rock-red-hot-chili-peppers-under-the-bridge-official-music-video-new",
+    "skillet-rise-lyric-video-b3jq0tfqg-0",
     "as-melhores-80-e-90-everything-i-do-i-do-it-for-you-official-music-video-new",
     "romanticas-run-to-me-new",
     "pop-new-west-those-eyes-lyrics-new",
     "hip-hop-just-a-lil-bit",
     "vinheta-radio-hits-021",
-    "europe-carrie-official-video",
+    "rock-starship-sara-official-music-video-new",
     "limahl-never-ending-story-official-music-video",
     "religiosas-eu-te-levantarei",
     "country-luke-combs-forever-after-all-official-video-new",
     "summer-eletrohits-carolina-marquez-the-killer-s-song-official-video-hd",
     "vinheta-radio-hits-022",
-    "rock-seether-broken-ft-amy-lee",
+    "bon-jovi-wanted-dead-or-alive-official-music-video",
     "as-melhores-80-e-90-laura-branigan-self-control-official-music-video-new",
     "malhacao-internacional-2003-05-nelly-feat-kelly-rowland-dilemma",
     "dance-avicii-waiting-for-love",
     "mpb-anavitoria-trevo-vevo-presents-new",
     "vinheta-radio-hits-023",
-    "rock-inxs-by-my-side",
+    "rock-charlie-brown-jr-pontes-indestruti-veis-bztwkujdu1m",
     "as-melhores-80-e-90-new-order-bizarre-love-triangle-official-music-video-hd-upgrade-new",
     "classicos-elvis-presley-can-t-help-falling-in-love-official-audio-new",
     "reggae-magic-rude-official-video-new",
     "hip-hop-cry-me-a-river",
     "vinheta-radio-hits-024",
-    "rock-toto-hold-the-line-official-video",
+    "kansas-carry-on-wayward-son-official-audio",
     "as-melhores-80-e-90-journey-don-t-stop-believin-from-live-in-houston-1981-the-escape-tour-new",
+    "rock-falling-in-reverse-joseph-feat-corey-taylor-and-serj-tankian",
     "religiosas-eu-seguirei-ao-vivo",
-    "romanticas-richard-marx-right-here-waiting-official-music-video",
-    "pop-the-chainsmokers-coldplay-something-just-like-this-official-lyric-video",
+    "rock-evanescence-my-immortal-official-hd-music-video",
     "vinheta-radio-hits-025",
-    "rock-red-hot-chili-peppers-by-the-way-official-music-video",
+    "slow-ride-foghat-full-version-gccncgoyg-0",
     "as-melhores-80-e-90-roxette-it-must-have-been-love-official-music-video-new",
-    "country-shania-twain-youre-still-the-one-official-music-video-new",
-    "summer-eletrohits-tom-novy-feat-michael-marshall-your-body-summer-eletrohits-3-andy-van-remix",
-    "malhacao-internacional-2003-16-arena-brothers-sisters",
+    "rock-red-hot-chili-peppers-under-the-bridge-official-music-video-new",
+    "europe-carrie-official-video",
+    "romanticas-richard-marx-right-here-waiting-official-music-video",
     "vinheta-radio-hits-026",
-    "rock-nirvana-smells-like-teen-spirit-official-music-video",
+    "rock-seether-broken-ft-amy-lee",
+    "rock-inxs-by-my-side",
     "as-melhores-80-e-90-madonna-papa-don-t-preach-official-video-hd",
-    "rock-pink-floyd-another-brick-in-the-wall-part-two-official-music-video",
-    "rock-the-police-every-breath-you-take-official-music-video",
-    "dance-ice-mc-think-about-the-way-official-video-new",
+    "rock-toto-hold-the-line-official-video",
+    "rock-charlie-brown-jr-ela-vai-voltar-todos-os-defeitos-de-de-uma-mulher-perfeita",
     "vinheta-radio-hits-027",
-    "rock-ac-dc-back-in-black-official-4k-video",
-    "rock-whitesnake-is-this-love-official-music-video-new",
+    "pop-the-chainsmokers-coldplay-something-just-like-this-official-lyric-video",
+    "rock-red-hot-chili-peppers-by-the-way-official-music-video",
+    "rock-nirvana-smells-like-teen-spirit-official-music-video",
     "as-melhores-80-e-90-f-r-david-words-don-t-come-easy-high-quality-official-music-video-new",
+    "rock-pink-floyd-another-brick-in-the-wall-part-two-official-music-video",
+    "vinheta-radio-hits-028",
+    "rock-pitty-na-sua-estante-clipe-oficial",
+    "country-shania-twain-youre-still-the-one-official-music-video-new",
+    "rock-the-police-every-breath-you-take-official-music-video",
+    "rock-ac-dc-back-in-black-official-4k-video",
+    "as-melhores-80-e-90-la-bouche-sweet-dreams-official-video-vod-new",
+    "vinheta-radio-hits-029",
+    "rock-whitesnake-is-this-love-official-music-video-new",
+    "rock-capital-inicial-a-sua-maneira-de-musica-ligeira-video-clipe",
+    "summer-eletrohits-tom-novy-feat-michael-marshall-your-body-summer-eletrohits-3-andy-van-remix",
     "rock-survivor-eye-of-the-tiger-official-hd-video",
     "rock-toto-africa-official-hd-video",
-    "vinheta-radio-hits-028",
-    "as-melhores-80-e-90-la-bouche-sweet-dreams-official-video-vod-new",
+    "vinheta-radio-hits-030",
+    "as-melhores-80-e-90-tina-turner-we-don-t-need-another-hero-thunderdome-music-video-new",
     "rock-red-hot-chili-peppers-californication-official-music-video-hd-upgrade",
     "rock-faint-official-music-video-4k-upgrade-linkin-park",
-    "as-melhores-80-e-90-tina-turner-we-don-t-need-another-hero-thunderdome-music-video-new",
+    "malhacao-internacional-2003-16-arena-brothers-sisters",
     "rock-ac-dc-thunderstruck-official-video",
-    "vinheta-radio-hits-029",
-    "rock-nickelback-far-away",
+    "vinheta-radio-hits-031",
+    "rock-skillet-feel-invincible-official-music-video",
     "as-melhores-80-e-90-tears-for-fears-everybody-wants-to-rule-the-world-official-music-video",
-    "rock-skillet-hero",
+    "rock-nickelback-far-away",
     "rock-joan-osborne-one-of-us-official-music-video",
+    "dance-ice-mc-think-about-the-way-official-video-new",
+    "vinheta-radio-hits-032",
+    "rock-skillet-hero",
+    "rock-from-ashes-to-new-after-death-official-music-video-jxouei6jrxm",
     "kenny-loggins-danger-zone-official-video-top-gun",
-    "vinheta-radio-hits-030",
     "rock-green-day-boulevard-of-broken-dreams-official-music-video-4k-upgrade",
     "guns-n-roses-patience",
+    "vinheta-radio-hits-033",
     "simple-minds-don-t-you-forget-about-me",
     "rock-skillet-monster-official-video",
     "rock-imagine-dragons-thunder",
-    "vinheta-radio-hits-031",
     "as-melhores-80-e-90-pet-shop-boys-it-s-a-sin-official-video-hd-remastered-new",
     "rock-numb-official-music-video-4k-upgrade-linkin-park",
+    "vinheta-radio-hits-034",
     "rock-pearl-jam-last-kiss-uvjto-hrd5c",
     "as-melhores-80-e-90-hanson-mmmbop-official-music-video",
     "rock-metallica-nothing-else-matters-official-music-video",
-    "vinheta-radio-hits-032",
     "rock-crowded-house-don-t-dream-it-s-over-official-music-video-new"
   ],
   "radioSchedule": {
-    "revision": "834c9b0ec030adda",
+    "revision": "a44943742b160df5",
     "epochMs": 1767225600000,
     "strategy": "curadoria-deterministica-v1",
-    "songCount": 161,
-    "jingleCount": 32
+    "songCount": 174,
+    "jingleCount": 34
   }
 }
