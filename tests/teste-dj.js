@@ -14,7 +14,7 @@ const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(x => x[1]));
 for (const [,id] of script.matchAll(/\$\('([a-z][a-z0-9-]*)'\)/g)) {
   assert.ok(ids.has(id), 'Missing DOM control: ' + id);
 }
-for (const id of ['mode','smart','beatgrid','trimintro','energycue','waves','wave0','wave1','vu0','vu1','level0','level1','beat0','beat1','play','skip','cross','genre','bpm0','bpm1','upnext','loop0','loop1']) {
+for (const id of ['mode','mixstyle','styleinfo','smart','beatgrid','trimintro','energycue','waves','wave0','wave1','vu0','vu1','level0','level1','beat0','beat1','play','skip','cross','genre','bpm0','bpm1','upnext','loop0','loop1']) {
   assert.ok(ids.has(id), 'Required DJ control missing: ' + id);
 }
 
@@ -23,7 +23,7 @@ const begin=script.indexOf('function nextBeatDelayMs('),end=script.indexOf('asyn
 assert.ok(begin>=0&&end>begin,'Beat-alignment function must exist');
 const beatFn=script.slice(begin,end);
 const beatOptions={beatgrid:{checked:true},smart:{checked:true},fade:{value:'10'}};
-const beatContext=vm.createContext({$:id=>beatOptions[id]});
+const beatContext=vm.createContext({$:id=>beatOptions[id],mixStyle:()=>({maxBeatWait:900})});
 vm.runInContext(beatFn,beatContext);
 const beatChannel={bpm:120,beats:[1,2,3,4,5,6,7,8],lastBeat:8,el:{currentTime:8.2,duration:60,playbackRate:1}};
 assert.ok(Math.abs(vm.runInContext('nextBeatDelayMs',beatContext)(beatChannel)-300)<1,
@@ -39,7 +39,7 @@ const elements = new Map();
 const drawings = [];
 const canvasContext = {fillRect(){drawings.push('fill');},beginPath(){},moveTo(){},lineTo(){},stroke(){drawings.push('stroke');}};
 const frames = [];
-const options = {mode:'auto',genre:'',volume:'75',bass:'0',filter:'18000',cross:'0',fade:'10',rate0:'100',rate1:'100'};
+const options = {mode:'auto',mixstyle:'equilibrada',genre:'',volume:'75',bass:'0',filter:'18000',cross:'0',fade:'10',rate0:'100',rate1:'100'};
 for (const id of ids) {
   elements.set(id,{
     id, value:options[id]||'',checked:id==='smart'||id==='waves'||id==='beatgrid'||id==='trimintro',textContent:'',style:{},items:[],
@@ -83,7 +83,7 @@ const sample = [
   {id:'test-2',title:'Track B',artist:'Artist B',genre:'Dance',src:'./musicas/test-b.mp3',lowSrc:'./musicas-leves/test-b.m4a',duration:180,djIntroSec:2.25,djEnergyCueSec:12.5},
   {id:'test-3',title:'Track C',artist:'Artist C',genre:'Rock',src:'./musicas/test-c.mp3',duration:180,djIntroSec:2.25,djEnergyCueSec:12.5}
 ];
-const timeouts=[];
+const timeouts=[],fadeSchedules=[];
 const mock={
   document:{getElementById:id=>{assert.ok(elements.has(id),'Unknown element '+id);return elements.get(id);},createElement:()=>({})},
   window:{AudioContext:FakeContext,addEventListener(){}},
@@ -94,7 +94,7 @@ const mock={
   localStorage:{getItem:()=>null,setItem(){}},
   requestAnimationFrame:fn=>{frames.push(fn);return frames.length;},
   setInterval:()=>1,
-  setTimeout:fn=>{timeouts.push(fn);return timeouts.length;},
+  setTimeout:(fn,ms)=>{timeouts.push(fn);fadeSchedules.push(ms);return timeouts.length;},
   clearTimeout:()=>{},
   console
 };
@@ -104,6 +104,15 @@ async function main(){
   assert.match(elements.get('status').textContent,/3 músicas/);
   assert.equal(elements.get('genre').items.length,2);
   assert.equal(elements.get('choose').items.length,3,'Library should display the three test songs');
+  assert.equal(elements.get('mixstyle').value,'equilibrada');
+  elements.get('mixstyle').value='suave';elements.get('mixstyle').onchange();
+  assert.equal(elements.get('fade').value,'16','Suave preset should use a 16-second fade');
+  assert.match(elements.get('styleinfo').textContent,/Suave/);
+  elements.get('mixstyle').value='energetica';elements.get('mixstyle').onchange();
+  assert.equal(elements.get('fade').value,'6','Energetic preset should use a 6-second fade');
+  elements.get('mixstyle').value='equilibrada';elements.get('mixstyle').onchange();
+  assert.equal(elements.get('fade').value,'10','Balanced preset should use a 10-second fade');
+  elements.get('mixstyle').value='suave';elements.get('mixstyle').onchange();
   await elements.get('play').onclick();
   assert.equal(sounds.length,2,'Two audio decks should be created');
   assert.ok(sounds.some(s=>!s.paused),'A deck should play on start');
@@ -125,6 +134,11 @@ async function main(){
   await elements.get('skip').onclick();
   assert.match(elements.get('status').textContent,/Mixando:/,'Skip should trigger crossfade');
   assert.ok(timeouts.length>0,'A crossfade completion should be scheduled');
+  assert.ok(Math.abs(fadeSchedules.at(-1)-16110)<1,'Suave must schedule a 16-second fade');
+  timeouts.at(-1)();
+  elements.get('mixstyle').value='energetica';elements.get('mixstyle').onchange();
+  await elements.get('skip').onclick();
+  assert.ok(Math.abs(fadeSchedules.at(-1)-6110)<1,'Energética must schedule a 6-second fade');
   timeouts.at(-1)();
   elements.get('trimintro').checked=false;elements.get('trimintro').onchange();
   assert.equal(sounds.some(s=>s.paused&&s.currentTime===0),true,'Intro skip toggle should restore the waiting track');
@@ -141,6 +155,6 @@ async function main(){
   assert.match(elements.get('status').textContent,/Track C carregada/);
   assert.equal(sounds[0].currentTime,0,'Manual deck must start at the beginning');
   assert.equal(elements.get('mode').value,'manual');
-  console.log('DJ Mix: syntax, DOM, catalog, dual deck, preload, mix, auto intro and energy cue, live waveforms, search and manual controls OK.');
+  console.log('DJ Mix: syntax, DOM, catalog, dual deck, preload, mix, 3 presets, auto intro and energy cue, live waveforms, search and manual controls OK.');
 }
 main().catch(err=>{console.error(err);process.exitCode=1;});
