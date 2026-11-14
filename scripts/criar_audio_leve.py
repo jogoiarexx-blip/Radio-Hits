@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""AAC-LC 48 kbps apenas no site publicado; sem alterar audio original."""
+"""AAC-LC 32 kbps mono, exclusivo para modo econômico do site; preserva originais."""
 from __future__ import annotations
 import concurrent.futures, json, shutil, subprocess, sys
 from pathlib import Path
@@ -34,7 +34,7 @@ def encode(item):
     temp=dst.with_suffix(".part.m4a")
     args=["ffmpeg","-nostdin","-hide_banner","-loglevel","error","-y",
           "-i",str(src),"-map","0:a:0","-vn","-sn","-dn",
-          "-c:a","aac","-b:a","48k","-ac","2","-ar","44100",
+          "-c:a","aac","-b:a","32k","-ac","1","-ar","44100",
           "-movflags","+faststart",str(temp)]
     try:
         subprocess.run(args,check=True,timeout=300)
@@ -54,7 +54,7 @@ def main():
         print(f"AUDIO LEVE OK: {len(entries)} musicas presentes.")
         return
     if shutil.which("ffmpeg") is None:raise SystemExit("FFmpeg nao instalado")
-    print(f"Produzindo {len(entries)} AAC-LC em 48 kbps.",flush=True)
+    print(f"Produzindo {len(entries)} AAC-LC em 32 kbps mono.",flush=True)
     original=compact=0
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
         for a,b in pool.map(encode,entries):
