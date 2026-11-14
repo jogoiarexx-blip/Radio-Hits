@@ -19,7 +19,7 @@ for (const id of ['mode','smart','beatgrid','waves','wave0','wave1','vu0','vu1',
 }
 
 // Test beat-aware entry math separately from browser audio timing.
-const begin=script.indexOf('function nextBeatDelayMs('),end=script.indexOf('\\nasync function next(){',begin);
+const begin=script.indexOf('function nextBeatDelayMs('),end=script.indexOf('async function next(){',begin);
 assert.ok(begin>=0&&end>begin,'Beat-alignment function must exist');
 const beatFn=script.slice(begin,end);
 const beatOptions={beatgrid:{checked:true},smart:{checked:true},fade:{value:'10'}};
