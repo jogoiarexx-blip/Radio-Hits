@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0e13"><title>DJ Mix | Radio Hits</title><style>
 :root{color-scheme:dark;font-family:system-ui,Arial,sans-serif;background:#090d16;color:#f7f8ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#24204b,#090d16 55%);min-height:100vh}header,main{max-width:1050px;margin:auto;padding:20px}header{display:flex;justify-content:space-between;align-items:center;gap:15px}a{color:#a6a5ff;text-decoration:none}h1{font-size:clamp(2rem,6vw,4rem);margin:10px 0}h1 span{color:#9a85ff}.muted{color:#a5a9bd}.panel{background:#171b2bcc;border:1px solid #34384f;border-radius:22px;padding:22px;margin:18px 0}.deckgrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.deck{min-width:0;text-align:center}.disc{width:min(170px,70%);aspect-ratio:1;border-radius:50%;margin:18px auto;background:repeating-radial-gradient(circle,#11131c 0 3px,#303246 4px 6px);border:9px solid #25283c;display:grid;place-items:center;box-shadow:0 0 30px #7557d733}.disc:after{content:'';background:#a58aff;width:26%;aspect-ratio:1;border-radius:50%;border:8px solid #24223a}.spinning{animation:spin 3s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}button,select,input[type=search]{background:#262b43;color:white;border:1px solid #424861;border-radius:12px;padding:12px 16px;font:inherit}button{cursor:pointer}input[type=search]{min-width:180px;max-width:100%;width:240px}.library{border-top:1px solid #34384f;margin-top:20px;padding-top:16px}.library select{max-width:100%;width:min(420px,100%)}.library .controls{margin:12px 0}@media(max-width:600px){.library select{width:100%}}button.primary{background:#8c6bff;border-color:#8c6bff;color:#fff;font-weight:700}button:disabled{opacity:.5}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.tag{color:#b7a7ff;font-size:.75rem;font-weight:800;letter-spacing:.15em}.track{overflow-wrap:anywhere;min-height:3em}.meter{height:8px;border-radius:10px;background:#2b3047;overflow:hidden;margin:16px 0}.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8a69ff,#35d9dc);transition:width .2s}.notice{font-size:.9rem;color:#aeb5c8}.scope{margin:14px auto 12px;padding:10px;background:#0f1425;border:1px solid #323b59;border-radius:13px;max-width:440px}.scope-top{display:flex;justify-content:space-between;gap:6px;color:#aab7d2;font-size:.73rem}.scope canvas{display:block;width:100%;height:72px;border-radius:6px;margin:7px 0}.level-meter{height:7px;border-radius:999px;background:#252b42;overflow:hidden}.level-meter i{display:block;width:0;height:100%;background:linear-gradient(90deg,#56c6ca,#a3f5bb,#f0bd58);transition:width .09s linear}.beat-indicator{margin-top:8px;font-size:.77rem;font-weight:700;color:#707b99;transition:color .12s}.beat-indicator.beat-on{color:#a3ffcb;text-shadow:0 0 10px #5aff8f66}.scope[hidden]{display:none!important}@media(prefers-reduced-motion:reduce){.spinning{animation:none}.meter i,.level-meter i,.beat-indicator{transition:none}}.smart-option{display:inline-flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #424861;border-radius:12px;background:#20253b}.smart-option input{accent-color:#9a85ff}.dj-tag{color:#8ae4dd} .deck:focus-within{outline:1px solid #8d79ed;border-radius:14px}input[type=range]{accent-color:#9a85ff;width:160px}@media(max-width:600px){header,main{padding:14px}.panel{padding:16px}.disc{width:80%}.deckgrid{gap:8px}.track{font-size:.95rem}}
-</style></head><body><header><strong>◉ RADIO HITS <span style="color:#a78bfa">/ DJ MIX</span></strong><a href="./index.html">← Rádio original</a></header><main><div class="tag">AUTOMIX EXPERIMENTAL</div><h1>DJ <span id="headline">automático.</span></h1><p class="muted">As músicas da Rádio Hits com seleção por gênero e ritmo conhecido, pré-carregamento da próxima faixa e transições com controle de graves. Escolha entre áudio original e modo econômico.</p><section class="panel"><div class="controls"><label>Modo <select id="mode"><option value="auto">DJ automático</option><option value="manual">DJ manual</option></select></label><button class="primary" id="play">▶ Iniciar DJ</button><button id="skip">Próxima mixagem ⏭</button><label>Gênero <select id="genre"><option value="">Todos</option></select></label><label>Mixagem <select id="mixstyle"><option value="suave">Suave</option><option value="equilibrada" selected>Equilibrada</option><option value="energetica">Energética</option></select></label><label class="smart-option"><input type="checkbox" id="smart" checked> Seleção inteligente</label><label class="smart-option"><input type="checkbox" id="beatgrid" checked> Entrada na batida</label><label class="smart-option"><input type="checkbox" id="trimintro" checked> Ignorar silêncio inicial</label><label class="smart-option"><input type="checkbox" id="energycue"> Entrada por energia (experimental)</label><label class="smart-option"><input type="checkbox" id="waves" checked> Ondas ao vivo</label></div><p id="styleinfo" class="notice" aria-live="polite">Equilibrada: transição de 10s, ritmo moderado e graves controlados.</p><p id="status" class="notice" role="status">Carregando catálogo...</p><div class="meter"><i id="progress"></i></div><div class="deckgrid"><div class="deck"><span class="tag">DECK A</span><div class="disc" id="disc0"></div><strong id="title0" class="track">Aguardando música</strong><p id="artist0" class="muted"></p><div class="scope" id="scope0"><div class="scope-top"><span>Forma de onda · sinal de entrada</span><span id="vu0">−∞ dBFS</span></div><canvas id="wave0" width="384" height="72" aria-label="Forma de onda do deck A" role="img"></canvas><div class="level-meter" aria-hidden="true"><i id="level0"></i></div><div class="beat-indicator" id="beat0">● Batida detectada</div></div><div class="controls" style="justify-content:center"><button id="load0">Carregar A</button><button id="cue0">▶ A</button></div><p class="tag" id="bpm0">BPM: analisando</p><label>Velocidade A <input id="rate0" type="range" min="85" max="115" value="100"></label><div class="controls" style="justify-content:center;margin-top:10px"><button id="setcue0">Marcar cue</button><button id="gocue0">Ir ao cue</button><button id="loop0">Loop 8 tempos</button></div><p class="notice" id="cueinfo0">Cue não definido</p></div><div class="deck"><span class="tag">DECK B</span><div class="disc" id="disc1"></div><strong id="title1" class="track">Aguardando música</strong><p id="artist1" class="muted"></p><div class="scope" id="scope1"><div class="scope-top"><span>Forma de onda · sinal de entrada</span><span id="vu1">−∞ dBFS</span></div><canvas id="wave1" width="384" height="72" aria-label="Forma de onda do deck B" role="img"></canvas><div class="level-meter" aria-hidden="true"><i id="level1"></i></div><div class="beat-indicator" id="beat1">● Batida detectada</div></div><div class="controls" style="justify-content:center"><button id="load1">Carregar B</button><button id="cue1">▶ B</button></div><p class="tag" id="bpm1">BPM: analisando</p><label>Velocidade B <input id="rate1" type="range" min="85" max="115" value="100"></label><div class="controls" style="justify-content:center;margin-top:10px"><button id="setcue1">Marcar cue</button><button id="gocue1">Ir ao cue</button><button id="loop1">Loop 8 tempos</button></div><p class="notice" id="cueinfo1">Cue não definido</p></div></div><div class="controls" style="margin:18px 0"><label>Crossfader A ↔ B <input id="cross" type="range" min="0" max="100" value="0"></label><button id="sync">Sincronizar BPM</button><button id="preview">Escolher próxima</button><button id="resetfx">Limpar efeitos</button></div><div class="controls"><label>Som <select id="quality"><option value="original" selected>Alta qualidade</option><option value="light">Econômico</option></select></label><label>Crossfade <select id="fade"><option value="6">6 segundos</option><option value="10" selected>10 segundos</option><option value="16">16 segundos</option></select></label><label>Filtro <input id="filter" type="range" min="800" max="18000" value="18000"></label><label>Graves <input id="bass" type="range" min="-12" max="12" value="0"></label><label>Volume <input id="volume" type="range" min="0" max="100" value="75"></label></div><p class="notice" id="upnext" aria-live="polite">Próxima faixa: aguardando seleção</p>
+</style></head><body><header><strong>◉ RADIO HITS <span style="color:#a78bfa">/ DJ MIX</span></strong><a href="./index.html">← Rádio original</a></header><main><div class="tag">AUTOMIX EXPERIMENTAL</div><h1>DJ <span id="headline">automático.</span></h1><p class="muted">As músicas da Rádio Hits com seleção por gênero e ritmo conhecido, pré-carregamento da próxima faixa e transições com controle de graves. Escolha entre áudio original e modo econômico.</p><section class="panel"><div class="controls"><label>Modo <select id="mode"><option value="auto">DJ automático</option><option value="manual">DJ manual</option></select></label><button class="primary" id="play">▶ Iniciar DJ</button><button id="skip">Próxima mixagem ⏭</button><label>Gênero <select id="genre"><option value="">Todos</option></select></label><label>Mixagem <select id="mixstyle"><option value="suave">Suave</option><option value="equilibrada">Equilibrada</option><option value="energetica">Energética</option><option value="adaptativa" selected>Adaptativa (Auto)</option></select></label><label class="smart-option"><input type="checkbox" id="smart" checked> Seleção inteligente</label><label class="smart-option"><input type="checkbox" id="beatgrid" checked> Entrada na batida</label><label class="smart-option"><input type="checkbox" id="trimintro" checked> Ignorar silêncio inicial</label><label class="smart-option"><input type="checkbox" id="energycue"> Entrada por energia (experimental)</label><label class="smart-option"><input type="checkbox" id="waves" checked> Ondas ao vivo</label></div><p id="styleinfo" class="notice" aria-live="polite">Equilibrada: transição de 10s, ritmo moderado e graves controlados.</p><p id="status" class="notice" role="status">Carregando catálogo...</p><div class="meter"><i id="progress"></i></div><div class="deckgrid"><div class="deck"><span class="tag">DECK A</span><div class="disc" id="disc0"></div><strong id="title0" class="track">Aguardando música</strong><p id="artist0" class="muted"></p><div class="scope" id="scope0"><div class="scope-top"><span>Forma de onda · sinal de entrada</span><span id="vu0">−∞ dBFS</span></div><canvas id="wave0" width="384" height="72" aria-label="Forma de onda do deck A" role="img"></canvas><div class="level-meter" aria-hidden="true"><i id="level0"></i></div><div class="beat-indicator" id="beat0">● Batida detectada</div></div><div class="controls" style="justify-content:center"><button id="load0">Carregar A</button><button id="cue0">▶ A</button></div><p class="tag" id="bpm0">BPM: analisando</p><label>Velocidade A <input id="rate0" type="range" min="85" max="115" value="100"></label><div class="controls" style="justify-content:center;margin-top:10px"><button id="setcue0">Marcar cue</button><button id="gocue0">Ir ao cue</button><button id="loop0">Loop 8 tempos</button></div><p class="notice" id="cueinfo0">Cue não definido</p></div><div class="deck"><span class="tag">DECK B</span><div class="disc" id="disc1"></div><strong id="title1" class="track">Aguardando música</strong><p id="artist1" class="muted"></p><div class="scope" id="scope1"><div class="scope-top"><span>Forma de onda · sinal de entrada</span><span id="vu1">−∞ dBFS</span></div><canvas id="wave1" width="384" height="72" aria-label="Forma de onda do deck B" role="img"></canvas><div class="level-meter" aria-hidden="true"><i id="level1"></i></div><div class="beat-indicator" id="beat1">● Batida detectada</div></div><div class="controls" style="justify-content:center"><button id="load1">Carregar B</button><button id="cue1">▶ B</button></div><p class="tag" id="bpm1">BPM: analisando</p><label>Velocidade B <input id="rate1" type="range" min="85" max="115" value="100"></label><div class="controls" style="justify-content:center;margin-top:10px"><button id="setcue1">Marcar cue</button><button id="gocue1">Ir ao cue</button><button id="loop1">Loop 8 tempos</button></div><p class="notice" id="cueinfo1">Cue não definido</p></div></div><div class="controls" style="margin:18px 0"><label>Crossfader A ↔ B <input id="cross" type="range" min="0" max="100" value="0"></label><button id="sync">Sincronizar BPM</button><button id="preview">Escolher próxima</button><button id="resetfx">Limpar efeitos</button></div><div class="controls"><label>Som <select id="quality"><option value="original" selected>Alta qualidade</option><option value="light">Econômico</option></select></label><label>Crossfade <select id="fade"><option value="6">6 segundos</option><option value="10" selected>10 segundos</option><option value="16">16 segundos</option></select></label><label>Filtro <input id="filter" type="range" min="800" max="18000" value="18000"></label><label>Graves <input id="bass" type="range" min="-12" max="12" value="0"></label><label>Volume <input id="volume" type="range" min="0" max="100" value="75"></label></div><p class="notice" id="upnext" aria-live="polite">Próxima faixa: aguardando seleção</p>
 <div class="library"><strong>Biblioteca para mixagem manual</strong>
 <p class="notice">Encontre qualquer música do catálogo e envie diretamente para um dos decks.</p>
 <div class="controls"><input type="search" id="search" placeholder="Pesquisar música ou artista…" aria-label="Buscar música"><select id="choose" aria-label="Música selecionada"></select></div>
 <div class="controls"><button id="send0">Carregar no deck A</button><button id="send1">Carregar no deck B</button><span class="notice" id="matchcount"></span></div>
-</div></section><p class="notice">Versão experimental: mixagem e crossfader no navegador, com três perfis de mixagem, crossfade de potência equilibrada, formas de onda ao vivo, medidores de áudio, indicadores de batida, seleção inteligente, corte conservador do silêncio inicial, pontos opcionais de energia (experimentais), entrada próxima de batidas detectadas, hot cues e loops de 8 tempos. A compatibilidade de ritmo melhora conforme o navegador aprende o BPM das músicas. O resultado pode variar conforme o estilo musical; não há separação de vocais nem transmissão sincronizada. Mantenha esta página aberta para ouvir o set.</p></main><script>
+</div></section><p class="notice">Versão experimental: mixagem e crossfader no navegador, com Auto DJ Adaptativo, três perfis de mixagem, crossfade de potência equilibrada, formas de onda ao vivo, medidores de áudio, indicadores de batida, seleção inteligente, corte conservador do silêncio inicial, pontos opcionais de energia (experimentais), entrada próxima de batidas detectadas, hot cues e loops de 8 tempos. A compatibilidade de ritmo melhora conforme o navegador aprende o BPM das músicas. O resultado pode variar conforme o estilo musical; não há separação de vocais nem transmissão sincronizada. Mantenha esta página aberta para ouvir o set.</p></main><script>
 
 'use strict';
 (()=>{
@@ -24,20 +24,59 @@ const MIX_STYLES=Object.freeze({
  energetica:{name:'Energética',fade:6,tempoLimit:.08,genreBonus:1.4,bassCut:8,maxBeatWait:900}
 });
 function mixStyle(){return MIX_STYLES[$('mixstyle').value]||MIX_STYLES.equilibrada;}
-function mixStyleDescription(){
- const p=mixStyle();
- const desc={
-  suave:'transições longas, troca gradual de graves e ritmos próximos',
-  equilibrada:'ritmo moderado, transições naturais e graves controlados',
-  energetica:'transições rápidas, batidas em destaque e graves mais definidos'
- }[$('mixstyle').value]||'transições equilibradas';
- return p.name+': '+desc+' • '+$('fade').value+'s de crossfade.';
+function transitionPlan(from,to,sourceBpm,targetBpm){
+ const chosen=$('mixstyle').value;
+ if(chosen!=='adaptativa'){
+  const preset=MIX_STYLES[chosen]||MIX_STYLES.equilibrada;
+  return{profile:preset,seconds:Number($('fade').value)||preset.fade,reason:'Perfil fixo'};
+ }
+ const left=Number(sourceBpm),right=Number(targetBpm);
+ const comparable=Number.isFinite(left)&&Number.isFinite(right)&&left>=65&&right>=65;
+ const gap=comparable?Math.abs(left-right)/Math.max(left,right):1;
+ const sameGenre=Boolean(from?.genre&&to?.genre&&from.genre===to.genre);
+ let profile=MIX_STYLES.equilibrada,reason='BPM insuficiente; mixagem equilibrada';
+ if(comparable&&gap>=.15){
+  profile=MIX_STYLES.suave;reason='Diferença grande de BPM';
+ }else if(!sameGenre&&from?.genre&&to?.genre){
+  profile=MIX_STYLES.suave;reason='Mudança de gênero';
+ }else if(comparable&&sameGenre&&gap<=.075&&Math.min(left,right)>=115){
+  profile=MIX_STYLES.energetica;reason='Batidas rápidas e compatíveis';
+ }else if(comparable&&gap<=.075&&Math.max(left,right)<110){
+  profile=MIX_STYLES.suave;reason='Batidas mais lentas';
+ }else if(comparable){
+  reason='Ritmos intermediários';
+ }
+ return{profile,seconds:profile.fade,reason};
 }
-function refreshStyleInfo(){$('styleinfo').textContent=mixStyleDescription();}
+function plannedTransition(){
+ const outgoing=channels[active]?.track,incoming=queued;
+ const sourceBpm=channels[active]?.bpm||bpmKnowledge[outgoing?.id];
+ const incomingBpm=channels[1-active]?.track?.id===incoming?.id
+  ?channels[1-active].bpm||bpmKnowledge[incoming?.id]
+  :bpmKnowledge[incoming?.id];
+ return transitionPlan(outgoing,incoming,sourceBpm,incomingBpm);
+}
+function refreshStyleInfo(){
+ const chosen=$('mixstyle').value,plan=plannedTransition();
+ if(chosen==='adaptativa'){
+  $('styleinfo').textContent='Auto adaptativo → '+plan.profile.name+' ('+plan.seconds+'s). '+plan.reason+'.';
+  $('fade').value=String(plan.seconds);
+  return;
+ }
+ const desc={
+  suave:'transições longas e troca gradual de graves',
+  equilibrada:'ritmo moderado e graves controlados',
+  energetica:'transições rápidas e graves mais definidos'
+ };
+ const p=mixStyle();
+ $('styleinfo').textContent=p.name+': '+desc[chosen]+' • '+$('fade').value+'s de crossfade.';
+}
 function setStyle(value){
- const p=MIX_STYLES[value]||MIX_STYLES.equilibrada;
- $('mixstyle').value=value in MIX_STYLES?value:'equilibrada';
- $('fade').value=String(p.fade);
+ const adaptive=value==='adaptativa';
+ const preset=MIX_STYLES[value]||MIX_STYLES.equilibrada;
+ $('mixstyle').value=adaptive?'adaptativa':value in MIX_STYLES?value:'equilibrada';
+ $('fade').disabled=adaptive;
+ $('fade').value=String(preset.fade);
  refreshStyleInfo();
  try{localStorage.setItem('radiohits-dj-style-v1',$('mixstyle').value);}catch(e){}
 }
@@ -118,6 +157,7 @@ function prepareNext(){
  const cueKind=queued&&$('energycue').checked&&Number(queued.djEnergyCueSec)>=4?' • energia':'';
  $('upnext').textContent=queued?'Próxima: '+queued.title+' — '+(queued.artist||'Artista desconhecido')+(bpm?' • ≈'+bpm+' BPM':'')+reason+(intro>0?' • entrada '+intro.toFixed(1)+'s'+cueKind:''):'Próxima faixa indisponível';
  preloadNext();
+ refreshStyleInfo();
 }
 function init(){
  if(ctx)return;
@@ -186,9 +226,9 @@ let lastDrawTime=0;
 function drawMeters(timestamp){
  try{
  const previous=localStorage.getItem('radiohits-dj-style-v1');
- if(previous&&MIX_STYLES[previous])setStyle(previous);
- else refreshStyleInfo();
-}catch(e){refreshStyleInfo();}
+ if(previous&&(MIX_STYLES[previous]||previous==='adaptativa'))setStyle(previous);
+ else setStyle('adaptativa');
+}catch(e){setStyle('adaptativa');}
 if(typeof requestAnimationFrame==='function')requestAnimationFrame(drawMeters);
  if(!$('waves').checked||!ctx||!channels.length||document.hidden||timestamp-lastDrawTime<75)return;
  lastDrawTime=timestamp;
@@ -243,7 +283,7 @@ function stop(){
  $('play').textContent='▶ Iniciar DJ';status('DJ pausado');visuals();
 }
 
-function nextBeatDelayMs(channel) {
+function nextBeatDelayMs(channel,profile=mixStyle(),fadeSeconds=Number($('fade').value)) {
  if(!$('beatgrid').checked||!$('smart').checked||!channel?.bpm||channel.beats.length<8)return 0;
  const el=channel.el,beatSeconds=60/channel.bpm,elapsed=el.currentTime-channel.lastBeat;
  // Only trust a recent onset. Previously saved BPM alone cannot determine beat phase.
@@ -252,7 +292,7 @@ function nextBeatDelayMs(channel) {
  const delayMs=Math.max(0,(nextBeat-el.currentTime)/Math.max(.7,el.playbackRate)*1000);
  const remaining=(el.duration-el.currentTime)/Math.max(.7,el.playbackRate);
  // Never hold a transition past the outgoing track's safe ending.
- return Number.isFinite(remaining)&&remaining<Number($('fade').value)+delayMs/1000+.6?0:delayMs<=mixStyle().maxBeatWait?delayMs:0;
+ return Number.isFinite(remaining)&&remaining<fadeSeconds+delayMs/1000+.6?0:delayMs<=profile.maxBeatWait?delayMs:0;
 }
 async function next(){
  if(!playing||mixing)return;
@@ -263,12 +303,13 @@ async function next(){
  const a=channels[from],b=channels[to],token=++generation;
  applyIntro(b);
  const aBpm=a.bpm||bpmKnowledge[a.track?.id],bBpm=b.bpm||bpmKnowledge[b.track?.id];
+ const plan=transitionPlan(a.track,t,aBpm,bBpm),profile=plan.profile;
  if($('smart').checked&&aBpm&&bBpm){
   const ratio=aBpm*a.el.playbackRate/bBpm;
-  const limit=mixStyle().tempoLimit;
+  const limit=profile.tempoLimit;
   if(ratio>=1-limit&&ratio<=1+limit){b.el.playbackRate=ratio;$('rate'+to).value=Math.round(ratio*100);}
  }
- const delayMs=nextBeatDelayMs(a);
+ const delayMs=nextBeatDelayMs(a,profile,plan.seconds);
  const beginBlend=async()=>{
   if(token!==generation||!playing||manual())return;
   b.gain.gain.value=0;
@@ -283,7 +324,7 @@ async function next(){
   remember(t);
   const now=ctx.currentTime,baseBass=Number($('bass').value);
   const available=(a.el.duration-a.el.currentTime)/Math.max(.7,a.el.playbackRate);
-  const seconds=Number.isFinite(available)?Math.max(.55,Math.min(Number($('fade').value),available-.1)):Number($('fade').value);
+  const seconds=Number.isFinite(available)?Math.max(.55,Math.min(plan.seconds,available-.1)):plan.seconds;
   a.gain.gain.cancelScheduledValues(now);b.gain.gain.cancelScheduledValues(now);
   a.gain.gain.setValueAtTime(a.gain.gain.value,now);b.gain.gain.setValueAtTime(0,now);
   // Equal-power (cos/sin) avoids a volume dip halfway through the fade.
@@ -294,13 +335,13 @@ async function next(){
   }
   if($('smart').checked){
    a.bass.gain.cancelScheduledValues(now);b.bass.gain.cancelScheduledValues(now);
-   const cut=mixStyle().bassCut;
+   const cut=profile.bassCut;
    a.bass.gain.setValueAtTime(baseBass,now);b.bass.gain.setValueAtTime(baseBass-cut,now);
    a.bass.gain.linearRampToValueAtTime(baseBass-cut*.85,now+seconds*.65);
    b.bass.gain.linearRampToValueAtTime(baseBass,now+seconds*.7);
    a.bass.gain.linearRampToValueAtTime(baseBass,now+seconds);
   }
-  status('Mixando: '+(a.track?.title||'')+' → '+t.title+(delayMs>0?' • entrada na batida':''));
+  status('Mixando: '+(a.track?.title||'')+' → '+t.title+' • '+profile.name+(delayMs>0?' • entrada na batida':''));
   visuals();
   transitionTimer=setTimeout(()=>{
    if(token!==generation)return;
@@ -346,8 +387,8 @@ $('preview').onclick=()=>{if(!pool.length)return;prepareNext();status('Nova pró
 $('smart').onchange=()=>{prepareNext();status($('smart').checked?'Seleção inteligente ativada.':'Seleção aleatória ativada.');};
 $('mixstyle').onchange=()=>{
  setStyle($('mixstyle').value);
- if(!manual()&&!mixing){prepareNext();status('Mixagem '+mixStyle().name+' selecionada.');}
- else status('Perfil '+mixStyle().name+' preparado para o DJ automático.');
+ if(!manual()&&!mixing)prepareNext();
+ status($('mixstyle').value==='adaptativa'?'Auto DJ Adaptativo ativado: cada transição será avaliada.':'Perfil '+mixStyle().name+' selecionado.');
 };
 $('fade').onchange=refreshStyleInfo;
 $('beatgrid').onchange=()=>{status($('beatgrid').checked?'Entrada na batida ativada para ritmos confiáveis.':'Entrada imediata sem alinhamento de batidas.');};
@@ -388,7 +429,7 @@ setInterval(()=>{if(!channels.length)return;channels.forEach(c=>{if(c.loop&&!c.e
 setInterval(()=>{
  if(!playing||!channels.length)return;
  const el=channels[active].el,d=el.duration;
- if(Number.isFinite(d)&&d>0){$('progress').style.width=Math.min(100,el.currentTime/d*100)+'%';if(!manual()&&!mixing&&d-el.currentTime<=Number($('fade').value)+1.5)next();}
+ if(Number.isFinite(d)&&d>0){$('progress').style.width=Math.min(100,el.currentTime/d*100)+'%';if(!manual()&&!mixing&&d-el.currentTime<=plannedTransition().seconds+1.5)next();}
 },400);
 fetch('./catalogo.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();}).then(data=>{
  tracks=(data.tracks||[]).filter(t=>!t.isJingle&&(t.src||t.lowSrc));
