@@ -129,8 +129,12 @@ def main():
         low_source='./musicas-leves/'+ '/'.join(quote(part) for part in path.relative_to(MUSIC).with_suffix('.m4a').parts)
         loudness=volume_profiles.get(rel,{})
         gain=max(-10.0,min(0.0,float(loudness.get('gainDb') or 0.0)))
+        # Ponto opcional e conservador de entrada, exclusivo do DJ automático.
+        # Não altera a duração, a URL nem a programação da rádio.
+        estimated_intro=float(loudness.get('djIntroSec') or 0.0)
+        dj_intro=round(estimated_intro,2) if 0.7<=estimated_intro<=8.0 else 0.0
         tracks.append({'id':ident,'title':title,'artist':artist,'genre':genre,'duration':seconds,'src':source,'lowSrc':low_source,'cover':cover,'year':meta.get('year',2026),'downloadAllowed':meta.get('downloadAllowed') is True,
-                       'gainDb':gain,'loudnessLufs':loudness.get('lufs')})
+                       'gainDb':gain,'loudnessLufs':loudness.get('lufs'),'djIntroSec':dj_intro})
     # A cada 5 músicas, alternar determinística e ciclicamente
     # três vinhetas femininas. IDs continuam exclusivos e estáveis.
     # O relógio UTC usa durações exatas de cada MP3 (incluindo VBR padding).
