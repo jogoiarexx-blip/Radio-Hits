@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0e13"><title>DJ Mix | Radio Hits</title><style>
 :root{color-scheme:dark;font-family:system-ui,Arial,sans-serif;background:#090d16;color:#f7f8ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#24204b,#090d16 55%);min-height:100vh}header,main{max-width:1050px;margin:auto;padding:20px}header{display:flex;justify-content:space-between;align-items:center;gap:15px}a{color:#a6a5ff;text-decoration:none}h1{font-size:clamp(2rem,6vw,4rem);margin:10px 0}h1 span{color:#9a85ff}.muted{color:#a5a9bd}.panel{background:#171b2bcc;border:1px solid #34384f;border-radius:22px;padding:22px;margin:18px 0}.deckgrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.deck{min-width:0;text-align:center}.disc{width:min(170px,70%);aspect-ratio:1;border-radius:50%;margin:18px auto;background:repeating-radial-gradient(circle,#11131c 0 3px,#303246 4px 6px);border:9px solid #25283c;display:grid;place-items:center;box-shadow:0 0 30px #7557d733}.disc:after{content:'';background:#a58aff;width:26%;aspect-ratio:1;border-radius:50%;border:8px solid #24223a}.spinning{animation:spin 3s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}button,select{background:#262b43;color:white;border:1px solid #424861;border-radius:12px;padding:12px 16px;font:inherit}button{cursor:pointer}button.primary{background:#8c6bff;border-color:#8c6bff;color:#fff;font-weight:700}button:disabled{opacity:.5}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.tag{color:#b7a7ff;font-size:.75rem;font-weight:800;letter-spacing:.15em}.track{overflow-wrap:anywhere;min-height:3em}.meter{height:8px;border-radius:10px;background:#2b3047;overflow:hidden;margin:16px 0}.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8a69ff,#35d9dc);transition:width .2s}.notice{font-size:.9rem;color:#aeb5c8}input[type=range]{accent-color:#9a85ff;width:160px}@media(max-width:600px){header,main{padding:14px}.panel{padding:16px}.disc{width:80%}.deckgrid{gap:8px}.track{font-size:.95rem}}
-</style></head><body><header><strong>◉ RADIO HITS <span style="color:#a78bfa">/ DJ MIX</span></strong><a href="./index.html">← Rádio original</a></header><main><div class="tag">AUTOMIX EXPERIMENTAL</div><h1>DJ <span>automático.</span></h1><p class="muted">As músicas da Rádio Hits em uma sessão contínua, com crossfade e efeitos de filtro.</p><section class="panel"><div class="controls"><label>Modo <select id="mode"><option value="auto">DJ automático</option><option value="manual">DJ manual</option></select></label><button class="primary" id="play">▶ Iniciar DJ</button><button id="skip">Próxima mixagem ⏭</button><label>Estilo <select id="genre"><option value="">Todos</option></select></label></div><p id="status" class="notice" role="status">Carregando catálogo...</p><div class="meter"><i id="progress"></i></div><div class="deckgrid"><div class="deck"><span class="tag">DECK A</span><div class="disc" id="disc0"></div><strong id="title0" class="track">Aguardando música</strong><p id="artist0" class="muted"></p><div class="controls" style="justify-content:center"><button id="load0">Carregar A</button><button id="cue0">▶ A</button></div><label>Velocidade A <input id="rate0" type="range" min="85" max="115" value="100"></label></div><div class="deck"><span class="tag">DECK B</span><div class="disc" id="disc1"></div><strong id="title1" class="track">Aguardando música</strong><p id="artist1" class="muted"></p><div class="controls" style="justify-content:center"><button id="load1">Carregar B</button><button id="cue1">▶ B</button></div><label>Velocidade B <input id="rate1" type="range" min="85" max="115" value="100"></label></div></div><div class="controls" style="margin:18px 0"><label>Crossfader A ↔ B <input id="cross" type="range" min="0" max="100" value="0"></label><button id="sync">Igualar velocidade</button><button id="preview">Pré-escuta próxima</button><button id="resetfx">Limpar efeitos</button></div><div class="controls"><label>Crossfade <select id="fade"><option value="6">6 segundos</option><option value="10" selected>10 segundos</option><option value="16">16 segundos</option></select></label><label>Filtro <input id="filter" type="range" min="800" max="18000" value="18000"></label><label>Graves <input id="bass" type="range" min="-12" max="12" value="0"></label><label>Volume <input id="volume" type="range" min="0" max="100" value="75"></label></div><p class="notice" id="upnext" aria-live="polite">Próxima faixa: aguardando seleção</p></section><p class="notice">Versão experimental: mixagem e crossfader no navegador, sem detecção precisa de BPM, separação de vocais ou transmissão sincronizada. Mantenha esta página aberta para ouvir o set.</p></main><script>
+</style></head><body><header><strong>◉ RADIO HITS <span style="color:#a78bfa">/ DJ MIX</span></strong><a href="./index.html">← Rádio original</a></header><main><div class="tag">AUTOMIX EXPERIMENTAL</div><h1>DJ <span>automático.</span></h1><p class="muted">As músicas da Rádio Hits em uma sessão contínua, com crossfade e efeitos de filtro.</p><section class="panel"><div class="controls"><label>Modo <select id="mode"><option value="auto">DJ automático</option><option value="manual">DJ manual</option></select></label><button class="primary" id="play">▶ Iniciar DJ</button><button id="skip">Próxima mixagem ⏭</button><label>Estilo <select id="genre"><option value="">Todos</option></select></label></div><p id="status" class="notice" role="status">Carregando catálogo...</p><div class="meter"><i id="progress"></i></div><div class="deckgrid"><div class="deck"><span class="tag">DECK A</span><div class="disc" id="disc0"></div><strong id="title0" class="track">Aguardando música</strong><p id="artist0" class="muted"></p><div class="controls" style="justify-content:center"><button id="load0">Carregar A</button><button id="cue0">▶ A</button></div><p class="tag" id="bpm0">BPM: analisando</p><label>Velocidade A <input id="rate0" type="range" min="85" max="115" value="100"></label></div><div class="deck"><span class="tag">DECK B</span><div class="disc" id="disc1"></div><strong id="title1" class="track">Aguardando música</strong><p id="artist1" class="muted"></p><div class="controls" style="justify-content:center"><button id="load1">Carregar B</button><button id="cue1">▶ B</button></div><p class="tag" id="bpm1">BPM: analisando</p><label>Velocidade B <input id="rate1" type="range" min="85" max="115" value="100"></label></div></div><div class="controls" style="margin:18px 0"><label>Crossfader A ↔ B <input id="cross" type="range" min="0" max="100" value="0"></label><button id="sync">Sincronizar BPM</button><button id="preview">Pré-escuta próxima</button><button id="resetfx">Limpar efeitos</button></div><div class="controls"><label>Crossfade <select id="fade"><option value="6">6 segundos</option><option value="10" selected>10 segundos</option><option value="16">16 segundos</option></select></label><label>Filtro <input id="filter" type="range" min="800" max="18000" value="18000"></label><label>Graves <input id="bass" type="range" min="-12" max="12" value="0"></label><label>Volume <input id="volume" type="range" min="0" max="100" value="75"></label></div><p class="notice" id="upnext" aria-live="polite">Próxima faixa: aguardando seleção</p></section><p class="notice">Versão experimental: mixagem e crossfader no navegador, com estimativa de BPM baseada nas batidas detectadas durante a reprodução. O resultado pode variar conforme o estilo musical; não há separação de vocais nem transmissão sincronizada. Mantenha esta página aberta para ouvir o set.</p></main><script>
 
 'use strict';
 (()=>{
 const $=id=>document.getElementById(id);
-let tracks=[],pool=[],ctx,master,channels=[],active=0,playing=false,mixing=false,lastId='',generation=0,transitionTimer=null,failures=0,queued=null;
+let tracks=[],pool=[],ctx,master,channels=[],active=0,playing=false,mixing=false,lastId='',generation=0,transitionTimer=null,failures=0,queued=null,bpmTimer=null;
 const status=t=>$('status').textContent=t;
 const manual=()=>$('mode').value==='manual';
 function makePool(){pool=tracks.filter(t=>(!$('genre').value||t.genre===$('genre').value)&&(t.src||t.lowSrc));}
@@ -17,11 +17,11 @@ function init(){
  ctx=new (window.AudioContext||window.webkitAudioContext)();
  master=ctx.createGain();master.gain.value=Number($('volume').value)/100;master.connect(ctx.destination);
  channels=[0,1].map(i=>{
-  const el=new Audio();el.preload='auto';const src=ctx.createMediaElementSource(el),filter=ctx.createBiquadFilter(),bass=ctx.createBiquadFilter(),gain=ctx.createGain();
-  filter.type='lowpass';filter.frequency.value=Number($('filter').value);bass.type='lowshelf';bass.frequency.value=180;bass.gain.value=Number($('bass').value);gain.gain.value=0;src.connect(filter).connect(bass).connect(gain).connect(master);
+  const el=new Audio();el.preload='auto';const src=ctx.createMediaElementSource(el),filter=ctx.createBiquadFilter(),bass=ctx.createBiquadFilter(),gain=ctx.createGain(),analyser=ctx.createAnalyser();analyser.fftSize=2048;analyser.smoothingTimeConstant=.4;
+  filter.type='lowpass';filter.frequency.value=Number($('filter').value);bass.type='lowshelf';bass.frequency.value=180;bass.gain.value=Number($('bass').value);gain.gain.value=0;src.connect(filter).connect(bass).connect(gain).connect(master);src.connect(analyser);
   el.addEventListener('error',()=>{if(!el.src||!playing)return;status('Erro ao carregar faixa no deck '+(i?'B':'A'));if(!manual()&&active===i&&!mixing){failures++;if(failures<4){load(i,pick());channels[i].el.play().catch(()=>{});}else stop();}});
   el.addEventListener('ended',()=>{if(manual())return;if(i===active&&playing&&!mixing)next();});
-  return{el,filter,bass,gain,track:null};
+  return{el,filter,bass,gain,analyser,energy:new Uint8Array(analyser.frequencyBinCount),beats:[],lastBeat:-10,avg:0,bpm:0,track:null};
  });
 }
 function cancelMix(){
@@ -29,8 +29,35 @@ function cancelMix(){
  if(ctx)channels.forEach(c=>c.gain.gain.cancelScheduledValues(ctx.currentTime));
 }
 function load(i,t){
- if(!t)return false;const c=channels[i];c.el.pause();c.el.src=new URL(t.src||t.lowSrc,location.href).href;c.el.load();c.el.playbackRate=Number($('rate'+i).value)/100;c.track=t;
+ if(!t)return false;const c=channels[i];c.el.pause();c.el.src=new URL(t.src||t.lowSrc,location.href).href;c.el.load();c.beats=[];c.lastBeat=-10;c.avg=0;c.bpm=0;$('bpm'+i).textContent='BPM: analisando';c.el.playbackRate=Number($('rate'+i).value)/100;c.track=t;
  $('title'+i).textContent=t.title||'Sem título';$('artist'+i).textContent=t.artist||'';return true;
+}
+function detectBpm(){
+ if(!ctx||!playing)return;
+ channels.forEach((c,i)=>{
+  if(c.el.paused||!c.el.currentTime)return;
+  c.analyser.getByteFrequencyData(c.energy);
+  // Low-frequency onset detection; independent of the master volume and filter.
+  const hz=ctx.sampleRate/c.analyser.fftSize;
+  const lo=Math.max(1,Math.floor(45/hz)),hi=Math.min(c.energy.length,Math.ceil(180/hz));
+  let e=0;for(let k=lo;k<hi;k++)e+=c.energy[k];e/=Math.max(1,hi-lo);
+  c.avg=c.avg?c.avg*.93+e*.07:e;
+  const now=c.el.currentTime;
+  if(e>Math.max(35,c.avg*1.35)&&now-c.lastBeat>.27){
+   c.lastBeat=now;c.beats.push(now);if(c.beats.length>50)c.beats.shift();
+   const intervals=[];
+   for(let j=1;j<c.beats.length;j++){const d=c.beats[j]-c.beats[j-1];if(d>.27&&d<1.2)intervals.push(d);}
+   if(intervals.length>=8){
+    const bpms=intervals.map(d=>{let b=60/d;while(b<75)b*=2;while(b>160)b/=2;return b;}).sort((a,b)=>a-b);
+    const mid=bpms[Math.floor(bpms.length/2)];
+    const consistent=bpms.filter(b=>Math.abs(b-mid)<mid*.09);
+    if(consistent.length>=Math.ceil(bpms.length*.55)){
+     c.bpm=Math.round(consistent.reduce((a,b)=>a+b,0)/consistent.length);
+     $('bpm'+i).textContent='BPM estimado: '+c.bpm;
+    }
+   }
+  }
+ });
 }
 function visuals(){if(!channels.length)return;channels.forEach((c,i)=>{$('disc'+i).classList.toggle('spinning',!c.el.paused);$('cue'+i).textContent=c.el.paused?'▶ '+(i?'B':'A'):'⏸ '+(i?'B':'A');});}
 function setCross(v){
@@ -62,6 +89,7 @@ async function next(){
  b.gain.gain.value=0;
  try{await b.el.play();}catch(e){mixing=false;status('Falha na próxima faixa. Tente novamente.');return;}
  if(token!==generation){b.el.pause();return;}
+ if(a.bpm&&b.bpm){const ratio=a.bpm/b.bpm;if(ratio>=.92&&ratio<=1.08){b.el.playbackRate=ratio; $('rate'+to).value=Math.round(ratio*100);}}
  const now=ctx.currentTime,secs=Number($('fade').value);
  a.gain.gain.cancelScheduledValues(now);b.gain.gain.cancelScheduledValues(now);
  a.gain.gain.setValueAtTime(a.gain.gain.value,now);b.gain.gain.setValueAtTime(0,now);
@@ -91,8 +119,9 @@ $('cross').oninput=e=>{if(!manual()){$('mode').value='manual';cancelMix();status
   try{if(c.el.paused){await c.el.play();playing=true;$('play').textContent='⏸ Pausar DJ';}else c.el.pause();setCross($('cross').value);visuals();}catch(e){status('Não foi possível tocar o deck '+(i?'B':'A'));}};
 });
 $('preview').onclick=()=>{if(!pool.length)return;prepareNext();status('Próxima faixa selecionada para a mixagem');};
-$('sync').onclick=()=>{if(!channels.length)return;const src=channels[active].el.playbackRate;channels[1-active].el.playbackRate=src;$('rate'+(1-active)).value=Math.round(src*100);status('Velocidades igualadas (sem análise de BPM)');};
+$('sync').onclick=()=>{if(!channels.length)return;const a=channels[active],b=channels[1-active];if(!a.bpm||!b.bpm){status('Aguarde a estimativa de BPM nos dois decks antes de sincronizar.');return;}const ratio=a.bpm*a.el.playbackRate/b.bpm;if(ratio<.85||ratio>1.15){status('Ritmos muito diferentes para sincronização segura (limite de 15%).');return;}b.el.playbackRate=ratio;$('rate'+(1-active)).value=Math.round(ratio*100);status('BPM aproximado: deck '+(active?'A':'B')+' ajustado para '+Math.round(b.bpm*ratio));};
 $('resetfx').onclick=()=>{$('filter').value=18000;$('bass').value=0;[0,1].forEach(i=>{$('rate'+i).value=100;if(channels.length){channels[i].filter.frequency.value=18000;channels[i].bass.gain.value=0;channels[i].el.playbackRate=1;}});status('Efeitos redefinidos');};
+setInterval(detectBpm,120);
 setInterval(()=>{
  if(!playing||!channels.length)return;
  const el=channels[active].el,d=el.duration;
