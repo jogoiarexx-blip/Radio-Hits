@@ -9,7 +9,7 @@ DIST=ROOT/'dist'
 subprocess.run([sys.executable,str(ROOT/'scripts'/'gerar_catalogo.py')],check=True)
 if DIST.exists(): shutil.rmtree(DIST)
 DIST.mkdir()
-for item in ['index.html','catalogo.json','sw.js','manifest.webmanifest','.nojekyll']:
+for item in ['index.html','dj.html','catalogo.json','sw.js','manifest.webmanifest','.nojekyll']:
     shutil.copy2(ROOT/item,DIST/item)
 revision=(os.environ.get('GITHUB_SHA') or 'local')[:12]
 index=DIST/'index.html'
