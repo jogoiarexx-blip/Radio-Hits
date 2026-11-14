@@ -44,7 +44,7 @@ for (const id of ids) {
   elements.set(id,{
     id, value:options[id]||'',checked:id==='smart'||id==='waves'||id==='beatgrid'||id==='trimintro',textContent:'',style:{},items:[],
     width:384,height:72,getContext:()=>canvasContext,
-    classList:{toggle(){}},replaceChildren(){this.items=[];this.value='';},appendChild(o){this.items.push(o);if(!this.value)this.value=o.value;}
+    classList:{toggle(){}},replaceChildren(){this.items=[];this.value='';},appendChild(o){this.items.push(o);if(this.id==='choose'&&!this.value)this.value=o.value;}
   });
 }
 const sounds=[];
