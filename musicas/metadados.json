@@ -1252,5 +1252,96 @@
     "cover": "./assets/capas/genero-radio-hits.svg",
     "year": null,
     "downloadAllowed": false
+  },
+  "rock/CPM+22+-+Um+Minuto+Para+o+Fim+do+Mundo+(Ao+Vivo+no+Rock+in+Rio) [TqOMV6NsqrI].mp3": {
+    "title": "Um Minuto Para o Fim do Mundo (Ao Vivo)",
+    "artist": "CPM 22",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Capital Inicial - À Sua Maneira (De Música Ligeira) (Video Clipe).mp3": {
+    "title": "À Sua Maneira",
+    "artist": "Capital Inicial",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Charlie Brown JR. - Ela Vai Voltar (Todos Os Defeitos De de Uma Mulher Perfeita).mp3": {
+    "title": "Ela Vai Voltar",
+    "artist": "Charlie Brown Jr.",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Charlie+Brown+JR.+-+Pontes+Indestrutí_veis [bZTwKUJDU1M].mp3": {
+    "title": "Pontes Indestrutíveis",
+    "artist": "Charlie Brown Jr.",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Charlie+Brown+Jr+Lutar+Pelo+Que+É+Meu [2kTeFZ7PIdk].mp3": {
+    "title": "Lutar Pelo Que É Meu",
+    "artist": "Charlie Brown Jr.",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Falling In Reverse - Joseph (feat. Corey Taylor and Serj Tankian).mp3": {
+    "title": "Joseph (feat. Corey Taylor and Serj Tankian)",
+    "artist": "Falling in Reverse",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/From+Ashes+To+New+-+After+Death+(Official+Music+Video) [JxOuEI6jrxM].mp3": {
+    "title": "After Death",
+    "artist": "From Ashes to New",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/LiSA『ReawakeR (feat. Felix of Stray Kids)』MUSiC CLiP.mp3": {
+    "title": "ReawakeR (feat. Felix of Stray Kids)",
+    "artist": "LiSA",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Pitty - Na Sua Estante (Clipe Oficial).mp3": {
+    "title": "Na Sua Estante",
+    "artist": "Pitty",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Skillet - Feel Invincible Official Music Video.mp3": {
+    "title": "Feel Invincible",
+    "artist": "Skillet",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Skillet - Not Gonna Die OFFICIAL MUSIC VIDEO.mp3": {
+    "title": "Not Gonna Die",
+    "artist": "Skillet",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Skillet - The Resistance Official Lyric Video.mp3": {
+    "title": "The Resistance",
+    "artist": "Skillet",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
+  },
+  "rock/Tudo+Que+Ela+Gosta+De+Escutar [XGSWIJ9Eed0].mp3": {
+    "title": "Tudo Que Ela Gosta de Escutar",
+    "artist": "Charlie Brown Jr.",
+    "genre": "Rock",
+    "cover": "./assets/capas/padrao.svg",
+    "downloadAllowed": false
   }
 }
