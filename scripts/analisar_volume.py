@@ -56,7 +56,9 @@ def scan_file(path, old):
     relative = path.relative_to(MUSIC).as_posix()
     digest = file_hash(path)
     if old.get("sha256") == digest and "lufs" in old:
-        return relative, old, False
+        if "djIntroSec" in old:
+            return relative, old, False
+        return relative, {**old, "djIntroSec": detect_intro_silence(path)}, True
     try:
         from mutagen import File
         audio = File(path)
@@ -76,13 +78,43 @@ def scan_file(path, old):
         result = subprocess.run(command, capture_output=True, text=True, timeout=100)
         parsed = parse_ebur128(result.stderr)
         if result.returncode or parsed is None:
-            return relative, {"sha256": digest, "error": "trecho sem nível válido"}, True
+            return relative, {"sha256": digest, "djIntroSec": detect_intro_silence(path), "error": "trecho sem nível válido"}, True
         return relative, {
-            "sha256": digest, "lufs": parsed[0], "truePeakDbfs": parsed[1],
+            "sha256": digest, "djIntroSec": detect_intro_silence(path), "lufs": parsed[0], "truePeakDbfs": parsed[1],
             "sampleSeconds": round(sample, 2)
         }, True
     except (OSError, subprocess.TimeoutExpired) as error:
-        return relative, {"sha256": digest, "error": type(error).__name__}, True
+        return relative, {"sha256": digest, "djIntroSec": detect_intro_silence(path), "error": type(error).__name__}, True
+
+def parse_intro_silence(log: str):
+    """Conservative DJ cue: skip only measurable digital/near-digital silence at start.
+
+    Does not try to identify vocals, musical intros or beat downbeats.
+    """
+    start = re.search(r"silence_start:\s*(-?\d+(?:\.\d+)?)", log)
+    end = re.search(r"silence_end:\s*(\d+(?:\.\d+)?)", log)
+    if not start or not end:
+        return 0.0
+    first = float(start.group(1))
+    finish = float(end.group(1))
+    if abs(first) > .12 or not .7 <= finish <= 9.0:
+        return 0.0
+    return round(min(8.0, max(0.0, finish - .15)), 2)
+
+
+def detect_intro_silence(path: Path):
+    """At most the first 12 seconds decoded once per file hash; fallback is zero."""
+    command = [
+        "ffmpeg", "-nostdin", "-hide_banner", "-nostats", "-loglevel", "info",
+        "-i", str(path), "-t", "12", "-map", "0:a:0", "-vn", "-sn", "-dn",
+        "-af", "silencedetect=noise=-42dB:d=0.30", "-f", "null", "-"
+    ]
+    try:
+        result = subprocess.run(command, capture_output=True, text=True, timeout=35)
+        return parse_intro_silence(result.stderr) if result.returncode == 0 else 0.0
+    except (OSError, subprocess.TimeoutExpired):
+        return 0.0
+
 
 def main():
     if not shutil.which("ffmpeg"):
