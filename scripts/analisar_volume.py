@@ -62,7 +62,7 @@ def scan_file(path, old):
         if "djIntroSec" in old and "djEnergyCueSec" in old:
             return relative, old, False
         return relative, {**old,
-                          "djIntroSec": old.get("djIntroSec", detect_intro_silence(path)),
+                          "djIntroSec": old["djIntroSec"] if "djIntroSec" in old else detect_intro_silence(path),
                           "djEnergyCueSec": detect_energy_cue(path)}, True
     try:
         from mutagen import File
