@@ -133,8 +133,10 @@ def main():
         # Não altera a duração, a URL nem a programação da rádio.
         estimated_intro=float(loudness.get('djIntroSec') or 0.0)
         dj_intro=round(estimated_intro,2) if 0.7<=estimated_intro<=8.0 else 0.0
+        estimated_energy=float(loudness.get('djEnergyCueSec') or 0.0)
+        dj_energy=round(estimated_energy,2) if 4.0<=estimated_energy<=24.0 else 0.0
         tracks.append({'id':ident,'title':title,'artist':artist,'genre':genre,'duration':seconds,'src':source,'lowSrc':low_source,'cover':cover,'year':meta.get('year',2026),'downloadAllowed':meta.get('downloadAllowed') is True,
-                       'gainDb':gain,'loudnessLufs':loudness.get('lufs'),'djIntroSec':dj_intro})
+                       'gainDb':gain,'loudnessLufs':loudness.get('lufs'),'djIntroSec':dj_intro,'djEnergyCueSec':dj_energy})
     # A cada 5 músicas, alternar determinística e ciclicamente
     # três vinhetas femininas. IDs continuam exclusivos e estáveis.
     # O relógio UTC usa durações exatas de cada MP3 (incluindo VBR padding).
