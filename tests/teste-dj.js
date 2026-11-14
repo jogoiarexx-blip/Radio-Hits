@@ -14,7 +14,7 @@ const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(x => x[1]));
 for (const [,id] of script.matchAll(/\$\('([a-z][a-z0-9-]*)'\)/g)) {
   assert.ok(ids.has(id), 'Missing DOM control: ' + id);
 }
-for (const id of ['mode','smart','beatgrid','waves','wave0','wave1','vu0','vu1','level0','level1','beat0','beat1','play','skip','cross','genre','bpm0','bpm1','upnext','loop0','loop1']) {
+for (const id of ['mode','smart','beatgrid','trimintro','waves','wave0','wave1','vu0','vu1','level0','level1','beat0','beat1','play','skip','cross','genre','bpm0','bpm1','upnext','loop0','loop1']) {
   assert.ok(ids.has(id), 'Required DJ control missing: ' + id);
 }
 
@@ -42,14 +42,14 @@ const frames = [];
 const options = {mode:'auto',genre:'',volume:'75',bass:'0',filter:'18000',cross:'0',fade:'10',rate0:'100',rate1:'100'};
 for (const id of ids) {
   elements.set(id,{
-    id, value:options[id]||'',checked:id==='smart'||id==='waves'||id==='beatgrid',textContent:'',style:{},items:[],
+    id, value:options[id]||'',checked:id==='smart'||id==='waves'||id==='beatgrid'||id==='trimintro',textContent:'',style:{},items:[],
     width:384,height:72,getContext:()=>canvasContext,
     classList:{toggle(){}},replaceChildren(){this.items=[];this.value='';},appendChild(o){this.items.push(o);if(!this.value)this.value=o.value;}
   });
 }
 const sounds=[];
 class FakeAudio {
-  constructor(){this.paused=true;this.src='';this.duration=180;this.currentTime=20;this.playbackRate=1;this.handlers={};sounds.push(this);}
+  constructor(){this.paused=true;this.src='';this.duration=180;this.currentTime=20;this.readyState=1;this.playbackRate=1;this.handlers={};sounds.push(this);}
   pause(){this.paused=true;}
   load(){this.paused=true;this.currentTime=0;}
   async play(){if(!this.src)throw new Error('Missing audio source');this.paused=false;}
@@ -79,9 +79,9 @@ class FakeContext{
   async resume(){}
 }
 const sample = [
-  {id:'test-1',title:'Track A',artist:'Artist A',genre:'Dance',src:'./musicas/test-a.mp3',lowSrc:'./musicas-leves/test-a.m4a',duration:180},
-  {id:'test-2',title:'Track B',artist:'Artist B',genre:'Dance',src:'./musicas/test-b.mp3',lowSrc:'./musicas-leves/test-b.m4a',duration:180},
-  {id:'test-3',title:'Track C',artist:'Artist C',genre:'Rock',src:'./musicas/test-c.mp3',duration:180}
+  {id:'test-1',title:'Track A',artist:'Artist A',genre:'Dance',src:'./musicas/test-a.mp3',lowSrc:'./musicas-leves/test-a.m4a',duration:180,djIntroSec:2.25},
+  {id:'test-2',title:'Track B',artist:'Artist B',genre:'Dance',src:'./musicas/test-b.mp3',lowSrc:'./musicas-leves/test-b.m4a',duration:180,djIntroSec:2.25},
+  {id:'test-3',title:'Track C',artist:'Artist C',genre:'Rock',src:'./musicas/test-c.mp3',duration:180,djIntroSec:2.25}
 ];
 const timeouts=[];
 const mock={
@@ -107,6 +107,7 @@ async function main(){
   await elements.get('play').onclick();
   assert.equal(sounds.length,2,'Two audio decks should be created');
   assert.ok(sounds.some(s=>!s.paused),'A deck should play on start');
+  assert.ok(sounds.every(s=>Math.abs(s.currentTime-2.25)<.01),'Auto DJ should cue each loaded song after leading silence');
   assert.ok(frames.length>0,'Visualizer should schedule an animation frame');
   frames.shift()(150);
   assert.ok(drawings.includes('stroke'),'Visualizer should draw the deck waveforms');
@@ -119,6 +120,8 @@ async function main(){
   assert.match(elements.get('status').textContent,/Mixando:/,'Skip should trigger crossfade');
   assert.ok(timeouts.length>0,'A crossfade completion should be scheduled');
   timeouts.at(-1)();
+  elements.get('trimintro').checked=false;elements.get('trimintro').onchange();
+  assert.equal(sounds.some(s=>s.paused&&s.currentTime===0),true,'Intro skip toggle should restore the waiting track');
   elements.get('mode').value='manual';
   elements.get('mode').onchange();
   elements.get('cross').oninput({target:{value:'50'}});
@@ -130,7 +133,8 @@ async function main(){
   assert.equal(elements.get('choose').items.length,1,'Manual song search should filter the catalog');
   elements.get('send0').onclick();
   assert.match(elements.get('status').textContent,/Track C carregada/);
+  assert.equal(sounds[0].currentTime,0,'Manual deck must start at the beginning');
   assert.equal(elements.get('mode').value,'manual');
-  console.log('DJ Mix: syntax, DOM, catalog, dual deck, preload, mix, live waveforms, search and manual controls OK.');
+  console.log('DJ Mix: syntax, DOM, catalog, dual deck, preload, mix, auto intro cue, live waveforms, search and manual controls OK.');
 }
 main().catch(err=>{console.error(err);process.exitCode=1;});
