@@ -34,6 +34,17 @@ class AuditarVolume(unittest.TestCase):
         self.assertEqual(module.parse_intro_silence(
             "silence_start: 0\nsilence_end: 10.0 | silence_duration: 10.0"), 0)
 
+    def test_cue_energia_so_com_subida_sustentada(self):
+        # 0.5 s por janela: introdução fraca seguida de entrada mais forte.
+        levels = [-34.0] * 14 + [-12.0] * 44
+        point = module.energy_cue_from_levels(levels)
+        self.assertGreaterEqual(point, 6.0)
+        self.assertLessEqual(point, 8.0)
+        self.assertEqual(module.energy_cue_from_levels([-12.0] * 58), 0.0)
+        self.assertEqual(module.energy_cue_from_levels([-34.0] * 58), 0.0)
+        self.assertEqual(module.energy_cue_from_levels([-34.0] * 14 + [-12.0] * 2 + [-34.0] * 42), 0.0)
+        self.assertEqual(module.energy_cue_from_levels([-34.0] * 60, interval=0), 0.0)
+
     def test_sem_amplificacao(self):
         self.assertEqual(module.attenuation_db(-11,-16),-5)
         self.assertEqual(module.attenuation_db(-23,-16),0)
