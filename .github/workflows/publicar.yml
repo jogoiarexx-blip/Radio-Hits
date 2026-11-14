@@ -66,6 +66,7 @@ jobs:
           java -cp /tmp/radiohits-recovery br.com.radiohits.app.PlaybackRecoveryCheck
           javac -d /tmp/radiohits-recovery android/app/src/main/java/br/com/radiohits/app/SleepTimerClock.java tests/SleepTimerCheck.java
           java -cp /tmp/radiohits-recovery br.com.radiohits.app.SleepTimerCheck
+          node tests/teste-dj.js
           node --check js/app.js
           node --check js/offline.js
           node tests/auditoria-radio.js
