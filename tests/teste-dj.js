@@ -35,6 +35,28 @@ assert.equal(vm.runInContext('nextBeatDelayMs',beatContext)(beatChannel),0,'insu
 beatChannel.beats=[1,2,3,4,5,6,7,8];beatOptions.beatgrid.checked=false;
 assert.equal(vm.runInContext('nextBeatDelayMs',beatContext)(beatChannel),0,'user can disable quantization');
 
+// Adaptive profile decisions must not rely on the audio backend or randomness.
+const styleBegin=script.indexOf('const MIX_STYLES='),styleEnd=script.indexOf('function introSeconds(',styleBegin);
+assert.ok(styleBegin>=0&&styleEnd>styleBegin,'Adaptive mix profiles must exist');
+const profileState={mixstyle:{value:'adaptativa'},fade:{value:'10'}};
+const profileContext=vm.createContext({$:id=>profileState[id]});
+vm.runInContext(script.slice(styleBegin,styleEnd),profileContext);
+const decide=vm.runInContext('transitionPlan',profileContext);
+function decision(a,b,first,second,name,seconds) {
+ const result=decide({genre:a},{genre:b},first,second);
+ assert.equal(result.profile.name,name);
+ assert.equal(result.seconds,seconds);
+}
+decision('Dance','Dance',130,132,'Energética',6);
+decision('Rock','Rock',82,85,'Suave',16);
+decision('Rock','Dance',130,132,'Suave',16);
+decision('Rock','Rock',128,89,'Suave',16);
+decision('Rock','Rock',110,113,'Equilibrada',10);
+decision('Rock','Rock',undefined,undefined,'Equilibrada',10);
+profileState.mixstyle.value='suave';
+assert.equal(decide({genre:'Rock'},{genre:'Rock'},130,132).profile.name,'Suave','Explicit selection overrides adaptive choice');
+
+
 const elements = new Map();
 const drawings = [];
 const canvasContext = {fillRect(){drawings.push('fill');},beginPath(){},moveTo(){},lineTo(){},stroke(){drawings.push('stroke');}};
@@ -104,8 +126,10 @@ async function main(){
   assert.match(elements.get('status').textContent,/3 músicas/);
   assert.equal(elements.get('genre').items.length,2);
   assert.equal(elements.get('choose').items.length,3,'Library should display the three test songs');
-  assert.equal(elements.get('mixstyle').value,'equilibrada');
+  assert.equal(elements.get('mixstyle').value,'adaptativa','New sessions should start with adaptive Auto DJ');
+  assert.equal(elements.get('fade').disabled,true,'Adaptive fade is decided automatically');
   elements.get('mixstyle').value='suave';elements.get('mixstyle').onchange();
+  assert.equal(elements.get('fade').disabled,false,'Fixed presets allow manual fade adjustment');
   assert.equal(elements.get('fade').value,'16','Suave preset should use a 16-second fade');
   assert.match(elements.get('styleinfo').textContent,/Suave/);
   elements.get('mixstyle').value='energetica';elements.get('mixstyle').onchange();
@@ -155,6 +179,6 @@ async function main(){
   assert.match(elements.get('status').textContent,/Track C carregada/);
   assert.equal(sounds[0].currentTime,0,'Manual deck must start at the beginning');
   assert.equal(elements.get('mode').value,'manual');
-  console.log('DJ Mix: syntax, DOM, catalog, dual deck, preload, mix, 3 presets, auto intro and energy cue, live waveforms, search and manual controls OK.');
+  console.log('DJ Mix: syntax, DOM, catalog, dual deck, preload, mix, adaptive profile decisions, 3 presets, auto intro and energy cue, live waveforms, search and manual controls OK.');
 }
 main().catch(err=>{console.error(err);process.exitCode=1;});
