@@ -7,6 +7,9 @@ pois a medição abrange um trecho, não necessariamente a faixa toda.
 """
 from __future__ import annotations
 import concurrent.futures
+import array
+import statistics
+import sys
 import hashlib
 import json
 import math
@@ -56,9 +59,11 @@ def scan_file(path, old):
     relative = path.relative_to(MUSIC).as_posix()
     digest = file_hash(path)
     if old.get("sha256") == digest and "lufs" in old:
-        if "djIntroSec" in old:
+        if "djIntroSec" in old and "djEnergyCueSec" in old:
             return relative, old, False
-        return relative, {**old, "djIntroSec": detect_intro_silence(path)}, True
+        return relative, {**old,
+                          "djIntroSec": old.get("djIntroSec", detect_intro_silence(path)),
+                          "djEnergyCueSec": detect_energy_cue(path)}, True
     try:
         from mutagen import File
         audio = File(path)
@@ -78,13 +83,13 @@ def scan_file(path, old):
         result = subprocess.run(command, capture_output=True, text=True, timeout=100)
         parsed = parse_ebur128(result.stderr)
         if result.returncode or parsed is None:
-            return relative, {"sha256": digest, "djIntroSec": detect_intro_silence(path), "error": "trecho sem nível válido"}, True
+            return relative, {"sha256": digest, "djIntroSec": detect_intro_silence(path), "djEnergyCueSec": detect_energy_cue(path), "error": "trecho sem nível válido"}, True
         return relative, {
-            "sha256": digest, "djIntroSec": detect_intro_silence(path), "lufs": parsed[0], "truePeakDbfs": parsed[1],
+            "sha256": digest, "djIntroSec": detect_intro_silence(path), "djEnergyCueSec": detect_energy_cue(path), "lufs": parsed[0], "truePeakDbfs": parsed[1],
             "sampleSeconds": round(sample, 2)
         }, True
     except (OSError, subprocess.TimeoutExpired) as error:
-        return relative, {"sha256": digest, "djIntroSec": detect_intro_silence(path), "error": type(error).__name__}, True
+        return relative, {"sha256": digest, "djIntroSec": detect_intro_silence(path), "djEnergyCueSec": detect_energy_cue(path), "error": type(error).__name__}, True
 
 def parse_intro_silence(log: str):
     """Conservative DJ cue: skip only measurable digital/near-digital silence at start.
@@ -113,6 +118,61 @@ def detect_intro_silence(path: Path):
         result = subprocess.run(command, capture_output=True, text=True, timeout=35)
         return parse_intro_silence(result.stderr) if result.returncode == 0 else 0.0
     except (OSError, subprocess.TimeoutExpired):
+        return 0.0
+
+
+
+def energy_cue_from_levels(levels, interval=0.5):
+    """Find the first sustained rise of energy after a low-energy intro.
+
+    This is a *candidate* DJ cue, not true beat/vocal recognition.
+    Returns zero when evidence is weak, too early or too late.
+    """
+    if interval <= 0 or len(levels) < int(16 / interval):
+        return 0.0
+    start = max(1, int(1.0 / interval))
+    end = min(len(levels), int(4.0 / interval))
+    baseline = statistics.median(levels[start:end])
+    if not math.isfinite(baseline) or baseline > -19:
+        return 0.0
+    threshold = max(-27.0, baseline + 9.0)
+    lo = int(4.0 / interval)
+    hi = min(len(levels) - 5, int(24.0 / interval))
+    for i in range(lo, hi):
+        window = levels[i:i + 5]
+        if sum(value >= threshold for value in window) < 4:
+            continue
+        if max(window) < -21 or statistics.median(window) - baseline < 9:
+            continue
+        before = levels[max(0, i - 6):i]
+        if before and statistics.median(before) > threshold - 4:
+            continue
+        return round(max(0.0, i * interval - 0.15), 2)
+    return 0.0
+
+
+def detect_energy_cue(path: Path):
+    """Decode max 32 seconds at 8 kHz mono; keep only one timestamp."""
+    command = [
+        "ffmpeg", "-nostdin", "-hide_banner", "-loglevel", "error",
+        "-i", str(path), "-t", "32", "-map", "0:a:0", "-vn", "-sn", "-dn",
+        "-ac", "1", "-ar", "8000", "-f", "s16le", "-"
+    ]
+    try:
+        result = subprocess.run(command, capture_output=True, timeout=65)
+        if result.returncode:
+            return 0.0
+        samples = array.array("h")
+        samples.frombytes(result.stdout[:len(result.stdout) // 2 * 2])
+        if sys.byteorder != "little":
+            samples.byteswap()
+        chunk = 4000
+        levels = []
+        for i in range(0, len(samples) - chunk + 1, chunk):
+            power = sum(v * v for v in samples[i:i + chunk]) / (chunk * 32768 ** 2)
+            levels.append(10 * math.log10(max(power, 1e-12)))
+        return energy_cue_from_levels(levels)
+    except (OSError, subprocess.TimeoutExpired, ValueError):
         return 0.0
 
 
